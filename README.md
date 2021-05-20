@@ -19,7 +19,7 @@ E-commerce para repostería, donde los reposteros (caseros o negocios) pueden ve
 - Personas interesadas en postres
 
 ### Descripción de los integrantes
-- Gabo:
+- Gabo: soy de ingeniería en computación, llevo un tiempo interesado en desarrollo web. Me gusta la literatura (novelas y cuentos) 📖, jugar videojuegos con mis amigos 🎮 y colorear 🖍. Tengo conocimientos en varios lenguajes de programación y otras tecnologías como git, docker, base de datos relacionales y computo en la nube. Estudie la especialización en IA o(\*￣▽￣\*)ブ, pero nunca me logró gustar tanto como el desarrollo web.
 - Montse:
 - Esteban: 
 
