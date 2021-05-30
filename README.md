@@ -21,8 +21,9 @@ E-commerce para repostería, donde los reposteros (caseros o negocios) pueden ve
 ### Descripción de los integrantes
 - Gabo: soy de ingeniería en computación, llevo un tiempo interesado en desarrollo web. Me gusta la literatura (novelas y cuentos) 📖, jugar videojuegos con mis amigos 🎮 y colorear 🖍. Tengo conocimientos en varios lenguajes de programación y otras tecnologías como git, docker, base de datos relacionales y computo en la nube. Estudie la especialización en IA o(\*￣▽￣\*)ブ, pero nunca me logró gustar tanto como el desarrollo web.
 - Montse:¡Hola! Soy Montse, egresada de la carrera de Actuaría.  Me considero una persona tranquil1a, con muchas ganas de aprender "de todo un poco" (Desarrollo Web, es un ejemplo). Me encanta viajar, indagar en información relacionada al arte y la cultura. Tengo conocimiento de lenguajes de programación como R y Python aplicado a la estadística y actualmente, busco complementarlo con Desarrollo Web, de forma que pueda crear productos relacionados a mis intereses profesionales, como lo son las finanzas corporativas, bursátiles y tecnológicas (Fintech).
-
--Esteban:
+- Esteban: Muy buen día. Soy un estudiante de la carrera de ingeniería en informática. Actualmente, trabajo como becario de desarrollo en una empresa especializada en el software gubernamental. Me gusta mi carrera lo que me ha permitido dedicarle horas extras de mi tiempo libre por puro entretenimiento.
+Disfruto del sentimiento que existe cuando resuelves un problema que tiene tiempo torturandote (obviamente, me refiero a problemas de programación). 
+También, aquel sentimiento que se da cuando le enseñas a alguien más lo que has hecho, y se queda pasmado.
 
 ## Inspiración:
 ### [Canasta Rosa](https://canastarosa.com/)
