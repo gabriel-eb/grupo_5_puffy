@@ -1,5 +1,8 @@
 # Puffy
 
+## Trello
+https://trello.com/b/GdfpiR3V/puffy-proyecto-integrador
+
 ## Integrantes:
 - Gabriel Espinosa Burguete
 - Pedro Esteban Sevilla Gutiérrez
