@@ -1,5 +1,4 @@
 const express = require("express");
-const { join } = require("path");
 const app = express();
 const path = require("path");
 const PORT = 3030;
