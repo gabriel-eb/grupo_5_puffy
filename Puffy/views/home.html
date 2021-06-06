@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bienvenido a Puffy</title>
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://kit.fontawesome.com/10a87b4104.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="top-bar">
+                <div class="btn-menu-principal">
+                    <label for="mostrar-nav">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+                <img src="/images/logo.svg" alt="Logo Puffy" class="logo" />
+                <div class="relleno-top-bar"></div>
+                <div class="carrito">
+                    <a href="#"
+                        ><i class="far fa-heart"></i><span>Deseados</span></a
+                    >
+                    <a href="#"
+                        ><i class="fas fa-shopping-cart"></i
+                        ><span>Carrito</span></a
+                    >
+                </div>
+            </div>
+
+            <nav>
+                <input type="checkbox" id="mostrar-nav" hidden />
+                <ul class="menu-principal">
+                    <li><a href="#">Opc 1</a></li>
+                    <li>
+                        <label for="mostrar-submenu">Opc 2</label>
+                        <input type="checkbox" id="mostrar-submenu" hidden />
+                        <ul class="submenu">
+                            <li><a href="#">Sub1</a></li>
+                            <li><a href="#">Sub2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Opc 3</a></li>
+                    <li><a href="#">Opc 4</a></li>
+                </ul>
+            </nav>
+            <div class="bot-bar">
+                <form action="" method="post" class="busqueda">
+                    <input
+                        type="text"
+                        id="buscar"
+                        placeholder="Hoy se me antoja..."
+                        class="txt-busqueda"
+                    />
+                    <input type="submit" class="btn-busqueda" value="" />
+                    <i class="fas fa-search ic-busqueda"></i>
+                </form>
+            </div>
+            <hr />
+        </header>
+
+        <main>
+            <section class="carrusel"></section>
+            <section class="articulo-destacado"></section>
+            <section class="reposteros"></section>
+            <hr />
+        </main>
+
+        <footer></footer>
+    </body>
+</html>
