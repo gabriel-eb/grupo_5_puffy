@@ -71,12 +71,101 @@
         </header>
 
         <main>
-            <section class="carrusel"></section>
-            <section class="articulo-destacado"></section>
-            <section class="reposteros"></section>
+            <section id="slider">
+                <input type="radio" name="slider" id="slide1" checked />
+                <input type="radio" name="slider" id="slide2" />
+                <input type="radio" name="slider" id="slide3" />
+                <div id="slides">
+                    <div id="overflow">
+                        <div class="inner">
+                            <div class="slide slide_1">
+                                <div class="slide-content">
+                                    <h2>Bienvenido</h2>
+                                    <p>Postres de todo tipo.</p>
+                                </div>
+                                <img
+                                    src="/images/logo.svg"
+                                    alt="logo"
+                                />
+                            </div>
+                            <div class="slide slide_2">
+                                <div class="slide-content">
+                                    <h2>Slide 2</h2>
+                                    <p>Content for Slide 2</p>
+                                </div>
+                                <img
+                                    src="https://image.flaticon.com/icons/svg/130/130882.svg"
+                                    alt="prueba"
+                                />
+                            </div>
+                            <div class="slide slide_3">
+                                <div class="slide-content">
+                                    <h2>Slide 3</h2>
+                                    <p>Content for Slide 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="controls">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                </div>
+                <div id="bullets">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                </div>
+            </section>
+            <section class="postre-del-dia">
+                <article>
+                    <img src="/images/chocoflan.jpg" alt="Postre del dia">
+                    <div class="mensaje">
+                        <h3>Postre del día</h3>
+                        <p>Oferta!</p>
+                    </div>
+                </article>
+            </section>
+            <section class="colecciones">
+                <h3>Colecciones</h3>
+            </section>
             <hr />
         </main>
 
-        <footer></footer>
+        <footer class="footer">
+            <img class="logo" src="/images/logo.svg" alt="" />
+
+            <div class="lista">
+                <h3>Menu</h3>
+                <ul type="none">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Cuenta</a></li>
+                    <li><a href="#">Historial</a></li>
+                    <li><a href="#">Favoritos</a></li>
+                </ul>
+            </div>
+            <div class="lista">
+                <h3>Puffy</h3>
+                <ul type="none">
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">F.A.Q.</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">---</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
+            </div>
+            <div class="lista">
+                <h3>Reposteros</h3>
+                <ul type="none">
+                    <li><a href="#">Afiliates</a></li>
+                    <li><a href="#">Lista de reposteros</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Temporada</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
+            </div>
+        </footer>
     </body>
 </html>
