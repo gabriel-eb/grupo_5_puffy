@@ -727,6 +727,145 @@ body{
     }
 }
 
+*{
+    box-sizing: border-box; 
+    margin:0;
+    padding:0;
+}
+
+/*BODY*/
+
+body{
+    /*background-color: gray;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+.form{
+    width:90%;
+    margin:100px auto;
+    align-items: center;
+    border: 2px solid gray;
+    border-radius: 5px;   
+
+    /*box-shadow: 7px 13px 37pxs gray; */
+
+    /*margin:auto;*/
+        
+    
+    /*padding:20px 30 px;*/
+     /*background-color:white;*/
+
+}
+
+.form h3{
+    padding-top:20px ;
+    padding-bottom: 15px;
+    margin:0 20px;
+    
+    text-align:center;
+    font-size: 25px;
+
+    background-color: white;
+   
+    border-bottom: 2px solid #cdcdcd;
+   /* width:fit-content;*/
+}
+
+.fill{
+    background-color:  #e2e2e2;
+    border-color:#dadada;
+    width: 90%;
+    margin: 10px 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border-style:none;
+
+} 
+
+.container_01{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    margin:0;
+}
+
+.container_02{
+    width:90%;
+    text-align:right;
+    padding-bottom: 15px;
+    padding-right:0;
+    margin:auto;
+   
+}
+
+.container_02 a{
+    text-decoration: none;
+    color:blue;
+ }
+
+
+.button_01{
+    margin:0 15px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.button_01 input{
+    background-color:black;
+    color:white;
+    width:60%;
+    height:40px;
+    border-radius: 5px;
+    
+}
+
+.button_02{
+    margin: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+}
+
+.button_02 button {
+    background-color: white;
+    color:black;
+    
+
+    border:2px solid black;
+    border-radius: 5px; 
+
+    width:60%;
+
+    margin: 10px 20px;
+    padding: 10px;
+    
+}
+
+/*FOOTER*/
+
+.footer{
+    width:90%;
+    margin: 20px;
+
+  display: flex;
+  flex-direction:column;
+    align-items: flex-start;
+}
+
+@media(min-width:480px){
+    .footer{
+        flex-direction: row;
+    }
+}
+
 /*.pie{
     display: flex;
     align-items: flex-start;
