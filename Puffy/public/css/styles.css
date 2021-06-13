@@ -17,7 +17,6 @@
 }
 
 .top-bar .logo {
-    /* width: 100%; */
     padding-left: 16px;
     max-height: 48px;
 }
@@ -296,7 +295,7 @@ main > hr {
 
 
 /* Postre del dia */
-.postre-del-dia{
+.postres{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,7 +308,7 @@ main > hr {
     background-color: #f25287;
 }
 
-.postre-del-dia article {
+.postres .postre-del-dia {
     display: flex;
     align-items: left;
     flex-direction: column;
@@ -317,19 +316,19 @@ main > hr {
     max-height: 50%;
 }
 
-.postre-del-dia article h3 {
+.postres .postre-del-dia h3 {
     margin: 0 0 1rem 1rem;
     color: white;
     text-align: center;
 }
 
-.postre-del-dia article img {
+.postres .postre-del-dia img {
     width: 75%;
     border-radius: 8px;
     margin: auto;
 }
 
-.postre-del-dia article .mensaje{
+.postres .postre-del-dia .mensaje{
     width: 75%;
     margin: 1rem auto 0 auto;
     color: white;
@@ -337,6 +336,10 @@ main > hr {
 
 .small{
     font-size: 0.6rem;
+}
+
+.postres .nuevos-postres {
+    display: none;
 }
 
 
@@ -440,15 +443,15 @@ main > hr {
         width: 100%;
         top: 0;
     }
+    
+    main {
+        margin-top: 206px;
+    }
 
     .menu-principal {
         display: inline-block;
         width: 100%;
         height: inherit;
-    }
-
-    main {
-        margin-top: 68px;
     }
 
     .btn-menu-principal label {
@@ -475,8 +478,13 @@ main > hr {
         position: relative;
     }
 
+    .top-bar .logo {
+        padding: 0;
+        margin: 0;
+    }
     .carrito{
-        margin-left: 16px;
+        width: 20%;
+        justify-content: center;
     }
 
     /* Barra busqueda Desktop */
@@ -489,10 +497,6 @@ main > hr {
     }
 
     /* Slider Desktop */
-    main {
-        margin-top: 200px;
-    }
-
     #slides .inner {
         height: 480px;
     }
@@ -524,18 +528,18 @@ main > hr {
     }
 
     /* Postre del dia */
-    .postre-del-dia{
+    .postres{
         position: static;
         margin: 320px auto 92px auto;
         width: 30%;
         min-height: 30vw;
     }
     
-    .postre-del-dia article h3 {
+    .postres article h3 {
         font-size: 2rem;
     }
     
-    .postre-del-dia article .mensaje{
+    .postres article .mensaje{
         font-size: 1.5rem;
     }
     
@@ -564,10 +568,9 @@ main > hr {
     }
 
     .colecciones .circulo-coleccion{
-        width: 80px;
-        height: 80px;
+        width: 160px;
+        height: 160px;
     }
-
 
     /* Reposteros */
     .reposteros {
@@ -581,7 +584,7 @@ main > hr {
 
     .reposteros .scroll > article {
         width: 136px;
-        height: 136px;
+        height: 176px;
     }
 }
 
