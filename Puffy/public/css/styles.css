@@ -140,6 +140,12 @@ input[type="checkbox"]:checked + .submenu {
     padding-left: 0.5rem;
     padding-top: 7px;
 }
+/* Fix para firefox */
+@-moz-document url-prefix() {
+    .txt-busqueda {
+        padding-top: 6px;
+    }
+}
 
 .btn-busqueda {
     border: 0;
@@ -297,7 +303,7 @@ main > hr {
     position: relative;
     top: 3rem;
     z-index: 1;
-    margin: 0 auto 76px auto;
+    margin: 0 auto 92px auto;
     width: calc(100% - 32px);
     max-height: calc(100vw - 32px);
     background-color: #f25287;
@@ -313,7 +319,8 @@ main > hr {
 
 .postre-del-dia article h3 {
     margin: 0 0 1rem 1rem;
-
+    color: white;
+    text-align: center;
 }
 
 .postre-del-dia article img {
@@ -335,34 +342,125 @@ main > hr {
 
 /* Colecciones */
 .colecciones{
-    margin: 0 auto 32px auto;
+    margin: 40px 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.colecciones h3 {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.colecciones a {
+    text-decoration: none;
+    color: black;
+}
+
+.colecciones a:visited {
+    color: black;
+}
+
+.colecciones .circulo-coleccion{
+    border-radius: 50%;
+    width: 66px;
+    height: 66px;
+}
+
+.colecciones .circulo-coleccion img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.colecciones .c1 {
+    background-color: #f25287;
+}
+
+.colecciones .c2 {
+    background-color: #3acbf2;
+}
+
+.colecciones .c3 {
+    background-color: #e6e206;
+}
+
+.colecciones .c4 {
+    background-color: #00171f;
+}
+
+.colecciones img {
+    padding: 0.2rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.colecciones a article p {
+    text-align: center;
 }
 
 
+/* Reposteros */
+.reposteros {
+    margin: 0 16px 40px 16px;
+    /* display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; */
+}
 
-/* Media query para menu */
-@media (min-width: 560px) {
+.reposteros .scroll{
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.reposteros .scroll > article {
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: 104px;
+    height: 104px;
+    position: relative;
+}
+
+.reposteros .scroll > article img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+/* Media query Desktop */
+/* @media (min-width: 560px) { */
+@media (min-width: 768px) {
     header {
         position: absolute;
         width: 100%;
         top: 0;
     }
+
     .menu-principal {
         display: inline-block;
         width: 100%;
         height: inherit;
     }
+
     main {
         margin-top: 68px;
     }
-    label {
+
+    .btn-menu-principal label {
         display: none;
     }
+
     .menu-principal > li {
         width: 25%;
         float: left;
         height: inherit;
     }
+
     .menu-principal > li a,
     .menu-principal > li label {
         height: inherit;
@@ -370,29 +468,139 @@ main > hr {
     }
 
     .menu-principal > li:hover {
-        background-color: dimgray;
+        background-color: #742741;
     }
+
     .submenu {
         position: relative;
     }
+
+    .carrito{
+        margin-left: 16px;
+    }
+
+    /* Barra busqueda Desktop */
+    
+    .bot-bar {
+        position: absolute;
+        top: -8px;
+        right: 25%;
+        width: 50%;
+    }
+
+    /* Slider Desktop */
+    main {
+        margin-top: 200px;
+    }
+
+    #slides .inner {
+        height: 480px;
+    }
+
+    /* Contenido slides */
+    .slide-content h2 {
+        font-size: 4rem;
+    }
+    .slide-content p {
+        font-size: 2rem;
+        margin-top: 3rem;
+    }
+    #slides .slide img {
+        margin-left: 3rem;
+    }
+    #controls {
+        margin-top: -18rem;
+    }
+    #controls label {
+        width: 4rem;
+        height: 4rem;
+    }
+    #bullets {
+        top: 14rem;
+    }
+    #bullets label {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    /* Postre del dia */
+    .postre-del-dia{
+        position: static;
+        margin: 320px auto 92px auto;
+        width: 30%;
+        min-height: 30vw;
+    }
+    
+    .postre-del-dia article h3 {
+        font-size: 2rem;
+    }
+    
+    .postre-del-dia article .mensaje{
+        font-size: 1.5rem;
+    }
+    
+    .small{
+        font-size: 1rem;
+    }
+
+    /* Colecciones y reposteros */
+
+    .coleccion-repostero{
+        display: flex;
+        justify-content: space-around;
+        margin: 0 0 80px 0;
+    }
+
+    /* Colecciones */
+    .colecciones{
+        margin: 0;
+        width: 40%;
+    }
+
+    .colecciones h3 {
+        font-size: 2rem;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .colecciones .circulo-coleccion{
+        width: 80px;
+        height: 80px;
+    }
+
+
+    /* Reposteros */
+    .reposteros {
+        margin: 0;
+        width: 40%;
+    }
+
+    .reposteros h3 {
+        font-size: 2rem;
+    }
+
+    .reposteros .scroll > article {
+        width: 136px;
+        height: 136px;
+    }
 }
 
-*{
+/* *{
     box-sizing: border-box; 
     margin:0;
     padding:0;
 }
 
-/*BODY*/
+/*BODY
 
 body{
-    /*background-color: gray;*/
+    /*background-color: gray;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
 
-}
+} */
 
 .form{
     width:90%;
