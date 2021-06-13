@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+<body>
+    <main class="contenedor-producto">
+        <section class="separacion producto">
+            <div class="info-pasteleria">
+                <div>
+                    <img src="../public/images/pasteleria.png" alt="">
+                </div>
+                <h2>Linda Pasteleria</h2>
+            </div>
+            
+            <div class="info-producto">
+                <div class="platillo">
+                    <div>
+                        <img src="../public/images/chocoflan.svg" alt="">
+                    </div>
+                </div>
+                <div class="nombre">
+                    <h1 class="fuente-may">chocoflan casero</h1>
+                    <form action="#">
+                        <div class="datos">
+                            <div class="d-precio">
+                                <p class="p-precio bold">$295 MXN</p>
+                                <p class="gris">IVA INCLUIDO</p>
+                            </div>
+                            <div class="cantidad">
+                                <label for="cantidad" class="block">Cantidad</label>
+                                <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                            </div>
+                        </div>
+                        <div class="tamanio">
+                            <label for="tamanio">Tamaño</label>
+                            <select name="tamanio" id="tamanio">
+                                <option value="chico">chico</option>
+                                <option value="mediano">mediano</option>
+                                <option value="grande">grande</option>
+                            </select>
+                        </div>
+                        <input class="boton boton-producto" type="submit" value="Agregar al carrito">
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="separacion envio">
+            <h3 class="fuente-may">Envio</h3>
+            <p class="gris">Elige el día y la hora de entrega</p>
+            <div class="envio-form">
+                <div class="imagen">
+                    <img src="../public/images/envio.svg" alt="">
+                </div>
+                <form action="#">
+                    <div>
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" name="" id="">
+                    </div>
+                    <div>
+                        <label for="hora">Hora:</label>
+                        <input type="time" name="" id="">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="separacion content detalle-producto">
+            <div class="encabezado">
+                <h3>DETALLES DEL PRODUCTO</h3>
+                <div>
+                    <img src="../public/images/detalle.svg" alt="">
+                </div>
+            </div>
+            <div class="contenido">
+                <div class="imagen">
+                    <img src="../public/images/plato.svg" alt="">
+                </div>
+                <p>Este producto contiene harina de
+                    trigo, huevo, leche y nuez.
+                    Mantener en refrigeración.</p>
+            </div>
+        </section>
+        <section class="separacion fuente-may pregunta">
+            <h3>Haz una pregunta</h3>
+            <form action="#">
+                <input type="text" placeholder="Haz una pregunta a la tienda...">
+                <input class="btn-submit" type="submit" value="Enviar">
+            </form>
+        </section>
+    </main>
+</body>
+</html>

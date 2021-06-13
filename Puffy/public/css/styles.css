@@ -1,3 +1,9 @@
+:root {
+    --primario: #f25287;
+    --gris: #B0B0B0;
+    --gris_bajo: #CDCDCD;
+}
+
 * {
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
@@ -41,7 +47,7 @@
     border-color: rgba(58, 203, 242, 0.6);
     border-width: 0 0 1px;
     text-align: center;
-    background-color: #f25287;
+    background-color: var(--primario);
     display: block;
     min-height: 40px;
     position: relative;
@@ -199,3 +205,433 @@ main > hr {
         position: relative;
     }
 }
+
+
+
+
+
+
+
+
+
+/* ESTEBAN */
+
+/* GENERAL */
+label {
+    font-size: 1.4rem;
+}
+
+/* FIN GENERAL */
+
+/* ATOMICOS */
+.p-chico {
+    font-size: 1rem;
+}
+
+.rojo {
+    color: #f00;
+}
+
+.gris {
+    color: var(--gris);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.block {
+    display: block;
+}
+
+.fuente-may {
+    text-transform: uppercase;
+}
+
+.texto-centrado {
+    text-align: center;
+}
+
+.gris {
+    color: var(--gris);
+}
+/* FIN ATOMICOS */
+
+/* UTILITIES */
+.boton{
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.separacion {
+    padding: 2rem 5% 4rem 5%;
+    border-bottom: solid 3px #CDCDCD;
+    width: 90%;
+    margin: auto;
+}
+
+/* FIN UTILITIES */
+
+/* SECTION PRODUCTO */
+.info-pasteleria h2{
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+div.info-pasteleria {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+div.info-pasteleria img {
+    height: 4rem;
+    border-radius: .5rem;
+}
+
+div.info-pasteleria h2 {
+    margin-left: 2rem;
+}
+
+.producto h1 {
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+/* CANTIDAD */
+.cantidad label {
+    text-align: center;
+}
+
+.cantidad input {
+    height: 2rem;
+    width: 3rem;
+    border-style: none;
+    border:solid 1px #000;
+    border-right: none;
+    border-left: none;
+    text-align: center;
+}
+.cantidad button {
+    height: 2rem;
+    width: 2rem;
+    background-color: white;
+    border-color: unset;
+    border-style: none;
+    border-style: solid;
+    border: solid 1px #000;
+}
+
+.cantidad button.izq{
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: .4rem;
+    border-right: none;
+}
+
+.cantidad button.der {
+    border-top-right-radius: .4rem;
+    border-bottom-right-radius: .4rem;
+    border-left: none;
+}
+/* FIN CANTIDAD */
+
+.img-producto {
+    margin: 2rem 0;
+}
+
+.img-producto img {
+    width: 100%;
+    border-radius: .5rem;
+}
+
+/* FOMULARIO PRODUCTO */
+.datos {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+
+
+
+/* INPUT TAMANIO */
+.tamanio {
+    padding-bottom: 2rem;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.tamanio label {
+    display: inline-block;
+    margin-right: 2rem;
+}
+.tamanio select {
+    width: 50%;
+    padding: .5rem 1rem;
+    border-radius: .4rem;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+
+/* FIN INPUT TAMANIO */
+
+.d-precio {
+    display: inline-block;
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.p-precio {
+    font-size: 1.8rem;
+}
+
+.boton-producto {
+    margin-top: 2rem;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+/* FIN FORMULARIO PRODUCTO */
+
+/* INFO ENVIO */
+
+.s-producto > .descripcion{
+    display: flex;
+}
+
+.envio > p{
+    margin: 1rem 0 2rem 0;
+}
+
+.envio-form {
+    width: 80%;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 20% auto;
+    column-gap: 3rem;
+}
+
+.envio form div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+}
+
+.envio input {
+    border-radius: .4rem;
+    height: 1.8rem;
+}
+
+.envio label {
+    display: flex;
+    align-items: center;
+}
+
+.envio form div:first-child {
+    margin-bottom: 2rem;
+}
+
+
+/* FIN DETALLE PRODUCTO */
+
+/* SECTION DETALLE */
+.detalle-producto .encabezado{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detalle-producto .contenido {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalle-producto .contenido .imagen{
+    width: 120px;
+    margin-right: 2rem;
+}
+
+/* FIN SECTION DETALLE */
+
+/* PREGUNTA */
+.pregunta input:first-child{
+    width: 100%;
+    margin: 1rem 0;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    border-radius: .4rem;
+}
+
+.pregunta form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.pregunta .btn-submit {
+    background-color: #000;
+    border-style: unset;
+    color: #fff;
+    border-radius: .4rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+    width: 110px;
+}
+
+/* FIN PREGUNTA */
+
+img {
+    width: 100%;
+}
+
+
+@media(min-width:780px) {
+    .contenedor-producto{
+        width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .info-producto {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
+    }
+
+    .producto {
+        /* grid-row: 1/2; */
+        grid-column: 1/3;
+    }
+
+    .envio {
+        grid-row: 2/3;
+        grid-column: 2/3;
+    }
+
+    .pregunta {
+        grid-column: 1/2;
+    }
+}
+
+/* CARRITO */
+
+main.carrito{
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+
+main.carrito h1{
+    margin: 2rem 0;
+}
+
+.lista-productos .postre {
+    display: grid;
+    row-gap: 1rem;
+    grid-template-columns: repeat(2,1fr);
+    border: solid 3px var(--gris_bajo);
+    padding: 5%;
+    margin-bottom: 2rem;
+}
+
+.lista-productos .postre h2,h3 {
+    grid-column: 1/3;
+}
+
+.lista-productos .postre .cantidad{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.carrito .subtotal {
+    text-align: center;
+}
+
+.lista-productos .postre img{
+    border-radius: .4rem;
+}
+
+main.carrito label {
+    display: inline-block;
+}
+
+main.carrito .nota {
+    grid-column: 1/3;
+    padding: .5rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+main.carrito .eliminar button{
+    border-style: none;
+}
+
+main.carrito .detalle-envio {
+    width: 100%;
+    margin: auto;
+    grid-column: 1/3;
+    border-top: solid 3px var(--gris_bajo);
+    padding-top: 1rem;
+}
+
+main.carrito .total {
+    padding: 0 5%;
+    margin-bottom: 2rem;
+}
+
+main.carrito .total .grupo{
+    font-weight: bold;
+    font-size: 1.4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    line-height: 2;
+}
+
+main.carrito .total .grupo:nth-child(2){
+    padding-bottom: 1rem;
+    border-bottom: solid 3px var(--gris_bajo);
+}
+
+main.carrito .total .grupo:last-of-type{
+    margin: 2rem 0;
+    line-height: 1.2;
+    font-size: 1rem;
+}
+
+main.carrito .total input{
+    background-color: black;
+    border-style: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+@media (min-width:780px){
+    main.carrito {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        gap: 2rem;
+    }
+    main.carrito h1 {
+        grid-column: 1/3;
+    }
+    main.carrito .total .grupo {
+        font-size: 1rem;
+    }
+    .precio-total p:last-of-type{
+        font-size: .8rem;
+    }
+}
+/* FIN CARRITO */
