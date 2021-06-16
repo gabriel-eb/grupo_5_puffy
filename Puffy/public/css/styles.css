@@ -12,6 +12,7 @@
 }
 
 /* HEADER */
+
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -741,10 +742,12 @@ body{
 
 /* ESTEBAN */
 
+
+
 /* GENERAL */
-label {
+/* label {
     font-size: 1.4rem;
-}
+} */
 
 /* FIN GENERAL */
 
