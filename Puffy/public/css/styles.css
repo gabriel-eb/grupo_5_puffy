@@ -805,8 +805,9 @@ body{
 
 /* FIN UTILITIES */
 
-main.contenedor-producto {
-    margin: 2rem 0;
+main.contenedor-producto{
+    margin: auto;
+    margin-top: 206px;
 }
 
 /* SECTION PRODUCTO */
@@ -1098,8 +1099,9 @@ img {
 
 main.carrito{
     display: block;
-    width: 90%;
+    width: min(90%,1200px);
     margin: auto;
+    margin-top: 206px;
 }
 
 main.carrito h1{
