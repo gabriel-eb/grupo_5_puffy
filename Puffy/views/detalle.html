@@ -1,96 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <main class="contenedor-producto">
-        <div class="info-pasteleria">
-            <div>
-                <img src="/images/pasteleria.png" alt="icono pasteleria">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bienvenido a Puffy</title>
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://kit.fontawesome.com/10a87b4104.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="top-bar">
+                <div class="btn-menu-principal">
+                    <label for="mostrar-nav">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+                <img src="/images/logo.svg" alt="Logo Puffy" class="logo" />
+                <div class="relleno-top-bar"></div>
+                <div class="carrito">
+                    <a href="#"
+                        ><i class="far fa-heart"></i><span>Deseados</span></a
+                    >
+                    <a href="#"
+                        ><i class="fas fa-shopping-cart"></i
+                        ><span>Carrito</span></a
+                    >
+                </div>
             </div>
-            <h2>Linda Pasteleria</h2>
-        </div>
-        <div class="platillo">
-            <img src="/images/chocoflan.svg" alt="imagen postre">
-        </div>
-        <div class="form-producto">
-            <section class="separacion producto">
-                <div class="info-producto">
-                
-                    <div class="nombre">
-                        <h1 class="fuente-may">chocoflan casero</h1>
+
+            <nav>
+                <input type="checkbox" id="mostrar-nav" hidden />
+                <ul class="menu-principal">
+                    <li><a href="#">Opc 1</a></li>
+                    <li>
+                        <label for="mostrar-submenu">Opc 2</label>
+                        <input type="checkbox" id="mostrar-submenu" hidden />
+                        <ul class="submenu">
+                            <li><a href="#">Sub1</a></li>
+                            <li><a href="#">Sub2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Opc 3</a></li>
+                    <li><a href="#">Opc 4</a></li>
+                </ul>
+            </nav>
+            <div class="bot-bar">
+                <form action="" method="post" class="busqueda">
+                    <input
+                        type="text"
+                        id="buscar"
+                        placeholder="Hoy se me antoja..."
+                        class="txt-busqueda"
+                    />
+                    <button type="submit" class="btn-busqueda">
+                        <i class="fas fa-search ic-busqueda"></i>
+                    </button>
+                </form>
+            </div>
+            <hr />
+        </header>
+
+        <main class="contenedor-producto">
+            <div class="info-pasteleria">
+                <div>
+                    <img src="/images/pasteleria.png" alt="icono pasteleria">
+                </div>
+                <h2>Linda Pasteleria</h2>
+            </div>
+            <div class="platillo">
+                <img src="/images/chocoflan.svg" alt="imagen postre">
+            </div>
+            <div class="form-producto">
+                <section class="separacion producto">
+                    <div class="info-producto">
+                    
+                        <div class="nombre">
+                            <h1 class="fuente-may">chocoflan casero</h1>
+                            <form action="#">
+                                <div class="datos">
+                                    <div class="d-precio">
+                                        <p class="p-precio bold">$295 MXN</p>
+                                        <p class="gris">IVA INCLUIDO</p>
+                                    </div>
+                                    <div class="cantidad">
+                                        <label for="cantidad" class="block">Cantidad</label>
+                                        <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                                    </div>
+                                </div>
+                                <div class="tamanio">
+                                    <label for="tamanio">Tamaño</label>
+                                    <select name="tamanio" id="tamanio">
+                                        <option value="chico">chico</option>
+                                        <option value="mediano">mediano</option>
+                                        <option value="grande">grande</option>
+                                    </select>
+                                </div>
+                                <input class="boton boton-producto" type="submit" value="Agregar al carrito">
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section class="separacion envio">
+                    <h3 class="fuente-may">Envio</h3>
+                    <p class="gris">Elige el día y la hora de entrega</p>
+                    <div class="envio-form">
+                        <div class="imagen">
+                            <img src="/images/envio.svg" alt="imagen envio">
+                        </div>
                         <form action="#">
-                            <div class="datos">
-                                <div class="d-precio">
-                                    <p class="p-precio bold">$295 MXN</p>
-                                    <p class="gris">IVA INCLUIDO</p>
-                                </div>
-                                <div class="cantidad">
-                                    <label for="cantidad" class="block">Cantidad</label>
-                                    <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
-                                </div>
+                            <div>
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" name="" id="">
                             </div>
-                            <div class="tamanio">
-                                <label for="tamanio">Tamaño</label>
-                                <select name="tamanio" id="tamanio">
-                                    <option value="chico">chico</option>
-                                    <option value="mediano">mediano</option>
-                                    <option value="grande">grande</option>
-                                </select>
+                            <div>
+                                <label for="hora">Hora:</label>
+                                <input type="time" name="" id="">
                             </div>
-                            <input class="boton boton-producto" type="submit" value="Agregar al carrito">
                         </form>
                     </div>
-                </div>
-            </section>
-            <section class="separacion envio">
-                <h3 class="fuente-may">Envio</h3>
-                <p class="gris">Elige el día y la hora de entrega</p>
-                <div class="envio-form">
-                    <div class="imagen">
-                        <img src="/images/envio.svg" alt="imagen envio">
+                </section>
+            </div>
+            <section class="separacion content detalle-producto">
+                <div class="encabezado">
+                    <h3>DETALLES DEL PRODUCTO</h3>
+                    <div>
+                        <img src="/images/detalle.svg" alt="imagen flecha">
                     </div>
-                    <form action="#">
-                        <div>
-                            <label for="fecha">Fecha:</label>
-                            <input type="date" name="" id="">
-                        </div>
-                        <div>
-                            <label for="hora">Hora:</label>
-                            <input type="time" name="" id="">
-                        </div>
-                    </form>
+                </div>
+                <div class="contenido">
+                    <div class="imagen">
+                        <img src="/images/plato.svg" alt="imagen plato">
+                    </div>
+                    <p>Este producto contiene harina de
+                        trigo, huevo, leche y nuez.
+                        Mantener en refrigeración.</p>
                 </div>
             </section>
-        </div>
-        <section class="separacion content detalle-producto">
-            <div class="encabezado">
-                <h3>DETALLES DEL PRODUCTO</h3>
-                <div>
-                    <img src="/images/detalle.svg" alt="imagen flecha">
-                </div>
+            <section class="separacion fuente-may pregunta">
+                <h3>Haz una pregunta</h3>
+                <form action="#">
+                    <input type="text" placeholder="Haz una pregunta a la tienda...">
+                    <input class="btn-submit" type="submit" value="Enviar">
+                </form>
+            </section>
+        </main>
+    
+
+        <footer class="footer">
+            <img class="logo" src="/images/logo.svg" alt="" />
+
+            <div class="lista">
+                <h3>Menu</h3>
+                <ul type="none">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Cuenta</a></li>
+                    <li><a href="#">Historial</a></li>
+                    <li><a href="#">Favoritos</a></li>
+                </ul>
             </div>
-            <div class="contenido">
-                <div class="imagen">
-                    <img src="/images/plato.svg" alt="imagen plato">
-                </div>
-                <p>Este producto contiene harina de
-                    trigo, huevo, leche y nuez.
-                    Mantener en refrigeración.</p>
+            <div class="lista">
+                <h3>Puffy</h3>
+                <ul type="none">
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">F.A.Q.</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">---</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
             </div>
-        </section>
-        <section class="separacion fuente-may pregunta">
-            <h3>Haz una pregunta</h3>
-            <form action="#">
-                <input type="text" placeholder="Haz una pregunta a la tienda...">
-                <input class="btn-submit" type="submit" value="Enviar">
-            </form>
-        </section>
-    </main>
-</body>
+            <div class="lista">
+                <h3>Reposteros</h3>
+                <ul type="none">
+                    <li><a href="#">Afiliates</a></li>
+                    <li><a href="#">Lista de reposteros</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Temporada</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
 </html>

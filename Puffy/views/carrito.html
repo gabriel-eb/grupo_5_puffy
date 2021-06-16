@@ -1,85 +1,182 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <main class="carrito">
-        <h1 class="fuente-may">Carrito</h1>
-        <section class="lista-productos">
-            <div class="postre">
-                <h2 class="fuente-may">Chocoflan Casero</h2>
-                <h3>Linda Pasteleria</h3>
-                <div class="imagen">
-                    <img src="/images/chocoflan.svg" alt="imagen chocoflan">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bienvenido a Puffy</title>
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://kit.fontawesome.com/10a87b4104.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="top-bar">
+                <div class="btn-menu-principal">
+                    <label for="mostrar-nav">
+                        <i class="fas fa-bars"></i>
+                    </label>
                 </div>
-                <div class="cantidad">
-                    <label for="cantidad">Cantidad:</label>
-                    <div>
-                        <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                <img src="/images/logo.svg" alt="Logo Puffy" class="logo" />
+                <div class="relleno-top-bar"></div>
+                <div class="carrito">
+                    <a href="#"
+                        ><i class="far fa-heart"></i><span>Deseados</span></a
+                    >
+                    <a href="#"
+                        ><i class="fas fa-shopping-cart"></i
+                        ><span>Carrito</span></a
+                    >
+                </div>
+            </div>
+
+            <nav>
+                <input type="checkbox" id="mostrar-nav" hidden />
+                <ul class="menu-principal">
+                    <li><a href="#">Opc 1</a></li>
+                    <li>
+                        <label for="mostrar-submenu">Opc 2</label>
+                        <input type="checkbox" id="mostrar-submenu" hidden />
+                        <ul class="submenu">
+                            <li><a href="#">Sub1</a></li>
+                            <li><a href="#">Sub2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Opc 3</a></li>
+                    <li><a href="#">Opc 4</a></li>
+                </ul>
+            </nav>
+            <div class="bot-bar">
+                <form action="" method="post" class="busqueda">
+                    <input
+                        type="text"
+                        id="buscar"
+                        placeholder="Hoy se me antoja..."
+                        class="txt-busqueda"
+                    />
+                    <button type="submit" class="btn-busqueda">
+                        <i class="fas fa-search ic-busqueda"></i>
+                    </button>
+                </form>
+            </div>
+            <hr />
+        </header>
+
+        <main class="carrito">
+            <h1 class="fuente-may">Carrito</h1>
+            <section class="lista-productos">
+                <div class="postre">
+                    <h2 class="fuente-may">Chocoflan Casero</h2>
+                    <h3>Linda Pasteleria</h3>
+                    <div class="imagen">
+                        <img src="/images/chocoflan.svg" alt="imagen chocoflan">
+                    </div>
+                    <div class="cantidad">
+                        <label for="cantidad">Cantidad:</label>
+                        <div>
+                            <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                        </div>
+                    </div>
+                    <div class="eliminar">
+                        <button>
+                            <img src="/images/eliminar.svg" alt="botont eliminar">
+                        </button>
+                        <label class="rojo" for="eliminar">Eliminar</label>
+                    </div>
+                    <p class="subtotal bold">Subtotal: $295 mxn</p>
+                    <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..." id="eliminar">
+                    <div class="detalle-envio">
+                        <h3>Detalle del envío</h3>
                     </div>
                 </div>
-                <div class="eliminar">
-                    <button>
-                        <img src="/images/eliminar.svg" alt="botont eliminar">
-                    </button>
-                    <label class="rojo" for="eliminar">Eliminar</label>
-                </div>
-                <p class="subtotal bold">Subtotal: $295 mxn</p>
-                <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..." id="eliminar">
-                <div class="detalle-envio">
-                    <h3>Detalle del envío</h3>
-                </div>
-            </div>
-            <div class="postre">
-                <h2 class="fuente-may">Chocoflan Casero</h2>
-                <h3>Linda Pasteleria</h3>
-                <div class="imagen">
-                    <img src="/images/chocoflan.svg" alt="imagen chocoflan">
-                </div>
-                <div class="cantidad">
-                    <label for="cantidad">Cantidad:</label>
-                    <div>
-                        <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                <div class="postre">
+                    <h2 class="fuente-may">Chocoflan Casero</h2>
+                    <h3>Linda Pasteleria</h3>
+                    <div class="imagen">
+                        <img src="/images/chocoflan.svg" alt="imagen chocoflan">
+                    </div>
+                    <div class="cantidad">
+                        <label for="cantidad">Cantidad:</label>
+                        <div>
+                            <button class="izq">-</button><input type="text" name="" id=""><button class="der">+</button>
+                        </div>
+                    </div>
+                    <div class="eliminar">
+                        <button>
+                            <img src="/images/eliminar.svg" alt="boton eliminar">
+                        </button>
+                        <label class="rojo" for="eliminar">Eliminar</label>
+                    </div>
+                    <p class="subtotal bold">Subtotal: $295 mxn</p>
+                    <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..." id="eliminar">
+                    <div class="detalle-envio">
+                        <h3>Detalle del envío</h3>
                     </div>
                 </div>
-                <div class="eliminar">
-                    <button>
-                        <img src="/images/eliminar.svg" alt="boton eliminar">
-                    </button>
-                    <label class="rojo" for="eliminar">Eliminar</label>
+            </section>
+            <section class="total">
+                <div class="grupo">
+                    <p>Subtotal(2 productos):</p>
+                    <p>$295 mxn</p>
                 </div>
-                <p class="subtotal bold">Subtotal: $295 mxn</p>
-                <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..." id="eliminar">
-                <div class="detalle-envio">
-                    <h3>Detalle del envío</h3>
+                <div class="grupo">
+                    <p>Envío:</p>
+                    <p>$65 mxn</p>
                 </div>
-            </div>
-        </section>
-        <section class="total">
-            <div class="grupo">
-                <p>Subtotal(2 productos):</p>
-                <p>$295 mxn</p>
-            </div>
-            <div class="grupo">
-                <p>Envío:</p>
-                <p>$65 mxn</p>
-            </div>
-            <div class="grupo">
-                <p>Total:</p>
-                <div class="precio-total">
-                    <p>$360 mxn</p>
-                    <p class="gris">IVA INCLUIDO</p>
+                <div class="grupo">
+                    <p>Total:</p>
+                    <div class="precio-total">
+                        <p>$360 mxn</p>
+                        <p class="gris">IVA INCLUIDO</p>
+                    </div>
                 </div>
+                <form action="#">
+                    <input class="boton" type="submit" value="Continuar">
+                </form>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <img class="logo" src="/images/logo.svg" alt="" />
+
+            <div class="lista">
+                <h3>Menu</h3>
+                <ul type="none">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Cuenta</a></li>
+                    <li><a href="#">Historial</a></li>
+                    <li><a href="#">Favoritos</a></li>
+                </ul>
             </div>
-            <form action="#">
-                <input class="boton" type="submit" value="Continuar">
-            </form>
-        </section>
-    </main>
-</body>
+            <div class="lista">
+                <h3>Puffy</h3>
+                <ul type="none">
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">F.A.Q.</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">---</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
+            </div>
+            <div class="lista">
+                <h3>Reposteros</h3>
+                <ul type="none">
+                    <li><a href="#">Afiliates</a></li>
+                    <li><a href="#">Lista de reposteros</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Temporada</a></li>
+                    <li><a href="#">---</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
 </html>
