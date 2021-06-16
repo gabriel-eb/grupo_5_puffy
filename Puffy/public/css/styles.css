@@ -175,6 +175,11 @@ main > hr {
     margin: 36px 8px;
 }
 
+body > hr {
+    border: #eee solid 1px;
+    margin: 36px 8px;
+}
+
 /* Slider */
 #slider {
     width: 100%;
