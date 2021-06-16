@@ -803,11 +803,18 @@ body{
     margin: auto;
 }
 
+.separacion:last-child {
+    border-bottom: none;
+}
+
 /* FIN UTILITIES */
 
-main.contenedor-producto{
-    margin: auto;
-    margin-top: 206px;
+
+@media (min-width:768px) {
+    main.contenedor-producto{
+        margin: auto;
+        margin-top: 206px;
+    }
 }
 
 /* SECTION PRODUCTO */
