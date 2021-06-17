@@ -797,7 +797,7 @@ body{
 }
 
 .separacion {
-    padding: 2rem 5% 4rem 5%;
+    padding: 2rem 1rem 4rem 1rem;
     border-bottom: solid 3px #CDCDCD;
     width: 90%;
     margin: auto;
@@ -821,6 +821,7 @@ body{
 .info-pasteleria h2{
     font-weight: lighter;
     font-size: 2rem;
+    padding-left: 1rem;
 }
 
 div.info-pasteleria {
@@ -835,7 +836,7 @@ div.info-pasteleria img {
 }
 
 div.info-pasteleria h2 {
-    margin-left: 2rem;
+    margin-left: 0rem;
 }
 
 .producto h1 {
@@ -944,7 +945,7 @@ div.info-pasteleria h2 {
 .info-pasteleria, .platillo {
     width: 90%;
     margin: auto;
-    padding: 0 5%;
+    padding: 0 1rem;
 }
 
 /* INFO ENVIO */
@@ -1046,23 +1047,28 @@ img {
         width: min(90%,120rem);
         margin:auto;
         display: grid;
-        grid-template-columns: 60% 40%;
+        grid-template-columns: calc(60%-2rem) calc(40%-2rem);
+        column-gap: 2rem;
     }
 
     .separacion {
         padding-top: 1rem;
         padding-bottom: 2rem;
+        margin: 0;
+        width: 100%;
     }
 
     div.info-pasteleria {
         grid-column: 1/3;
         margin-bottom: 1rem;
-        padding:0;
+        width: 100%;
+        padding:0 1rem;
     }
 
     .platillo {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
+        padding: 0 1rem;
         grid-column: 1/2;
         grid-row: 2/3;
     }
@@ -1108,7 +1114,6 @@ main.carrito{
     display: block;
     width: min(90%,1200px);
     margin: auto;
-    margin-top: 206px;
 }
 
 main.carrito h1{
@@ -1200,6 +1205,7 @@ main.carrito .total input{
 
 @media (min-width:780px){
     main.carrito {
+        margin-top: 206px;
         display: grid;
         grid-template-columns: 60% 40%;
         gap: 2rem;
