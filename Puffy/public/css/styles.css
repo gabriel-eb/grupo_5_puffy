@@ -808,7 +808,9 @@ body{
 }
 
 /* FIN UTILITIES */
-
+main.contenedor-producto {
+    width: min(90%,1200px);
+}
 
 @media (min-width:768px) {
     main.contenedor-producto{
