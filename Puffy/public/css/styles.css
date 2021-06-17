@@ -619,7 +619,7 @@ body{
 
 .form{
     width:90%;
-    margin:100px auto;
+    margin: auto ;
     align-items: center;
     border: 2px solid gray;
     border-radius: 5px;   
@@ -632,6 +632,12 @@ body{
     /*padding:20px 30 px;*/
      /*background-color:white;*/
 
+}
+
+@media (min-width:768px){
+    .form {
+        margin:206px auto 0 auto;
+    }
 }
 
 .form h3{
