@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const PORT = 3030;
+const rutaProducts = require('./routes/products');
+const rutaUsers = require('./routes/users');
+const PORT = process.env.PORT || 3030;
 
 app.use(express.static(path.join(__dirname, "/public")));
+app.use('/productos', rutaProducts);
+app.use('/users', rutaUsers);
 
 app.get("/", (req, res) => {
     res.status(200).sendFile("home.html", { root: "views" });
-});
-
-app.get("/detalle", (req, res) => {
-    res.status(200).sendFile("detalle.html", { root: "views" });
 });
 
 app.get("/carrito", (req, res) => {
