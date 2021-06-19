@@ -10,7 +10,6 @@
 2. Continuar haciendo: avanzar el sprint en mi tiempo libre.
 3. Dejar de hacer: participar poco en las reuniones.
 
-
 ## Gabriel
 1. Comenzar a hacer: repartir el trabajo en la semana.
 2. Continuar haciendo: organizar las cargas de trabajo.
@@ -20,3 +19,10 @@
 1. Comenzar a hacer: estar más en contacto a lo largo de la semana.
 2. Continuar haciendo: reuniones programadas y seguir abiertos a ideas y opiniones distintas.
 3. Dejar de hacer: no perder el tiempo en cosas pequeñas.
+
+# Sprint 2 - Retroalimentación
+
+## Equipo
+1. Comenzar a hacer: 
+2. Continuar haciendo: 
+3. Dejar de hacer: 
