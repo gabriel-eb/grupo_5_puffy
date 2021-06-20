@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/detalle", (req, res) => {
-    res.status(200).sendFile("detalle.html", { root: "views" });
+    res.status(200).render("detalle");
 });
 
 module.exports = router
