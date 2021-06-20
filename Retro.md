@@ -22,6 +22,11 @@
 
 # Sprint 2 - Retroalimentación
 
+## Montserrat
+1. Comenzar a hacer: Investigar más acerca del tema de Templates, que será parte de la entrega en este tercer sprint.
+3. Continuar haciendo: Ver más videos de Github y Git para comprender mejor cómo funciona y poder hacer entregas más fácilmente. 
+4. Dejar de hacer: Participar poco en Trello.
+
 ## Equipo
 1. Comenzar a hacer: 
 2. Continuar haciendo: 
