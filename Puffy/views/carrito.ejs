@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head') %>
+        <title>Listo para realizar tu pedido</title>
+    </head>
+    <body>
+        <%- include('partials/header') %>
+
+        <main class="carrito">
+            <h1 class="fuente-may">Carrito</h1>
+            <section class="lista-productos">
+                <div class="postre">
+                    <h2 class="fuente-may">Chocoflan Casero</h2>
+                    <h3>Linda Pasteleria</h3>
+                    <div class="imagen">
+                        <img
+                            src="/images/chocoflan.svg"
+                            alt="imagen chocoflan"
+                        />
+                    </div>
+                    <div class="cantidad">
+                        <label for="cantidad">Cantidad:</label>
+                        <div>
+                            <button class="izq">-</button
+                            ><input type="text" name="" id="" /><button
+                                class="der"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="eliminar">
+                        <button>
+                            <img
+                                src="/images/eliminar.svg"
+                                alt="botont eliminar"
+                            />
+                        </button>
+                        <label class="rojo" for="eliminar">Eliminar</label>
+                    </div>
+                    <p class="subtotal bold">Subtotal: $295 mxn</p>
+                    <input
+                        class="nota"
+                        type="text"
+                        name="eliminar"
+                        placeholder="Agrega una nota aquí para la tienda..."
+                        id="eliminar"
+                    />
+                    <div class="detalle-envio">
+                        <h3>Detalle del envío</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Adipisci ipsa harum, nulla animi iusto nisi
+                            asperiores, nesciunt cumque, dicta sapiente
+                            consequuntur soluta provident odit alias optio quam
+                            cum dolores commodi?
+                        </p>
+                    </div>
+                </div>
+                <div class="postre">
+                    <h2 class="fuente-may">Chocoflan Casero</h2>
+                    <h3>Linda Pasteleria</h3>
+                    <div class="imagen">
+                        <img
+                            src="/images/chocoflan.svg"
+                            alt="imagen chocoflan"
+                        />
+                    </div>
+                    <div class="cantidad">
+                        <label for="cantidad">Cantidad:</label>
+                        <div>
+                            <button class="izq">-</button
+                            ><input type="text" name="" id="" /><button
+                                class="der"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="eliminar">
+                        <button>
+                            <img
+                                src="/images/eliminar.svg"
+                                alt="boton eliminar"
+                            />
+                        </button>
+                        <label class="rojo" for="eliminar">Eliminar</label>
+                    </div>
+                    <p class="subtotal bold">Subtotal: $295 mxn</p>
+                    <input
+                        class="nota"
+                        type="text"
+                        name="eliminar"
+                        placeholder="Agrega una nota aquí para la tienda..."
+                        id="eliminar"
+                    />
+                    <div class="detalle-envio">
+                        <h3>Detalle del envío</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Deserunt id pariatur cupiditate repellat
+                            blanditiis quod voluptatem! Quas laboriosam omnis
+                            sapiente odio quibusdam inventore aliquid, quia eum
+                            voluptatum sit quam voluptates?
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="total">
+                <div class="grupo">
+                    <p>Subtotal(2 productos):</p>
+                    <p>$295 mxn</p>
+                </div>
+                <div class="grupo">
+                    <p>Envío:</p>
+                    <p>$65 mxn</p>
+                </div>
+                <div class="grupo">
+                    <p>Total:</p>
+                    <div class="precio-total">
+                        <p>$360 mxn</p>
+                        <p class="gris">IVA INCLUIDO</p>
+                    </div>
+                </div>
+                <form action="#">
+                    <input class="boton" type="submit" value="Continuar" />
+                </form>
+            </section>
+            <hr />
+        </main>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>
