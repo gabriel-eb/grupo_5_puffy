@@ -27,6 +27,11 @@
 3. Continuar haciendo: Ver más videos de Github y Git para comprender mejor cómo funciona y poder hacer entregas más fácilmente. 
 4. Dejar de hacer: Participar poco en Trello.
 
+## Esteban
+1. Comenzar a hacer: Empezar a trabajar el sprint desde el primer día.
+2. Continuar haciendo: Utilizar atributos y funciones extras que aprendí de CSS en otros cursos.
+3. Dejar de hacer: Dejar todo para último.
+
 ## Equipo
 1. Comenzar a hacer: 
 2. Continuar haciendo: 
