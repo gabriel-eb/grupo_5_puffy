@@ -1285,3 +1285,68 @@ main.carrito .total input{
     text-decoration: none;
     color:black;
  }
+
+
+ /*Agregar producto*/
+
+ .form-agregar{
+     display: flex;
+     flex-direction: column;
+ }
+
+ main.agregar .producto{
+     text-align: center;
+     margin:40px;
+ }
+
+main.agregar .fill-add-1{
+    margin: 20px 35px;
+}
+
+main.agregar .fill-add-2{
+    margin: 0 35px;
+}
+
+.name-input{
+    margin-bottom: 15px;
+}
+
+
+
+@media(min-width:850px){
+   
+    .fill-add{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
+
+    .fill-add-1{
+        align-items: flex-start;
+    }
+    .name-input{
+            width:50%;
+        }
+}
+
+.input-agregar{
+    display: flex;
+    justify-content: center;
+    margin:40px;
+    
+}
+
+.input-agregar input{
+    background-color: black;
+    color: white;
+    font-size: medium;
+
+    width: 40%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+
+
+

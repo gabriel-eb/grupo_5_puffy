@@ -7,22 +7,23 @@
     <body>
         <%- include('../partials/header') %>
 
-        <main>
-            <h1>Agregar Producto</h1>
-            <form action="/productos/agregarProducto" method="post">
-                <div>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" />
+        <main class=agregar>
+            <h1 class="producto">Agregar Producto</h1>
+            <form action="/productos/agregarProducto" method="post" class="form-agregar">
+              <section class="fill-add"> 
+                  <div class="fill-add-1">
+                    <label for="nombre" class="name-label">Nombre del producto:</label>
+                    <input type="text" id="nombre" name="nombre" class="name-input"/>
                     <br />
-                    <label for="descripcion">Descripción:</label>
-                    <textarea
+                    <label for="descripcion" class="des-label">Descripción:</label>
+                    <textarea class="des-box"
                         name="descripcion"
                         id="descripcion"
                         cols="30"
                         rows="5"
                     ></textarea>
                 </div>
-                <div>
+                <div class="fill-add-2">
                     <label for="imagen">Imagen del producto:</label>
                     <input type="file" name="imagen" id="imagen" />
                     <br />
@@ -40,10 +41,13 @@
                         <option value="2">Grande</option>
                     </select>
                     <br />
-                    <label for="precio">Precio: </label>
+                    <label for="precio">Precio: $ </label>
                     <input type="number" id="precio" name="precio" /><span>mxn</span>
                 </div>
-                <input type="submit" value="Enviar" />
+            </section>
+                <div class="input-agregar">
+                <input type="submit" value="Enviar"/>
+                </div>
             </form>
         </main>
 
