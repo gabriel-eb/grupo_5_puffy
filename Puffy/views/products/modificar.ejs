@@ -8,14 +8,15 @@
         <%- include('../partials/header') %>
 
         <main>
-            <h1>Modificar Producto</h1>
-            <form action="/productos/modificarProducto" method="post">
+            <h1 class="tit-add-mod">Modificar Producto</h1>
+            <form action="/productos/modificarProducto" method="post" class="form-add-mod">
                 <div>
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="<%= postre.nombre %>" />
+                    <input type="text" id="nombre" name="nombre" value="<%= postre.nombre %>" class="add-mod-name"/>
                     <br />
                     <label for="descripcion">Descripción:</label>
                     <textarea
+                        class="add-mod-des"
                         name="descripcion"
                         id="descripcion"
                         cols="30"
@@ -30,7 +31,7 @@
                     <input type="file" name="imagen" id="imagen" />
                     <br />
                     <label for="categoria">Categoría:</label>
-                    <select name="categoria" id="categoria">
+                    <select name="categoria" id="categoria" class="add-mod-cat">
                         <% for(let i of categorias){ %>
                             <% if(postre.categoria === i){ %> 
                                 <option value="<%= i %>" selected><%= i %></option>
@@ -41,18 +42,18 @@
                     </select>
                     <br />
                     <label for="tam">Tamaño: </label>
-                    <select name="tam" id="tam">
+                    <select name="tam" id="tam" class="add-mod-tam">
                         <option value="0" <%= postre.tam === 0 ? "selected" : "" %>>Chico</option>
                         <option value="1" <%= postre.tam === 1 ? "selected" : "" %>>Mediano</option>
                         <option value="2" <%= postre.tam === 2 ? "selected" : "" %>>Grande</option>
                     </select>
                     <br />
                     <label for="precio">Precio: </label>
-                    <input type="number" id="precio" name="precio" value="<%= postre.precio %>"/><span
+                    <input type="number" id="precio" name="precio" value="<%= postre.precio %>" class="add-mod-price"/><span
                         >mxn</span
                     >
                 </div>
-                <input type="submit" value="Enviar" />
+                <input type="submit" value="Enviar" class="enviar-add-mod"/>
             </form>
         </main>
 

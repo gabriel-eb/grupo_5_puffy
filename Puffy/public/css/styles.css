@@ -1289,64 +1289,65 @@ main.carrito .total input{
 
  /*Agregar producto*/
 
- .form-agregar{
-     display: flex;
-     flex-direction: column;
- }
-
- main.agregar .producto{
+.tit-add-mod{
      text-align: center;
      margin:40px;
  }
 
-main.agregar .fill-add-1{
-    margin: 20px 35px;
+ .form-add-mod{
+     display: flex;
+     flex-direction: column;
+ }
+
+.add-mod-1, .add-mod-2{
+    margin: 10px 35px;
 }
 
-main.agregar .fill-add-2{
-    margin: 0 35px;
+.add-mod-name, .add-mod-img,.add-mod-cat, .add-mod-tam, .add-mod-price
+{ 
+    margin-bottom: 20px;
 }
 
-.name-input{
-    margin-bottom: 15px;
+.add-mod-name, .add-mod-des{
+    width: 100%;
 }
 
-
+.add-mod-des{
+    height: 70px;
+}
 
 @media(min-width:850px){
    
-    .fill-add{
+    .add-mod{ 
         display:flex;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap:wrap;
+        margin:0;
+        justify-content: space-around;
     }
 
-    .fill-add-1{
-        align-items: flex-start;
+    .add-mod-1,.add-mod-2{
+        width:50%;
     }
-    .name-input{
-            width:50%;
-        }
+
+    /* .enviar-add-mod{
+        justify-content: right;
+    }  */
 }
 
-.input-agregar{
+
+.enviar-add-mod{
     display: flex;
     justify-content: center;
     margin:40px;
     
 }
 
-.input-agregar input{
+.enviar-add-mod input{
     background-color: black;
     color: white;
     font-size: medium;
 
-    width: 40%;
+    width: 150px;
     height: 40px;
     border-radius: 5px;
 }
-
-
-
 
