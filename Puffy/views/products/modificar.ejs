@@ -10,11 +10,12 @@
         <main>
             <h1 class="tit-add-mod">Modificar Producto</h1>
             <form action="/productos/modificarProducto" method="post" class="form-add-mod">
-                <div>
-                    <label for="nombre">Nombre:</label>
+               <section class="add-mod"> 
+                <div class="add-mod-1">
+                    <label for="nombre" class="bold" >Nombre:</label>
                     <input type="text" id="nombre" name="nombre" value="<%= postre.nombre %>" class="add-mod-name"/>
                     <br />
-                    <label for="descripcion">Descripción:</label>
+                    <label for="descripcion" class="bold" >Descripción:</label>
                     <textarea
                         class="add-mod-des"
                         name="descripcion"
@@ -23,14 +24,9 @@
                         rows="5"
                     ><%= postre.descripcion %>
                     </textarea>
-                </div>
-                <div>
-                    <label for="imagen">Imagen del producto:</label>
-                    <img src="/images/<%= postre.img %>.jpg" alt="" style="width:10%">
-                    <br>
-                    <input type="file" name="imagen" id="imagen" />
                     <br />
-                    <label for="categoria">Categoría:</label>
+
+                    <label for="categoria" class="bold" >Categoría:</label>
                     <select name="categoria" id="categoria" class="add-mod-cat">
                         <% for(let i of categorias){ %>
                             <% if(postre.categoria === i){ %> 
@@ -40,21 +36,34 @@
                             <% } %>  
                         <% } %>
                     </select>
-                    <br />
-                    <label for="tam">Tamaño: </label>
+                    <label for="tam" class="bold" >Tamaño: </label>
                     <select name="tam" id="tam" class="add-mod-tam">
                         <option value="0" <%= postre.tam === 0 ? "selected" : "" %>>Chico</option>
                         <option value="1" <%= postre.tam === 1 ? "selected" : "" %>>Mediano</option>
                         <option value="2" <%= postre.tam === 2 ? "selected" : "" %>>Grande</option>
                     </select>
                     <br />
-                    <label for="precio">Precio: </label>
+                    <label for="precio" class="bold" >Precio: </label>
                     <input type="number" id="precio" name="precio" value="<%= postre.precio %>" class="add-mod-price"/><span
                         >mxn</span
                     >
                 </div>
-                <input type="submit" value="Enviar" class="enviar-add-mod"/>
+                <div class="add-mod-2">
+                     <label for="imagen" class="bold" >Imagen del producto:</label>
+                     <div>    
+                        <img src="/images/<%= postre.img %>.jpg" alt="" class="img-add-mod">
+                        <input type="file" name="imagen" id="imagen" />
+                        </div>
+                </div>
+            </section>
+
+            
+                <div class="enviar-add-mod">
+
+                    <input type="submit" value="Enviar" class="enviar-add-mod"/>
+                </div>
             </form>
+            <hr/>
         </main>
 
         <%- include('../partials/footer') %>

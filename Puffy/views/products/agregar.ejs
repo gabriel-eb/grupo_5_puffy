@@ -12,10 +12,10 @@
             <form action="/productos/agregarProducto" method="post" class="form-add-mod">
               <section class="add-mod"> 
                   <div class="add-mod-1">
-                    <label for="nombre" >Nombre del producto:</label>
+                    <label for="nombre" class="bold" >Nombre del producto:</label>
                     <input type="text" id="nombre" name="nombre" class="add-mod-name" placeholder="''Pastel de Zanahoría''"/>
                     <br />
-                    <label for="descripcion">Descripción:</label>
+                    <label for="descripcion" class="bold" >Descripción:</label>
                     <textarea 
                         class="add-mod-des"
                         name="descripcion"
@@ -26,24 +26,24 @@
                     ></textarea>
                 </div>
                 <div class="add-mod-2">
-                    <label for="imagen" class="add-mod-img">Imagen del producto:</label>
+                    <label for="imagen" class="bold" >Imagen del producto:</label>
                     <input type="file" name="imagen" id="imagen" class="add-mod-img" />
                     <br />
-                    <label for="categoria">Categoría:</label>
+                    <label for="categoria" class="bold" >Categoría:</label>
                     <select name="categoria" id="categoria" class="add-mod-cat">
                         <% for(let i of categorias){ %>
                         <option value="<%= i %>"><%= i %></option>
                         <% } %>
                     </select>
                     <br />
-                    <label for="tam">Tamaño: </label>
+                    <label for="tam" class="bold" >Tamaño: </label>
                     <select name="tam" id="tam" class="add-mod-tam">
                         <option value="0">Chico</option>
                         <option value="1">Mediano</option>
                         <option value="2">Grande</option>
                     </select>
                     <br />
-                    <label for="precio">Precio: $ </label>
+                    <label for="precio" class="bold" >Precio: $ </label>
                     <input type="number" id="precio" name="precio" class="add-mod-price"/><span> mxn</span>
                 </div>
             </section>

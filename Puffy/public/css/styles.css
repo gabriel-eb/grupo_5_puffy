@@ -1316,6 +1316,10 @@ main.carrito .total input{
     height: 70px;
 }
 
+.img-add-mod{
+    width:100%;
+}
+
 @media(min-width:850px){
    
     .add-mod{ 
