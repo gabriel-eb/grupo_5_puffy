@@ -6,14 +6,13 @@ router.get("/", (req, res) => {
     res.status(200).send("Productos");
 });
 
-router.get("/agregar", controller.agregar);
+router
+    .route("agregar")
+    .get(controller.agregar)
+    .post((req, res) => res.send("Hola"));
 
-router.get("/detalle", controller.detalle);
+router.get("/:id", controller.detalle);
 
-router.post("/agregarProducto", (req, res) => {
-    res.send("hola");
-});
-
-router.get('/modificar/:id', controller.modificar);
+router.get("/modificar/:id", controller.modificar);
 
 module.exports = router;
