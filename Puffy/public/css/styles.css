@@ -1355,3 +1355,20 @@ main.carrito .total input{
     border-radius: 5px;
 }
 
+
+/* LISTADO DE PRODUCTO ADMIN */
+.listado-productos{
+    /* border: solid 1px black; */
+    /* background-color: red; */
+}
+
+.listado-productos td {
+    height: 100px;
+    border: solid 3px black;
+}
+
+.listado-productos tbody {
+    text-align: center;
+}
+
+/* FIN LISTADO DE PRODUCTO ADMIN */
