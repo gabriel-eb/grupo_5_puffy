@@ -1,3 +1,4 @@
+const fs = require('fs');
 let categorias = ["Keto", "Light", "Vegano", "Normal"];
 
 let listadoPostres = [{
@@ -12,7 +13,12 @@ let listadoPostres = [{
 
 const controller = {
     index: (req, res) => {
-        res.status(200).render("products/index");
+        const archivoProductos = fs.readFileSync(__dirname+'/../DB/productos.json');
+        
+        const productos = JSON.parse(archivoProductos);
+        res.status(200).render("products/index",{
+            productos
+        });
     },
     detalle: (req, res) => {
         res.status(200).render("products/detalle");
@@ -30,5 +36,6 @@ const controller = {
         });
     },
 };
+
 
 module.exports = controller;
