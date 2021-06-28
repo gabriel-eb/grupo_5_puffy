@@ -11,6 +11,9 @@ let listadoPostres = [{
 }];
 
 const controller = {
+    index: (req, res) => {
+        res.status(200).render("products/index");
+    },
     detalle: (req, res) => {
         res.status(200).render("products/detalle");
     },

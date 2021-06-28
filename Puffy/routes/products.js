@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/productController");
 
-router.get("/", (req, res) => {
-    res.status(200).send("Productos");
-});
+router.get("/", controller.index);
 
 router
     .route("agregar")
