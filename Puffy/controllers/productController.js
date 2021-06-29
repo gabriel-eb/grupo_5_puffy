@@ -24,7 +24,11 @@ const controller = {
         const archivoProductos = fs.readFileSync(__dirname+'/../DB/productos.json');
         let productos = JSON.parse(archivoProductos);
 
-        productos = productos.filter(el=>el.id!=req.params.id);
+        productos = productos.filter(el=>{
+            if(el.id!=req.params.id){
+                return el
+            }
+        });
 
         fs.writeFileSync(__dirname+'/../DB/productos.json',JSON.stringify(productos));
 
