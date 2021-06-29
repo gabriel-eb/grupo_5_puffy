@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require("../controllers/productController");
 
 router.get("/", controller.index);
+router.get('/eliminar/:id', controller.eliminar);
 
 router
     .route("agregar")

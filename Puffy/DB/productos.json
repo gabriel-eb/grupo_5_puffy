@@ -1,15 +1,18 @@
 [
     {
+        "id":1,
         "nombre":"playstation",
         "imagen":"12341",
         "precio":20.00
     },
     {
+        "id":2,
         "nombre":"licuadora",
         "imagen":"312",
         "precio":20.00
     },
     {
+        "id":3,
         "nombre":"lavadora",
         "imagen":"431",
         "precio":20.00

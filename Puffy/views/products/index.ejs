@@ -21,7 +21,7 @@
                         <td><%= producto.imagen%></td>
                         <td><%= producto.nombre %> </td>
                         <td><%= producto.precio %> </td>
-                        <td><button>Editar</button> <button>Mostrar</button> <button>Eliminar</button></td>
+                        <td><button>Editar</button> <button>Mostrar</button> <a href="productos/eliminar/<%= producto.id %>" class="btn btn-danger">Delete</a></td>
                     </tr>
                 <% } %>
                 </tbody>

@@ -20,6 +20,18 @@ const controller = {
             productos
         });
     },
+    eliminar:(req,res) =>{
+        const archivoProductos = fs.readFileSync(__dirname+'/../DB/productos.json');
+        let productos = JSON.parse(archivoProductos);
+
+        productos = productos.filter(el=>el.id!=req.params.id);
+
+        fs.writeFileSync(__dirname+'/../DB/productos.json',JSON.stringify(productos));
+
+        res.status(200).render("products/index",{
+            productos
+        });
+    },
     detalle: (req, res) => {
         res.status(200).render("products/detalle");
     },
