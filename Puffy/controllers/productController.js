@@ -32,9 +32,6 @@ const controller = {
 
         fs.writeFileSync(__dirname+'/../DB/productos.json',JSON.stringify(productos));
 
-        // res.status(200).render("products/index",{
-        //     productos
-        // });
         res.redirect('/productos');
     },
     detalle: (req, res) => {

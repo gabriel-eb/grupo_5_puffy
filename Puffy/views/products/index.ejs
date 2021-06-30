@@ -7,7 +7,8 @@
     <body>
         <%- include('../partials/header') %>
 
-        <main class="contenedor-producto">
+        <!-- <main class="contenedor-producto"> -->
+        <main class="contenedor-listado">
             <table class="listado-productos">
                 <thead>
                     <th>Imagen</th>
@@ -21,7 +22,11 @@
                         <td> <img src="<%= producto.imagen%>" alt=""></td>
                         <td><%= producto.nombre %> </td>
                         <td>$<%= producto.precio %> </td>
-                        <td class="opciones"><a href="/<%= producto.id %>" class="mostrar">Mostrar</a> <a href="delete/<%= producto.id %>" class="delete">Delete</a></td>
+                        <td class="opciones">
+                            <a href="http://localhost:3030/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
+                            <a href="http://localhost:3030/productos/modificar/<%= producto.id %>" class="editar">Editar</a> 
+                            <a href="http://localhost:3030/productos/delete/<%= producto.id %>" class="delete">Delete</a>
+                        </td>
                     </tr>
                 <% } %>
                 </tbody>

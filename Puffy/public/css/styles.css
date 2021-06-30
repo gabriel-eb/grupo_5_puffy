@@ -1358,6 +1358,11 @@ main.carrito .total input{
 
 /* LISTADO DE PRODUCTO ADMIN */
 
+
+td {
+    padding: 0 1rem;
+}
+
 .opciones {
     width: 20rem;
 }
@@ -1376,14 +1381,16 @@ main.carrito .total input{
     border-radius: .5rem;
 }
 
-
-
 .listado-productos .mostrar {
-    background-color: #fc0;
+    background-color: #00f;
 }
 
 .listado-productos .delete {
     background-color: #f00;
+}
+
+.listado-productos .editar {
+    background-color: #fc0;
 }
 
 .listado-productos td {
@@ -1400,3 +1407,27 @@ table {
 }
 
 /* FIN LISTADO DE PRODUCTO ADMIN */
+
+
+main.contenedor-listado {
+    width: min(90%,120rem);
+    margin: auto;
+    margin-top: 206px;
+    margin-bottom: 80px;
+}
+
+table.listado-productos{
+    width: 100%;
+}
+
+
+/* table.listado-productos tr > td:nth-child(3),
+table.listado-productos tr > th:nth-child(3){
+}
+
+@media (min-width:550px){
+    table.listado-productos tr > td:nth-child(3),
+    table.listado-productos tr > th:nth-child(3){
+        display: ;
+    }
+} */
