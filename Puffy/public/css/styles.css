@@ -1357,14 +1357,42 @@ main.carrito .total input{
 
 
 /* LISTADO DE PRODUCTO ADMIN */
-.listado-productos{
-    /* border: solid 1px black; */
-    /* background-color: red; */
+
+.opciones {
+    width: 20rem;
+}
+
+.listado-productos img {
+    width: 8rem;
+}
+
+.listado-productos a {
+    display: inline-block;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: .2rem .5rem;
+    border-radius: .5rem;
+}
+
+
+
+.listado-productos .mostrar {
+    background-color: #fc0;
+}
+
+.listado-productos .delete {
+    background-color: #f00;
 }
 
 .listado-productos td {
     height: 100px;
     border: solid 3px black;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 .listado-productos tbody {

@@ -11,17 +11,17 @@
             <table class="listado-productos">
                 <thead>
                     <th>Imagen</th>
-                    <th>Nombre</th>
+                    <th>Producto</th>
                     <th>Precio</th>
                     <th>Opciones</th>
                 </thead>
                 <tbody>
                 <% for(let producto of productos){ %>
                     <tr>
-                        <td><%= producto.imagen%></td>
+                        <td> <img src="<%= producto.imagen%>" alt=""></td>
                         <td><%= producto.nombre %> </td>
-                        <td><%= producto.precio %> </td>
-                        <td><button>Editar</button> <a>Mostrar</a> <a href="productos/delete/<%= producto.id %>" class="btn btn-danger">Delete</a></td>
+                        <td>$<%= producto.precio %> </td>
+                        <td class="opciones"><a href="/<%= producto.id %>" class="mostrar">Mostrar</a> <a href="delete/<%= producto.id %>" class="delete">Delete</a></td>
                     </tr>
                 <% } %>
                 </tbody>
