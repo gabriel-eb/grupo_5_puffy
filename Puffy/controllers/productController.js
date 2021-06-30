@@ -20,7 +20,7 @@ const controller = {
             productos
         });
     },
-    eliminar:(req,res) =>{
+    delete:(req,res) =>{
         const archivoProductos = fs.readFileSync(__dirname+'/../DB/productos.json');
         let productos = JSON.parse(archivoProductos);
 
