@@ -1358,6 +1358,14 @@ main.carrito .total input{
 
 /* LISTADO DE PRODUCTO ADMIN */
 
+.btn-agregar{
+    display: inline-block;
+    background-color: #25BE2A;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 5rem;
+}
 
 td {
     padding: 0 1rem;
@@ -1369,6 +1377,8 @@ td {
 
 .listado-productos img {
     width: 8rem;
+    display: block;
+    margin: auto;
 }
 
 .listado-productos a {
@@ -1412,14 +1422,36 @@ table {
 main.contenedor-listado {
     width: min(90%,120rem);
     margin: auto;
-    margin-top: 206px;
+
     margin-bottom: 80px;
+}
+
+@media (min-width:768px) {
+    main.contenedor-listado{
+        margin-top: 206px;
+    }
 }
 
 table.listado-productos{
     width: 100%;
 }
 
+@media (min-width:768px){
+    .nombre-imagen {
+        display: none;
+    }
+}
+
+
+.desaparecer{
+    display: none;
+}
+
+@media (min-width:768px){
+    .desaparecer{
+        display: table-cell;
+    }
+}
 
 /* table.listado-productos tr > td:nth-child(3),
 table.listado-productos tr > th:nth-child(3){
