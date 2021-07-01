@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('partials/head') %>
+        <title>Identificarse</title>
+    </head>
+    <body>
+        <%- include('partials/header') %>
+
+        <main class="form">
+            <h3>INICIA SESIÓN</h3>
+
+            <div class="container_01">
+                <input
+                    type="email"
+                    class="fill"
+                    placeholder="Correo electrónico"
+                />
+                <input type="password" class="fill" placeholder="Contraseña" />
+            </div>
+
+            <div class="container_02">
+                <a href="#">¿Has olvidado tu contraseña?</a>
+            </div>
+
+            <div class="button_01">
+                <input type="submit" value="ENTRAR" />
+            </div>
+
+            <div class="button_02">
+                <button>CONTINUAR COMO INVITADO</button>
+                <button>CONTINUAR COMO INVITADO</button>
+            </div>
+            <!--<a href="#" id="create_account">CREAR CUENTA</a>-->
+            <hr />
+        </main>
+
+        <%- include('partials/footer') %>
+    </body>
+</html>

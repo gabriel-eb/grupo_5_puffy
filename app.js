@@ -1,29 +1,23 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+<<<<<<< HEAD:app.js
 const PORT = process.env.PORT || 80;
+=======
+const rutaMain = require("./routes/main");
+const rutaProducts = require("./routes/products");
+const rutaUsers = require("./routes/users");
+const PORT = process.env.PORT || 3030;
+>>>>>>> sprint3:Puffy/app.js
+
+// app.set("views", __dirname + '/carpetaViews');
+app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("/", (req, res) => {
-    res.status(200).sendFile("home.html", { root: "views" });
-});
-
-app.get("/detalle", (req, res) => {
-    res.status(200).sendFile("detalle.html", { root: "views" });
-});
-
-app.get("/carrito", (req, res) => {
-    res.status(200).sendFile("carrito.html", { root: "views" });
-});
-
-app.get("/login", (req, res) => {
-    res.status(200).sendFile("formulario_login.html", { root: "views" });
-});
-
-app.get("/signin", (req, res) => {
-    res.status(200).sendFile("formulario_signin.html", { root: "views" });
-});
+app.use("/", rutaMain);
+app.use("/productos", rutaProducts);
+app.use("/users", rutaUsers);
 
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");

@@ -1,0 +1,50 @@
+<header>
+    <div class="top-bar">
+        <div class="btn-menu-principal">
+            <label for="mostrar-nav">
+                <i class="fas fa-bars"></i>
+            </label>
+        </div>
+        <a href="/"><img src="/images/logo.svg" alt="Logo Puffy" class="logo" /></a>
+        <div class="relleno-top-bar"></div>
+        <div class="carrito">
+            <a href="#"
+                ><i class="far fa-heart"></i><span>Deseados</span></a
+            >
+            <a href="/carrito"
+                ><i class="fas fa-shopping-cart"></i
+                ><span>Carrito</span></a
+            >
+        </div>
+    </div>
+
+    <nav>
+        <input type="checkbox" id="mostrar-nav" hidden />
+        <ul class="menu-principal">
+            <li><a href="/productos">Productos</a></li>
+            <li>
+                <label for="mostrar-submenu">Carrito</label>
+                <input type="checkbox" id="mostrar-submenu" hidden />
+                <ul class="submenu">
+                    <li><a href="/carrito">Carrito</a></li>
+                </ul>
+            </li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Registrar</a></li>
+        </ul>
+    </nav>
+    <div class="bot-bar">
+        <form action="" method="get" class="busqueda">
+            <input
+                type="text"
+                id="buscar"
+                placeholder="Hoy se me antoja..."
+                class="txt-busqueda"
+            />
+            <button type="submit" class="btn-busqueda">
+                <i class="fas fa-search ic-busqueda"></i>
+            </button>
+        </form>
+    </div>
+    <hr />
+</header>
