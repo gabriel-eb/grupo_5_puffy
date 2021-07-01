@@ -38,6 +38,6 @@
 - Dejar de hacer: ser más conciso en las reuniones.
 
 ## Equipo
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: Usar trello para actualizar las tareas en tiempo real.
+- Continuar haciendo: Repartición de tareas y anticipación.
+- Dejar de hacer: Dejar de faltar a reuniones
