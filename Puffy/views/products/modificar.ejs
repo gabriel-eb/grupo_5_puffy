@@ -9,7 +9,7 @@
 
         <main>
             <h1 class="tit-add-mod">Modificar Producto</h1>
-            <form action="/productos/modificarProducto" method="post" class="form-add-mod">
+            <form action="/productos/modificar/<%= producto.id %>?_method=PUT" method="post" class="form-add-mod">
                <section class="add-mod"> 
                 <div class="add-mod-1">
                     <label for="nombre" class="bold" >Nombre:</label>

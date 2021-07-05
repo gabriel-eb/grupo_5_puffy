@@ -1,4 +1,3 @@
-const fs = require('fs');
 const modelo = require('../models/producto');
 let categorias = ["Keto", "Light", "Vegano", "Normal"];
 

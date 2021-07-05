@@ -3,18 +3,27 @@
         "id":1,
         "nombre":"Playstation",
         "imagen":"https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg",
-        "precio":20
+        "precio":20,
+        "tam": 1,
+        "categoria": 1,
+        "descripcion": "asdfasdfas"
     },
     {
         "id":2,
         "nombre":"Microondas",
         "imagen":"https://ss636.liverpool.com.mx/xl/1048612527.jpg",
-        "precio":20
+        "precio":50,
+        "tam": 2,
+        "categoria": 3,
+        "descripcion": "asdfasdfas"
     },
     {
         "id":3,
         "nombre":"Lavadora",
         "imagen":"https://ss634.liverpool.com.mx/xl/1097306474.jpg",
-        "precio":20
+        "precio":40,
+        "tam": 0,
+        "categoria": 0,
+        "descripcion": "asdfasdfas"
     }
 ]
