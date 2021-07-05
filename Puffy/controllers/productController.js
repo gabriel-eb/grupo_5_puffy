@@ -26,8 +26,8 @@ const controller = {
             categorias
         });
     },
-    agregar: null,
-    modificar: null,
+    agregar: (req, res) => {null},
+    modificar: (req, res) => {null},
 };
 
 

@@ -1,5 +1,5 @@
 const { join } = require("path");
-const { writeFileSync } = reqquire('fs');
+const { writeFileSync } = require('fs');
 const pathProductos = join(__dirname, '../DB/productos.json');
 
 function leerProductos(){
