@@ -7,11 +7,11 @@ router.get('/delete/:id', controller.delete);
 
 router
     .route("agregar")
-    .get(controller.agregar)
-    .post((req, res) => res.send("Hola"));
+    .get(controller.vistaAgregar)
+    .post(controller.agregar);
 
 router.get("/:id", controller.detalle);
 
-router.get("/modificar/:id", controller.modificar);
+router.route("/modificar/:id").get(controller.vistaModificar).put(controller.modificar);
 
 module.exports = router;
