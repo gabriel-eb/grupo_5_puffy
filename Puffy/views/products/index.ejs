@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head') %>
+        <title>Detalle del producto</title>
+    </head>
+    <body>
+        <%- include('../partials/header') %>
+
+        <!-- <main class="contenedor-producto"> -->
+        <main class="contenedor-listado">
+
+            <a href="http://localhost:3030/productos/agregar" class="boton btn-agregar">Agregar</a>
+
+            <table class="listado-productos">
+                <thead>
+                    <th>Imagen</th>
+                    <th class="desaparecer">Producto</th>
+                    <th class="desaparecer">Precio</th>
+                    <th>Opciones</th>
+                </thead>
+                <tbody>
+                <% for(let producto of productos){ %>
+                    <tr>
+                        <td> <img src="<%= producto.imagen%>" alt=""><span class="nombre-imagen"><%= producto.nombre %> </span></td>
+                        <td class="desaparecer"><%= producto.nombre %> </td>
+                        <td class="desaparecer">$<%= producto.precio %> </td>
+                        <td class="opciones">
+                            <a href="http://localhost:3030/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
+                            <a href="http://localhost:3030/productos/modificar/<%= producto.id %>" class="editar">Editar</a> 
+                            <a href="http://localhost:3030/productos/delete/<%= producto.id %>" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </body>
+</html>

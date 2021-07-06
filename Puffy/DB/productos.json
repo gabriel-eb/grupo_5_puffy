@@ -1,0 +1,20 @@
+[
+    {
+        "id":1,
+        "nombre":"Playstation",
+        "imagen":"https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg",
+        "precio":20
+    },
+    {
+        "id":2,
+        "nombre":"Microondas",
+        "imagen":"https://ss636.liverpool.com.mx/xl/1048612527.jpg",
+        "precio":20
+    },
+    {
+        "id":3,
+        "nombre":"Lavadora",
+        "imagen":"https://ss634.liverpool.com.mx/xl/1097306474.jpg",
+        "precio":20
+    }
+]
