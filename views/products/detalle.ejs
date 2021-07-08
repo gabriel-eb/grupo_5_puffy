@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('../partials/head') %>
+
+<head>
+    <%- include('../partials/head') %>
         <title>Detalle del producto</title>
-    </head>
-    <body>
-        <%- include('../partials/header') %>
+</head>
+
+<body>
+    <%- include('../partials/header') %>
 
         <main class="contenedor-producto">
             <div class="info-pasteleria">
@@ -15,71 +17,46 @@
                 <h2>Linda Pasteleria</h2>
             </div>
             <div class="platillo">
-                <img src="/images/chocoflan.svg" alt="imagen postre" />
+                <img src="/images/products/<%= producto.imagen %>" alt="imagen postre" />
             </div>
             <div class="form-producto">
                 <section class="separacion producto">
                     <div class="info-producto">
                         <div class="nombre">
-                            <h1 class="fuente-may">chocoflan casero</h1>
-                            <form action="#">
-                                <div class="datos">
-                                    <div class="d-precio">
-                                        <p class="p-precio bold">$295 MXN</p>
-                                        <p class="gris">IVA INCLUIDO</p>
-                                    </div>
-                                    <div class="cantidad">
-                                        <label for="cantidad" class="block"
-                                            >Cantidad</label
-                                        >
-                                        <button class="izq">-</button
-                                        ><input
-                                            type="text"
-                                            name=""
-                                            id=""
-                                        /><button class="der">+</button>
-                                    </div>
+                            <h1 class="fuente-may">
+                                <%= producto.nombre %>
+                            </h1>
+                            <div class="datos">
+                                <div class="d-precio">
+                                    <p class="p-precio bold">$
+                                        <%= producto.precio %> MXN</p>
+                                    <p class="gris">IVA INCLUIDO</p>
                                 </div>
-                                <div class="tamanio">
-                                    <label for="tamanio">Tamaño</label>
-                                    <select name="tamanio" id="tamanio">
-                                        <option value="chico">chico</option>
-                                        <option value="mediano">mediano</option>
-                                        <option value="grande">grande</option>
-                                    </select>
-                                </div>
-                                <input
-                                    class="boton boton-producto"
-                                    type="submit"
-                                    value="Agregar al carrito"
-                                />
-                            </form>
-                        </div>
-                    </div>
-                </section>
-                <section class="separacion envio">
-                    <h3 class="fuente-may">Envio</h3>
-                    <p class="gris">Elige el día y la hora de entrega</p>
-                    <div class="envio-form">
-                        <div class="imagen">
-                            <img src="/images/envio.svg" alt="imagen envio" />
-                        </div>
-                        <form action="#">
-                            <div>
-                                <label for="fecha">Fecha:</label>
-                                <input type="date" name="" id="" />
                             </div>
-                            <div>
-                                <label for="hora">Hora:</label>
-                                <input type="time" name="" id="" />
+                            <div class="tamanio">
+                                <label for="tam">Tamaño</label>
+                                <select name="tam" id="tam" autocomplete="off" disabled>
+                                    <option value="chico" <%= producto.tam === 0 ? "selected" : "" %>>Chico</option>
+                                    <option value="mediano" <%= producto.tam === 1 ? "selected" : "" %>>Mediano</option>
+                                    <option value="grande" <%= producto.tam === 2 ? "selected" : "" %>>Grande</option>
+                                </select>
                             </div>
-                        </form>
+                            <div class="tamanio">
+                                <label for="categorita">Tamaño</label>
+                                <select name="categorita" id="categorita" autocomplete="off" disabled>
+                                    <option value="0" <%= producto.tam === 0 ? "selected" : "" %>>Keto</option>
+                                    <option value="1" <%= producto.tam === 1 ? "selected" : "" %>>Ligth</option>
+                                    <option value="2" <%= producto.tam === 2 ? "selected" : "" %>>Vegano</option>
+                                    <option value="3" <%= producto.tam === 3 ? "selected" : "" %>>Normal</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
             <section class="separacion content detalle-producto">
                 <div class="encabezado">
-                    <h3>DETALLES DEL PRODUCTO</h3>
+                    <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
                     <div>
                         <img src="/images/detalle.svg" alt="imagen flecha" />
                     </div>
@@ -89,18 +66,14 @@
                         <img src="/images/plato.svg" alt="imagen plato" />
                     </div>
                     <p>
-                        Este producto contiene harina de trigo, huevo, leche y
-                        nuez. Mantener en refrigeración.
+                        <%= producto.descripcion %>
                     </p>
                 </div>
             </section>
             <section class="separacion fuente-may pregunta">
                 <h3>Haz una pregunta</h3>
                 <form action="#">
-                    <input
-                        type="text"
-                        placeholder="Haz una pregunta a la tienda..."
-                    />
+                    <input type="text" placeholder="Haz una pregunta a la tienda..." />
                     <input class="btn-submit" type="submit" value="Enviar" />
                 </form>
             </section>
@@ -108,5 +81,6 @@
         </main>
 
         <%- include('../partials/footer') %>
-    </body>
+</body>
+
 </html>
