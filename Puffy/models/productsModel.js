@@ -26,19 +26,16 @@ function borrarProducto(id) {
 
 function agregarProducto(req) {
     let products = leerProductos();
-    let newId = products[products.length - 1].id + 1;
-    let producto = {
+    const newId = products[products.length - 1].id + 1;
+    products.push({
         id: newId,
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
-        imagen: "prueba",
-        precio: req.body.precio,
-        tam: req.body.tam,
-        categoria: req.body.categoria
-    }
-
-
-    products.push(producto);
+        imagen: req.body.imagen || "default.jpg",
+        precio: parseFloat(req.body.precio),
+        tam: parseInt(req.body.tam),
+        categoria: parseInt(req.body.categoria)
+    });
 
 
     actualizarProductos(products);
