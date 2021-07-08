@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('../partials/head') %>
+
+<head>
+    <%- include('../partials/head') %>
         <title>Detalle del producto</title>
-    </head>
-    <body>
-        <%- include('../partials/header') %>
+</head>
+
+<body>
+    <%- include('../partials/header') %>
 
         <!-- <main class="contenedor-producto"> -->
         <main class="contenedor-listado">
@@ -20,22 +22,27 @@
                     <th>Opciones</th>
                 </thead>
                 <tbody>
-                <% for(let producto of productos){ %>
-                    <tr>
-                        <td> <img src="<%= producto.imagen %>" alt=""><span class="nombre-imagen"><%= producto.nombre %> </span></td>
-                        <td class="desaparecer"><%= producto.nombre %> </td>
-                        <td class="desaparecer">$<%= producto.precio %> </td>
-                        <td class="opciones">
-                            <a href="/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
-                            <a href="/productos/modificar/<%= producto.id %>" class="editar">Editar</a> 
-                            <a href="/productos/delete/<%= producto.id %>?_method=DELETE" class="delete">Eliminar</a>
-                        </td>
-                    </tr>
-                <% } %>
+                    <% for(let producto of productos){ %>
+                        <tr>
+                            <td> <img src="/images/products/<%= producto.imagen %>" alt=""><span class="nombre-imagen"><%= producto.nombre %> </span></td>
+                            <td class="desaparecer">
+                                <%= producto.nombre %>
+                            </td>
+                            <td class="desaparecer">$
+                                <%= producto.precio %>
+                            </td>
+                            <td class="opciones">
+                                <a href="/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
+                                <a href="/productos/modificar/<%= producto.id %>" class="editar">Editar</a>
+                                <a href="/productos/delete/<%= producto.id %>?_method=DELETE" class="delete">Eliminar</a>
+                            </td>
+                        </tr>
+                        <% } %>
                 </tbody>
             </table>
         </main>
 
         <%- include('../partials/footer') %>
-    </body>
+</body>
+
 </html>
