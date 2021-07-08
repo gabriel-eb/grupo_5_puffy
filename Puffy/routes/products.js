@@ -6,9 +6,10 @@ router.get("/", controller.index);
 router.get('/delete/:id', controller.delete);
 
 router
-    .route("agregar")
+    .route("/agregar")
     .get(controller.vistaAgregar)
     .post(controller.agregar);
+
 
 router.get("/:id", controller.detalle);
 

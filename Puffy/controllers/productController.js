@@ -12,7 +12,7 @@ const controller = {
     },
     detalle: (req, res) => {
         const producto = modelo.obtenerProducto(parseInt(req.params.id));
-        res.status(200).render("products/detalle", { producto });
+        res.status(200).render("products/detalle", { producto});
     },
     vistaAgregar: (req, res) => {
         res.status(200).render("products/agregar", {
@@ -20,14 +20,21 @@ const controller = {
         });
     },
     vistaModificar: (req, res) => {
-        const postre = modelo.obtenerProducto(parseInt(req.params.id));
+        const producto = modelo.obtenerProducto(parseInt(req.params.id));
         res.status(200).render("products/modificar", {
-            postre,
+            producto,
             categorias
         });
     },
-    agregar: (req, res) => {null},
-    modificar: (req, res) => {null},
+    agregar: (req, res) => {
+       
+        modelo.agregarProducto(req);
+        res.redirect('/productos');
+    },
+
+    modificar: (req, res) => {  
+        modelo.modificarProducto(req);
+        res.redirect('/productos');},
 };
 
 

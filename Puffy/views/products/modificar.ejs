@@ -13,7 +13,7 @@
                <section class="add-mod"> 
                 <div class="add-mod-1">
                     <label for="nombre" class="bold" >Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="<%= postre.nombre %>" class="add-mod-name"/>
+                    <input type="text" id="nombre" name="nombre" value="<%= producto.nombre %>" class="add-mod-name"/>
                     <br />
                     <label for="descripcion" class="bold" >Descripción:</label>
                     <textarea
@@ -22,14 +22,14 @@
                         id="descripcion"
                         cols="30"
                         rows="5"
-                    ><%= postre.descripcion %>
+                    ><%= producto.descripcion %>
                     </textarea>
                     <br />
 
                     <label for="categoria" class="bold" >Categoría:</label>
                     <select name="categoria" id="categoria" class="add-mod-cat">
                         <% for(let i of categorias){ %>
-                            <% if(postre.categoria === i){ %> 
+                            <% if(producto.categoria === i){ %> 
                                 <option value="<%= i %>" selected><%= i %></option>
                             <% } else { %>
                                 <option value="<%= i %>"><%= i %></option>
@@ -38,21 +38,21 @@
                     </select>
                     <label for="tam" class="bold" >Tamaño: </label>
                     <select name="tam" id="tam" class="add-mod-tam">
-                        <option value="0" <%= postre.tam === 0 ? "selected" : "" %>>Chico</option>
-                        <option value="1" <%= postre.tam === 1 ? "selected" : "" %>>Mediano</option>
-                        <option value="2" <%= postre.tam === 2 ? "selected" : "" %>>Grande</option>
+                        <option value="0" <%= producto.tam === 0 ? "selected" : "" %>>Chico</option>
+                        <option value="1" <%= producto.tam === 1 ? "selected" : "" %>>Mediano</option>
+                        <option value="2" <%= producto.tam === 2 ? "selected" : "" %>>Grande</option>
                     </select>
                     <br />
                     <label for="precio" class="bold" >Precio: </label>
-                    <input type="number" id="precio" name="precio" value="<%= postre.precio %>" class="add-mod-price"/><span
+                    <input type="number" id="precio" name="precio" value="<%= producto.precio %>" class="add-mod-price"/><span
                         >mxn</span
                     >
                 </div>
                 <div class="add-mod-2">
                      <label for="imagen" class="bold" >Imagen del producto:</label>
                      <div>    
-                        <img src="/images/<%= postre.img %>.jpg" alt="" class="img-add-mod">
-                        <input type="file" name="imagen" id="imagen" />
+                        <img src="/images/<%= producto.imagen %>" alt="" class="img-add-mod">
+                        <input type="file" name="imagen" id="imagen"/>
                         </div>
                 </div>
             </section>

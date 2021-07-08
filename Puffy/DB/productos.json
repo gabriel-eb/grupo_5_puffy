@@ -1,29 +1,36 @@
 [
     {
-        "id":1,
-        "nombre":"Playstation",
-        "imagen":"https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg",
-        "precio":20,
-        "tam": 1,
-        "categoria": 1,
-        "descripcion": "asdfasdfas"
+        "nombre": "Playstation",
+        "descripcion": "Playstation \r\n                    \r\n                    \r\n                    ",
+        "precio": "50",
+        "tam": "0",
+        "categoria": "Keto",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg"
     },
     {
-        "id":2,
-        "nombre":"Microondas",
-        "imagen":"https://ss636.liverpool.com.mx/xl/1048612527.jpg",
-        "precio":50,
-        "tam": 2,
-        "categoria": 3,
-        "descripcion": "asdfasdfas"
+        "nombre": "Microondas",
+        "descripcion": "playstation image\r\n                    \r\n                    ",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg",
+        "precio": "99",
+        "tam": "0",
+        "categoria": "Keto"
     },
     {
-        "id":3,
-        "nombre":"Lavadora",
-        "imagen":"https://ss634.liverpool.com.mx/xl/1097306474.jpg",
-        "precio":40,
+        "id": 3,
+        "nombre": "Lavadora",
+        "imagen": "https://ss634.liverpool.com.mx/xl/1097306474.jpg",
+        "precio": 40,
         "tam": 0,
         "categoria": 0,
         "descripcion": "asdfasdfas"
+    },
+    {
+        "id": null,
+        "nombre": "pastel de nuez",
+        "descripcion": "nuez organica",
+        "imagen": "prueba",
+        "precio": "99",
+        "tam": "0",
+        "categoria": "Keto"
     }
 ]
