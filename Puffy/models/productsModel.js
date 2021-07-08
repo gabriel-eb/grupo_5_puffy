@@ -47,21 +47,25 @@ function agregarProducto(req) {
 function modificarProducto(req) {
     const products = leerProductos()
     const productIndex = products.findIndex(product => product.id === parseInt(req.params.id));
+    let newProduct = req.body;
+    newProduct.precio = parseFloat(newProduct.precio);
+    newProduct.tam = parseInt(newProduct.tam);
+    newProduct.categoria = parseInt(newProduct.categoria);
 
     if (req.body.image) {
         products[productIndex] = {
             ...products[productIndex],
-            ...req.body
+            ...newProduct
         }
 
     } else {
         products[productIndex] = {
             id: products[productIndex].id,
-            nombre: req.body.nombre,
-            descripcion: req.body.descripcion,
-            precio: req.body.precio,
-            tam: req.body.tam,
-            categoria: req.body.categoria,
+            nombre: newProduct.nombre,
+            descripcion: newProduct.descripcion,
+            precio: newProduct.precio,
+            tam: newProduct.tam,
+            categoria: newProduct.categoria,
             imagen: products[productIndex].imagen
         }
 
