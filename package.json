@@ -1,37 +1,12 @@
 {
-<<<<<<< HEAD:package.json
-  "name": "puffy",
-  "version": "1.0.0",
-  "description": "e-commerce de postres",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gabriel-eb/grupo_5_puffy.git"
-  },
-  "author": "gabriel-eb, esteban1810 & montseom",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gabriel-eb/grupo_5_puffy/issues"
-  },
-  "homepage": "https://github.com/gabriel-eb/grupo_5_puffy#readme",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7"
-  }
-}
-=======
     "name": "puffy",
     "version": "1.0.0",
     "description": "e-commerce de postres",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "nodemon app"
+        "dev": "nodemon app",
+        "start": "node app.js"
     },
     "nodemonConfig": {
         "ignore": [
@@ -57,4 +32,3 @@
         "nodemon": "^2.0.7"
     }
 }
->>>>>>> sprint4:Puffy/package.json

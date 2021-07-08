@@ -59,9 +59,9 @@ function modificarProducto(req) {
             id: products[productIndex].id,
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
-            precio: req.body.precio,
-            tam: req.body.tam,
-            categoria: req.body.categoria,
+            precio: parseFloat(req.body.precio),
+            tam: parseInt(req.body.tam),
+            categoria: parseInt(req.body.categoria),
             imagen: products[productIndex].imagen
         }
 
