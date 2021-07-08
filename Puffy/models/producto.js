@@ -1,87 +1,84 @@
 const { join } = require("path");
 const { writeFileSync } = require('fs');
-const { readFileSync } = require('fs');
-const { appendFileSync } = require('fs');
 const pathProductos = join(__dirname, '../DB/productos.json');
 
-function leerProductos(){
+function leerProductos() {
     return require(pathProductos);
 }
 
-function actualizarProductos(productos){
+function actualizarProductos(productos) {
     writeFileSync(pathProductos, JSON.stringify(productos, null, 4));
 }
 
-function obtenerProductos(){
+function obtenerProductos() {
     return leerProductos();
 }
 
-function obtenerProducto(id){
+function obtenerProducto(id) {
     return leerProductos().find(prod => prod.id === id);
 }
 
-function borrarProducto(id){
+function borrarProducto(id) {
     let productos = leerProductos();
-    productos = productos.filter(el=>{
-        el.id!==id;
-    });
+    productos = productos.filter(el => el.id !== id);
     actualizarProductos(productos);
 }
 
-// Funcion agregar
-
-//let products=JSON.parse(readFileSync(pathProductos,{encoding:'utf-8'})); //Este lo utilizará en agregarProducto y modificarProducto,
-//pasa algo si lo declaro acá afuera?
-
-function agregarProducto(req){
-    let products=leerProductos();
-    let newId=products.length+1;
-    let producto={
-        id:newId,
-        nombre:req.body.nombre,
+function agregarProducto(req) {
+    let products = leerProductos();
+    let newId = products[products.length - 1].id + 1;
+    let producto = {
+        id: newId,
+        nombre: req.body.nombre,
         descripcion: req.body.descripcion,
-        imagen:"prueba",
-        precio:req.body.precio,
+        imagen: "prueba",
+        precio: req.body.precio,
         tam: req.body.tam,
         categoria: req.body.categoria
     }
-   
+
 
     products.push(producto);
 
 
-   actualizarProductos(products);
-    
-    
+    actualizarProductos(products);
+
+
 }
 
 // Funcion modificar
-function modificarProducto(req){
-    console.log(req.body);
-    const products=leerProductos()
+function modificarProducto(req) {
+    const products = leerProductos()
     const productIndex = products.findIndex(product => product.id === parseInt(req.params.id));
 
-    if(req.body.image){
+    if (req.body.image) {
         products[productIndex] = {
-			...products[productIndex],...req.body
-		}
-         
-    }else{
-        products[productIndex]={
-            nombre:req.body.nombre,
+            ...products[productIndex],
+            ...req.body
+        }
+
+    } else {
+        products[productIndex] = {
+            id: products[productIndex].id,
+            nombre: req.body.nombre,
             descripcion: req.body.descripcion,
-            precio:req.body.precio,
+            precio: req.body.precio,
             tam: req.body.tam,
             categoria: req.body.categoria,
-            imagen:products[productIndex].imagen
+            imagen: products[productIndex].imagen
         }
-       
 
-    }	
-		actualizarProductos(products);
-    
+
+    }
+    actualizarProductos(products);
+
 }
 
 
-module.exports = { obtenerProductos, obtenerProducto, borrarProducto, agregarProducto,modificarProducto};
-
+module.exports = {
+    obtenerProductos,
+    obtenerProducto,
+    borrarProducto,
+    agregarProducto,
+    modificarProducto
+};

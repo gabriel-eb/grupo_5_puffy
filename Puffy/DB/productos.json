@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "nombre": "Playstation",
         "descripcion": "Playstation \r\n                    \r\n                    \r\n                    ",
         "precio": "50",
@@ -8,12 +9,13 @@
         "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg"
     },
     {
+        "id": 2,
         "nombre": "Microondas",
-        "descripcion": "playstation image\r\n                    \r\n                    ",
-        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg",
+        "descripcion": "playstation image 33\r\n                    ",
         "precio": "99",
         "tam": "0",
-        "categoria": "Keto"
+        "categoria": "Keto",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg"
     },
     {
         "id": 3,
@@ -25,12 +27,12 @@
         "descripcion": "asdfasdfas"
     },
     {
-        "id": null,
+        "id": 4,
         "nombre": "pastel de nuez",
-        "descripcion": "nuez organica",
-        "imagen": "prueba",
+        "descripcion": "nuez organica vxf\r\n                    ",
         "precio": "99",
         "tam": "0",
-        "categoria": "Keto"
+        "categoria": "Keto",
+        "imagen": "prueba"
     }
 ]

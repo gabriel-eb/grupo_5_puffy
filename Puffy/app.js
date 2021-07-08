@@ -1,7 +1,11 @@
+// Paquetes
 const express = require("express");
 const app = express();
 const path = require("path");
-const methodOverride =  require('method-override');
+const methodOverride = require('method-override');
+const morgan = require("morgan");
+
+// Rutas
 const rutaMain = require("./routes/main");
 const rutaProducts = require("./routes/products");
 const rutaUsers = require("./routes/users");
@@ -10,6 +14,8 @@ const PORT = process.env.PORT || 3030;
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
 
+// app.use(morgan(':method :url :status :response-time ms'));
+app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

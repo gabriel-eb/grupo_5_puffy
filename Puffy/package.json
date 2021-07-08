@@ -1,26 +1,33 @@
 {
-  "name": "puffy",
-  "version": "1.0.0",
-  "description": "e-commerce de postres",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gabriel-eb/grupo_5_puffy.git"
-  },
-  "author": "gabriel-eb, esteban1810 & montseom",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gabriel-eb/grupo_5_puffy/issues"
-  },
-  "homepage": "https://github.com/gabriel-eb/grupo_5_puffy#readme",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "method-override": "^3.0.0",
-    "multer": "^1.4.2",
-    "nodemon": "^2.0.7"
-  }
+    "name": "puffy",
+    "version": "1.0.0",
+    "description": "e-commerce de postres",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon app"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "DB/*"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gabriel-eb/grupo_5_puffy.git"
+    },
+    "author": "gabriel-eb, esteban1810 & montseom",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/gabriel-eb/grupo_5_puffy/issues"
+    },
+    "homepage": "https://github.com/gabriel-eb/grupo_5_puffy#readme",
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "method-override": "^3.0.0",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.2",
+        "nodemon": "^2.0.7"
+    }
 }
