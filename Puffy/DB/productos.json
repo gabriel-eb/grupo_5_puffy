@@ -1,38 +1,37 @@
-[
-    {
+[{
         "id": 1,
-        "nombre": "Playstation",
-        "descripcion": "Playstation \r\n                    \r\n                    \r\n                    ",
-        "precio": "50",
-        "tam": "0",
-        "categoria": "Keto",
-        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg"
+        "nombre": "Pastel de tres leches",
+        "descripcion": "Delicioso pastel que puede ir con leche entera o deslactosada. Le podemos escribir el mensaje que desees.",
+        "precio": 350.0,
+        "tam": 1,
+        "categoria": 3,
+        "imagen": "1_pastel-de-tres-leches.jpg"
     },
     {
         "id": 2,
-        "nombre": "Microondas",
-        "descripcion": "playstation image 33\r\n                    ",
-        "precio": "99",
-        "tam": "0",
-        "categoria": "Keto",
-        "imagen": "https://http2.mlstatic.com/D_NQ_NP_937072-MLA44492746273_012021-O.jpg"
+        "nombre": "Pastel de chocolate",
+        "descripcion": "Pastel de chocolate, se puede elegir entre chocolate amargo o dulce.",
+        "precio": 190,
+        "tam": 0,
+        "categoria": 2,
+        "imagen": "2_pastel-de-chocolate.jpg"
     },
     {
         "id": 3,
-        "nombre": "Lavadora",
-        "imagen": "https://ss634.liverpool.com.mx/xl/1097306474.jpg",
-        "precio": 40,
+        "nombre": "Chocoflan",
+        "descripcion": "Mitad flan, mitad pastel de chocolate ¡Lo mejor de ambos mundos!",
+        "precio": 190,
         "tam": 0,
-        "categoria": 0,
-        "descripcion": "asdfasdfas"
+        "categoria": 2,
+        "imagen": "3_chocoflan.jpg"
     },
     {
         "id": 4,
-        "nombre": "pastel de nuez",
-        "descripcion": "nuez organica vxf\r\n                    ",
-        "precio": "99",
-        "tam": "0",
-        "categoria": "Keto",
-        "imagen": "prueba"
+        "nombre": "Pancakes keto",
+        "descripcion": "Pancakes de matcha, perfectos para tu dieta keto.",
+        "precio": 190,
+        "tam": 2,
+        "categoria": 0,
+        "imagen": "4_pancakes-keto.jpg"
     }
 ]

@@ -6,9 +6,9 @@ const methodOverride = require('method-override');
 const morgan = require("morgan");
 
 // Rutas
-const rutaMain = require("./routes/main");
-const rutaProducts = require("./routes/products");
-const rutaUsers = require("./routes/users");
+const rutaMain = require("./routes/mainRoute");
+const rutaProducts = require("./routes/productsRoute");
+const rutaUsers = require("./routes/usersRoute");
 const PORT = process.env.PORT || 3030;
 
 // app.set("views", __dirname + '/carpetaViews');

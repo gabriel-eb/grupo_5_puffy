@@ -1,4 +1,4 @@
-const modelo = require('../models/producto');
+const modelo = require('../models/productsModel');
 const categorias = ["Keto", "Light", "Vegano", "Normal"];
 
 const controller = {
