@@ -46,9 +46,9 @@
 # Sprint 3 - Retroalimentación
 
 ## Montserrat
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: Practicar más JavaScript.
+- Continuar haciendo: Ver con anticipación las clases de playground y tomar apuntes.
+- Dejar de hacer: No indigar más en los temas que se están viendo. 
 
 ## Esteban
 - Comenzar a hacer: 
