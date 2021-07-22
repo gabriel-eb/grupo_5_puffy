@@ -64,3 +64,20 @@
 - Comenzar a hacer: reunirnos al weekly para avanzar y repasar los temas necesarios.
 - Continuar haciendo: adelantar el sprint con anticipación.
 - Dejar de hacer: entregar el pull request el último día permitido.
+
+
+# Sprint 4 - Retroalimentación
+## Montserrat
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Gabriel
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Equipo
+- Comenzar a hacer: no dejar la retro y weekly para el final.
+- Continuar haciendo: adelantar el sprint con anticipación.
+- Dejar de hacer: entregar el pull request el último día permitido.
