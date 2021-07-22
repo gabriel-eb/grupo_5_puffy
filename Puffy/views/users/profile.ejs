@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>
+            Hola
+            <%= user.first_name + " " + user.last_name %>
+        </title>
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+
+        <h1>Hola,
+            <%= user.first_name + " " + user.last_name %>
+        </h1>
+        <div>
+            <img src="/images/users/<%= user.image %>" alt="Imagen de perfil">
+        </div>
+        <div>
+            <h2>Nombre: </h2>
+            <p>
+                <%= user.first_name + " " + user.last_name %>
+            </p>
+            <h2>E-mail: </h2>
+            <p>
+                <%= user.email%>
+            </p>
+            <h2>Estatus: </h2>
+            <p>
+                <%= user.category %>
+            </p>
+        </div>
+        <div>
+            <button>Modificar</button>
+            <button>Eliminar</button>
+        </div>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
