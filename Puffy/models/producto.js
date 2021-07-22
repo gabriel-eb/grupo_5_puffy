@@ -30,9 +30,6 @@ function borrarProducto(id){
 
 // Funcion agregar
 
-//let products=JSON.parse(readFileSync(pathProductos,{encoding:'utf-8'})); //Este lo utilizará en agregarProducto y modificarProducto,
-//pasa algo si lo declaro acá afuera?
-
 function agregarProducto(req){
     let products=leerProductos();
     let newId=products.length+1;
