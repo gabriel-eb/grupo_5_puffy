@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('partials/head') %>
-        <title>Crea tu cuenta</title>
-    </head>
-    <body>
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+   
         <%- include('partials/header') %>
 
         <main class="form">
             <h3>CREAR CUENTA</h3>
-            <form action="/signup" method="post" enctype="multipart/form-data">
+            <form action="/users" method="post" enctype="multipart/form-data">
             <div class="container_01">
                 <input name="first_name" type="text" class="fill" placeholder="Nombre" />
-                <% if(locals.errors && errors.first_name){%>
-                <div>
-                    <%= errors.first_name.msg %>
-                
-                </div>
-           <% } %>
                 <input name="last_name" type="text" class="fill" placeholder="Apellido" />
                 <br />
                     <label for="userType" class="bold" >Tipo de usuario: </label>
@@ -57,4 +52,5 @@
 
         <%- include('partials/footer') %>
     </body>
+
 </html>
