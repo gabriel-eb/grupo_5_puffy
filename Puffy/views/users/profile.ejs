@@ -13,30 +13,30 @@
     <%- include('../partials/header') %>
 
         <main>
-            <h1>Hola,
-                <%= user.first_name + " " + user.last_name %>
-            </h1>
-            <div>
-                <img src="/images/users/<%= user.image %>" alt="Imagen de perfil">
-            </div>
-            <div>
-                <h2>Nombre: </h2>
-                <p>
-                    <%= user.first_name + " " + user.last_name %>
-                </p>
-                <h2>E-mail: </h2>
-                <p>
-                    <%= user.email%>
-                </p>
-                <h2>Estatus: </h2>
-                <p>
-                    <%= user.category %>
-                </p>
-            </div>
-            <div>
-                <button>Modificar</button>
-                <button>Eliminar</button>
-            </div>
+            <section class="body-perfil">
+                <h2>Perfil</h2>
+                <figure class="img-perfil">
+                    <img src="/images/users/<%= user.image %>" alt="Imagen de perfil">
+                </figure>
+                <article class="info-perfil">
+                    <p>Nombre: </p>
+                    <h3>
+                        <%= user.first_name + " " + user.last_name %>
+                    </h3>
+                    <p>E-mail: </p>
+                    <h3>
+                        <%= user.email%>
+                    </h3>
+                    <p>Estatus: </p>
+                    <h3>
+                        <%= user.category %>
+                    </h3>
+                </article>
+                <div class="btn-perfil">
+                    <button class="btn modificar">Modificar</button>
+                    <button class="btn eliminar">Eliminar</button>
+                </div>
+            </section>
         </main>
 
         <%- include('../partials/footer') %>
