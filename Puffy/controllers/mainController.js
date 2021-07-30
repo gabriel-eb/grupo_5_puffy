@@ -1,6 +1,7 @@
-//
 
-const{validationResult}=require('express-validator');
+const { validationResult } = require('express-validator');
+const user = require('../models/users');
+const bcryptjs = require('bcryptjs');
 
 const controller = {
     index: (req, res) => {
@@ -11,27 +12,89 @@ const controller = {
     },
     login: (req, res) => {
         res.status(200).render("login");
-     },
+    },
     signup: (req, res) => {
         res.status(200).render("signup");
-     },
-
-     // POST
-
-     processSignup: (req, res) => {
-          const resultValidation=validationResult(req);
-
-          console.log(resultValidation);
-         
-         if(resultValidation.errors.length>0){
-             return res.render('signup',{
-                 errors:resultValidation.mapped(),
-             });
-          }
-
-         res.redirect('/');
+    },
+    profile:(req,res)=>{
         
-     },
+    },
+
+    // POST DEL SIGNUP
+
+    processSignup: (req, res) => {
+        const resultValidation = validationResult(req);
+
+
+        if (resultValidation.errors.length > 0) {
+            return res.render('signup', {
+                errors: resultValidation.mapped(),
+                oldData: req.body,
+            });
+        }
+
+
+        let userInDB = user.findByField('email', req.body.email);
+
+        if (userInDB) {
+            return res.render('signup', {
+                errors: {
+                    email: {
+                        msg: 'Este email ya está registrado'
+                    }
+                },
+                oldData: req.body
+            });
+        }
+
+        let userToCreate = {
+            ...req.body,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            if(filename=!''){
+            avatar: req.file.filename
+            }
+            
+        
+        }
+
+        user.create(userToCreate);
+
+        res.redirect('/login');
+
+    },
+
+    //Proceso Login
+
+    processLogin: (req, res) => {
+      
+        let userToLogin = user.findByField('email', req.body.email);
+
+        if (userToLogin) {
+            
+            let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
+            if (checkPassword) {
+                req.session.userLogged=userToLogin
+                return res.redirect("/")
+            }
+            return res.render("login", {
+                errors: {
+                    email: {
+                        msg: 'Las credenciales son inválidas'
+                    }
+                }
+            });
+        }
+        return res.render("login", {
+            errors: {
+                email: {
+                    msg: 'No se encuentra este email en nuestra base de datos'
+                }
+            }
+       });
+    },
+
+    
 };
 
 module.exports = controller;
+

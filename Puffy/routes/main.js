@@ -23,9 +23,9 @@ const {body}=require('express-validator')
 const validations=[
     body('first_name').notEmpty().withMessage('Debes de escribir tu nombre'),
     body('last_name').notEmpty().withMessage('Debes de escribir tu apellido'),
-    body('email').notEmpty().isEmail().withMessage('Debes de escribir tu email'),
+    body('email').isEmail().notEmpty().withMessage('Debes de escribir tu email'),
     body('category').notEmpty().withMessage('Elige tu tipo de usuario'),
-    body('password').notEmpty().isLength({min:6}).withMessage('Debes de escribir una contraseña con al menos 6 carácteres'),
+    body('password').isLength({min:6}).notEmpty().withMessage('Debes de escribir una contraseña con al menos 6 carácteres'),
 ]
 //
 
