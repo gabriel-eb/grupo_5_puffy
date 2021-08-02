@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const methodOverride = require('method-override');
 const morgan = require("morgan");
+const session = require("express-session");
 
 // Rutas
 const rutaMain = require("./routes/mainRoute");
@@ -20,6 +21,11 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(session({
+    secret:"Secreto",
+    resave:false,
+    saveUninitialized:false
+}));
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);

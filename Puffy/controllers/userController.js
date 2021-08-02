@@ -5,6 +5,9 @@ const controller = {
         const user = modelo.obtenerUser(parseInt(req.params.id));
         res.render('users/profile.ejs', { user })
     },
+    vistaModificar: (req, res) => {
+        res.status(200).render("users/editar");
+    },
 };
 
 

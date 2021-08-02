@@ -1,40 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('partials/head') %>
+
+<head>
+    <%- include('partials/head') %>
         <title>Crea tu cuenta</title>
-    </head>
-    <body>
-        <%- include('partials/header') %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
 
         <main class="form">
             <h3>CREAR CUENTA</h3>
+            <form action="/signup" method="post" enctype="multipart/form-data">
+                <div class="container_01">
+                    <input name="first_name" type="text"  placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" 
+                    value="<%=locals.oldData ? oldData.first_name : null %>" />
 
-            <div class="container_01">
-                <input type="text" class="fill" placeholder="Nombre Completo" />
-                <input
-                    type="email"
-                    class="fill"
-                    placeholder="Correo electrónico"
-                />
-                <input type="password" class="fill" placeholder="Contraseña" />
-                <input
+                    <input name="last_name" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> "
+                    value="<%=locals.oldData ? oldData.last_name : null %>" />
+
+                    <br />
+                    <label for="userType" class="bold">Tipo de usuario: </label>
+                    <select name="category" id="userType" class=fill>
+                        <option value="0">Vendedor</option>
+                        <option value="1">Comprador</option>
+                    </select>
+                    <br />
+                    <input name="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid:' : null %>" 
+                    value="<%=locals.oldData ? oldData.email : null %>" />
+
+                    <input name="password" type="password" class="fill" placeholder="Contraseña" />
+
+                    <!-- <input
                     type="password"
                     class="fill"
                     placeholder="Confirmar contraseña"
-                />
-            </div>
+                /> -->
+                    <label for="image" class="bold">Imagen de perfil:</label>
+                    <input type="file" name="image" id="image" class="fill" />
 
-            <div class="button_01">
-                <input type="submit" value="CREAR CUENTA" />
-            </div>
+                    
+                    <% if(locals.errors && errors.first_name){%>
+                        <div class="alert">
+                            <%= errors.first_name.msg %>
 
-            <div class="container_51">
-                <a href="#">¿Ya tienes una cuenta? Inicia sesión</a>
-            </div>
-            <hr />
+                        </div>
+                        <% } %>
+
+                            <% if(locals.errors && errors.last_name){%>
+                                <div class="alert">
+                                    <%= errors.last_name.msg %>
+
+                                </div>
+                                <% } %>
+                                    <% if(locals.errors && errors.email){%>
+                                        <div class="alert">
+                                            <%= errors.email.msg %>
+
+                                        </div>
+                                        <% } %>
+
+                                            <% if(locals.errors && errors.password){%>
+                                                <div class="alert">
+                                                    <%= errors.password.msg %>
+
+                                                </div>
+                                                <% } %>
+                </div>
+
+
+
+                <div class="button_01">
+                    <input type="submit" value="CREAR CUENTA" />
+                </div>
+
+                <div class="container_51">
+                    <a href="#">¿Ya tienes una cuenta? Inicia sesión</a>
+                </div>
+                <hr />
+
+            </form>
         </main>
 
         <%- include('partials/footer') %>
-    </body>
+</body>
+
 </html>
