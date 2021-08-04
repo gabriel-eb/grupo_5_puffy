@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>
+            Hola
+            <%= user.first_name + " " + user.last_name %>
+        </title>
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+
+        <main>
+            <section class="body-perfil">
+                <h2>Perfil</h2>
+                <figure class="img-perfil">
+                    <img src="/images/users/<%= user.image %>" alt="Imagen de perfil">
+                </figure>
+                <article class="info-perfil">
+                    <p>Nombre: </p>
+                    <h3>
+                        <%= user.first_name + " " + user.last_name %>
+                    </h3>
+                    <p>E-mail: </p>
+                    <h3>
+                        <%= user.email%>
+                    </h3>
+                    <p>Estatus: </p>
+                    <h3>
+                        <%= user.category %>
+                    </h3>
+                </article>
+                <div class="btn-perfil">
+                    <button class="btn modificar">Modificar</button>
+                    <button class="btn eliminar">Eliminar</button>
+                </div>
+            </section>
+        </main>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

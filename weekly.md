@@ -16,3 +16,9 @@ Montse y Gabriel repasaron temas de CRUD para implementarlos posteriormente al p
 
 ## (5)[Sprint4] Miércoles 07/07/2021
 Se finalizó el sprint 4 con Montse y Gabriel para preparar el pull request y la app de heroku. Se actualizó el Trello.
+
+## (6)[Sprint4] Jueves 15/07/2021
+El compañero Esteban confirmo su deserción del curso y se organizaron las cargas de trabajo para el Sprint 5.
+
+## (7)[Sprint5] Miércoles 21/07/2021
+Actualizamos las ramas de git y checamos los avances de Montse en Multer y validaciones en el formulario de signup.
