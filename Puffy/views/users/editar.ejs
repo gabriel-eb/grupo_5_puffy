@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <%- include('../partials/head') %>
     <title>Document</title>
 </head>
 <body>
    
-        <%- include('partials/header') %>
+    <%- include('../partials/header') %>
 
         <main class="form">
-            <h3>CREAR CUENTA</h3>
+            <h3>MODIFICAR DATOS</h3>
             <form action="/users" method="post" enctype="multipart/form-data">
             <div class="container_01">
                 <input name="first_name" type="text" class="fill" placeholder="Nombre" />
@@ -28,11 +28,6 @@
                     placeholder="Correo electrónico"
                 />
                 <input name="password" type="password" class="fill" placeholder="Contraseña" />
-                <!-- <input
-                    type="password"
-                    class="fill"
-                    placeholder="Confirmar contraseña"
-                /> -->
                 <label for="image" class="bold" >Imagen de perfil:</label>
                 <input type="file" name="image" id="image" class="fill" />
 
@@ -46,7 +41,7 @@
         </form>
         </main>
 
-        <%- include('partials/footer') %>
+        <%- include('../partials/footer') %>
     </body>
 
 </html>
