@@ -8,13 +8,8 @@
         <a href="/"><img src="/images/logo.svg" alt="Logo Puffy" class="logo-header" /></a>
         <div class="relleno-top-bar"></div>
         <div class="carrito">
-            <a href="#"
-                ><i class="far fa-heart"></i><span>Deseados</span></a
-            >
-            <a href="/carrito"
-                ><i class="fas fa-shopping-cart"></i
-                ><span>Carrito</span></a
-            >
+            <a href="#"><i class="far fa-heart"></i><span>Deseados</span></a>
+            <a href="/carrito"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
         </div>
     </div>
 
@@ -29,18 +24,19 @@
                     <li><a href="/carrito">Carrito</a></li>
                 </ul>
             </li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Registrar</a></li>
+
+            <%if(sessionId){%>
+                <li><a href="/logout">Login</a></li>
+                <%}else{%>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Registrar</a></li>
+                    <%}%>
+
         </ul>
     </nav>
     <div class="bot-bar">
         <form action="" method="get" class="busqueda">
-            <input
-                type="text"
-                id="buscar"
-                placeholder="Hoy se me antoja..."
-                class="txt-busqueda"
-            />
+            <input type="text" id="buscar" placeholder="Hoy se me antoja..." class="txt-busqueda" />
             <button type="submit" class="btn-busqueda">
                 <i class="fas fa-search ic-busqueda"></i>
             </button>

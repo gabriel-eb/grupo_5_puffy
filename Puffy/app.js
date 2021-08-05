@@ -5,6 +5,7 @@ const path = require("path");
 const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
+const cookieParser = require('cookie-parser');
 
 // Rutas
 const rutaMain = require("./routes/mainRoute");
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3030;
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
 
+// Middlewares
 // app.use(morgan(':method :url :status :response-time ms'));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, "/public")));
@@ -22,10 +24,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(session({
-    secret:"Secreto",
-    resave:false,
-    saveUninitialized:false
+    secret: "pUff7",
+    resave: false,
+    saveUninitialized: false
 }));
+app.use(cookieParser());
+
+app.use(function(req, res, next) {
+    res.locals.sessionId = req.session.userId;
+    next();
+});
+
+
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);

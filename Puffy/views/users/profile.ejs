@@ -32,10 +32,12 @@
                         <%= user.category %>
                     </h3>
                 </article>
-                <div class="btn-perfil">
-                    <button class="btn modificar">Modificar</button>
-                    <button class="btn eliminar">Eliminar</button>
-                </div>
+                <% if(sessionId === user.id){ %>
+                    <div class="btn-perfil">
+                        <button class="btn modificar">Modificar</button>
+                        <button class="btn eliminar">Eliminar</button>
+                    </div>
+                    <% } %>
             </section>
         </main>
 

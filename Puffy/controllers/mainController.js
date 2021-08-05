@@ -1,4 +1,3 @@
-
 const { validationResult } = require('express-validator');
 const user = require('../models/users');
 const bcryptjs = require('bcryptjs');
@@ -16,8 +15,8 @@ const controller = {
     signup: (req, res) => {
         res.status(200).render("signup");
     },
-    profile:(req,res)=>{
-        
+    profile: (req, res) => {
+
     },
 
     // POST DEL SIGNUP
@@ -25,14 +24,12 @@ const controller = {
     processSignup: (req, res) => {
         const resultValidation = validationResult(req);
 
-
         if (resultValidation.errors.length > 0) {
             return res.render('signup', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
         }
-
 
         let userInDB = user.findByField('email', req.body.email);
 
@@ -50,11 +47,11 @@ const controller = {
         let userToCreate = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
-            if(filename=!''){
-            avatar: req.file.filename
+            if (filename = !'') {
+                avatar: req.file.filename
             }
-            
-        
+
+
         }
 
         user.create(userToCreate);
@@ -66,15 +63,13 @@ const controller = {
     //Proceso Login
 
     processLogin: (req, res) => {
-      
         let userToLogin = user.findByField('email', req.body.email);
 
         if (userToLogin) {
-            
             let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
             if (checkPassword) {
-                req.session.userLogged=userToLogin
-                return res.redirect("/")
+                req.session.userId = userToLogin.id;
+                return res.redirect("users/" + req.session.userId);
             }
             return res.render("login", {
                 errors: {
@@ -90,11 +85,10 @@ const controller = {
                     msg: 'No se encuentra este email en nuestra base de datos'
                 }
             }
-       });
+        });
     },
 
-    
+
 };
 
 module.exports = controller;
-
