@@ -2,26 +2,32 @@ const { join } = require("path");
 const { writeFileSync } = require('fs');
 const pathUsers = join(__dirname, '../DB/users.json');
 
-function obtenerUsers() {
+function getData() {
     return require(pathUsers);
 }
 
-function actualizarUsers(users) {
+function updateData(users) {
     writeFileSync(pathUsers, JSON.stringify(users, null, 4));
 }
 
-function obtenerUser(id) {
-    return obtenerUsers().find(user => user.id === id);
+function findByPK(id) {
+    return getData().find(user => user.id === id);
 }
 
-function borrarUser(id) {
-    let users = obtenerUsers();
+//Metodo que nos permite buscar al usuario por cualquier campo, en este caso por email
+//field="email","telefono",etc text=Texto exacto, por ejemplo montse@gmail.com
+function findByField(field, text) {
+    return getData().find(oneUser => oneUser[field] === text);
+}
+
+function deleteByPK(id) {
+    let users = getData();
     users = users.filter(user => user.id !== id);
-    actualizarUsers(users);
+    updateData(users);
 }
 
-function agregarUser(req) {
-    let users = obtenerUsers();
+function create(req) {
+    let users = getData();
     const newId = users[users.length - 1].id + 1;
     users.push({
         id: newId,
@@ -30,39 +36,40 @@ function agregarUser(req) {
         email: req.body.email,
         password: req.body.password,
         category: req.body.category,
-        image: req.body.imagen || "default.jpg"
+        avatar: req.body.avatar || "default.jpg"
     });
-    actualizarUsers(users);
+    updateData(users);
 }
 
 // Funcion modificar
-function modificarUser(req) {
-    const users = obtenerUsers();
+function edit(req) {
+    const users = getData();
     const userIndex = users.findIndex(user => user.id === parseInt(req.params.id));
     let newUser = req.body;
 
-    if (req.body.image) {
+    if (req.body.avatar) {
         users[userIndex] = {
             ...users[userIndex],
             ...newUser
         }
     } else {
         users[userIndex] = {
-             id: users[userIndex].id,
+            id: users[userIndex].id,
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
             category: newUser.category,
-            image: users[userIndex].image
+            avatar: users[userIndex].avatar
         }
     }
-    actualizarUsers(users);
+    updateData(users);
 }
 
 module.exports = {
-    obtenerUsers,
-    obtenerUser,
-    borrarUser,
-    agregarUser,
-    modificarUser
+    getData,
+    findByPK,
+    findByField,
+    deleteByPK,
+    create,
+    edit
 };

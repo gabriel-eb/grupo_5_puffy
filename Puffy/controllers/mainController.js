@@ -1,5 +1,5 @@
-const { validationResult } = require('express-validator');
-const user = require('../models/users');
+const model = require('../models/mainModel');
+const userModel = require('../models/usersModel');
 const bcryptjs = require('bcryptjs');
 
 const controller = {
@@ -20,42 +20,8 @@ const controller = {
     },
 
     // POST DEL SIGNUP
-
     processSignup: (req, res) => {
-        const resultValidation = validationResult(req);
-
-        if (resultValidation.errors.length > 0) {
-            return res.render('signup', {
-                errors: resultValidation.mapped(),
-                oldData: req.body,
-            });
-        }
-
-        let userInDB = user.findByField('email', req.body.email);
-
-        if (userInDB) {
-            return res.render('signup', {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body
-            });
-        }
-
-        let userToCreate = {
-            ...req.body,
-            password: bcryptjs.hashSync(req.body.password, 10),
-            // if(filename=!''){
-            avatar: req.file.filename || "default.jpg",
-            // }
-            
-        
-        }
-
-        user.create(userToCreate);
-
+        model.signup();
         res.redirect('/login');
 
     },
@@ -63,7 +29,7 @@ const controller = {
     //Proceso Login
 
     processLogin: (req, res) => {
-        let userToLogin = user.findByField('email', req.body.email);
+        let userToLogin = userModel.findByField('email', req.body.email);
 
         if (userToLogin) {
             let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);

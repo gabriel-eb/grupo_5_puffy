@@ -4,8 +4,7 @@
         "first_name": "Administrador",
         "last_name": "Mestro",
         "email": "demo@puffy.com",
-        "password": "$2a$10$8Am9vX6iVg2W1FOgYk1h4uNZnEBFCrB56ou2xlT9U4ja1.1kcf6B2",
-        "category": "user",
+        "category": "1",
         "avatar": "default.jpg"
     },
     {

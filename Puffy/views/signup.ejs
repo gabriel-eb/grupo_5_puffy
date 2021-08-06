@@ -13,11 +13,9 @@
             <h3>CREAR CUENTA</h3>
             <form action="/signup" method="post" enctype="multipart/form-data">
                 <div class="container_01">
-                    <input name="first_name" type="text"  placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" 
-                    value="<%=locals.oldData ? oldData.first_name : null %>" />
+                    <input name="first_name" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.first_name : null %>" />
 
-                    <input name="last_name" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> "
-                    value="<%=locals.oldData ? oldData.last_name : null %>" />
+                    <input name="last_name" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> " value="<%=locals.oldData ? oldData.last_name : null %>" />
 
                     <br />
                     <label for="userType" class="bold">Tipo de usuario: </label>
@@ -26,13 +24,12 @@
                         <option value="1">Comprador</option>
                     </select>
                     <br />
-                    <input name="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid:' : null %>" 
-                    value="<%=locals.oldData ? oldData.email : null %>" />
+                    <input name="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.email : null %>" />
 
                     <input name="password" type="password" class="fill" placeholder="Contraseña" />
 
-                    <label for="image" class="bold">Imagen de perfil:</label>
-                    <input type="file" name="image" id="image" class="fill" />
+                    <label for="avatar" class="bold">Imagen de perfil:</label>
+                    <input type="file" name="avatar" id="avatar" class="fill" />
 
 
                     <% if(locals.errors && errors.first_name){%>
