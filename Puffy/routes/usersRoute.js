@@ -7,6 +7,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', controller.obtenerPerfil);
-router.route("/modificar/:id").get(controller.vistaModificar);
+router.route("/modificar/:id").get(controller.vistaModificar).put(controller.modificar);
 
 module.exports = router
