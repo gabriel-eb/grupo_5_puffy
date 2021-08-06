@@ -13,7 +13,7 @@ const controller = {
     modificar:(req,res)=>{
         modelo.modificarUser(req);
         // res.render('users/profile.ejs', { user })
-        res.redirect('../index');
+        res.redirect('/');
     }
 };
 

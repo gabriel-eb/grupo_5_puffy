@@ -10,7 +10,7 @@
 
         <main class="form">
             <h3>MODIFICAR DATOS</h3>
-            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post" >
             <div class="container_01">
                 <input name="first_name" type="text" class="fill" value="<%= user.first_name%>" />
                 <input name="last_name" type="text" class="fill" value="<%= user.last_name%>" />
@@ -27,7 +27,6 @@
                     class="fill"
                     value="<%= user.email%>"
                 />
-                <input name="password" type="password" class="fill" value="<%= user.password%>" />
                 <label for="image" class="bold" >Imagen de perfil:</label>
                 <img src="/images/avatars/<%= user.avatar %>" alt="" class="img-mod-profile">
                 <input type="file" name="image" id="image" class="fill" />

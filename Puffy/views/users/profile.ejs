@@ -16,7 +16,7 @@
             <section class="body-perfil">
                 <h2>Perfil</h2>
                 <figure class="img-perfil">
-                    <img src="/images/users/<%= user.image %>" alt="Imagen de perfil">
+                    <img src="/images/avatars/<%= user.avatar %>" alt="Imagen de perfil">
                 </figure>
                 <article class="info-perfil">
                     <p>Nombre: </p>
@@ -34,8 +34,8 @@
                 </article>
                 <% if(sessionId === user.id){ %>
                     <div class="btn-perfil">
-                        <button class="btn modificar" onclick="window.location.href='/modificar/<%=sessionId%>'">Modificar</button>
-                        <button class="btn eliminar" onclick="window.location.href='/eliminar/<%=sessionId%>'">Eliminar</button>
+                        <button class="btn modificar" onclick="window.location.href='/users/modificar/<%=sessionId%>'">Modificar</button>
+                        <button class="btn eliminar" onclick="window.location.href='/users/eliminar/<%=sessionId%>'">Eliminar</button>
                     </div>
                     <% } %>
             </section>

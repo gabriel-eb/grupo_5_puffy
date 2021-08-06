@@ -52,7 +52,6 @@ function modificarUser(req) {
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
-            password: newUser.password,
             category: newUser.category,
             image: users[userIndex].image
         }
