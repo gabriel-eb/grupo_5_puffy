@@ -34,8 +34,8 @@
                 </article>
                 <% if(sessionId === user.id){ %>
                     <div class="btn-perfil">
-                        <button class="btn modificar">Modificar</button>
-                        <button class="btn eliminar">Eliminar</button>
+                        <button class="btn modificar" onclick="window.location.href='/modificar/<%=sessionId%>'">Modificar</button>
+                        <button class="btn eliminar" onclick="window.location.href='/eliminar/<%=sessionId%>'">Eliminar</button>
                     </div>
                     <% } %>
             </section>

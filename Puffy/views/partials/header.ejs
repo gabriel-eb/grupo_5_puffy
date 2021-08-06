@@ -26,7 +26,8 @@
             </li>
 
             <%if(sessionId){%>
-                <li><a href="/logout">Login</a></li>
+                <li><a href="/users/<%=sessionId%>">Perfil</a></li>
+                <li><a href="/logout">Logout</a></li>
                 <%}else{%>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Registrar</a></li>
