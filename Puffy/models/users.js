@@ -54,6 +54,32 @@ const user = {
         let finalUsers = allUsers.filter(oneUser => oneUser.id !== id);
         fs.writeFileSync(this.fileName, JSON.stringify(finalUsers, null, ' '));
         return true;
+    },
+
+    editar:function(req){
+        console.log(req.body);
+        const users=findAll()
+        const usersIndex = users.findIndex(user => user.id === parseInt(req.params.id));
+    
+        if(req.body.image){
+            users[userIndex] = {
+                ...users[userIndex],...req.body
+            }
+             
+        }else{
+            users[userIndex]={
+                first_name:req.body.first_name,
+                last_name: req.body.last_name,
+                category:req.body.category,
+                email: req.body.email,
+                categoria: req.body.categoria,
+                imagen:users[userIndex].imagen
+            }
+           
+    
+        }	
+            actualizarProductos(products);
+        
     }
 }
 

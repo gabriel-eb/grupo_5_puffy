@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <%- include('../partials/head') %>
     <title>Document</title>
 </head>
 <body>
    
-        <%- include('partials/header') %>
+    <%- include('../partials/header') %>
 
         <main class="form">
-            <h3>CREAR CUENTA</h3>
-            <form action="/users" method="post" enctype="multipart/form-data">
+            <h3>MODIFICAR DATOS</h3>
+            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post" enctype="multipart/form-data">
             <div class="container_01">
-                <input name="first_name" type="text" class="fill" placeholder="Nombre" />
-                <input name="last_name" type="text" class="fill" placeholder="Apellido" />
+                <input name="first_name" type="text" class="fill" value="<%= user.first_name%>" />
+                <input name="last_name" type="text" class="fill" value="<%= user.last_name%>" />
                 <br />
                     <label for="userType" class="bold" >Tipo de usuario: </label>
-                    <select name="category" id="userType" class=fill>
-                        <option value="0">Vendedor</option>
-                        <option value="1">Comprador</option>
+                    <select name="category" id="userType" class=fill autocomplete="off">
+                        <option value="0" <%=user.category===0 ? "selected" : "" %>>Vendedor</option>
+                        <option value="1" <%=user.category===1 ? "selected" : "" %>>Comprador</option>
                     </select>
                     <br />
                 <input
                     name="email"
                     type="email"
                     class="fill"
-                    placeholder="Correo electrónico"
+                    value="<%= user.email%>"
                 />
-                <input name="password" type="password" class="fill" placeholder="Contraseña" />
-                <!-- <input
-                    type="password"
-                    class="fill"
-                    placeholder="Confirmar contraseña"
-                /> -->
+                <input name="password" type="password" class="fill" value="<%= user.password%>" />
                 <label for="image" class="bold" >Imagen de perfil:</label>
+                <img src="/images/avatars/<%= user.avatar %>" alt="" class="img-mod-profile">
                 <input type="file" name="image" id="image" class="fill" />
 
             </div>
@@ -46,7 +42,7 @@
         </form>
         </main>
 
-        <%- include('partials/footer') %>
+        <%- include('../partials/footer') %>
     </body>
 
 </html>

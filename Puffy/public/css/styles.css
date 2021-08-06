@@ -1453,3 +1453,11 @@ table.listado-productos tr > th:nth-child(3){
          text-align: left;
          color: red;
      }
+
+
+      /* IMAGEN DE EDICIÓN DE PERFIL DE USUARIO */
+
+      .img-mod-profile{
+          border-radius: 50% ;
+          width:50%
+      }

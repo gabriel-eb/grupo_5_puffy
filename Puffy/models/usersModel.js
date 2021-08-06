@@ -48,7 +48,7 @@ function modificarUser(req) {
         }
     } else {
         users[userIndex] = {
-            id: users[userIndex].id,
+             id: users[userIndex].id,
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,

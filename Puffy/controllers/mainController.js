@@ -47,11 +47,11 @@ const controller = {
         let userToCreate = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
-            if (filename = !'') {
-                avatar: req.file.filename
-            }
-
-
+            // if(filename=!''){
+            avatar: req.file.filename || "default.jpg",
+            // }
+            
+        
         }
 
         user.create(userToCreate);
