@@ -29,7 +29,7 @@
                     </h3>
                     <p>Estatus: </p>
                     <h3>
-                        <%= user.category %>
+                        <%= user.category===0 ? "Vendedor" : "Comprador" %>
                     </h3>
                 </article>
                 <% if(sessionId === user.id){ %>

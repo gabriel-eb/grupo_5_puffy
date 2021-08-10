@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 
-// Rutas
+// Imports locales
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
@@ -23,22 +23,17 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(cookieParser());
 app.use(session({
     secret: "pUff7",
     resave: false,
     saveUninitialized: false
 }));
-app.use(cookieParser());
-
+// Login MW
 app.use(function(req, res, next) {
     res.locals.sessionId = req.session.userId;
     next();
 });
-
-
-app.use("/", rutaMain);
-app.use("/productos", rutaProducts);
-app.use("/users", rutaUsers);
 
 
 // ************ catch 404 and forward to error handler ************
@@ -55,6 +50,11 @@ app.use("/users", rutaUsers);
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
+
+// Rutas
+app.use("/", rutaMain);
+app.use("/productos", rutaProducts);
+app.use("/users", rutaUsers);
 
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");

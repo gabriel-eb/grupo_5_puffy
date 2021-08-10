@@ -1,7 +1,6 @@
-
 const userModel = require('../models/usersModel');
 const bcryptjs = require('bcryptjs');
-const {validationResult}=require('express-validator');
+const { validationResult } = require('express-validator');
 
 
 const controller = {
@@ -20,54 +19,39 @@ const controller = {
     profile: (req, res) => {
 
     },
-
     // POST DEL SIGNUP
     processSignup: (req, res) => {
-        
-            const resultValidation = validationResult(req);
-            if (resultValidation.errors.length > 0) {
-                return res.render('signup', {
-                    errors: resultValidation.mapped(),
-                    oldData: req.body,
-                });
-            }
-        
-            let userInDB = userModel.findByField('email', req.body.email);
-        
-            if (userInDB) {
-                return res.render('signup', {
-                    errors: {
-                        email: {
-                            msg: 'Este email ya está registrado'
-                        }
-                    },
-                    oldData: req.body
-                });
-            }
+        const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            return res.render('signup', {
+                errors: resultValidation.mapped(),
+                oldData: req.body,
+            });
+        }
+        let userInDB = userModel.findByField('email', req.body.email);
+        if (userInDB) {
+            return res.render('signup', {
+                errors: {
+                    email: {
+                        msg: 'Este email ya está registrado'
+                    }
+                },
+                oldData: req.body
+            });
+        }
 
-            
-        
-            let userToCreate = {
-                ...req.body,
-                password: bcryptjs.hashSync(req.body.password, 10),
-               
-                avatar: req.file.filename || "default.jpg",
-                
-            }
+        let userToCreate = {
+            ...req.body,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            avatar: req.file.filename || "default.jpg",
+        }
 
-        
-        
-            userModel.create(userToCreate);
-        
+        userModel.create(userToCreate);
         res.redirect('/login');
-
     },
-
     //Proceso Login
-
     processLogin: (req, res) => {
         let userToLogin = userModel.findByField('email', req.body.email);
-
         if (userToLogin) {
             let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
             if (checkPassword) {
@@ -90,7 +74,12 @@ const controller = {
             }
         });
     },
-
+    processLogout: (req, res) => {
+        // req.session.id = null;
+        delete res.locals.sessionId;
+        delete req.session.userId;
+        res.status(200).redirect('/');
+    }
 
 };
 
