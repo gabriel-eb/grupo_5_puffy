@@ -41,3 +41,26 @@
 - Comenzar a hacer: Usar trello para actualizar las tareas en tiempo real.
 - Continuar haciendo: Repartición de tareas y anticipación.
 - Dejar de hacer: Dejar de faltar a reuniones
+
+
+# Sprint 3 - Retroalimentación
+
+## Montserrat
+- Comenzar a hacer: Practicar más JavaScript.
+- Continuar haciendo: Ver con anticipación las clases de playground y tomar apuntes.
+- Dejar de hacer: No indigar más en los temas que se están viendo. 
+
+## Esteban
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Gabriel
+- Comenzar a hacer: descansar de las jornadas largas del proyecto.
+- Continuar haciendo: anticipar el sprint para repartir las tareas con eficacia.
+- Dejar de hacer: esperar a que avisen si van a entrar al weekly o no.
+
+## Equipo
+- Comenzar a hacer: reunirnos al weekly para avanzar y repasar los temas necesarios.
+- Continuar haciendo: adelantar el sprint con anticipación.
+- Dejar de hacer: entregar el pull request el último día permitido.
