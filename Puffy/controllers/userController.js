@@ -11,9 +11,9 @@ const controller = {
         res.status(200).render("users/editar", { user });
     },
     modificar: (req, res) => {
+       
         modelo.edit(req);
-        // res.render('users/profile.ejs', { user })
-        res.redirect('/');
+        res.redirect('/users/'+req.params.id);
     }
 };
 

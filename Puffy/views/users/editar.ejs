@@ -12,7 +12,7 @@
 
         <main class="form">
             <h3>MODIFICAR DATOS</h3>
-            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post">
+            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post" enctype="multipart/form-data">
                 <div class="container_01">
                     <input name="first_name" type="text" class="fill" value="<%= user.first_name%>" />
                     <input name="last_name" type="text" class="fill" value="<%= user.last_name%>" />

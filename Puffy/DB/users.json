@@ -129,55 +129,38 @@
         "avatar": "user_15.jpg"
     },
     {
-        "first_name": "Alejandra",
-        "last_name": "Pérez",
+        "id": 16,
+        "first_name": "montse",
+        "last_name": "olmedo",
         "category": "0",
-        "email": "ale@gmail.com",
-        "password": "1234567"
+        "email": "montse@hotmail.com",
+        "password": "$2a$10$Jv6IS1sGJIM86jNuZ9ojt.MDf8iMAMaBMjVPNLlAww8dypc5ME14i",
+        "avatar": "IMG_20171008_090750688_2.jpg"
     },
     {
-        "first_name": "ale2",
-        "last_name": "Pérez",
+        "id": 17,
+        "first_name": "montse2",
+        "last_name": "olmedo",
         "category": "0",
-        "email": "ale@gmail.com",
-        "password": "alejandra",
-        "avatar": "1627172020237_img.jpg"
+        "email": "montse2@gmail.com",
+        "password": "$2a$10$nLu5dJzYz/74nrt.wvYzdONZtY7kAkAL4FCACYgc9.NOa.7adv6f.",
+        "avatar": "1628563276776_img.jpg"
     },
     {
-        "first_name": "Alejandra",
-        "last_name": "Pérez",
+        "id": 18,
+        "first_name": "montse1",
+        "last_name": "olmedo",
         "category": "0",
-        "email": "ale2@gmail.com",
-        "password": "$2a$10$e4m03St3Oqx7Lgiwiba8zuxk6UXP9sImpmZYjBKf0xGKFo/5A27Au",
-        "avatar": "1627172766273_img.png"
+        "email": "mon@gmail.cm",
+        "password": "$2a$10$qa2dmJBhZmBWgprK0gocx.Z9/vNBV21zrMeGNztiO4Cf0VBN32g5m",
+        "avatar": "1628563352719_img.jpg"
     },
     {
-        "first_name": "Romina",
-        "last_name": "Jaral",
+        "id": 19,
+        "first_name": "montse",
+        "last_name": "olmedo2",
+        "email": "montse1234@gmail.com",
         "category": "0",
-        "email": "romina@gmail.com",
-        "password": "$2a$10$iwZNZXPDdxcPrnk42MwRTeDVpRWF3txqZVFhPg2EZ3Xj.nWkb2RTq",
-        "avatar": "1627339699336_img.jpg"
-    },
-    {
-        "first_name": "prueba1",
-        "last_name": "123",
-        "category": "0",
-        "email": "prueba1@gmail.com",
-        "password": "$2a$10$z4Pel3iJbI6V7U4a6PHJauFiBcHYa0cNkpTC0czUGSm807sps9mde"
-    },
-    {
-        "first_name": "prueba2",
-        "last_name": "prueba2",
-        "category": "0",
-        "email": "prueba2@gmail.com",
-        "password": "$2a$10$Av9/uz1/ZYnPIczMPMS3Z.30MNSSo0/lMkl2SRd4F28Y62c2HR5FK"
-    },
-    {
-        "first_name": "Gabriel",
-        "last_name": "Espinosa",
-        "category": "0",
-        "email": "gabo@gmail.com",
-        "password": "$2a$10$PlPX/aRu01q/Sj.o/lbsPu7XD8cP03Rknz1rovOAFkM0dxbZ0Q9N2"
+        "avatar": "1628564385268_img.jpg"
     }
 ]

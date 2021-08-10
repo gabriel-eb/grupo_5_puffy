@@ -13,7 +13,7 @@ router.get("/login", controller.login);
 // Formulario de signup
 router.get("/signup", controller.signup);
 //Procesar signup
-router.post("/signup", uploadFile.single('image'), validations, controller.processSignup);
+router.post("/signup", uploadFile.single('avatar'), validations, controller.processSignup);
 //Procesar login
 router.post("/login", controller.processLogin);
 

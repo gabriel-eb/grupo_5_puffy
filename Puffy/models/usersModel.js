@@ -31,12 +31,7 @@ function create(req) {
     const newId = users[users.length - 1].id + 1;
     users.push({
         id: newId,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password,
-        category: req.body.category,
-        avatar: req.body.avatar || "default.jpg"
+        ...req
     });
     updateData(users);
 }
@@ -47,21 +42,19 @@ function edit(req) {
     const userIndex = users.findIndex(user => user.id === parseInt(req.params.id));
     let newUser = req.body;
 
-    if (req.body.avatar) {
-        users[userIndex] = {
-            ...users[userIndex],
-            ...newUser
-        }
-    } else {
+ 
+
         users[userIndex] = {
             id: users[userIndex].id,
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
             category: newUser.category,
-            avatar: users[userIndex].avatar
+            avatar: req.file.filename
         }
-    }
+
+    
+    
     updateData(users);
 }
 

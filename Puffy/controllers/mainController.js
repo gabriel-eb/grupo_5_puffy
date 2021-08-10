@@ -1,6 +1,8 @@
-const model = require('../models/mainModel');
+
 const userModel = require('../models/usersModel');
 const bcryptjs = require('bcryptjs');
+const {validationResult}=require('express-validator');
+
 
 const controller = {
     index: (req, res) => {
@@ -21,7 +23,42 @@ const controller = {
 
     // POST DEL SIGNUP
     processSignup: (req, res) => {
-        model.signup();
+        
+            const resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                return res.render('signup', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body,
+                });
+            }
+        
+            let userInDB = userModel.findByField('email', req.body.email);
+        
+            if (userInDB) {
+                return res.render('signup', {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya está registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            
+        
+            let userToCreate = {
+                ...req.body,
+                password: bcryptjs.hashSync(req.body.password, 10),
+               
+                avatar: req.file.filename || "default.jpg",
+                
+            }
+
+        
+        
+            userModel.create(userToCreate);
+        
         res.redirect('/login');
 
     },
