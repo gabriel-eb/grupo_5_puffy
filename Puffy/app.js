@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
+const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
 // app.set("views", __dirname + '/carpetaViews');
@@ -29,8 +30,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(recordarSession);
 // Login MW
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.locals.sessionId = req.session.userId;
     next();
 });

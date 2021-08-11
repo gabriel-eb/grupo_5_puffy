@@ -55,7 +55,16 @@ const controller = {
         if (userToLogin) {
             let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
             if (checkPassword) {
+                // Session
                 req.session.userId = userToLogin.id;
+
+                // Cookie
+                if (req.body.recordar) {
+                    res.cookie('recordar', req.session.userId, {
+                        maxAge: 1000 * 360 * 24 * 7 // una semana
+                    });
+                }
+
                 return res.redirect("users/" + req.session.userId);
             }
             return res.render("login", {
@@ -75,9 +84,10 @@ const controller = {
         });
     },
     processLogout: (req, res) => {
-        // req.session.id = null;
+        res.clearCookie('recordar');
         delete res.locals.sessionId;
-        delete req.session.userId;
+        // delete req.session.userId;
+        req.session.destroy();
         res.status(200).redirect('/');
     }
 

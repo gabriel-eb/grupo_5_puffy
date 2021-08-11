@@ -15,6 +15,7 @@
                 <div class="container_01">
                     <input type="email" class="fill" placeholder="Correo electrónico" name="email" />
                     <input type="password" class="fill" placeholder="Contraseña" name="password" />
+                    <input type="checkbox" name="recordar" id="recordar"> <label for="recordar">Recordar mi sesión</label>
                 </div>
 
                 <div class="container_02">
@@ -22,20 +23,20 @@
                 </div>
 
                 <% if(locals.errors && errors.email){ %>
-            <div class="alert">
-                <%=errors.email.msg%>
-            </div>
-            <%}%>
-            
-                <div class="button_01">
-                    <input type="submit" value="ENTRAR" />
-                </div>
+                    <div class="alert">
+                        <%=errors.email.msg%>
+                    </div>
+                    <%}%>
 
-                <div class="button_02">
-                    <button>CONTINUAR COMO INVITADO</button>
-                </div>
-                <!--<a href="#" id="create_account">CREAR CUENTA</a>-->
-                <hr />
+                        <div class="button_01">
+                            <input type="submit" value="ENTRAR" />
+                        </div>
+
+                        <div class="button_02">
+                            <button>CONTINUAR COMO INVITADO</button>
+                        </div>
+                        <!--<a href="#" id="create_account">CREAR CUENTA</a>-->
+                        <hr />
 
             </form>
         </main>
