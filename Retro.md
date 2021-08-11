@@ -50,11 +50,6 @@
 - Continuar haciendo: Ver con anticipación las clases de playground y tomar apuntes.
 - Dejar de hacer: No indigar más en los temas que se están viendo. 
 
-## Esteban
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
-
 ## Gabriel
 - Comenzar a hacer: descansar de las jornadas largas del proyecto.
 - Continuar haciendo: anticipar el sprint para repartir las tareas con eficacia.
@@ -73,11 +68,11 @@
 - Dejar de hacer: 
 
 ## Gabriel
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: repartir mis cargas de trabajo en varios días.
+- Continuar haciendo: dar seguimiento al proyecto.
+- Dejar de hacer: dejar todo para la última semana.
 
 ## Equipo
 - Comenzar a hacer: no dejar la retro y weekly para el final.
-- Continuar haciendo: adelantar el sprint con anticipación.
+- Continuar haciendo: repartir las tareas y hacerlas con tiempo.
 - Dejar de hacer: entregar el pull request el último día permitido.
