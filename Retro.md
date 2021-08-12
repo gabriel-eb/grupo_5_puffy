@@ -63,9 +63,9 @@
 
 # Sprint 4 - Retroalimentación
 ## Montserrat
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: Reforzar el contenido de Playground con documentación externa.
+- Continuar haciendo: Anticipar las entregas de tareas que se me asignaron en el proyecto.
+- Dejar de hacer: Dedicar MUCHO TIEMPO en errores que surgen al momento de programar y detener las demás tareas que debo de entregar. 
 
 ## Gabriel
 - Comenzar a hacer: repartir mis cargas de trabajo en varios días.
