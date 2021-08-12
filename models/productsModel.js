@@ -61,19 +61,11 @@ function modificarProducto(req) {
     } else {
         products[productIndex] = {
             id: products[productIndex].id,
-<<<<<<< HEAD:models/productsModel.js
-            nombre: req.body.nombre,
-            descripcion: req.body.descripcion,
-            precio: parseFloat(req.body.precio),
-            tam: parseInt(req.body.tam),
-            categoria: parseInt(req.body.categoria),
-=======
             nombre: newProduct.nombre,
             descripcion: newProduct.descripcion,
             precio: newProduct.precio,
             tam: newProduct.tam,
             categoria: newProduct.categoria,
->>>>>>> sprint5:Puffy/models/productsModel.js
             imagen: products[productIndex].imagen
         }
 
