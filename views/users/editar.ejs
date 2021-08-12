@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Document</title>
+</head>
+
+<body>
+
+    <%- include('../partials/header') %>
+
+        <main class="form">
+            <h3>MODIFICAR DATOS</h3>
+            <form action="/users/modificar/<%= user.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                <div class="container_01">
+                    <input name="first_name" type="text" class="fill" value="<%= user.first_name%>" />
+                    <input name="last_name" type="text" class="fill" value="<%= user.last_name%>" />
+                    <br />
+                    <label for="userType" class="bold">Tipo de usuario: </label>
+                    <select name="category" id="userType" class=fill autocomplete="off">
+                        <option value="0" <%=user.category===0 ? "selected" : "" %>>Vendedor</option>
+                        <option value="1" <%=user.category===1 ? "selected" : "" %>>Comprador</option>
+                    </select>
+                    <br />
+                    <input name="email" type="email" class="fill" value="<%= user.email%>" />
+                    <label for="avatar" class="bold">Imagen de perfil:</label>
+                    <img src="/images/avatars/<%= user.avatar %>" alt="" class="img-mod-profile">
+                    <input type="file" name="avatar" id="avatar" class="fill" />
+
+                </div>
+
+                <div class="button_01">
+                    <input type="submit" value="GUARDAR" />
+                </div>
+
+
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
