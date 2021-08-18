@@ -19,7 +19,7 @@ app.set("view engine", "ejs");
 
 // Middlewares
 // app.use(morgan(':method :url :status :response-time ms'));
-app.use(morgan('dev'));
+app.use(morgan('dev', { skip: (req, res) => req.url.match('(jpg|png|ico|css|svg)$') }));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

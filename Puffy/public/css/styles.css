@@ -378,9 +378,70 @@ body > hr {
     font-size: 0.6rem;
 }
 
-.postres .nuevos-postres {
-    display: none;
+/*====== Products ======*/
+.nuevos-postres {
+    border: salmon solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
+.product-box {
+    min-width: 45%;
+    flex-basis: min-content;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 300ms;
+    margin: 8px 4px;
+    border: #ddd solid 0.1rem;
+}
+
+.product-box a {
+    display: block;
+    text-decoration: none;
+}
+
+.product-box_image {
+    border-bottom: 1px solid #ddd;
+}
+
+.product-box_data {
+    padding: 15px;
+    min-height: 5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.product-box_data h3 {
+    color: #000;
+    font-weight: 500;
+    margin: 0;
+}
+
+.product-box_data span {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #3ad413;
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+    transition: 300ms;
+}
+
+.product-box_data p {
+    font-size: 1.5em;
+    width: 100%;
+    color: #333;
+    margin: 0;
+    height: 0;
+    transition: 300ms;
+    overflow: hidden;
+}
+
 /* Colecciones */
 
 .colecciones {
@@ -567,6 +628,29 @@ body > hr {
     .small {
         font-size: 1rem;
     }
+
+    .nuevos-postres {
+        margin: 50px 0;
+    }
+
+    .product-box {
+        min-width: 20%;
+        flex-basis: min-content;
+    }
+
+    .product-box_data h3 {
+        font-size: 1.5rem;
+    }
+    .product-box:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-box:hover p,
+    .product-box:hover span {
+        height: 40px;
+        margin-top: 15px;
+    }
+
     /* Colecciones y reposteros */
     .coleccion-repostero {
         display: flex;
@@ -584,8 +668,8 @@ body > hr {
         margin-bottom: 1rem;
     }
     .colecciones .circulo-coleccion {
-        width: 160px;
-        height: 160px;
+        width: 120px;
+        height: 120px;
     }
     /* Reposteros */
     .reposteros {
@@ -727,7 +811,6 @@ body{
     flex-direction: column;
     align-items: flex-start;
 }
-
 
 @media (min-width: 480px) {
     .footer {
