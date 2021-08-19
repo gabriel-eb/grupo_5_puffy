@@ -5,8 +5,10 @@ const uploadFile = require("../middlewares/multerMiddleware");
 const loggedIn = require("../middlewares/loggedInMiddleware");
 const notLogged = require("../middlewares/notLoggedMiddleware");
 
+// Prueba sequlize
+router.route('/').get(controller.list).post(controller.createUser);
 
-router.get('/', (req, res) => { res.send("users") });
+
 router.get('/:id', controller.obtenerPerfil);
 router.route("/modificar/:id")
     .get(notLogged, controller.vistaModificar)
