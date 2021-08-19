@@ -32,3 +32,5 @@ Se revisaron los últimos cambios para el sprint 5: alguna de las tareas finaliz
 ## (10)[Sprint5] Miércoles 11/08/2021
 Se verifico el funcionamiento de las sesiones y los cookies, se hicieron los modificaciones en las vistas del sprint. Se repartieron las tareas para el próximo sprint.
 
+## (11)[Sprint6] Miércoles 18/08/2021
+Creación de Diagrama ER del proyecto, generación de script para la creación de la base de datos y las tablas correspondientes. Sequelize agregado al proyecto.

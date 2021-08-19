@@ -76,3 +76,21 @@
 - Comenzar a hacer: no dejar la retro y weekly para el final.
 - Continuar haciendo: repartir las tareas y hacerlas con tiempo.
 - Dejar de hacer: entregar el pull request el último día permitido.
+
+
+
+# Sprint 5 - Retroalimentación
+## Montserrat
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Gabriel
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Equipo
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
