@@ -58,6 +58,10 @@ app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
 
+// API Prueba
+const rutaPrueba =  require('./apiPruebas/routesPrueba');
+app.use('/api',rutaPrueba);
+
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");
 });

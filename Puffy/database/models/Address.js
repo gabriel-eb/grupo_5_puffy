@@ -41,16 +41,18 @@ module.exports = (sequelize, dataTypes) => {
         tableName: 'address'
     };
 
+    const Address = sequelize.define(alias, cols, config);
+
     Address.associate = function(models) {
         Address.belongsTo(models.User, {
             as: 'user',
-            foreignKey: 'user_id'
+            foreignKey: 'userId'
         })
         Address.hasMany(models.Order, {
-            as: 'orders',
-            foreignKey: 'address_id'
+            as: 'order',
+            foreignKey: 'addressId'
         })
     }
     
-    return sequelize.define(alias, cols, config);
+    return Address;
 }

@@ -7,8 +7,13 @@ const Users = db.User;
 const controller = {
     // Prueba sequlize 1
     list: async (req, res) => {
-        const usersList = await Users.findAll();
-        res.render('users/userList', { usersList });
+        try {
+            const usersList = await Users.findAll();
+            res.render('users/userList', { usersList });
+            
+        } catch (error) {
+            console.log(error);
+        }
     },
     // Prueba sequlize 2
     createUser: async function (req, res) {

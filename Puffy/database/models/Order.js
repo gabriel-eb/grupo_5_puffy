@@ -61,16 +61,18 @@ module.exports = (sequelize, dataTypes) => {
         tableName: 'order'
     };
 
+    const Order = sequelize.define(alias, cols, config);
+
     Order.associate = function(models) {
-        Order.belongsTo(models.Address, {
-            as: 'addresses',
-            foreignKey: 'user_id'
-        });
         Order.belongsTo(models.User, {
-            as: 'users',
-            foreignKey: 'address_id'
+            as: 'user',
+            foreignKey: 'userId'
+        });
+        Order.belongsTo(models.Address, {
+            as: 'address',
+            foreignKey: 'addressId'
         });
     }
 
-    return sequelize.define(alias, cols, config);
+    return Order;
 }

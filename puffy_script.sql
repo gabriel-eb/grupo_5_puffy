@@ -239,3 +239,16 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- DATOS DE PRUEBA
+
+INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `avatar`) VALUES ('Gabo', 'espinosa', '23425232', 'ga@ga.com', '1234', '1', 'image.jpg');
+INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `avatar`) VALUES ('Montse', 'Olmedo', '35643552', 'mo@mo.com', '5645', '0', 'image2.jpg');
+
+INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`) VALUES ('Calle Norte 1', 'Colonia Juarez', 'Gustavo A Madero', 'CDMX', 'MX', '06600', '1');
+INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`) VALUES ('Calle Sur1', 'Colonia Hidalgo', 'Juarez', 'Chihuahua', 'MX', '58940', '2');
+
+INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `discount`, `tax`, `shipping`, `total`, `promo`, `promo_discount`, `grandTotal`, `user_id`, `address_id`) VALUES ('1', 'fgsdgsdgd', '0', '10.2', '0.1', '0.16', '10.0', '100.0', 'asdfas', '0.1', '90.0', '1', '1');
+INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `discount`, `tax`, `shipping`, `total`, `promo`, `promo_discount`, `grandTotal`, `user_id`, `address_id`) VALUES ('2', 'asdfas', '1', '99.2', '0.2', '0.16', '100.0', '200.0', 'fsdfs', '0.0', '200.0', '2', '2');
+INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `discount`, `tax`, `shipping`, `total`, `promo`, `promo_discount`, `grandTotal`, `user_id`, `address_id`) VALUES ('3', 'asfasf', '0', '500.0', '0.05', '0.15', '150.0', '350.0', 'adfs', '0.2', '300.0', '1', '1');
