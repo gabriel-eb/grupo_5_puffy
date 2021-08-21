@@ -1,6 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'User';
-    let cols = {
+    const alias = 'User';
+    const cols = {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
@@ -42,10 +42,20 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100)
         }
     };
-    let config = {
+    const config = {
         tableName: 'user'
     };
-    const User = sequelize.define(alias, cols, config)
 
-    return User
+    User.associate = function(models) {
+        User.hasMany(models.Address, {
+            as: 'addresses',
+            foreignKey: 'user_id'
+        });
+        User.hasMany(models.Order, {
+            as: 'orders',
+            foreignKey: 'user_id'
+        });
+    }
+
+    return sequelize.define(alias, cols, config);
 }
