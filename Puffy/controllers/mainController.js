@@ -1,6 +1,9 @@
 const userModel = require('../models/usersModel');
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const db = require('../database/models');
+const { Op } = require("sequelize");
+const Users = db.User;
 
 
 const controller = {
@@ -20,15 +23,17 @@ const controller = {
 
     },
     // POST DEL SIGNUP
-    processSignup: (req, res) => {
+    processSignup: async (req, res) => {
+
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
-            return res.render('signup', {
+            return res.status(401).render('signup', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
         }
-        let userInDB = userModel.findByField('email', req.body.email);
+
+        let userInDB = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
         if (userInDB) {
             return res.render('signup', {
                 errors: {
@@ -43,11 +48,15 @@ const controller = {
         let userToCreate = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
-            avatar: req.file.filename || "default.jpg",
+            avatar: req.file ? req.file.filename : "default.jpg",
         }
 
-        userModel.create(userToCreate);
-        res.redirect('/login');
+        try {
+            await Users.create(userToCreate);
+            return res.status(201).redirect('/login');
+        } catch (error) {
+            return res.status(500).json({ error: error.message, lengthPass: userToCreate.password.length })
+        }
     },
     //Proceso Login
     processLogin: (req, res) => {

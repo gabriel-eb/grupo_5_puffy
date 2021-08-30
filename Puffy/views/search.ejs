@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head') %>
+        <title>Búsqueda</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main>
+            <form action="/search" method="get" class="busqueda">
+                <input type="text" id="buscar" name="buscar" placeholder="Buscar" class="txt-busqueda" />
+                <button type="submit" class="btn-busqueda">
+                    <i class="fas fa-search ic-busqueda"></i>
+                </button>
+            </form>
+
+            <% for(let resultado in resultados) { %>
+                <article class="product-box">
+                    <a href="/products/detail/¿?">
+                        <figure class="product-box_image">
+                            <img src="/images/chocoflan.jpg" alt="Postre1">
+                        </figure>
+                        <div class="product-box_data">
+                            <h3><%= resultado.name %></h3>
+                            <p><%= resultado.price %></p>
+                            <span><%= resultado.discount * 10 %> %</span>
+                        </div>
+                    </a>
+                </article>
+            <% } %>
+        </main>
+
+        <%- include('partials/footer') %>
+</body>
+
+</html>

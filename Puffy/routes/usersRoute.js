@@ -17,5 +17,9 @@ router.route('/:id/newAddress')
     .get(notLogged, controller.vistaNuevaDir)
     .post(controller.agregarDir);
 router.route('/:id/addresses').get(controller.vistaDirecciones);
+router.route('/:id/addresses/:idAddress')
+    .get()
+    .put()
+    .delete();
 
 module.exports = router

@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `puffy_db`.`user` (
   `last_name` VARCHAR(100) NOT NULL,
   `mobile` VARCHAR(15) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `admin` TINYINT(1) NOT NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,

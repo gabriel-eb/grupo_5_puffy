@@ -13,13 +13,13 @@
             <h3>CREAR CUENTA</h3>
             <form action="/signup" method="post" enctype="multipart/form-data">
                 <div class="container_01">
-                    <input name="first_name" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.first_name : null %>" />
+                    <input name="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.first_name : null %>" />
 
-                    <input name="last_name" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> " value="<%=locals.oldData ? oldData.last_name : null %>" />
+                    <input name="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> " value="<%=locals.oldData ? oldData.last_name : null %>" />
 
                     <br />
                     <label for="userType" class="bold">Tipo de usuario: </label>
-                    <select name="category" id="userType" class=fill>
+                    <select name="admin" id="userType" class=fill>
                         <option value="0">Vendedor</option>
                         <option value="1">Comprador</option>
                     </select>
@@ -28,6 +28,8 @@
 
                     <input name="password" type="password" class="fill" placeholder="Contraseña" />
 
+                    <input name="mobile" type="number" class="fill" placeholder="Celular" />
+                    
                     <label for="avatar" class="bold">Imagen de perfil:</label>
                     <input type="file" name="avatar" id="avatar" class="fill" />
 
