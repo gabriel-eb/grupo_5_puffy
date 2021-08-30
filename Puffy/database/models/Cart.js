@@ -13,7 +13,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(150),
         },
         status: {
-           // type: dataTypes.STRING(10)
+        type: dataTypes.STRING(10)
         },
         userId: {
             type: dataTypes.INTEGER,
@@ -41,11 +41,6 @@ module.exports = (sequelize, dataTypes) => {
         Cart.hasMany(models.Product_cart, {
             as: 'product_cart',
             foreignKey: 'cartId'
-        });
-         
-        Cart.hasOne(models.Product_cart, {
-            as: 'product_cart',
-            foreignKey: 'userId'
         });
          
 

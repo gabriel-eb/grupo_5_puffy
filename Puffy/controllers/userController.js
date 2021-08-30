@@ -30,9 +30,20 @@ const controller = {
         res.status(200).render("users/editar", { user });
     },
     modificar: (req, res) => {
-       
         modelo.edit(req);
         res.redirect('/users/'+req.params.id);
+    },
+    vistaNuevaDir: (req, res) => {
+        //TODO: llenar select with api?
+        res.status(200).render("users/address/addAddress")
+    },
+    agregarDir: (req, res) => {
+        // TODO: mysql conn
+        res.redirect('/users/' + req.params.id);
+    },
+    vistaDirecciones: (req, res) => {
+        // TODO: mysql conn
+        res.render('users/address/index', { addresses: '' });
     }
 };
 

@@ -13,5 +13,9 @@ router.get('/:id', controller.obtenerPerfil);
 router.route("/modificar/:id")
     .get(notLogged, controller.vistaModificar)
     .put(uploadFile.single('avatar'), controller.modificar);
+router.route('/:id/newAddress')
+    .get(notLogged, controller.vistaNuevaDir)
+    .post(controller.agregarDir);
+router.route('/:id/addresses').get(controller.vistaDirecciones);
 
 module.exports = router

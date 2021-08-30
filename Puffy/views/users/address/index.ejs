@@ -1,0 +1,32 @@
+< !DOCTYPE html >
+    <html lang="es">
+
+        <head>
+            <%- include('../partials/head') %>
+            <title>Libreta de Direcciones</title>
+        </head>
+
+        <body>
+
+            <%- include('../partials/header') %>
+
+            <main>
+                <h1>Direcciones</h1>
+                <section>
+                    <% for(let address of addresses) {%>
+                        <article class="address-card">
+                            <h4><%= address.line1 %></h4>
+                            <p><%= address.line2 %></p>
+                            <p>C.P. <%= address.zip %></p>
+                            <p><%= address.city %>, <%= address.state %></p>
+                            <a href="/users/<%= sessionId %>/addresses/edit/<%= address.id %>" class="editar">Editar</a>
+                            <a href="/users/<%= sessionId %>/addresses/delete/<%= address.id %>" class="delete">Eliminar</a>
+                        </article>
+                    <% } %>
+                </section>
+            </main>
+
+            <%- include('../partials/footer') %>
+        </body>
+
+    </html>

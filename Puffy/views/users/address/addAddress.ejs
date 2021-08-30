@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Agregar Dirección</title>
+</head>
+
+<body>
+
+    <%- include('../partials/header') %>
+
+        <main class="form">
+            <h3>Agregar dirección</h3>
+            <form action="/users/<%= sessionId %>/newAddress" method="post">
+                <div class="container_01">
+                    <label for="line1"> Dirección</label>
+                    <input name="line1" type="text" class="fill" placeholder="Parte 1" required/>
+                    <input name="line2" type="text" class="fill" placeholder="Parte 2"/>
+                    <label for="zip">C.P.</label>
+                    <input name="zip" type="number" class="fill" required maxlength="5" required/>
+                    <br />
+                    <label for="city">Ciudad/Delegación</label>
+                    <input name="city" type="text" class="fill" placeholder="Ciudad / Delegación" required />
+                    <label for="state">Estado</label>
+                    <select name="state" id="state" required>
+                        <option value="0">Estados</option>
+                    </select>
+                    <label for="country">País</label>
+                    <select name="country" id="country" disabled>
+                        <option value="0">México</option>
+                    </select>
+
+                </div>
+
+                <div class="button_01">
+                    <input type="submit" value="GUARDAR" />
+                </div>
+
+
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
