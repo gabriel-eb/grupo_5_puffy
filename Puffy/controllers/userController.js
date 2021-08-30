@@ -21,9 +21,14 @@ const controller = {
         const usersList = await Users.findAll();
         res.json(usersList);
     },
-    obtenerPerfil: (req, res) => {
-        const user = modelo.findByPK(parseInt(req.params.id));
-        res.render('users/profile.ejs', { user })
+    obtenerPerfil: async (req, res) => {
+        try {
+            const user = await Users.findOne({ where: { id: req.params.id } });
+            res.render('users/profile', { user: user.dataValues });
+        } catch (error) {
+            console.log(error);
+            res.status(401).json({error})
+        }
     },
     vistaModificar: (req, res) => {
         const user = modelo.findByPK(parseInt(req.params.id));
