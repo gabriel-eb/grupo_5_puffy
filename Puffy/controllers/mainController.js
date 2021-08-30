@@ -73,9 +73,8 @@ const controller = {
                     });
                 }
 
-                console.log('dentro ' + userToLogin.id)
                 await Users.update({ lastLogin: new Date() }, { where: { id: userToLogin.id }, silent: true });
-                console.log('fuera')
+
 
                 return res.redirect("users/" + req.session.userId);
             }
