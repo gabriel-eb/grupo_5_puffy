@@ -34,3 +34,9 @@ Se verifico el funcionamiento de las sesiones y los cookies, se hicieron los mod
 
 ## (11)[Sprint6] Miércoles 18/08/2021
 Creación de Diagrama ER del proyecto, generación de script para la creación de la base de datos y las tablas correspondientes. Sequelize agregado al proyecto.
+
+## (12)[Sprint6] Miércoles 25/08/2021
+Se checaron los modelos de sequelize para cada entidad de la base de datos, que estuvieran correctamente definidos los tipos de datos, nombres y relaciones.
+
+## (13)[Sprint6] Lunes 30/08/2021
+Prueba de CRUD de varias entidades creadas con sequelize para integrarlas a las vistas y formularios.
