@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-    secret: "pUff7",
+    secret: process.env.SESSIONSEC || "pUff7",
     resave: false,
     saveUninitialized: false
 }));

@@ -44,9 +44,12 @@ const controller = {
             });
         }
 
+        let hashedPass = bcryptjs.hashSync(req.body.password, 10);
+        hashedPass = hashedPass.slice(7, hashedPass.length);
+
         const userToCreate = {
             ...req.body,
-            password: bcryptjs.hashSync(req.body.password, 10),
+            password: hashedPass,
             avatar: req.body.avatar || "/images/avatars/default.jpg",
         }
 
@@ -62,7 +65,7 @@ const controller = {
         try{
             let userToLogin = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
             userToLogin = userToLogin.dataValues;
-            if (bcryptjs.compareSync(req.body.password, userToLogin.password)) {
+            if (bcryptjs.compareSync(req.body.password, '$2a$10$' + userToLogin.password)) {
                 // Session
                 req.session.userId = userToLogin.id;
 
