@@ -2,13 +2,13 @@
 <html lang="es">
 
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
         <title>Agregar Dirección</title>
 </head>
 
 <body>
 
-    <%- include('../partials/header') %>
+    <%- include('../../partials/header') %>
 
         <main class="form">
             <h3>Agregar dirección</h3>
@@ -18,17 +18,20 @@
                     <input name="line1" type="text" class="fill" placeholder="Parte 1" required/>
                     <input name="line2" type="text" class="fill" placeholder="Parte 2"/>
                     <label for="zip">C.P.</label>
-                    <input name="zip" type="number" class="fill" required maxlength="5" required/>
+                    <input name="zip" type="number" class="fill" maxlength="5" required/>
                     <br />
                     <label for="city">Ciudad/Delegación</label>
                     <input name="city" type="text" class="fill" placeholder="Ciudad / Delegación" required />
                     <label for="state">Estado</label>
                     <select name="state" id="state" required>
-                        <option value="0">Estados</option>
+                        <option></option>
+                        <% estados.map(estado => { %>
+                            <option value="<%= estado %>"><%= estado %></option>
+                        <% }) %>
                     </select>
                     <label for="country">País</label>
-                    <select name="country" id="country" disabled>
-                        <option value="0">México</option>
+                    <select name="country" id="country">
+                        <option value="Mexico" selected>México</option>
                     </select>
 
                 </div>
@@ -41,7 +44,7 @@
             </form>
         </main>
 
-        <%- include('../partials/footer') %>
+        <%- include('../../partials/footer') %>
 </body>
 
 </html>

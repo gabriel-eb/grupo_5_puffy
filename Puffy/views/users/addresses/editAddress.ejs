@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../../partials/head') %>
+        <title>Agregar Dirección</title>
+</head>
+
+<body>
+
+    <%- include('../../partials/header') %>
+
+        <main class="form">
+            <h3>Agregar dirección</h3>
+            <form action="/users/<%= sessionId %>/addresses/<%= address.id %>?_method=PUT" method="post">
+                <div class="container_01">
+                    <label for="line1"> Dirección</label>
+                    <input name="line1" type="text" class="fill" placeholder="Parte 1" value="<%= address.line1 %>" required/>
+                    <input name="line2" type="text" class="fill" placeholder="Parte 2" value="<%= address.line2 %>" />
+                    <label for="zip">C.P.</label>
+                    <input name="zip" type="number" class="fill" maxlength="5" value="<%= address.zip %>" required/>
+                    <br />
+                    <label for="city">Ciudad/Delegación</label>
+                    <input name="city" type="text" class="fill" placeholder="Ciudad / Delegación" value="<%= address.city %>" required/>
+                    <label for="state">Estado</label>
+                    <select name="state" id="state" autocomplete="off" required>
+                        <option></option>
+                        <% estados.map(estado => { %>
+                            <option value="<%= estado %>" <%= address.state===estado ? "selected" : "" %>><%= estado %></option>
+                        <% }) %>
+                    </select>
+                    <label for="country">País</label>
+                    <select name="country" id="country">
+                        <option value="Mexico" selected>México</option>
+                    </select>
+
+                </div>
+
+                <div class="button_01">
+                    <input type="submit" value="ACTUALIZAR" />
+                </div>
+
+
+            </form>
+        </main>
+
+        <%- include('../../partials/footer') %>
+</body>
+
+</html>
