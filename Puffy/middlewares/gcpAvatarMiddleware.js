@@ -1,4 +1,4 @@
-if(!process.env.NODE_ENV){
+if (!process.env.NODE_ENV) {
     require('dotenv').config()
 }
 const path = require('path');
@@ -9,24 +9,30 @@ const gcpStorage = new Storage({
     projectId: process.env.GCLOUD_PROJECT,
     credentials: {
         client_email: process.env.GCLOUD_CLIENT_EMAIL,
-        private_key: process.env.GCLOUD_PRIVATE_KEY
+        private_key: process.env.GCLOUD_PRIVATE_KEY.replace(new RegExp("\\\\n", "\g"), "\n")
     }
 });
 
 const bucket = gcpStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
 module.exports = (req, res, next) => {
-    if (req.file){
-        const blob = bucket.file(`${Date.now()}_img${path.extname(req.file.originalname)}`);
-        const blobStream = blob.createWriteStream();
-        blobStream.on('error', err => next(err));
-        blobStream.on('finish', () => {
-            const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${blob.name}`);
-            req.body.avatar = publicUrl;
-            blobStream.end(req.file.buffer);
+    if (!req.file) {
+        return next();
+    }
+    const blob = bucket.file(`${Date.now()}_img${path.extname(req.file.originalname)}`);
+    const blobStream = blob.createWriteStream({
+        metadata: {
+            contentType: req.file.mimetype
+        }
+    });
+    blobStream.on('error', err => next(err));
+    blobStream.on('finish', () => {
+        blob.makePublic().then(() => {
+            req.body.avatar = format(`https://storage.googleapis.com/${bucket.name}/${blob.name}`);
             next();
         });
-    }
-    next();
+    });
+
+    blobStream.end(req.file.buffer);
 }
 

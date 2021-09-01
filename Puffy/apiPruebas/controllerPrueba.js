@@ -20,12 +20,12 @@ module.exports = {
         return res.status(201).json({id: userCreated.id});
     },
     editUser: async (req, res)  => {
-        await Users.update(req.body, {
+        const userUpdated = await Users.update(req.body, {
             where: {
                 id: req.params.id
             }
         })
-        return res.status(201).json({msg: "Succesful changes!"});
+        return res.status(201).json({ msg: "Succesful changes!", userUpdated});
     },
     deleteUser: async (req, res)  => {
         await Users.destroy({

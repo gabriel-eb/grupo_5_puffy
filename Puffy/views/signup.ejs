@@ -18,7 +18,7 @@
                     <input name="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> " value="<%=locals.oldData ? oldData.last_name : null %>" />
 
                     <br />
-                    <label for="userType" class="bold">Tipo de usuario: </label>
+                    <label for="admin" class="bold">Tipo de usuario: </label>
                     <select name="admin" id="userType" class=fill>
                         <option value="0">Vendedor</option>
                         <option value="1">Comprador</option>

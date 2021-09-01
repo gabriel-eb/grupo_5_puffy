@@ -4,15 +4,12 @@ const controller = require('../controllers/userController');
 const uploadFile = require("../middlewares/multerMiddleware");
 const loggedIn = require("../middlewares/loggedInMiddleware");
 const notLogged = require("../middlewares/notLoggedMiddleware");
-
-// Prueba sequlize
-router.route('/').get(controller.list).post(controller.createUser);
-
+const gcpAvatar = require("../middlewares/gcpAvatarMiddleware");
 
 router.get('/:id', controller.obtenerPerfil);
 router.route("/modificar/:id")
     .get(notLogged, controller.vistaModificar)
-    .put(uploadFile.single('avatar'), controller.modificar);
+    .put(uploadFile.single('avatar'), gcpAvatar, controller.modificar);
 router.route('/:id/newAddress')
     .get(notLogged, controller.vistaNuevaDir)
     .post(controller.agregarDir);

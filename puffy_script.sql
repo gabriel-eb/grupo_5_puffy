@@ -245,8 +245,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- DATOS DE PRUEBA
 
 INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `avatar`) VALUES 
-('Gabo', 'espinosa', '23425232', 'gabo@email.com', '$2a$10$6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q', '1', '/images/avatars/default.jpg'),
-('Montse', 'Olmedo', '35643552', 'montse@email.com', '$2a$10$bn1btTQWWgBrX/IK5vjxzudBwkSvUeU33jrt09ES6lV5BatBxebee', '0', '/images/avatars/default.jpg');
+('Gabo', 'espinosa', '23425232', 'gabo@email.com', '6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q', '1', '/images/avatars/default.jpg'),
+('Montse', 'Olmedo', '35643552', 'montse@email.com', 'bn1btTQWWgBrX/IK5vjxzudBwkSvUeU33jrt09ES6lV5BatBxebee', '0', '/images/avatars/default.jpg');
 
 INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`) VALUES 
 ('Calle Norte 1', 'Colonia Juarez', 'Gustavo A Madero', 'CDMX', 'MX', '06600', '1'), 

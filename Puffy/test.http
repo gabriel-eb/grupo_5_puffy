@@ -30,11 +30,11 @@ POST http://localhost:3030/api/users/ HTTP/1.1
 content-type: application/json
 
 {
-    "firstName": "Api",
-    "lastName": "user",
+    "firstName": "Prueba",
+    "lastName": "1septiembre",
     "mobile": "12412341",
-    "email": "user@a.com",
-    "password": "asdfasf",
+    "email": "prueba@correo.com",
+    "password": "6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q",
     "admin": 0
 }
 ###

@@ -5,38 +5,36 @@ const Users = db.User;
 
 
 const controller = {
-    // Prueba sequlize 1
-    list: async (req, res) => {
-        try {
-            const usersList = await Users.findAll();
-            res.render('users/userList', { usersList });
-            
-        } catch (error) {
-            console.log(error);
-        }
-    },
-    // Prueba sequlize 2
-    createUser: async function (req, res) {
-        await db.User.create(req.body);
-        const usersList = await Users.findAll();
-        res.json(usersList);
-    },
     obtenerPerfil: async (req, res) => {
         try {
-            const user = await Users.findOne({ where: { id: req.params.id } });
-            res.render('users/profile', { user: user.dataValues });
+            const user = await Users.findByPk(req.params.id);
+            return res.render('users/profile', { user: user.dataValues });
         } catch (error) {
             console.log(error);
-            res.status(401).json({error})
+            return res.status(401).json({error});
         }
     },
-    vistaModificar: (req, res) => {
-        const user = modelo.findByPK(parseInt(req.params.id));
-        res.status(200).render("users/editar", { user });
+    vistaModificar: async (req, res) => {
+        try {
+            const user = await Users.findByPk(req.params.id);
+            return res.status(200).render("users/editar", { user: user.dataValues });
+        } catch (error) {
+            console.log(error);
+            return res.status(403).json({ error })
+        }
     },
-    modificar: (req, res) => {
-        modelo.edit(req);
-        res.redirect('/users/'+req.params.id);
+    modificar: async (req, res) => {
+        try {
+            await Users.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.redirect('/users/' + req.params.id);
+        } catch (error) {
+            console.log(error);
+            res.status(403).json({ error })
+        }
     },
     vistaNuevaDir: (req, res) => {
         //TODO: llenar select with api?
