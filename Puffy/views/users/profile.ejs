@@ -34,6 +34,7 @@
                 </article>
                 <% if(sessionId === user.id){ %>
                     <div class="btn-perfil">
+                        <button class="btn" onclick="window.location.href='/users/<%=sessionId%>/addresses'">Direcciones</button>
                         <button class="btn modificar" onclick="window.location.href='/users/modificar/<%=sessionId%>'">Modificar</button>
                         <button class="btn eliminar" onclick="window.location.href='/users/eliminar/<%=sessionId%>'">Eliminar</button>
                     </div>
