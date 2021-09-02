@@ -1,5 +1,9 @@
 
 // Test sequilize
+GET  http://localhost:3030/users/ HTTP/1.1
+
+###
+
 POST http://localhost:3030/users/ HTTP/1.1
 content-type: application/json
 
@@ -10,9 +14,12 @@ content-type: application/json
     "email": "a@a.com",
     "password": "asdfasf",
     "admin": 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 }
 =======
+=======
+>>>>>>> sprint6
 }
 
 ###
@@ -29,11 +36,19 @@ POST http://localhost:3030/api/users/ HTTP/1.1
 content-type: application/json
 
 {
+<<<<<<< HEAD
     "firstName": "Api",
     "lastName": "user",
     "mobile": "12412341",
     "email": "user@a.com",
     "password": "asdfasf",
+=======
+    "firstName": "Prueba",
+    "lastName": "1septiembre",
+    "mobile": "12412341",
+    "email": "prueba@correo.com",
+    "password": "6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q",
+>>>>>>> sprint6
     "admin": 0
 }
 ###
@@ -135,6 +150,7 @@ DELETE  http://localhost:3030/api/orders/5 HTTP/1.1
 ###
 // ALL INFO FROM ORDER
 // List all info
+<<<<<<< HEAD
 GET  http://localhost:3030/api/orders/1/detail HTTP/1.1
 
 
@@ -312,3 +328,6 @@ DELETE  http://localhost:3030/api/product_category/2 HTTP/1.1
 
 
 >>>>>>> Stashed changes
+=======
+GET  http://localhost:3030/api/orders/1/detail HTTP/1.1
+>>>>>>> sprint6

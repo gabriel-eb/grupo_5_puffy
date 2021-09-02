@@ -16,12 +16,12 @@
             <section class="body-perfil">
                 <h2>Perfil</h2>
                 <figure class="img-perfil">
-                    <img src="/images/avatars/<%= user.avatar %>" alt="Imagen de perfil">
+                    <img src="<%= user.avatar %>" alt="Imagen de perfil">
                 </figure>
                 <article class="info-perfil">
                     <p>Nombre: </p>
                     <h3>
-                        <%= user.first_name + " " + user.last_name %>
+                        <%= user.firstName + " " + user.lastName %>
                     </h3>
                     <p>E-mail: </p>
                     <h3>
@@ -29,11 +29,12 @@
                     </h3>
                     <p>Estatus: </p>
                     <h3>
-                        <%= user.category===0 ? "Vendedor" : "Comprador" %>
+                        <%= user.admin ? "Comprador" : "Vendedor" %>
                     </h3>
                 </article>
                 <% if(sessionId === user.id){ %>
                     <div class="btn-perfil">
+                        <button class="btn" onclick="window.location.href='/users/<%=sessionId%>/addresses'">Direcciones</button>
                         <button class="btn modificar" onclick="window.location.href='/users/modificar/<%=sessionId%>'">Modificar</button>
                         <button class="btn eliminar" onclick="window.location.href='/users/eliminar/<%=sessionId%>'">Eliminar</button>
                     </div>

@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-    secret: "pUff7",
+    secret: process.env.SESSIONSEC || "pUff7",
     resave: false,
     saveUninitialized: false
 }));
@@ -57,6 +57,10 @@ app.use((req, res, next) => {
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
+
+// API Prueba
+const rutaPrueba =  require('./apiPruebas/routesPrueba');
+app.use('/api',rutaPrueba);
 
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");

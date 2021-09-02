@@ -27,14 +27,14 @@ CREATE TABLE IF NOT EXISTS `puffy_db`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(50) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,
-  `mobile` VARCHAR(15) NOT NULL,
+  `mobile` VARCHAR(15) NULL,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `admin` TINYINT(1) NOT NULL,
+  `avatar` VARCHAR(100) NULL,
+  `last_login` DATETIME NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
-  `last_login` DATETIME NULL,
-  `avatar` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   INDEX `email` USING BTREE (`email` ASC))
 ENGINE = InnoDB;
@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `puffy_db`.`product` (
   `price` DOUBLE NOT NULL,
   `quantity` INT NOT NULL,
   `discount` FLOAT NULL,
+  `size` TINYINT(5) NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
-  `size` TINYINT(5) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -93,8 +93,8 @@ DROP TABLE IF EXISTS `puffy_db`.`category` ;
 CREATE TABLE IF NOT EXISTS `puffy_db`.`category` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `created_at` VARCHAR(45) NULL,
-  `updated_at` VARCHAR(45) NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -125,9 +125,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `puffy_db`.`product_category` ;
 
 CREATE TABLE IF NOT EXISTS `puffy_db`.`product_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `category_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   INDEX `fk_product_has_category_category1_idx` (`category_id` ASC),
   INDEX `fk_product_has_category_product1_idx` (`product_id` ASC),
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `puffy_db`.`cart` (
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
   `created_at` DATETIME NULL,
-  `updated_at` VARCHAR(45) NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cart_user1_idx` (`user_id` ASC),
   INDEX `fk_cart_address1_idx` (`address_id` ASC),
@@ -180,6 +180,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `puffy_db`.`product_cart` ;
 
 CREATE TABLE IF NOT EXISTS `puffy_db`.`product_cart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `cart_id` INT NOT NULL,
   PRIMARY KEY (`product_id`, `cart_id`),
@@ -215,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `puffy_db`.`order` (
   `total` FLOAT NOT NULL,
   `promo` VARCHAR(45) NULL,
   `promo_discount` FLOAT NULL,
-  `grandTotal` FLOAT NULL,
+  `grandTotal` FLOAT NOT NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
   `created_at` DATETIME NULL,
@@ -239,3 +240,19 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- DATOS DE PRUEBA
+
+INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `avatar`) VALUES 
+('Gabo', 'espinosa', '23425232', 'gabo@email.com', '6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q', '1', '/images/avatars/default.jpg'),
+('Montse', 'Olmedo', '35643552', 'montse@email.com', 'bn1btTQWWgBrX/IK5vjxzudBwkSvUeU33jrt09ES6lV5BatBxebee', '0', '/images/avatars/default.jpg');
+
+INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`) VALUES 
+('Calle Norte 1', 'Colonia Juarez', 'Gustavo A Madero', 'CDMX', 'MX', '06600', '1'), 
+('Calle Sur1', 'Colonia Hidalgo', 'Juarez', 'Chihuahua', 'MX', '58940', '2');
+
+INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `discount`, `tax`, `shipping`, `total`, `promo`, `promo_discount`, `grandTotal`, `user_id`, `address_id`) VALUES 
+('1', 'fgsdgsdgd', '0', '10.2', '0.1', '0.16', '10.0', '100.0', 'asdfas', '0.1', '90.0', '1', '1'), 
+('2', 'asdfas', '1', '99.2', '0.2', '0.16', '100.0', '200.0', 'fsdfs', '0.0', '200.0', '2', '2'), 
+('3', 'asfasf', '0', '500.0', '0.05', '0.15', '150.0', '350.0', 'adfs', '0.2', '300.0', '1', '1');

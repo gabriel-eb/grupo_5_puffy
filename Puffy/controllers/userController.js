@@ -1,35 +1,37 @@
-const modelo = require('../models/usersModel');
 const db = require('../database/models');
-const sequelize = db.sequelize;
 const Users = db.User;
 
 
-const controller = {
-    // Prueba sequlize 1
-    list: async (req, res) => {
-        const usersList = await Users.findAll();
-        res.render('users/userList', { usersList });
+module.exports = {
+    obtenerPerfil: async (req, res) => {
+        try {
+            const user = await Users.findByPk(req.params.id);
+            return res.render('users/profile', { user: user.dataValues });
+        } catch (error) {
+            console.log(error);
+            return res.status(401).json({error});
+        }
     },
-    // Prueba sequlize 2
-    createUser: async function (req, res) {
-        await db.User.create(req.body);
-        const usersList = await Users.findAll();
-        res.json(usersList);
+    vistaModificar: async (req, res) => {
+        try {
+            const user = await Users.findByPk(req.params.id);
+            return res.status(200).render("users/editar", { user: user.dataValues });
+        } catch (error) {
+            console.log(error);
+            return res.status(403).json({ error })
+        }
     },
-    obtenerPerfil: (req, res) => {
-        const user = modelo.findByPK(parseInt(req.params.id));
-        res.render('users/profile.ejs', { user })
+    modificar: async (req, res) => {
+        try {
+            await Users.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            return res.redirect('/users/' + req.params.id);
+        } catch (error) {
+            console.log(error);
+            return res.status(403).json({ error })
+        }
     },
-    vistaModificar: (req, res) => {
-        const user = modelo.findByPK(parseInt(req.params.id));
-        res.status(200).render("users/editar", { user });
-    },
-    modificar: (req, res) => {
-       
-        modelo.edit(req);
-        res.redirect('/users/'+req.params.id);
-    }
 };
-
-
-module.exports = controller;

@@ -86,9 +86,9 @@
 - Dejar de hacer: 
 
 ## Gabriel
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: cuidar los commit que hago en git para no crear commits extras.
+- Continuar haciendo: repartir las cargas de trabajo en varios días.
+- Dejar de hacer: evitar las tareas incompletas, dividirlas para irlas haciendo.
 
 ## Equipo
 - Comenzar a hacer: 
