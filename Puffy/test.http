@@ -10,4 +10,305 @@ content-type: application/json
     "email": "a@a.com",
     "password": "asdfasf",
     "admin": 1
+<<<<<<< Updated upstream
 }
+=======
+}
+
+###
+
+// API TEST
+// List all users
+GET  http://localhost:3030/api/users/ HTTP/1.1
+###
+// List a user
+GET  http://localhost:3030/api/users/1 HTTP/1.1
+###
+// Create user
+POST http://localhost:3030/api/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Api",
+    "lastName": "user",
+    "mobile": "12412341",
+    "email": "user@a.com",
+    "password": "asdfasf",
+    "admin": 0
+}
+###
+// Edit user
+PUT http://localhost:3030/api/users/6 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Modificado",
+    "lastName": "user",
+    "mobile": "234",
+    "admin": 0
+}
+###
+// Remove user
+DELETE  http://localhost:3030/api/users/5 HTTP/1.1
+
+###
+// ADDRESSES
+// List all addresses
+GET  http://localhost:3030/api/addresses/ HTTP/1.1
+###
+// List a address
+GET  http://localhost:3030/api/addresses/1 HTTP/1.1
+###
+// Create address
+POST http://localhost:3030/api/addresses/ HTTP/1.1
+content-type: application/json
+
+{
+  "line1": "Av. cán 233",
+  "line2": "Colonia Azul",
+  "city": "GDL",
+  "state": "JAL",
+  "country": "MX",
+  "zip": 86060,
+  "userId": 2
+}
+
+###
+// Edit address
+PUT http://localhost:3030/api/addresses/4 HTTP/1.1
+content-type: application/json
+
+{
+    "line1": "revisión 23",
+    "city": "PAC",
+    "state": "HDL"
+}
+
+###
+// Remove address
+DELETE  http://localhost:3030/api/addresses/3 HTTP/1.1
+
+###
+// ORDERS
+// List all orders
+GET  http://localhost:3030/api/orders/ HTTP/1.1
+###
+// List a order
+GET  http://localhost:3030/api/orders/1 HTTP/1.1
+###
+// Create order
+POST http://localhost:3030/api/orders/ HTTP/1.1
+content-type: application/json
+
+{
+    "sessionId": "5",
+    "token": "fghf",
+    "status": "1",
+    "subtotal": 100.25,
+    "discount": 0.56,
+    "tax": 0.14,
+    "shipping": 1000,
+    "total": 100.10,
+    "promo": "",
+    "promoDiscount": 0,
+    "grandTotal": 1100.0,
+    "userId": 2,
+    "addressId": 4
+}
+
+###
+// Edit order
+PUT http://localhost:3030/api/orders/4 HTTP/1.1
+content-type: application/json
+
+{
+    "subtotal": 20.0,
+    "discount": 0.0,
+    "tax": 0.16,
+    "shipping": 10,
+    "total": 200.10
+}
+###
+// Remove order
+DELETE  http://localhost:3030/api/orders/5 HTTP/1.1
+
+###
+// ALL INFO FROM ORDER
+// List all info
+GET  http://localhost:3030/api/orders/1/detail HTTP/1.1
+
+
+/////////                 PRODUCTS
+
+// List all products
+
+
+GET  http://localhost:3030/api/products/ HTTP/1.1
+###
+// List a product
+GET  http://localhost:3030/api/products/1 HTTP/1.1
+###
+// Create product
+POST http://localhost:3030/api/products/ HTTP/1.1
+content-type: application/json
+
+{     
+    
+    "nombre": "Pastel de chocolate",
+    "descripcion": "Pastel de chocolate, se puede elegir entre chocolate amargo o dulce.",
+    "precio": 190,
+    "tam": 0,
+    "categoria": 2
+}
+###
+// Edit product
+PUT http://localhost:3030/api/products/3 HTTP/1.1
+content-type: application/json
+
+{
+    "nombre": "Pastel de chocolate con fresas",
+    "descripcion": "Pastel de chocolate, se puede elegir entre chocolate amargo o dulce.",
+    "precio": 190,
+    "tam": 0,
+    "categoria": 2
+}
+###
+// Remove product
+DELETE  http://localhost:3030/api/products/3 HTTP/1.1
+
+// ALL INFO FROM product
+// List all info
+###
+GET  http://localhost:3030/api/products/2/detail HTTP/1.1
+
+/////////                 CATEGORY
+
+// List all categories
+GET  http://localhost:3030/api/categories/ HTTP/1.1
+###
+// List a category
+GET  http://localhost:3030/api/categories/1 HTTP/1.1
+###
+// Create category
+POST http://localhost:3030/api/categories/ HTTP/1.1
+content-type: application/json
+
+{     
+    "id": 3,
+    "name": "Norma"
+}
+###
+// Edit category
+PUT http://localhost:3030/api/categories/3 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 3,
+    "name": "Normal"
+}
+###
+// Remove category
+DELETE  http://localhost:3030/api/categories/3 HTTP/1.1
+
+
+/////////                 CART
+
+// List all carts
+GET  http://localhost:3030/api/cart/ HTTP/1.1
+###
+// List a cart
+GET  http://localhost:3030/api/cart/1 HTTP/1.1
+###
+// Create cart   
+POST http://localhost:3030/api/cart/ HTTP/1.1
+content-type: application/json
+
+{     
+    "userId":1,
+    "addressId":1
+
+}
+###
+// Edit cart
+PUT http://localhost:3030/api/cart/2 HTTP/1.1
+content-type: application/json
+
+{
+
+    "userId":1,
+    "addressId":2
+}
+###
+// Remove cart
+DELETE  http://localhost:3030/api/cart/1 HTTP/1.1
+
+/////////                 PRODUCT_CART   
+
+// List all prodruct_carts
+###
+GET  http://localhost:3030/api/product_cart/ HTTP/1.1
+###
+// List a cart
+GET  http://localhost:3030/api/product_cart/1 HTTP/1.1
+###
+// Create cart
+POST http://localhost:3030/api/product_cart/ HTTP/1.1
+content-type: application/json
+
+{     
+    
+    "product_id": 1,
+    "cart_id": 2 
+}
+###
+// Edit cart
+PUT http://localhost:3030/api/product_cart/2 HTTP/1.1
+content-type: application/json
+
+{
+
+    "product_id": 2,
+    "cart_id": 2 
+}
+
+###
+// Remove cart
+DELETE  http://localhost:3030/api/product_cart/2 HTTP/1.1
+
+
+/////////                 PRODUCT_CATEGORY   
+
+// List all carts
+###
+GET  http://localhost:3030/api/product_category/ HTTP/1.1
+###
+// List a cart
+GET  http://localhost:3030/api/product_category/1 HTTP/1.1
+###
+// Create cart
+POST http://localhost:3030/api/product_category/ HTTP/1.1
+content-type: application/json
+
+{     
+    
+    "product_id": 1,
+    "cart_id": 2 
+}
+###
+// Edit cart
+PUT http://localhost:3030/api/product_category/2 HTTP/1.1
+content-type: application/json
+
+{
+
+    "product_id": 2,
+    "cart_id": 2 
+}
+}
+###
+// Remove cart
+DELETE  http://localhost:3030/api/product_category/2 HTTP/1.1
+
+
+
+>>>>>>> Stashed changes

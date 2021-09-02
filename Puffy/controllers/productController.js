@@ -1,10 +1,24 @@
 const modelo = require('../models/productsModel');
 const categorias = ["Keto", "Light", "Vegano", "Normal"];
 
+//db
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const Products = db.Product;
+
 const controller = {
-    index: (req, res) => {
-        const productos = modelo.obtenerProductos();
-        res.status(200).render("products/index", { productos });
+    index: async (req, res) => {
+       // const productos = modelo.obtenerProductos();
+
+       try {
+        const productsList = await Products.findAll();
+        res.status(200).render("products/index", { productsList });
+        
+    } catch (error) {
+        console.log(error);
+    }
+       
+      //  res.status(200).render("products/index", { productos });
     },
     delete: (req, res) => {
         modelo.borrarProducto(parseInt(req.params.id));
