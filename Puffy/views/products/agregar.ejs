@@ -11,7 +11,7 @@
 
         <main>
             <h1 class="tit-add-mod">Agregar Producto</h1>
-            <form action="/productos/agregar" method="post" class="form-add-mod">
+            <form action="/productos/agregar" method="post" class="form-add-mod" enctype="multipart/form-data">
                 <section class="add-mod">
                     <div class="add-mod-1">
                         <label for="nombre" class="bold">Nombre del producto:</label>
@@ -22,18 +22,14 @@
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>
-                        <input type="file" name="imagen" id="imagen" class="add-mod-img" /> <!--Atencion!-->
+                        <input type="file" name="image" id="imagen" class="add-mod-img" /> <!--Atencion!-->
                         <br />
                         <label for="categoria" class="bold">Categoría:</label>
-                <!-- atencion  -->  <select name="categoria" id="categoria" class="add-mod-cat">
-                        <% for(let i=0; i<categoriesList.length; i++){ %>
-                            <option value="<%= i %>"><%= categoriesList[i] %></option>
-                        <% } %> -->
-                        <!-- <option value="0">Light</option>    
-                        <option value="1">Normal</option>
-                        <option value="2">Keto</option>
-                        <option value="3">Vegano</option> -->
-                    </select>
+                        <select name="category" id="categoria" class="add-mod-cat">
+                            <% categories.map( category => {%>
+                                <option value="<%= category.id %>"><%= category.name %></option>
+                            <% }) %>
+                        </select>
                         <br />
                         <label for="tam" class="bold">Tamaño: </label>
                         <select name="size" id="tam" class="add-mod-tam">
@@ -41,6 +37,9 @@
                         <option value="1">Mediano</option>
                         <option value="2">Grande</option>
                     </select>
+                    <br />
+                    <label for="cantidad">Cantidad: </label>
+                    <input type="number" name="quantity" id="cantidad">
                         <br />
                         <label for="precio" class="bold">Precio: $ </label>
                         <input type="number" id="precio" name="price" class="add-mod-price" required/><span> mxn</span>

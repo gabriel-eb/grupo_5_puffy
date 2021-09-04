@@ -6,7 +6,8 @@ const db = require('../database/models');
 const sequelize = db.sequelize;
 const Products = db.Product;
 const Categories = db.Category;
-const productCat = db.Product_category;
+const ProductCat = db.Product_category;
+const Images = db.Product_images;
 
 const controller = {
     index: async (req, res) => {
@@ -48,7 +49,9 @@ const controller = {
     vistaAgregar: async (req, res) => {
         try {
             const categoriesList = await Categories.findAll();
-            res.status(200).render("products/agregar", { categoriesList });
+            const categories = [];
+            categoriesList.map(cat => categories.push(cat.dataValues));
+            res.status(200).render("products/agregar", { categories });
 
         } catch (error) {
             console.log(error);
@@ -116,33 +119,23 @@ const controller = {
 
     ,
     agregar: async (req, res) => {
-
-       // modelo.agregarProducto(req);
-
-        /*MODEL*/
-        /*function agregarProducto(req) {
-            let products = leerProductos();
-            const newId = products[products.length - 1].id + 1;
-            products.push({
-                id: newId,
-                nombre: req.body.nombre,
-                descripcion: req.body.descripcion,
-                imagen: req.body.imagen || "default.jpg",
-                precio: parseFloat(req.body.precio),
-                tam: parseInt(req.body.tam),
-                categoria: parseInt(req.body.categoria)
-            });
-        
-        
-            actualizarProductos(products);
-        
-        
-        }
-        */
-
-
         try {
-            await Products.create(req.body);
+            console.log(req.body)
+            const addedProduct = await Products.create(req.body);
+
+            const product_cat = {
+                productId: addedProduct.dataValues.id,
+                categoryId: req.body.category
+            }
+            await ProductCat.create(product_cat);
+
+            const productImage = {
+                url: req.body.image || "/images/avatars/default.jpg",
+                main: true,
+                productId: addedProduct.dataValues.id
+            }
+            await Images.create(productImage);
+
             return res.redirect('/productos');
         } catch (error) {
             console.log(error);
