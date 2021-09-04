@@ -81,6 +81,8 @@ const controller = {
 
                 return res.redirect("users/" + req.session.userId);
             }
+
+
             // Si la contraseña es incorrecta
             return res.status(400).render("login", {
                 errors: {
