@@ -1,5 +1,4 @@
 const modelo = require('../models/productsModel');
-//const categorias = ["Keto", "Light", "Vegano", "Normal"];
 
 //db
 const db = require('../database/models');
@@ -11,8 +10,6 @@ const Images = db.Product_images;
 
 const controller = {
     index: async (req, res) => {
-
-        // PENDIENTE DE LIGAR IMAGEN
         try {
             const productsList = await Products.findAll();
             const Img = await Images.findAll();
@@ -21,8 +18,6 @@ const controller = {
         } catch (error) {
             console.log(error);
         }
-
-
     },
     delete: async (req, res) => {
 
@@ -66,9 +61,6 @@ const controller = {
 
     },
     detalle: async (req, res) => {
-
-        // PENDIENTE DE LIGAR IMAGEN 
-
         try {
             const productDetail = await Products.findOne({
                 where: {
@@ -82,8 +74,14 @@ const controller = {
                 }
             });
 
+            const image = await Images.findOne({
+                where: {
+                    productId: req.params.id
+                }
+            });
 
-            res.status(200).render("products/detalle", { productDetail, categories });
+
+            res.status(200).render("products/detalle", { productDetail, categories, image });
 
         } catch (error) {
             console.log(error);
@@ -106,7 +104,13 @@ const controller = {
                 }
             });
 
-            res.status(200).render("products/modificar", { producto, categories });
+            const image = await Images.findOne({
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            res.status(200).render("products/modificar", { producto, categories, image });
 
         } catch (error) {
             console.log(error);
@@ -148,7 +152,6 @@ const controller = {
                 }
             });
 
-
             const product_cat = {
                 productId: req.params.id,
                 categoryId: req.body.category
@@ -160,13 +163,16 @@ const controller = {
             }
             );
 
-
-            // const productImage = {
-            //     url: req.body.image || "/images/avatars/default.jpg",
-            //     main: true,
-            //     productId: updatedProduct.dataValues.id
-            // }
-            // await Images.update(productImage);
+            const productImage = {
+                url: req.body.image,
+                main: true,
+                productId: req.params.id
+            }
+            await Images.update(productImage, {
+                where: {
+                    productId: req.params.id
+                }
+            });
 
             return res.redirect('/productos');
 

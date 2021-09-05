@@ -13,13 +13,13 @@
             <div class="info-pasteleria">
                 <div>
                     <img src="/images/pasteleria.png" alt="icono pasteleria" />
-                    <!--Atencion!-->
+                
                 </div>
                 <h2>Linda Pasteleria</h2>
             </div>
             <div class="platillo">
-                <img src="/images/products/<%= productDetail.imagen %>" alt="imagen postre" />
-                <!--Atencion!-->
+                <img src="<%= image.url %>" alt="imagen postre" />
+                
             </div>
             <div class="form-producto">
                 <section class="separacion producto">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="tamanio">
-                                <label for="tam">Tamaño</label>
+                                <label for="tam">Tamaño:</label>
                                 <select name="tam" id="tam" autocomplete="off" disabled>
                                     <option value="chico" <%=productDetail.size===0 ? "selected" : "" %>>Chico</option>
                                     <option value="mediano" <%=productDetail.size===1 ? "selected" : "" %>>Mediano
@@ -64,13 +64,11 @@
                     <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
                     <div>
                         <img src="/images/detalle.svg" alt="imagen flecha" />
-                        <!--Atencion!-->
                     </div>
                 </div>
                 <div class="contenido">
                     <div class="imagen">
                         <img src="/images/plato.svg" alt="imagen plato" />
-                        <!--Atencion!-->
                     </div>
                     <p>
                         <%= productDetail.description %>
