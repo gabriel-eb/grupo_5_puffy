@@ -12,12 +12,14 @@
         <main class="contenedor-producto">
             <div class="info-pasteleria">
                 <div>
-                    <img src="/images/pasteleria.png" alt="icono pasteleria" />  <!--Atencion!-->
+                    <img src="/images/pasteleria.png" alt="icono pasteleria" />
+                    <!--Atencion!-->
                 </div>
                 <h2>Linda Pasteleria</h2>
             </div>
             <div class="platillo">
-                <img src="/images/products/<%= productDetail.imagen %>" alt="imagen postre" />  <!--Atencion!-->
+                <img src="/images/products/<%= productDetail.imagen %>" alt="imagen postre" />
+                <!--Atencion!-->
             </div>
             <div class="form-producto">
                 <section class="separacion producto">
@@ -29,25 +31,28 @@
                             <div class="datos">
                                 <div class="d-precio">
                                     <p class="p-precio bold">$
-                                        <%= productDetail.price %> MXN</p>
+                                        <%= productDetail.price %> MXN
+                                    </p>
                                     <p class="gris">IVA INCLUIDO</p>
                                 </div>
                             </div>
                             <div class="tamanio">
                                 <label for="tam">Tamaño</label>
                                 <select name="tam" id="tam" autocomplete="off" disabled>
-                                   <!--Atencion!-->  <option value="chico" <%= productDetail.size === 0 ? "selected" : "" %>>Chico</option>
-                                   <!--Atencion!-->  <option value="mediano" <%= productDetail.size=== 1 ? "selected" : "" %>>Mediano</option>
-                                   <!--Atencion!-->  <option value="grande" <%= productDetail.size=== 2 ? "selected" : "" %>>Grande</option>
+                                    <option value="chico" <%=productDetail.size===0 ? "selected" : "" %>>Chico</option>
+                                    <option value="mediano" <%=productDetail.size===1 ? "selected" : "" %>>Mediano
+                                    </option>
+                                    <option value="grande" <%=productDetail.size===2 ? "selected" : "" %>>Grande
+                                    </option>
                                 </select>
                             </div>
                             <div class="tamanio">
-                                <label for="categorita">Tamaño</label>
+                                <label for="categorita">Categoría:</label>
                                 <select name="categorita" id="categorita" autocomplete="off" disabled>
-          <!--Atencion!-->          <option value="0" <%= categoriesList.name === 0 ? "selected" : "" %>>Keto</option>
-           <!--Atencion!-->         <option value="1" <%= categoriesList.name === 1 ? "selected" : "" %>>Ligth</option>
-  <!--Atencion!-->                  <option value="2" <%= categoriesList.name === 2 ? "selected" : "" %>>Vegano</option>
-   <!--Atencion!-->                  <option value="3" <%= categoriesList.name === 3 ? "selected" : "" %>>Normal</option>
+                                    <option value="0" <%=categories.categoryId===0 ? "selected" : "" %>>Keto</option>
+                                    <option value="1" <%=categories.categoryId===1 ? "selected" : "" %>>Ligth</option>
+                                    <option value="2" <%=categories.categoryId===2 ? "selected" : "" %>>Vegano</option>
+                                    <option value="3" <%=categories.categoryId===3 ? "selected" : "" %>>Normal</option>
                                 </select>
                             </div>
                         </div>
@@ -58,12 +63,14 @@
                 <div class="encabezado">
                     <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
                     <div>
-                        <img src="/images/detalle.svg" alt="imagen flecha" />  <!--Atencion!-->
+                        <img src="/images/detalle.svg" alt="imagen flecha" />
+                        <!--Atencion!-->
                     </div>
                 </div>
                 <div class="contenido">
                     <div class="imagen">
-                        <img src="/images/plato.svg" alt="imagen plato" />  <!--Atencion!-->
+                        <img src="/images/plato.svg" alt="imagen plato" />
+                        <!--Atencion!-->
                     </div>
                     <p>
                         <%= productDetail.description %>
