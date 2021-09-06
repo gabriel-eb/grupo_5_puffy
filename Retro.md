@@ -81,9 +81,9 @@
 
 # Sprint 5 - Retroalimentación
 ## Montserrat
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: Dedicar un lapso de tiempo a corregir errores y pasando ese tiempo, seguir con el trabajo. (organización)
+- Continuar haciendo: Anticipar las entregas de tareas que se me asignaron en el proyecto.
+- Dejar de hacer: Realizar con muy poca frecuencia commits para guardar el trabajo que estoy realizando.
 
 ## Gabriel
 - Comenzar a hacer: cuidar los commit que hago en git para no crear commits extras.
