@@ -40,3 +40,13 @@ Se checaron los modelos de sequelize para cada entidad de la base de datos, que 
 
 ## (13)[Sprint6] Lunes 30/08/2021
 Prueba de CRUD de varias entidades creadas con sequelize para integrarlas a las vistas y formularios.
+
+## (14)[Sprint6] Sábado 04/09/2021
+Ajustes en la creación de productos con sequelize y agregar imagenes a almacenamiento en la nube.
+
+## (15)[Sprint6] Domingo 05/09/2021
+Agregar imagenes al editar un producto y usar distintas tablas para alimentar la vista de detalles. Exportar DB con datos para tener script y usarlo en Heroku.
+
+## (16)[Sprint6] Lunes 06/09/2021
+Creación del pull request del sprint para entrega. Carga del sprint a Heroku y creación de DB en Heroku. Revisión y repartición de tareas para sprint 7.
+

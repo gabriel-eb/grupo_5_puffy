@@ -244,15 +244,17 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- DATOS DE PRUEBA
 
-INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `avatar`) VALUES 
-('Gabo', 'espinosa', '23425232', 'gabo@email.com', '6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q', '1', '/images/avatars/default.jpg'),
-('Montse', 'Olmedo', '35643552', 'montse@email.com', 'bn1btTQWWgBrX/IK5vjxzudBwkSvUeU33jrt09ES6lV5BatBxebee', '0', '/images/avatars/default.jpg');
+INSERT INTO `puffy_db`.`user` (`first_name`, `last_name`, `mobile`, `email`, `password`, `admin`, `created_at`, `updated_at`, `last_login`, `avatar`) VALUES 
+('Fulanito','De Tal','123456789','demo@puffy.com','EHeHy0luhvLFqGvAWgvVku13ZrIZO/dDMkdGPDy3.UMls0mAwim6e',0,'2021-09-06 01:40:59','2021-09-06 01:40:59','2021-09-06 01:41:17','https://storage.googleapis.com/avatars-puffy/1630892454221_img.png'),
+('Gabo', 'espinosa', '23425232', 'gabo@email.com', '6Rj/QyOBHrKfaEVTPVgRseC0J8PwkscAUV3jM.jBx7IKn11IpP01q', 1, '2021-08-30 16:36:11','2021-08-30 17:16:28','2021-08-31 02:36:37', '/images/avatars/default.jpg'),
+('Montse', 'Olmedo', '35643552', 'montse@email.com', 'bn1btTQWWgBrX/IK5vjxzudBwkSvUeU33jrt09ES6lV5BatBxebee', 0, '2021-08-20 16:36:11','2021-08-20 17:16:28','2021-08-30 02:36:37', '/images/avatars/default.jpg');
 
-INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`) VALUES 
-('Calle Norte 1', 'Colonia Juarez', 'Gustavo A Madero', 'CDMX', 'MX', '06600', '1'), 
-('Calle Sur1', 'Colonia Hidalgo', 'Juarez', 'Chihuahua', 'MX', '58940', '2');
+INSERT INTO `puffy_db`.`address` (`line1`, `line2`, `city`, `state`, `country`, `zip`, `user_id`, `created_at`, `updated_at`) VALUES 
+('Calle Central 200','Col. Centro','CDMX','Ciudad de México','Mexico',7777,1,'2021-09-06 01:41:53','2021-09-06 01:41:53'),
+('Calle Norte 1', 'Colonia Juarez', 'Gustavo A Madero', 'CDMX', 'MX', 06600, 2,'2021-09-02 01:41:53','2021-09-02 01:41:53'), 
+('Calle Sur1', 'Colonia Hidalgo', 'Juarez', 'Chihuahua', 'MX', 58940, 3,'2021-09-01 01:41:53','2021-09-01 01:41:53');
 
 INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `discount`, `tax`, `shipping`, `total`, `promo`, `promo_discount`, `grandTotal`, `user_id`, `address_id`) VALUES 
-('1', 'fgsdgsdgd', '0', '10.2', '0.1', '0.16', '10.0', '100.0', 'asdfas', '0.1', '90.0', '1', '1'), 
-('2', 'asdfas', '1', '99.2', '0.2', '0.16', '100.0', '200.0', 'fsdfs', '0.0', '200.0', '2', '2'), 
-('3', 'asfasf', '0', '500.0', '0.05', '0.15', '150.0', '350.0', 'adfs', '0.2', '300.0', '1', '1');
+(1, 'fgsdgsdgd', 0, 10.2, 0.1, 0.16, 10.0, 100.0, 'asdfas', 0.1, 90.0, 1, 1), 
+(2, 'asdfas', 1, 99.2, 0.2, 0.16, 100.0, 200.0, 'fsdfs', 0.0, 200.0, 2, 2), 
+(3, 'asfasf', 0, 500.0, 0.05, 0.15, 150.0, 350.0, 'adfs', 0.2, 300.0, 1, 1);
