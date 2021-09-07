@@ -50,11 +50,6 @@
 - Continuar haciendo: Ver con anticipación las clases de playground y tomar apuntes.
 - Dejar de hacer: No indigar más en los temas que se están viendo. 
 
-## Esteban
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
-
 ## Gabriel
 - Comenzar a hacer: descansar de las jornadas largas del proyecto.
 - Continuar haciendo: anticipar el sprint para repartir las tareas con eficacia.
@@ -63,4 +58,21 @@
 ## Equipo
 - Comenzar a hacer: reunirnos al weekly para avanzar y repasar los temas necesarios.
 - Continuar haciendo: adelantar el sprint con anticipación.
+- Dejar de hacer: entregar el pull request el último día permitido.
+
+
+# Sprint 4 - Retroalimentación
+## Montserrat
+- Comenzar a hacer: Reforzar el contenido de Playground con documentación externa.
+- Continuar haciendo: Anticipar las entregas de tareas que se me asignaron en el proyecto.
+- Dejar de hacer: Dedicar MUCHO TIEMPO en errores que surgen al momento de programar y detener las demás tareas que debo de entregar. 
+
+## Gabriel
+- Comenzar a hacer: repartir mis cargas de trabajo en varios días.
+- Continuar haciendo: dar seguimiento al proyecto.
+- Dejar de hacer: dejar todo para la última semana.
+
+## Equipo
+- Comenzar a hacer: no dejar la retro y weekly para el final.
+- Continuar haciendo: repartir las tareas y hacerlas con tiempo.
 - Dejar de hacer: entregar el pull request el último día permitido.

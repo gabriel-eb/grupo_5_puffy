@@ -1,12 +1,11 @@
-[
-    {
+[{
         "id": 1,
         "first_name": "Administrador",
         "last_name": "Mestro",
         "email": "demo@puffy.com",
-        "password": "A0ROAqmf",
-        "category": "user",
-        "image": "user_1.jpg"
+        "password": "$2a$10$89YDWCgKOb9y0ehJym.sgePrM.xXc90xvU9ILlWNZfrPa56OMjoxq",
+        "category": "1",
+        "avatar": "default.jpg"
     },
     {
         "id": 2,
@@ -14,26 +13,17 @@
         "last_name": "Hanalan",
         "email": "lhanalan1@cocolog-nifty.com",
         "password": "YMpPQoG",
-        "category": "user",
-        "image": "user_2.jpg"
-    },
-    {
-        "id": 3,
-        "first_name": "Alexis",
-        "last_name": "Gowdie",
-        "email": "agowdie2@fotki.com",
-        "password": "73k1SO",
-        "category": "user",
-        "image": "user_3.jpg"
+        "category": "0",
+        "avatar": "user_2.jpg"
     },
     {
         "id": 4,
         "first_name": "Adams",
-        "last_name": "Gates",
+        "last_name": "Gate",
         "email": "agates3@irs.gov",
         "password": "EEDtKrmekG",
-        "category": "user",
-        "image": "user_4.jpg"
+        "category": "0",
+        "avatar": "user_4.jpg"
     },
     {
         "id": 5,
@@ -41,8 +31,8 @@
         "last_name": "Humpherson",
         "email": "vhumpherson4@cisco.com",
         "password": "VzQ4jMfB4",
-        "category": "user",
-        "image": "user_5.jpg"
+        "category": "0",
+        "avatar": "user_5.jpg"
     },
     {
         "id": 6,
@@ -50,8 +40,8 @@
         "last_name": "Witter",
         "email": "ewitter5@illinois.edu",
         "password": "Y6Ykqgq",
-        "category": "user",
-        "image": "user_6.jpg"
+        "category": "0",
+        "avatar": "user_6.jpg"
     },
     {
         "id": 7,
@@ -59,8 +49,8 @@
         "last_name": "Gawthrop",
         "email": "mgawthrop6@deviantart.com",
         "password": "HQxssDy1",
-        "category": "user",
-        "image": "user_7.jpg"
+        "category": "0",
+        "avatar": "user_7.jpg"
     },
     {
         "id": 8,
@@ -68,8 +58,8 @@
         "last_name": "Duddle",
         "email": "bduddle7@uol.com.br",
         "password": "4Lzsf5ZHJh",
-        "category": "user",
-        "image": "user_8.jpg"
+        "category": "0",
+        "avatar": "user_8.jpg"
     },
     {
         "id": 9,
@@ -77,8 +67,8 @@
         "last_name": "Nehl",
         "email": "hnehl8@state.gov",
         "password": "vdZtArYvBEn",
-        "category": "user",
-        "image": "user_9.jpg"
+        "category": "0",
+        "avatar": "user_9.jpg"
     },
     {
         "id": 10,
@@ -86,8 +76,8 @@
         "last_name": "Bollom",
         "email": "sbollom9@dell.com",
         "password": "4NFhD5M1g",
-        "category": "user",
-        "image": "user_10.jpg"
+        "category": "0",
+        "avatar": "user_10.jpg"
     },
     {
         "id": 11,
@@ -95,8 +85,8 @@
         "last_name": "Schruurs",
         "email": "dschruursa@bloglovin.com",
         "password": "jXIHF1gDtYzp",
-        "category": "user",
-        "image": "user_11.jpg"
+        "category": "0",
+        "avatar": "user_11.jpg"
     },
     {
         "id": 12,
@@ -104,8 +94,8 @@
         "last_name": "Maddrell",
         "email": "jmaddrellb@opera.com",
         "password": "SBa4ASbs0Koc",
-        "category": "user",
-        "image": "user_12.jpg"
+        "category": "0",
+        "avatar": "user_12.jpg"
     },
     {
         "id": 13,
@@ -113,8 +103,8 @@
         "last_name": "Woolfoot",
         "email": "dwoolfootc@storify.com",
         "password": "HIuTdk",
-        "category": "user",
-        "image": "user_13.jpg"
+        "category": "0",
+        "avatar": "user_13.jpg"
     },
     {
         "id": 14,
@@ -122,8 +112,8 @@
         "last_name": "Ducker",
         "email": "tduckerd@independent.co.uk",
         "password": "1dJ5C9r",
-        "category": "user",
-        "image": "user_14.jpg"
+        "category": "0",
+        "avatar": "user_14.jpg"
     },
     {
         "id": 15,
@@ -131,7 +121,42 @@
         "last_name": "Piecha",
         "email": "wpiechae@comcast.net",
         "password": "bK1vhThoqk",
-        "category": "user",
-        "image": "user_15.jpg"
+        "category": "0",
+        "avatar": "user_15.jpg"
+    },
+    {
+        "id": 16,
+        "first_name": "montse",
+        "last_name": "olmedo",
+        "category": "0",
+        "email": "montse@hotmail.com",
+        "password": "$2a$10$Jv6IS1sGJIM86jNuZ9ojt.MDf8iMAMaBMjVPNLlAww8dypc5ME14i",
+        "avatar": "IMG_20171008_090750688_2.jpg"
+    },
+    {
+        "id": 17,
+        "first_name": "montse2",
+        "last_name": "olmedo",
+        "category": "0",
+        "email": "montse2@gmail.com",
+        "password": "$2a$10$nLu5dJzYz/74nrt.wvYzdONZtY7kAkAL4FCACYgc9.NOa.7adv6f.",
+        "avatar": "1628563276776_img.jpg"
+    },
+    {
+        "id": 18,
+        "first_name": "montse1",
+        "last_name": "olmedo",
+        "category": "0",
+        "email": "mon@gmail.cm",
+        "password": "$2a$10$qa2dmJBhZmBWgprK0gocx.Z9/vNBV21zrMeGNztiO4Cf0VBN32g5m",
+        "avatar": "1628563352719_img.jpg"
+    },
+    {
+        "id": 19,
+        "first_name": "montse",
+        "last_name": "olmedo2",
+        "email": "montse1234@gmail.com",
+        "category": "0",
+        "avatar": "1628564385268_img.jpg"
     }
 ]
