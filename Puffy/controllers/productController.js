@@ -1,8 +1,4 @@
-const modelo = require('../models/productsModel');
-
-//db
 const db = require('../database/models');
-const sequelize = db.sequelize;
 const Products = db.Product;
 const Categories = db.Category;
 const ProductCat = db.Product_category;

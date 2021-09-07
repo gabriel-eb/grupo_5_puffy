@@ -258,3 +258,23 @@ INSERT INTO `puffy_db`.`order` (`sessionId`, `token`, `status`, `subtotal`, `dis
 (1, 'fgsdgsdgd', 0, 10.2, 0.1, 0.16, 10.0, 100.0, 'asdfas', 0.1, 90.0, 1, 1), 
 (2, 'asdfas', 1, 99.2, 0.2, 0.16, 100.0, 200.0, 'fsdfs', 0.0, 200.0, 2, 2), 
 (3, 'asfasf', 0, 500.0, 0.05, 0.15, 150.0, 350.0, 'adfs', 0.2, 300.0, 1, 1);
+
+INSERT INTO `category` (`id`,`name`,`created_at`,`updated_at`) VALUES 
+(0,'Keto','2021-09-01 01:41:53','2021-09-01 01:41:53'),
+(1,'Light','2021-09-01 01:41:53','2021-09-01 01:41:53'),
+(2,'Vegano','2021-09-01 01:41:53','2021-09-01 01:41:53'),
+(3,'Normal','2021-09-01 01:41:53','2021-09-01 01:41:53');
+
+INSERT INTO `product` (`id`,`name`,`description`,`price`,`quantity`,`discount`,`created_at`,`updated_at`,`size`) VALUES 
+(1,'Pastel de Zanahoria y piña','Contiene nueces, zanahoria y leche deslactosada',250,2,0,NULL,'2021-09-05 23:40:03',2),
+(5,'pastel de tres leches','Leche de almendras',123,1,NULL,'2021-09-04 16:54:20','2021-09-05 18:18:59',0),
+(7,'Flan','Rico chocoflan',123,1,NULL,'2021-09-05 13:28:44','2021-09-05 14:01:31',0),
+(8,'Pan de Chocolate','Tres tipos de chocolate',150,1,NULL,'2021-09-05 19:20:15','2021-09-05 19:20:15',1);
+
+INSERT INTO `product_category` (`product_id`,`category_id`,`id`) VALUES 
+(5,3,1), (1,0,2), (7,0,3), (8,3,4);
+INSERT INTO `product_images` (`id`,`url`,`main`,`product_id`) VALUES 
+(1,'/images/avatars/default.jpg',1,5),
+(3,'https://storage.googleapis.com/avatars-puffy/1630848522565_img.jpg',1,7),
+(4,'https://storage.googleapis.com/avatars-puffy/1630869614125_img.jpg',1,8),
+(5,'https://storage.googleapis.com/avatars-puffy/1630885182201_img.jpg',1,1);

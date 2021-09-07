@@ -91,6 +91,6 @@
 - Dejar de hacer: evitar las tareas incompletas, dividirlas para irlas haciendo.
 
 ## Equipo
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: adelantar cuando se tenga oportunidad.
+- Continuar haciendo: reunirnos para aclarar dudas en equipo e intercambiar soluciones.
+- Dejar de hacer: checar si la página de Heroku no da errores.
