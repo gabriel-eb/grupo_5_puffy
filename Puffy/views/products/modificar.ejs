@@ -11,11 +11,13 @@
 
         <main>
             <h1 class="tit-add-mod">Modificar Producto</h1>
-            <form action="/productos/modificar/<%= producto.id %>?_method=PUT" method="post" class="form-add-mod">
+            <form action="/productos/modificar/<%= producto.id %>?_method=PUT" method="post" class="form-add-mod"
+                enctype="multipart/form-data">
                 <section class="add-mod">
                     <div class="add-mod-1">
                         <label for="nombre" class="bold">Nombre:</label>
-                        <input type="text" id="nombre" name="name" value="<%= producto.name %>" class="add-mod-name" required/>
+                        <input type="text" id="nombre" name="name" value="<%= producto.name %>" class="add-mod-name"
+                            required />
                         <br />
                         <label for="descripcion" class="bold">Descripción:</label>
                         <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5">
@@ -24,11 +26,19 @@
                         <br />
 
                         <label for="categoria" class="bold">Categoría:</label>
-                        <select name="categoria" id="categoria" class="add-mod-cat">
-                            <% for(let category of categories){%>
-                                <option value="<%= category.id %>"> <%= category.name %> /option>
-                            <% }%>
+
+                        <select name="category" id="categoria" class="add-mod-cat" autocomplete="off">
+
+                            <option value="0" <%=categories.categoryId===0 ? "selected" : "" %>>Keto</option>
+
+                            <option value="1" <%=categories.categoryId===1 ? "selected" : "" %>>Ligth</option>
+
+                            <option value="2" <%=categories.categoryId===2 ? "selected" : "" %>>Vegano</option>
+
+                            <option value="3" <%=categories.categoryId===3 ? "selected" : "" %>>Normal</option>
                         </select>
+
+
                         <label for="tam" class="bold">Tamaño: </label>
                         <select name="size" id="tam" class="add-mod-tam" autocomplete="off">
                             <option value="0" <%=producto.size===0 ? "selected" : "" %>>Chico</option>
@@ -36,17 +46,19 @@
                             <option value="2" <%=producto.size===2 ? "selected" : "" %>>Grande</option>
                         </select>
                         <br />
-                        <label for="cantidad">Cantidad: </label>
-                        <input type="number" name="quantity" id="cantidad">
+                        <label for="cantidad" class="bold">Cantidad: </label>
+                        <input type="number" name="quantity" id="cantidad" value="<%= producto.quantity %>"
+                            class="add-mod-price">
                         <br />
                         <label for="precio" class="bold">Precio: </label>
-                        <input type="number" id="precio" name="price" value="<%= producto.price %>" class="add-mod-price" required/><span>mxn</span>
+                        <input type="number" id="precio" name="price" value="<%= producto.price %>"
+                            class="add-mod-price" required /><span>mxn</span>
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>
                         <div>
-                            <img src="/images/products/<%= producto.imagen %>" alt="" class="img-add-mod"> <!--Atención-->
-                            <input type="file" name="imagen" id="imagen" />
+                            <img src="<%= image.url %>" alt="" class="img-add-mod">
+                            <input type="file" name="image" id="imagen" />
                         </div>
                     </div>
                 </section>

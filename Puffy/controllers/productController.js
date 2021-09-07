@@ -1,5 +1,4 @@
 const modelo = require('../models/productsModel');
-//const categorias = ["Keto", "Light", "Vegano", "Normal"];
 
 //db
 const db = require('../database/models');
@@ -11,29 +10,33 @@ const Images = db.Product_images;
 
 const controller = {
     index: async (req, res) => {
-        // const productos = modelo.obtenerProductos();
-
         try {
             const productsList = await Products.findAll();
-            res.status(200).render("products/index", { productsList });
+            const Img = await Images.findAll();
+            res.status(200).render("products/index", { productsList, Img });
 
         } catch (error) {
             console.log(error);
         }
-
-        //  res.status(200).render("products/index", { productos });
     },
     delete: async (req, res) => {
-        //  modelo.borrarProducto(parseInt(req.params.id));
-
-        /*MODEL*/
-        // function borrarProducto(id) {
-        //     let productos = leerProductos();
-        //     productos = productos.filter(el => el.id !== id);
-        //     actualizarProductos(productos);
-        // }
 
         try {
+
+            await ProductCat.destroy({
+                where: {
+                    productId: req.params.id
+                }
+
+            });
+
+            await Images.destroy({
+                where: {
+                    productId: req.params.id
+                }
+
+            });
+
             await Products.destroy({
                 where: {
                     id: req.params.id
@@ -44,7 +47,6 @@ const controller = {
             console.log(error);
         }
 
-        // res.redirect('/productos');
     },
     vistaAgregar: async (req, res) => {
         try {
@@ -57,17 +59,8 @@ const controller = {
             console.log(error);
         }
 
-        // res.status(200).render("products/agregar", { categorias });
     },
     detalle: async (req, res) => {
-        // const producto = modelo.obtenerProducto(parseInt(req.params.id));
-
-
-        /*MODEL*/
-        //         function obtenerProducto(id) {
-        //     return leerProductos().find(prod => prod.id === id);
-        // }
-
         try {
             const productDetail = await Products.findOne({
                 where: {
@@ -75,52 +68,57 @@ const controller = {
                 }
             });
 
-            const categoriesList = await Categories.findAll();
-            res.status(200).render("products/detalle", { productDetail, categoriesList});
-
-        } catch (error) {
-            console.log(error);
-        }
-
-
-        //  res.status(200).render("products/detalle", { producto });
-    },
-    vistaModificar: async (req, res) => {
-        /* const producto = modelo.obtenerProducto(parseInt(req.params.id));
-         res.status(200).render("products/modificar", {
-             producto,
-             categorias
-         });
-
- */
-
-         //MODEL
-        //  function obtenerProducto(id) {
-        //     return leerProductos().find(prod => prod.id === id);
-        // }
-
-
-
-        try {
-            const producto = await Products.findByPk(req.params.id);
-            const category= await productCat.findOne({
+            const categories = await ProductCat.findOne({
                 where: {
                     productId: req.params.id
                 }
             });
-            return res.status().render("products/modificar", {
-                producto,
-                category
+
+            const image = await Images.findOne({
+                where: {
+                    productId: req.params.id
+                }
             });
+
+
+            res.status(200).render("products/detalle", { productDetail, categories, image });
+
         } catch (error) {
             console.log(error);
         }
-    }
 
-    ,
+    },
+    vistaModificar: async (req, res) => {
+
+        try {
+            const producto = await Products.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+
+            const categories = await ProductCat.findOne({
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            const image = await Images.findOne({
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            res.status(200).render("products/modificar", { producto, categories, image });
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
     agregar: async (req, res) => {
         try {
-            console.log(req.body)
             const addedProduct = await Products.create(req.body);
 
             const product_cat = {
@@ -142,60 +140,47 @@ const controller = {
             return res.status(500).json({ error });
         }
 
-
-
-       // res.redirect('/productos');
     },
 
 
     modificar: async (req, res) => {
-      //  modelo.modificarProducto(req);
 
-        /*  MODEL
-        
-        function modificarProducto(req) {
-                   const products = leerProductos()
-                   const productIndex = products.findIndex(product => product.id === parseInt(req.params.id));
-                   let newProduct = req.body;
-                   newProduct.precio = parseFloat(newProduct.precio);
-                   newProduct.tam = parseInt(newProduct.tam);
-                   newProduct.categoria = parseInt(newProduct.categoria);
-               
-                   if (req.body.image) {
-                       products[productIndex] = {
-                           ...products[productIndex],
-                           ...newProduct
-                       }
-               
-                   } else {
-                       products[productIndex] = {
-                           id: products[productIndex].id,
-                           nombre: newProduct.nombre,
-                           descripcion: newProduct.descripcion,
-                           precio: newProduct.precio,
-                           tam: newProduct.tam,
-                           categoria: newProduct.categoria,
-                           imagen: products[productIndex].imagen
-                       }
-               
-               
-                   }
-                   actualizarProductos(products);
-               
-               }
-       */
+        try {
+            const updatedProduct = await Products.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            });
 
-               try {
-                await Products.update(req.body, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
-                return res.redirect('/productos');
-            } catch (error) {
-                console.log(error);
+            const product_cat = {
+                productId: req.params.id,
+                categoryId: req.body.category
             }
-       // res.redirect('/productos');
+            await ProductCat.update(product_cat, {
+                where: {
+                    productId: req.params.id
+                }
+            }
+            );
+
+            const productImage = {
+                url: req.body.image,
+                main: true,
+                productId: req.params.id
+            }
+            await Images.update(productImage, {
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            return res.redirect('/productos');
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
     },
 };
 

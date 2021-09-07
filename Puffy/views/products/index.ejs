@@ -9,7 +9,6 @@
 <body>
     <%- include('../partials/header') %>
 
-        <!-- <main class="contenedor-producto"> -->
         <main class="contenedor-listado">
 
             <a href="/productos/agregar" class="boton btn-agregar">Agregar</a>
@@ -24,7 +23,12 @@
                 <tbody>
                     <% for(let producto of productsList){ %>
                         <tr>
-        <!--Atencion!-->    <td> <img src="/images/products/<%= producto.imagen %>" alt=""><span class="nombre-imagen"><%= producto.nombre %> </span></td>
+
+                            <td> <img src="<%= Img.filter(image => image.productId==producto.id)[0].url%>" alt=""><span
+                                    class="nombre-imagen">
+                                    <%= producto.nombre %>
+                                </span></td>
+
                             <td class="desaparecer">
                                 <%= producto.name %>
                             </td>
@@ -34,7 +38,8 @@
                             <td class="opciones">
                                 <a href="/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
                                 <a href="/productos/modificar/<%= producto.id %>" class="editar">Editar</a>
-                                <a href="/productos/delete/<%= producto.id %>?_method=DELETE" class="delete">Eliminar</a>
+                                <a href="/productos/delete/<%= producto.id %>?_method=DELETE"
+                                    class="delete">Eliminar</a>
                             </td>
                         </tr>
                         <% } %>
