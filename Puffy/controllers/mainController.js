@@ -32,6 +32,8 @@ const controller = {
             });
         }
 
+        try {
+            
         const userInDB = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
         if (userInDB) {
             return res.render('signup', {
@@ -53,7 +55,7 @@ const controller = {
             avatar: req.body.avatar || "/images/avatars/default.jpg",
         }
 
-        try {
+        
             await Users.create(userToCreate);
             return res.status(201).redirect('/login');
         } catch (error) {
