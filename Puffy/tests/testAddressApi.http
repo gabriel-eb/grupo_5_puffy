@@ -1,0 +1,37 @@
+// API TEST FOR USERS
+// List all addresses
+GET  http://localhost:3030/api/addresses/ HTTP/1.1
+
+###
+// List a address
+GET  http://localhost:3030/api/addresses/1 HTTP/1.1
+
+###
+// Create address
+POST http://localhost:3030/api/addresses/ HTTP/1.1
+content-type: application/json
+
+{
+  "line1": "Av. cán 233",
+  "line2": "Colonia Azul",
+  "city": "GDL",
+  "state": "JAL",
+  "country": "MX",
+  "zip": 86060,
+  "userId": 2
+}
+
+###
+// Edit address
+PUT http://localhost:3030/api/addresses/4 HTTP/1.1
+content-type: application/json
+
+{
+    "line1": "revisión 23",
+    "city": "PAC",
+    "state": "HDL"
+}
+
+###
+// Remove address
+DELETE  http://localhost:3030/api/addresses/3 HTTP/1.1

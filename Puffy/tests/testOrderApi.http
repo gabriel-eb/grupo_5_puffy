@@ -1,0 +1,47 @@
+// API TEST FOR ORDERS
+// List all orders
+GET  http://localhost:3030/api/orders/ HTTP/1.1
+###
+// List a order
+GET  http://localhost:3030/api/orders/1 HTTP/1.1
+###
+// Create order
+POST http://localhost:3030/api/orders/ HTTP/1.1
+content-type: application/json
+
+{
+    "sessionId": "5",
+    "token": "fghf",
+    "status": "1",
+    "subtotal": 100.25,
+    "discount": 0.56,
+    "tax": 0.14,
+    "shipping": 1000,
+    "total": 100.10,
+    "promo": "",
+    "promoDiscount": 0,
+    "grandTotal": 1100.0,
+    "userId": 2,
+    "addressId": 4
+}
+
+###
+// Edit order
+PUT http://localhost:3030/api/orders/4 HTTP/1.1
+content-type: application/json
+
+{
+    "subtotal": 20.0,
+    "discount": 0.0,
+    "tax": 0.16,
+    "shipping": 10,
+    "total": 200.10
+}
+###
+// Remove order
+DELETE  http://localhost:3030/api/orders/5 HTTP/1.1
+
+###
+// ALL INFO FROM ORDER
+// List all info
+GET  http://localhost:3030/api/orders/1/detail HTTP/1.1
