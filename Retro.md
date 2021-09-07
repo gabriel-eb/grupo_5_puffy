@@ -94,3 +94,20 @@
 - Comenzar a hacer: adelantar cuando se tenga oportunidad.
 - Continuar haciendo: reunirnos para aclarar dudas en equipo e intercambiar soluciones.
 - Dejar de hacer: checar si la página de Heroku no da errores.
+
+
+# Sprint 6 - Retroalimentación
+## Montserrat
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
+
+## Gabriel
+- Comenzar a hacer: cuidar los commits y el css de las vistas que tenga asignadas.
+- Continuar haciendo: repartir mi progreso en varios días.
+- Dejar de hacer: dejar de hacer push cada que hago commit, esperar a terminar el trabajo del día para hacer push a varios commits y no usar la rama principal del sprint para hacer cambios grandes.
+
+## Equipo
+- Comenzar a hacer: 
+- Continuar haciendo: 
+- Dejar de hacer: 
