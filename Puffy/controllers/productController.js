@@ -3,6 +3,7 @@ const Products = db.Product;
 const Categories = db.Category;
 const ProductCat = db.Product_category;
 const Images = db.Product_images;
+const { validationResult } = require('express-validator');
 
 const controller = {
     index: async (req, res) => {
@@ -93,18 +94,15 @@ const controller = {
                 }
             });
 
-
-            const categories = await ProductCat.findOne({
-                where: {
-                    productId: req.params.id
-                }
-            });
-
             const image = await Images.findOne({
                 where: {
                     productId: req.params.id
                 }
             });
+
+            const categoriesList = await Categories.findAll();
+            const categories = [];
+            categoriesList.map(cat => categories.push(cat.dataValues));
 
             res.status(200).render("products/modificar", { producto, categories, image });
 
@@ -114,7 +112,20 @@ const controller = {
 
     },
     agregar: async (req, res) => {
+
         try {
+            const resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                const categoriesList = await Categories.findAll();
+                const categories = [];
+                categoriesList.map(cat => categories.push(cat.dataValues));
+                return res.status(401).render('products/agregar', {
+                    errors: resultValidation.mapped(),
+                    oldValues: req.body,
+                    categories
+                });
+            }
+
             const addedProduct = await Products.create(req.body);
 
             const product_cat = {
@@ -142,7 +153,23 @@ const controller = {
     modificar: async (req, res) => {
 
         try {
-            const updatedProduct = await Products.update(req.body, {
+
+            const resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                const producto = await Products.findOne({ where: { id: req.params.id } });
+                const image = await Images.findOne({ where: { productId: req.params.id } });
+                const categoriesList = await Categories.findAll();
+                const categories = [];
+                categoriesList.map(cat => categories.push(cat.dataValues));
+                return res.status(401).render('products/modificar', {
+                    errors: resultValidation.mapped(),
+                    categories,
+                    image,
+                    producto
+                });
+            }
+
+            await Products.update(req.body, {
                 where: {
                     id: req.params.id
                 }

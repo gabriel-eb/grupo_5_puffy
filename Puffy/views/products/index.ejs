@@ -24,7 +24,7 @@
                     <% for(let producto of productsList){ %>
                         <tr>
 
-                            <td> <img src="<%= Img.filter(image => image.productId==producto.id)[0].url%>" alt=""><span
+                            <td> <img src="<%= Img.filter(image => image.productId==producto.id)[0].url%>" alt="Producto"><span
                                     class="nombre-imagen">
                                     <%= producto.nombre %>
                                 </span></td>
@@ -37,8 +37,8 @@
                             </td>
                             <td class="opciones">
                                 <a href="/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
-                                <a href="/productos/modificar/<%= producto.id %>" class="editar">Editar</a>
-                                <a href="/productos/delete/<%= producto.id %>?_method=DELETE"
+                                <a href="/productos/<%= producto.id %>/edit" class="editar">Editar</a>
+                                <a href="/productos/<%= producto.id %>/delete?_method=DELETE"
                                     class="delete">Eliminar</a>
                             </td>
                         </tr>

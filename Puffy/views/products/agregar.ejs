@@ -15,36 +15,57 @@
                 <section class="add-mod">
                     <div class="add-mod-1">
                         <label for="nombre" class="bold">Nombre del producto:</label>
-                        <input type="text" id="nombre" name="name" class="add-mod-name" placeholder="''Pastel de Zanahoría''" required/>
+                        <input type="text" id="nombre" name="name" class="add-mod-name <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.name : null %>" placeholder="''Pastel de Zanahoría''" required/>
                         <br />
                         <label for="descripcion" class="bold">Descripción:</label>
-                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''"></textarea>
+                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''">
+                            <%=locals.oldData ? oldData.description : null %>
+                        </textarea>
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>
-                        <input type="file" name="image" id="imagen" class="add-mod-img" />
+                        <input type="file" name="image" id="imagen" class="add-mod-img <%= locals.errors && errors.image ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.image : null %>"  accept="image/png, image/jpeg, image/jpg" required />
                         <br />
                         <label for="categoria" class="bold">Categoría:</label>
-                        <select name="category" id="categoria" class="add-mod-cat">
-                            <% categories.map( category => {%>
-                                <option value="<%= category.id %>"><%= category.name %></option>
+                        <select name="category" id="categoria" class="add-mod-cat <%= locals.errors && errors.category ? 'is-invalid' : null %>">
+                            <% categories.map(category => {%>
+                                <option value="<%= category.id %>" <%= locals.oldData && oldData.category == category.id ? "selected" : null %>>
+                                    <%= category.name %>
+                                </option>
                             <% }) %>
                         </select>
                         <br />
                         <label for="tam" class="bold">Tamaño: </label>
-                        <select name="size" id="tam" class="add-mod-tam">
-                        <option value="0">Chico</option>
-                        <option value="1">Mediano</option>
-                        <option value="2">Grande</option>
+                        <select name="size" id="tam" class="add-mod-tam  <%= locals.errors && errors.size ? 'is-invalid' : null %>" required>
+                        <option value="0" <%= locals.oldData && oldData.size == 0 ? "selected" : null %>>Chico</option>
+                        <option value="1" <%= locals.oldData && oldData.size == 1 ? "selected" : null %>>Mediano</option>
+                        <option value="2" <%= locals.oldData && oldData.size == 2 ? "selected" : null %>>Grande</option>
                     </select>
                     <br />
                     <label for="cantidad" class="bold">Cantidad: </label>
-                    <input type="number" name="quantity" id="cantidad" class="add-mod-price" >
+                    <input type="number" name="quantity" id="cantidad" class="add-mod-price" value="<%=locals.oldData ? oldData.quantity : null %>" >
                         <br />
                         <label for="precio" class="bold">Precio: $ </label>
-                        <input type="number" id="precio" name="price" class="add-mod-price" required/><span> mxn</span>
+                        <input type="number" id="precio" name="price" class="add-mod-price <%= locals.errors && errors.price ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.price : null %>" required/><span> mxn</span>
                     </div>
                 </section>
+
+                <div class="alert">
+                    <% if(locals.errors){%>
+                        <%= errors.name ? errors.name.msg : "" %>
+                        <br />
+                        <%= errors.category ? errors.category.msg : "" %>
+                        <br />
+                        <%= errors.image ? errors.image.msg : "" %>
+                        <br />
+                        <%= errors.size ? errors.size.msg : "" %>
+                        <br />
+                        <%= errors.price ? errors.price.msg : "" %>
+                        <br />
+                        <br />
+                    <% } %>
+                </div>
+
                 <div class="enviar-add-mod">
                     <input type="submit" value="Enviar" />
                 </div>

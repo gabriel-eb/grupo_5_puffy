@@ -11,12 +11,12 @@
 
         <main>
             <h1 class="tit-add-mod">Modificar Producto</h1>
-            <form action="/productos/modificar/<%= producto.id %>?_method=PUT" method="post" class="form-add-mod"
+            <form action="/productos/<%= producto.id %>/edit?_method=PUT" method="post" class="form-add-mod"
                 enctype="multipart/form-data">
                 <section class="add-mod">
                     <div class="add-mod-1">
                         <label for="nombre" class="bold">Nombre:</label>
-                        <input type="text" id="nombre" name="name" value="<%= producto.name %>" class="add-mod-name"
+                        <input type="text" id="nombre" name="name" value="<%= producto.name %>" class="add-mod-name <%= locals.errors && errors.name ? 'is-invalid' : null %>"
                             required />
                         <br />
                         <label for="descripcion" class="bold">Descripción:</label>
@@ -27,20 +27,17 @@
 
                         <label for="categoria" class="bold">Categoría:</label>
 
-                        <select name="category" id="categoria" class="add-mod-cat" autocomplete="off">
-
-                            <option value="0" <%=categories.categoryId===0 ? "selected" : "" %>>Keto</option>
-
-                            <option value="1" <%=categories.categoryId===1 ? "selected" : "" %>>Ligth</option>
-
-                            <option value="2" <%=categories.categoryId===2 ? "selected" : "" %>>Vegano</option>
-
-                            <option value="3" <%=categories.categoryId===3 ? "selected" : "" %>>Normal</option>
+                        <select name="category" id="categoria" class="add-mod-cat <%= locals.errors && errors.category ? 'is-invalid' : null %>" autocomplete="off">
+                            <% categories.map( category => { %>
+                                <option value="<%= category.id %>" <%=category.id === producto.categoryId ? "selected" : "" %>>
+                                    <%= category.name %>
+                                </option>
+                            <% }) %>
                         </select>
 
 
                         <label for="tam" class="bold">Tamaño: </label>
-                        <select name="size" id="tam" class="add-mod-tam" autocomplete="off">
+                        <select name="size" id="tam" class="add-mod-tam <%= locals.errors && errors.size ? 'is-invalid' : null %>" autocomplete="off">
                             <option value="0" <%=producto.size===0 ? "selected" : "" %>>Chico</option>
                             <option value="1" <%=producto.size===1 ? "selected" : "" %>>Mediano</option>
                             <option value="2" <%=producto.size===2 ? "selected" : "" %>>Grande</option>
@@ -52,17 +49,30 @@
                         <br />
                         <label for="precio" class="bold">Precio: </label>
                         <input type="number" id="precio" name="price" value="<%= producto.price %>"
-                            class="add-mod-price" required /><span>mxn</span>
+                            class="add-mod-price <%= locals.errors && errors.price ? 'is-invalid' : null %>" required /><span>mxn</span>
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>
                         <div>
                             <img src="<%= image.url %>" alt="" class="img-add-mod">
-                            <input type="file" name="image" id="imagen" />
+                            <input type="file" name="image" id="imagen" accept="image/png, image/jpeg, image/jpg" class="add-mod-img" />
                         </div>
                     </div>
                 </section>
 
+                <div class="alert">
+                    <% if(locals.errors){%>
+                        <%= errors.name ? errors.name.msg : "" %>
+                        <br />
+                        <%= errors.category ? errors.category.msg : "" %>
+                        <br />
+                        <%= errors.size ? errors.size.msg : "" %>
+                        <br />
+                        <%= errors.price ? errors.price.msg : "" %>
+                        <br />
+                        <br />
+                    <% } %>
+                </div>
 
                 <div class="enviar-add-mod">
 
