@@ -1,0 +1,38 @@
+< !DOCTYPE html >
+    <html lang="es">
+
+        <head>
+            <%- include('../../partials/head') %>
+            <title>Libreta de Direcciones</title>
+        </head>
+
+        <body>
+
+            <%- include('../../partials/header') %>
+
+            <main>
+                <h1>Direcciones</h1>
+                <div class="btn-perfil">
+                    <button class="btn" onclick="window.location.href='/users/<%= sessionId %>/newAddress'">Agregar</button>
+                </div>
+                <section>
+                    <% for(let address of addresses) {%>
+                        <article class="address-card">
+                            <h4><%= address.line1 %></h4>
+                            <p><%= address.line2 %></p>
+                            <p>C.P. <%= address.zip %></p>
+                            <p><%= address.city %>, <%= address.state %></p>
+                            <button class="btn modificar" onclick="window.location.href='/users/<%= sessionId %>/addresses/<%= address.id %>'">Editar</button>
+                            <form action="/users/<%= sessionId %>/addresses/<%= address.id %>?_method=DELETE" method="post">
+                                <button class="btn eliminar" type="submit">Eliminar</button>
+                            </form>
+                            
+                        </article>
+                    <% } %>
+                </section>
+            </main>
+
+            <%- include('../../partials/footer') %>
+        </body>
+
+    </html>

@@ -13,41 +13,46 @@
             <div class="info-pasteleria">
                 <div>
                     <img src="/images/pasteleria.png" alt="icono pasteleria" />
+                
                 </div>
                 <h2>Linda Pasteleria</h2>
             </div>
             <div class="platillo">
-                <img src="/images/products/<%= producto.imagen %>" alt="imagen postre" />
+                <img src="<%= image.url %>" alt="imagen postre" />
+                
             </div>
             <div class="form-producto">
                 <section class="separacion producto">
                     <div class="info-producto">
                         <div class="nombre">
                             <h1 class="fuente-may">
-                                <%= producto.nombre %>
+                                <%= productDetail.name %>
                             </h1>
                             <div class="datos">
                                 <div class="d-precio">
                                     <p class="p-precio bold">$
-                                        <%= producto.precio %> MXN</p>
+                                        <%= productDetail.price %> MXN
+                                    </p>
                                     <p class="gris">IVA INCLUIDO</p>
                                 </div>
                             </div>
                             <div class="tamanio">
-                                <label for="tam">Tamaño</label>
+                                <label for="tam">Tamaño:</label>
                                 <select name="tam" id="tam" autocomplete="off" disabled>
-                                    <option value="chico" <%= producto.tam === 0 ? "selected" : "" %>>Chico</option>
-                                    <option value="mediano" <%= producto.tam === 1 ? "selected" : "" %>>Mediano</option>
-                                    <option value="grande" <%= producto.tam === 2 ? "selected" : "" %>>Grande</option>
+                                    <option value="chico" <%=productDetail.size===0 ? "selected" : "" %>>Chico</option>
+                                    <option value="mediano" <%=productDetail.size===1 ? "selected" : "" %>>Mediano
+                                    </option>
+                                    <option value="grande" <%=productDetail.size===2 ? "selected" : "" %>>Grande
+                                    </option>
                                 </select>
                             </div>
                             <div class="tamanio">
-                                <label for="categorita">Tamaño</label>
+                                <label for="categorita">Categoría:</label>
                                 <select name="categorita" id="categorita" autocomplete="off" disabled>
-                                    <option value="0" <%= producto.tam === 0 ? "selected" : "" %>>Keto</option>
-                                    <option value="1" <%= producto.tam === 1 ? "selected" : "" %>>Ligth</option>
-                                    <option value="2" <%= producto.tam === 2 ? "selected" : "" %>>Vegano</option>
-                                    <option value="3" <%= producto.tam === 3 ? "selected" : "" %>>Normal</option>
+                                    <option value="0" <%=categories.categoryId===0 ? "selected" : "" %>>Keto</option>
+                                    <option value="1" <%=categories.categoryId===1 ? "selected" : "" %>>Ligth</option>
+                                    <option value="2" <%=categories.categoryId===2 ? "selected" : "" %>>Vegano</option>
+                                    <option value="3" <%=categories.categoryId===3 ? "selected" : "" %>>Normal</option>
                                 </select>
                             </div>
                         </div>
@@ -66,7 +71,7 @@
                         <img src="/images/plato.svg" alt="imagen plato" />
                     </div>
                     <p>
-                        <%= producto.descripcion %>
+                        <%= productDetail.description %>
                     </p>
                 </div>
             </section>

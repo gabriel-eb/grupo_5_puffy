@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('partials/head') %>
+
+<head>
+    <%- include('partials/head') %>
         <title>Bienvenido a Puffy</title>
-    </head>
-    <body>
-        <%- include('partials/header') %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
 
         <main>
             <section id="slider">
@@ -27,10 +29,7 @@
                                     <h2>Slide 2</h2>
                                     <p>Content for Slide 2</p>
                                 </div>
-                                <img
-                                    src="https://image.flaticon.com/icons/svg/130/130882.svg"
-                                    alt="prueba"
-                                />
+                                <img src="https://image.flaticon.com/icons/svg/130/130882.svg" alt="prueba" />
                             </div>
                             <div class="slide slide_3">
                                 <div class="slide-content">
@@ -52,25 +51,67 @@
                     <label for="slide3"></label>
                 </div>
             </section>
-            <section class="postres">
-                <article class="postre-del-dia">
-                    <h3>Postre del día</h3>
-                    <img src="/images/chocoflan.jpg" alt="Postre del dia" />
-                    <div class="mensaje">
-                        <h4>Chocoflan</h4>
-                        <p>$99.99 <span class="small">mxn</span></p>
-                    </div>
-                </article>
-                <article class="nuevos-postres">
-                    <h3>Postres nuevos</h3>
-                    <div class="postre1">
-                        <img src="/images/chocoflan.jpg" alt="Postre1" />
+            <section class="desctacados">
+                <div class="postres">
+                    <article class="postre-del-dia">
+                        <h3>Postre del día</h3>
+                        <img src="/images/chocoflan.jpg" alt="Postre del dia" />
                         <div class="mensaje">
-                            <h5>Tres Leches</h5>
+                            <h4>Chocoflan</h4>
                             <p>$99.99 <span class="small">mxn</span></p>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
+                <div class="nuevos-postres">
+                    <article class="product-box">
+                        <a href="/products/detail/¿?">
+                            <figure class="product-box_image">
+                                <img src="/images/chocoflan.jpg" alt="Postre1">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3>Tres leches</h3>
+                                <p>$99.99</p>
+                                <span>0 % OFF</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="product-box">
+                        <a href="/products/detail/¿?">
+                            <figure class="product-box_image">
+                                <img src="/images/chocoflan.jpg" alt="Postre1">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3>Tres leches</h3>
+                                <p>$99.99</p>
+                                <span>0 % OFF</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="product-box">
+                        <a href="/products/detail/¿?">
+                            <figure class="product-box_image">
+                                <img src="/images/chocoflan.jpg" alt="Postre1">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3>Tres leches</h3>
+                                <p>$99.99</p>
+                                <span>0 % OFF</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="product-box">
+                        <a href="/products/detail/¿?">
+                            <figure class="product-box_image">
+                                <img src="/images/chocoflan.jpg" alt="Postre1">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3>Tres leches</h3>
+                                <p>$99.99</p>
+                                <span>0 % OFF</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
             </section>
             <div class="coleccion-repostero">
                 <section class="colecciones">
@@ -133,5 +174,6 @@
         </main>
 
         <%- include('partials/footer') %>
-    </body>
+</body>
+
 </html>

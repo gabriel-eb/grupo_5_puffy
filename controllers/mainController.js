@@ -1,6 +1,8 @@
-const userModel = require('../models/usersModel');
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const db = require('../database/models');
+const { Op } = require("sequelize");
+const Users = db.User;
 
 
 const controller = {
@@ -20,15 +22,17 @@ const controller = {
 
     },
     // POST DEL SIGNUP
-    processSignup: (req, res) => {
+    processSignup: async (req, res) => {
+
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
-            return res.render('signup', {
+            return res.status(401).render('signup', {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
             });
         }
-        let userInDB = userModel.findByField('email', req.body.email);
+
+        const userInDB = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
         if (userInDB) {
             return res.render('signup', {
                 errors: {
@@ -40,21 +44,28 @@ const controller = {
             });
         }
 
-        let userToCreate = {
+        let hashedPass = bcryptjs.hashSync(req.body.password, 10);
+        hashedPass = hashedPass.slice(7, hashedPass.length);
+
+        const userToCreate = {
             ...req.body,
-            password: bcryptjs.hashSync(req.body.password, 10),
-            avatar: req.file.filename || "default.jpg",
+            password: hashedPass,
+            avatar: req.body.avatar || "/images/avatars/default.jpg",
         }
 
-        userModel.create(userToCreate);
-        res.redirect('/login');
+        try {
+            await Users.create(userToCreate);
+            return res.status(201).redirect('/login');
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
     //Proceso Login
-    processLogin: (req, res) => {
-        let userToLogin = userModel.findByField('email', req.body.email);
-        if (userToLogin) {
-            let checkPassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
-            if (checkPassword) {
+    processLogin: async (req, res) => {
+        try{
+            let userToLogin = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
+            userToLogin = userToLogin.dataValues;
+            if (bcryptjs.compareSync(req.body.password, '$2a$10$' + userToLogin.password)) {
                 // Session
                 req.session.userId = userToLogin.id;
 
@@ -65,23 +76,32 @@ const controller = {
                     });
                 }
 
+                await Users.update({ lastLogin: new Date() }, { where: { id: userToLogin.id }, silent: true });
+
+
                 return res.redirect("users/" + req.session.userId);
             }
-            return res.render("login", {
+
+
+            // Si la contraseña es incorrecta
+            return res.status(400).render("login", {
                 errors: {
                     email: {
                         msg: 'Las credenciales son inválidas'
                     }
                 }
             });
-        }
-        return res.render("login", {
-            errors: {
-                email: {
-                    msg: 'No se encuentra este email en nuestra base de datos'
+
+        } catch (error) {
+            return res.status(400).render("login", {
+                errors: {
+                    email: {
+                        msg: 'No se encuentra este email en nuestra base de datos'
+                    },
+                    error: error.message
                 }
-            }
-        });
+            });
+        }
     },
     processLogout: (req, res) => {
         res.clearCookie('recordar');
