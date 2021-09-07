@@ -87,18 +87,19 @@ const controller = {
             return res.status(400).render("login", {
                 errors: {
                     email: {
-                        msg: 'Las credenciales son inválidas'
-                    }
-                }
+                        previous: req.body.email,
+                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
+                    },
+                },
             });
 
         } catch (error) {
             return res.status(400).render("login", {
                 errors: {
                     email: {
-                        msg: 'No se encuentra este email en nuestra base de datos'
-                    },
-                    error: error.message
+                        previous: req.body.email,
+                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
+                    }
                 }
             });
         }

@@ -6,11 +6,12 @@ const uploadFile = require("../middlewares/multerMiddleware");
 const loggedIn = require("../middlewares/loggedInMiddleware");
 const notLogged = require("../middlewares/notLoggedMiddleware");
 const gcpAvatar = require("../middlewares/gcpAvatarMiddleware");
+const validations = require("../middlewares/validateRegisterMiddleware");
 
 router.get('/:id', controller.obtenerPerfil);
 router.route("/modificar/:id")
     .get(notLogged, controller.vistaModificar)
-    .put(uploadFile.single('avatar'), gcpAvatar, controller.modificar);
+    .put(uploadFile.single('avatar'), gcpAvatar, validations, controller.modificar);
 
 // Rutas de libreta de direcciones
 router.route('/:id/newAddress')

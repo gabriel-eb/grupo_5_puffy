@@ -733,12 +733,16 @@ body{
 
 .fill {
     background-color: #e2e2e2;
-    border-color: #dadada;
+    border: 1px solid #dadada;
     width: 90%;
     margin: 10px 20px;
     padding: 10px;
     border-radius: 5px;
-    border-style: none;
+}
+
+.is-invalid {
+    background-color: #e7cece;
+    border: 1px solid crimson;
 }
 
 .container_01 {

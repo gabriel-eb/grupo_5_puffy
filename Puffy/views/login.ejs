@@ -13,31 +13,31 @@
             <h3>INICIA SESIÓN</h3>
             <form action="/login" method="post">
                 <div class="container_01">
-                    <input type="email" class="fill" placeholder="Correo electrónico" name="email" />
-                    <input type="password" class="fill" placeholder="Contraseña" name="password" />
+                    <input type="email" class="fill" placeholder="Correo electrónico" name="email" <%= locals.errors && errors.email.previous ? `value=${errors.email.previous}` : ""%> required/>
+                    <input type="password" class="fill" placeholder="Contraseña" name="password"  required/>
                 </div>
                 <div class="container_03">
-                    <input type="checkbox" name="recordar" id="recordar"> <label for="recordar">Recordar mi sesión</label>
+                    <input type="checkbox" name="recordar" id="recordar"> <label for="recordar">Recordar mi sesión</label><div class="alert">
+                        <% if(locals.errors && errors.email){ %>
+                            <%= errors.email.msg %>
+                        <%}%>
+                    </div>
                 </div>
                 <div class="container_02">
                     <a href="#">¿Has olvidado tu contraseña?</a>
                 </div>
 
-                <% if(locals.errors && errors.email){ %>
-                    <div class="alert">
-                        <%=errors.email.msg%>
-                    </div>
-                    <%}%>
+                <div class="button_01">
+                    <input type="submit" value="ENTRAR" />
+                </div>
 
-                        <div class="button_01">
-                            <input type="submit" value="ENTRAR" />
-                        </div>
-
-                        <div class="button_02">
-                            <button>CONTINUAR COMO INVITADO</button>
-                        </div>
-                        <!--<a href="#" id="create_account">CREAR CUENTA</a>-->
-                        <hr />
+                <div class="button_02">
+                    <button onclick="window.location.href='/signup'">CREAR CUENTA</button>
+                </div>
+                <div class="button_02">
+                    <button onclick="window.location.href='#'">CONTINUAR COMO INVITADO</button>
+                </div>
+                <hr />
 
             </form>
         </main>
