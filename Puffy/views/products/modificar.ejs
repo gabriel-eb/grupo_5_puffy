@@ -29,7 +29,7 @@
 
                         <select name="category" id="categoria" class="add-mod-cat <%= locals.errors && errors.category ? 'is-invalid' : null %>" autocomplete="off">
                             <% categories.map( category => { %>
-                                <option value="<%= category.id %>" <%=category.id === producto.categoryId ? "selected" : "" %>>
+                                <option value="<%= category.id %>" <%= category.id == producto.category ? "selected" : "" %>>
                                     <%= category.name %>
                                 </option>
                             <% }) %>
@@ -38,9 +38,9 @@
 
                         <label for="tam" class="bold">Tamaño: </label>
                         <select name="size" id="tam" class="add-mod-tam <%= locals.errors && errors.size ? 'is-invalid' : null %>" autocomplete="off">
-                            <option value="0" <%=producto.size===0 ? "selected" : "" %>>Chico</option>
-                            <option value="1" <%=producto.size===1 ? "selected" : "" %>>Mediano</option>
-                            <option value="2" <%=producto.size===2 ? "selected" : "" %>>Grande</option>
+                            <option value="0" <%=producto.size==0 ? "selected" : "" %>>Chico</option>
+                            <option value="1" <%=producto.size==1 ? "selected" : "" %>>Mediano</option>
+                            <option value="2" <%=producto.size==2 ? "selected" : "" %>>Grande</option>
                         </select>
                         <br />
                         <label for="cantidad" class="bold">Cantidad: </label>

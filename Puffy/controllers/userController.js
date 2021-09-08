@@ -29,6 +29,8 @@ module.exports = {
             const resultValidation = validationResult(req);
             if (resultValidation.errors.length > 0) {
                 const user = await Users.findByPk(req.params.id);
+                user = user.dataValues;
+                user = { ...user, ...req.body };
                 return res.status(401).render('users/editar', {
                     errors: resultValidation.mapped(),
                     user: user.dataValues

@@ -59,26 +59,30 @@ const controller = {
     },
     detalle: async (req, res) => {
         try {
-            const productDetail = await Products.findOne({
+            let productDetail = await Products.findOne({
                 where: {
                     id: req.params.id
                 }
             });
-
-            const categories = await ProductCat.findOne({
+            productDetail = { ...productDetail.currentValues }
+            
+            let category = await ProductCat.findOne({
                 where: {
                     productId: req.params.id
-                }
+                },
+                include: ['category']
             });
-
+            category = JSON.stringify(category);
+            category = JSON.parse(category);
+            category = category.category.name;
+            
             const image = await Images.findOne({
                 where: {
                     productId: req.params.id
                 }
             });
 
-
-            res.status(200).render("products/detalle", { productDetail, categories, image });
+            res.status(200).render("products/detalle", { productDetail, category, image });
 
         } catch (error) {
             console.log(error);
@@ -88,21 +92,28 @@ const controller = {
     vistaModificar: async (req, res) => {
 
         try {
-            const producto = await Products.findOne({
+            let producto = await Products.findOne({
+                raw: true,
                 where: {
                     id: req.params.id
                 }
             });
+
+            const prodCat = await ProductCat.findOne({
+                where: { productId: req.params.id }
+            });
+
+            producto.category = prodCat.dataValues.categoryId;
+
+            const categoriesList = await Categories.findAll();
+            const categories = [];
+            categoriesList.map(cat => categories.push(cat.dataValues));
 
             const image = await Images.findOne({
                 where: {
                     productId: req.params.id
                 }
             });
-
-            const categoriesList = await Categories.findAll();
-            const categories = [];
-            categoriesList.map(cat => categories.push(cat.dataValues));
 
             res.status(200).render("products/modificar", { producto, categories, image });
 
@@ -153,10 +164,11 @@ const controller = {
     modificar: async (req, res) => {
 
         try {
-
             const resultValidation = validationResult(req);
             if (resultValidation.errors.length > 0) {
-                const producto = await Products.findOne({ where: { id: req.params.id } });
+                let producto = await Products.findOne({ where: { id: req.params.id } });
+                producto = producto.dataValues;
+                producto = { ...producto, ...req.body };
                 const image = await Images.findOne({ where: { productId: req.params.id } });
                 const categoriesList = await Categories.findAll();
                 const categories = [];
@@ -174,22 +186,18 @@ const controller = {
                     id: req.params.id
                 }
             });
-
             const product_cat = {
-                productId: req.params.id,
                 categoryId: req.body.category
             }
             await ProductCat.update(product_cat, {
                 where: {
                     productId: req.params.id
                 }
-            }
-            );
+            });
 
             const productImage = {
                 url: req.body.image,
-                main: true,
-                productId: req.params.id
+                main: true
             }
             await Images.update(productImage, {
                 where: {

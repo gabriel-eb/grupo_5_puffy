@@ -49,10 +49,7 @@
                             <div class="tamanio">
                                 <label for="categorita">Categoría:</label>
                                 <select name="categorita" id="categorita" autocomplete="off" disabled>
-                                    <option value="0" <%=categories.categoryId===0 ? "selected" : "" %>>Keto</option>
-                                    <option value="1" <%=categories.categoryId===1 ? "selected" : "" %>>Ligth</option>
-                                    <option value="2" <%=categories.categoryId===2 ? "selected" : "" %>>Vegano</option>
-                                    <option value="3" <%=categories.categoryId===3 ? "selected" : "" %>>Normal</option>
+                                    <option><%= category %></option>
                                 </select>
                             </div>
                         </div>
