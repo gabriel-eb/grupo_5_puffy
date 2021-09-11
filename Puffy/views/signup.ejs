@@ -11,10 +11,15 @@
 
         <main class="form">
             <h3>CREAR CUENTA</h3>
-            <form action="/signup" method="post" enctype="multipart/form-data">
+            <form action="/signup" method="post" enctype="multipart/form-data" id='formulario'>
                 <div class="container_01">
-                    <input name="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.firstName : null %>" required />
-                    <input name="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.lastName ? 'is-invalid' : null %> " value="<%=locals.oldData ? oldData.lastName : null %>" required />
+                    
+                    <input name="firstName" id="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.firstName : null %>" required />
+                    <p  id='p_firstName' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
+
+                    <input name="lastName" id="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.lastName ? 'is-invalid' : null %> " value="<%=locals.oldData ? oldData.lastName : null %>" required />
+                    <p  id='p_lastName' class="alertp">Debes de escribir tu apellido con más de 1 carácter.</p>
+
                     <br />
                     <label for="admin" class="bold">Tipo de usuario: </label>
                     <select name="admin" id="userType" class=fill required>
@@ -22,9 +27,16 @@
                         <option value="0">Vendedor</option>
                     </select>
                     <br />
-                    <input name="mobile" type="number" placeholder="Celular" class="fill <%= locals.errors && errors.mobile ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.mobile : null %>" required />                    
-                    <input name="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.email : null %>" required />
-                    <input name="password" type="password" class="fill  <%= locals.errors && errors.lastName ? 'is-invalid' : null %>" placeholder="Contraseña" />
+                    <input name="mobile" id="mobile" type="number" placeholder="Celular" class="fill <%= locals.errors && errors.mobile ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.mobile : null %>" required />                    
+                    <p  id='p_mobile' class="alertp">El número de móvil debe tener 10 dígitos.</p>
+
+                    <input name="email" id="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.email : null %>" required />
+                    <p  id='p_email' class="alertp">Debes de escribir tu email.</p>
+                    
+                    <input name="password" id="password" type="password" class="fill  <%= locals.errors && errors.lastName ? 'is-invalid' : null %>" placeholder="Contraseña" />
+                    <p  id='p_password' class="alertp">Debes de escribir una contraseña con 8 a 16 carácteres.</p>
+                    
+                    
                     <label for="avatar" class="bold">Imagen de perfil:</label>
                     <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/jpg" class="fill" value="<%= locals.oldData ? oldData.avatar : null %>" />
 
@@ -56,7 +68,7 @@
 
             </form>
         </main>
-
+        <script src="js/signupValidation.js"></script>
         <%- include('partials/footer') %>
 </body>
 

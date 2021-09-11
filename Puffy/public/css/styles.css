@@ -1557,3 +1557,16 @@ table.listado-productos tr > th:nth-child(3){
     border-radius: 50%;
     width: 50%;
 }
+
+
+.alertp {
+    margin-left: 5px;
+    text-align: left;
+    color: red;
+    display: none;
+}
+
+.form__input-error-activo {
+	display: block;
+
+}
