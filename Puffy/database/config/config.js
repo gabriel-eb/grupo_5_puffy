@@ -1,7 +1,7 @@
 module.exports = {
     "development": {
         "username": "root",
-        "password": "rootroot",
+        "password": null,
         "database": "puffy_db",
         "host": "127.0.0.1",
         "dialect": "mysql",

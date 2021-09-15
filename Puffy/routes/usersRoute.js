@@ -11,18 +11,18 @@ const validateAddress = require("../middlewares/validateAddressMiddleware");
 
 router.get('/:id', controller.obtenerPerfil);
 router.route("/:id/edit")
-    .get(notLogged, controller.vistaModificar)
-    .put(notLogged, uploadFile.single('avatar'), gcpAvatar, validateEdit, controller.modificar);
+    .get(/*notLogged,*/ controller.vistaModificar)
+    .put(/*notLogged,*/ uploadFile.single('avatar'), gcpAvatar, validateEdit, controller.modificar);
 router.delete("/:id/delete", controller.borrar);
 
 // Rutas de libreta de direcciones
 router.route('/:id/newAddress')
-    .get(notLogged, controllerDir.vistaNuevaDir)
+    .get(/*notLogged,*/ controllerDir.vistaNuevaDir)
     .post(notLogged, validateAddress, controllerDir.agregarDir);
 router.route('/:id/addresses')
     .get(notLogged, controllerDir.vistaDirecciones);
 router.route('/:id/addresses/:idAddress')
-    .get(notLogged, controllerDir.vistaModificarDir)
+    .get(/*notLogged,*/ controllerDir.vistaModificarDir)
     .put(notLogged, validateAddress, controllerDir.modificarDir)
     .delete(notLogged, controllerDir.borrarDir);
 

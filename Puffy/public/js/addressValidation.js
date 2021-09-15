@@ -2,30 +2,26 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	firstName: /^[a-zA-ZÀ-ÿ\s]{2,50}$/, // Letras y espacios, pueden llevar acentos.
-    lastName: /^[a-zA-ZÀ-ÿ\s]{2,100}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{8,16}$/, // 8 a 100 caracteres
-	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	mobile: /^\d{10,15}$/ // 7 a 14 numeros.
+	line1: /^[a-zA-ZÀ-ÿ-0-9\s]{2,100}$/, // Letras y espacios, pueden llevar acentos.
+    line2: /^[a-zA-ZÀ-ÿ-0-9\s]{0,100}$/,
+    zip:/^[0-9]{5}$/,
+    city:/^[a-zA-ZÀ-ÿ\s]{3,100}$/,
 }
 
 
 const validarFormulario = (e) => {
 	switch (e.target.name) {
-		case "firstName":
-			validarCampo(expresiones.firstName, e.target, 'firstName');
+		case "line1":
+			validarCampo(expresiones.line1, e.target, 'line1');
 		break;
-        case "lastName":
-			validarCampo(expresiones.firstName, e.target, 'lastName');
+        case "line2":
+			validarCampo(expresiones.line2, e.target, 'line2');
 		break;
-		case "password":
-			validarCampo(expresiones.password, e.target, 'password');
+		case "zip":
+			validarCampo(expresiones.zip, e.target, 'zip');
 		break;
-		case "email":
-			validarCampo(expresiones.email, e.target, 'email');
-		break;
-		case "mobile":
-			validarCampo(expresiones.mobile, e.target, 'mobile');
+		case "city":
+			validarCampo(expresiones.city, e.target, 'city');
 		break;
 	}
 }

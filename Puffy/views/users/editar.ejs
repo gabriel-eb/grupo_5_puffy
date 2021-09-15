@@ -12,10 +12,14 @@
 
         <main class="form">
             <h3>MODIFICAR DATOS</h3>
-            <form action="/users/<%= user.id %>/edit?_method=PUT" method="post" enctype="multipart/form-data">
+            <form action="/users/<%= user.id %>/edit?_method=PUT" method="post" enctype="multipart/form-data" id="formulario">
                 <div class="container_01">
-                    <input name="firstName" type="text" class="fill" value="<%= user.firstName %>" />
-                    <input name="lastName" type="text" class="fill" value="<%= user.lastName %>" />
+                    <input id="firstName" name="firstName" type="text" class="fill" value="<%= user.firstName %>" />
+                    <p  id='p_firstName' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
+
+                    <input id="lastName" name="lastName" type="text" class="fill" value="<%= user.lastName %>" />
+                    <p  id='p_lastName' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
+
                     <br />
                     <label for="admin" class="bold">Tipo de usuario: </label>
                     <select name="admin" id="userType" class=fill autocomplete="off">
@@ -23,8 +27,12 @@
                         <option value="1" <%=  user.admin ? "selected" : "" %>>Comprador</option>
                     </select>
                     <br />
-                    <input name="email" type="email" class="fill" value="<%= user.email%>" />
-                    <input name="mobile" type="number" class="fill" placeholder="Celular" value="<%= user.mobile%>"/>
+                    <input id="email" name="email" type="email" class="fill" value="<%= user.email%>" />
+                    <p  id='p_email' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
+
+                    <input id="mobile" name="mobile" type="number" class="fill" placeholder="Celular" value="<%= user.mobile%>"/>
+                    <p  id='p_mobile' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
+
                     <br/>
                     <label for="avatar" class="bold">Imagen de perfil:</label>
                     <img src="<%= user.avatar %>" alt="" class="img-mod-profile">
@@ -52,7 +60,7 @@
 
             </form>
         </main>
-
+        <script src="../../js/userValidation.js"></script>
         <%- include('../partials/footer') %>
 </body>
 

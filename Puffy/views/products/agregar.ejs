@@ -11,23 +11,28 @@
 
         <main>
             <h1 class="tit-add-mod">Agregar Producto</h1>
-            <form action="/productos/agregar" method="post" class="form-add-mod" enctype="multipart/form-data">
+            <form action="/productos/agregar" method="post" class="form-add-mod" enctype="multipart/form-data" id='formulario'>
                 <section class="add-mod">
                     <div class="add-mod-1">
-                        <label for="nombre" class="bold">Nombre del producto:</label>
-                        <input type="text" id="nombre" name="name" class="add-mod-name <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.name : null %>" placeholder="''Pastel de Zanahoría''" required/>
+                        <label for="name" class="bold">Nombre del producto:</label>
+                        <input type="text" id="name" name="name" class="add-mod-name <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.name : null %>" placeholder="''Pastel de Zanahoría''" required/>
+                        <p  id='p_name' class="alertp">El nombre del producto debe tener al menos 5 carácteres alfanúmericos.</p>
+                        
+
                         <br />
-                        <label for="descripcion" class="bold">Descripción:</label>
-                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''">
-                            <%=locals.oldData ? oldData.description : null %>
-                        </textarea>
+                        <label for="description" class="bold">Descripción:</label>
+                        <input class="add-mod-des" name="description" id="description" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''" value="<%=locals.oldData ? oldData.description : null %>">
+                            
+                    </input>
+                        <p  id='p_description' class="alertp">La descripción debe contener al menos 20 carácteres alfanúmericos.</p>
+
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>
                         <input type="file" name="image" id="imagen" class="add-mod-img <%= locals.errors && errors.image ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.image : null %>"  accept="image/png, image/jpeg, image/jpg" required />
                         <br />
-                        <label for="categoria" class="bold">Categoría:</label>
-                        <select name="category" id="categoria" class="add-mod-cat <%= locals.errors && errors.category ? 'is-invalid' : null %>">
+                        <label for="category" class="bold">Categoría:</label>
+                        <select name="category" id="category" class="add-mod-cat <%= locals.errors && errors.category ? 'is-invalid' : null %>">
                             <% categories.map(category => {%>
                                 <option value="<%= category.id %>" <%= locals.oldData && oldData.category == category.id ? "selected" : null %>>
                                     <%= category.name %>
@@ -35,18 +40,20 @@
                             <% }) %>
                         </select>
                         <br />
-                        <label for="tam" class="bold">Tamaño: </label>
-                        <select name="size" id="tam" class="add-mod-tam  <%= locals.errors && errors.size ? 'is-invalid' : null %>" required>
+                        <label for="size" class="bold">Tamaño: </label>
+                        <select name="size" id="size" class="add-mod-tam  <%= locals.errors && errors.size ? 'is-invalid' : null %>" required>
                         <option value="0" <%= locals.oldData && oldData.size == 0 ? "selected" : null %>>Chico</option>
                         <option value="1" <%= locals.oldData && oldData.size == 1 ? "selected" : null %>>Mediano</option>
                         <option value="2" <%= locals.oldData && oldData.size == 2 ? "selected" : null %>>Grande</option>
                     </select>
                     <br />
-                    <label for="cantidad" class="bold">Cantidad: </label>
-                    <input type="number" name="quantity" id="cantidad" class="add-mod-price" value="<%=locals.oldData ? oldData.quantity : null %>" >
+                    <label for="quantity" class="bold">Cantidad: </label>
+                    <input type="number" name="quantity" id="quantity" class="add-mod-price" value="<%=locals.oldData ? oldData.quantity : null %>" >
+                    <p  id='p_quantity' class="alertp">Escribe la cantidad de este producto.</p>
                         <br />
-                        <label for="precio" class="bold">Precio: $ </label>
-                        <input type="number" id="precio" name="price" class="add-mod-price <%= locals.errors && errors.price ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.price : null %>" required/><span> mxn</span>
+                        <label for="price" class="bold">Precio: $ </label>
+                        <input type="number" id="price" name="price" class="add-mod-price <%= locals.errors && errors.price ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.price : null %>" required/><span> mxn</span>
+                        <p  id='p_price' class="alertp">Escribe el precio de este producto.</p>
                     </div>
                 </section>
 
@@ -69,10 +76,11 @@
                 <div class="enviar-add-mod">
                     <input type="submit" value="Enviar" />
                 </div>
-            </form>
+            
             <hr/>
+        </form>
         </main>
-
+        <script src="../js/productValidation.js"></script>
         <%- include('../partials/footer') %>
 </body>
 
