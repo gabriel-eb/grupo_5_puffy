@@ -356,10 +356,19 @@ body > hr {
     max-height: 50%;
 }
 
+.postres .postre-del-dia a {
+    text-decoration: none;
+}
+
 .postres .postre-del-dia h3 {
     margin: 0 0 1rem 1rem;
     color: white;
     text-align: center;
+}
+
+.postre-del-dia h4,
+.postre-del-dia p{
+    transition: 0.3s;
 }
 
 .postres .postre-del-dia img {
@@ -380,7 +389,6 @@ body > hr {
 
 /*====== Products ======*/
 .nuevos-postres {
-    border: salmon solid 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -426,18 +434,15 @@ body > hr {
     font-size: 1.5em;
     font-weight: 300;
     color: #3ad413;
-    margin: 0;
-    height: 0;
     overflow: hidden;
     transition: 300ms;
 }
 
 .product-box_data p {
+    margin: 0.5rem 0 0 0;
     font-size: 1.5em;
     width: 100%;
     color: #333;
-    margin: 0;
-    height: 0;
     transition: 300ms;
     overflow: hidden;
 }
@@ -650,6 +655,18 @@ body > hr {
         height: 40px;
         margin-top: 15px;
     }
+
+    .postres:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .postre-del-dia:hover h4,
+    .postre-del-dia:hover p {
+        transition: 0.3s;
+        height: 40px;
+        margin-top: 15px;
+    }
+
 
     /* Colecciones y reposteros */
     .coleccion-repostero {

@@ -1,13 +1,55 @@
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const sequelize = require('sequelize');
 const db = require('../database/models');
 const { Op } = require("sequelize");
 const Users = db.User;
+const Products = db.Product;
+const Images = db.Product_images;
 
 
 const controller = {
-    index: (req, res) => {
-        res.status(200).render("index");
+    index: async (req, res) => {
+        // Postre del dia
+        const maxQuant = await Products.max('quantity');
+        const highlight = await Products.findOne({ 
+            where: { 
+                quantity: maxQuant 
+            },
+            raw: true 
+        });
+        // Imagen del Postre del dia
+        const highlightImg = await Images.findOne({
+            where: {
+                productId: highlight.id,
+                main: 1
+            }
+        });
+        highlight.image = highlightImg.url;
+
+
+        // Postres destacados
+        const recentProducts = await Products.findAll({
+            where: {
+                quantity: { [Op.gt]: 0 }
+            },
+            order: [['updatedAt', 'DESC']],
+            limit: 4,
+            raw: true
+        });
+        // Imagenes de postres destacados
+        for (let product of recentProducts) {
+            const prodImg = await Images.findOne({
+                where: {
+                    productId: product.id,
+                    main: 1
+                },
+                raw: true
+            });
+            product.image = prodImg.url;
+        }
+
+        res.status(200).render("index", { highlight, recentProducts });
     },
     carrito: (req, res) => {
         res.status(200).render("carrito");
