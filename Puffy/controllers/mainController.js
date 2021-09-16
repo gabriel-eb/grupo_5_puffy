@@ -12,42 +12,53 @@ const controller = {
     index: async (req, res) => {
         // Postre del dia
         const maxQuant = await Products.max('quantity');
-        const highlight = await Products.findOne({ 
+        let highlight = await Products.findOne({ 
             where: { 
                 quantity: maxQuant 
             },
-            raw: true 
+            include: [{ model: Images, as: 'product_images' }]
         });
-        // Imagen del Postre del dia
-        const highlightImg = await Images.findOne({
-            where: {
-                productId: highlight.id,
-                main: 1
-            }
-        });
-        highlight.image = highlightImg.url;
 
+        // Creando objeto limpio y con url de imagen
+        const urlHighlight = highlight.product_images
+            .filter(img => img.main)[0].url;
+
+        highlight = Object.assign(
+            {},
+            {
+                id: highlight.id,
+                name: highlight.name,
+                price: highlight.price,
+                discount: highlight.discount,
+                image: urlHighlight
+            }
+        );
 
         // Postres destacados
-        const recentProducts = await Products.findAll({
+        let recentProducts = await Products.findAll({
             where: {
                 quantity: { [Op.gt]: 0 }
             },
             order: [['updatedAt', 'DESC']],
             limit: 4,
-            raw: true
+            include: [{ model: Images, as: 'product_images' }]
         });
-        // Imagenes de postres destacados
-        for (let product of recentProducts) {
-            const prodImg = await Images.findOne({
-                where: {
-                    productId: product.id,
-                    main: 1
-                },
-                raw: true
-            });
-            product.image = prodImg.url;
-        }
+        // Limpiando obj y agregando URL de postres destacados
+        recentProducts = recentProducts.map(product => {
+            const urlProduct = product.product_images
+                .filter(img => img.main)[0].url;
+            return Object.assign(
+                {},
+                {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    discount: product.discount,
+                    image: urlProduct
+                }
+            );
+        });
+        
 
         res.status(200).render("index", { highlight, recentProducts });
     },
@@ -76,28 +87,33 @@ const controller = {
 
         try {
             
-        const userInDB = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
-        if (userInDB) {
-            return res.render('signup', {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body
+            const userInDB = await Users.findOne({ 
+                where: { 
+                    email: { 
+                        [Op.like]: req.body.email 
+                    } 
+                } 
             });
-        }
+            if (userInDB) {
+                return res.render('signup', {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya está registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
 
-        let hashedPass = bcryptjs.hashSync(req.body.password, 10);
-        hashedPass = hashedPass.slice(7, hashedPass.length);
+            let hashedPass = bcryptjs.hashSync(req.body.password, 10);
+            hashedPass = hashedPass.slice(7, hashedPass.length);
 
-        const userToCreate = {
-            ...req.body,
-            password: hashedPass,
-            avatar: req.body.avatar || "/images/avatars/default.jpg",
-        }
+            const userToCreate = {
+                ...req.body,
+                password: hashedPass,
+                avatar: req.body.avatar || "/images/avatars/default.jpg",
+            }
 
-        
             await Users.create(userToCreate);
             return res.status(201).redirect('/login');
         } catch (error) {
@@ -107,9 +123,17 @@ const controller = {
     //Proceso Login
     processLogin: async (req, res) => {
         try{
-            let userToLogin = await Users.findOne({ where: { email: { [Op.like]: req.body.email } } });
+            let userToLogin = await Users.findOne({ 
+                where: { 
+                    email: { 
+                        [Op.like]: req.body.email 
+                    } 
+                } 
+            });
             userToLogin = userToLogin.dataValues;
-            if (bcryptjs.compareSync(req.body.password, '$2a$10$' + userToLogin.password)) {
+            const rightPass = bcryptjs.compareSync(req.body.password,
+                 '$2a$10$' + userToLogin.password);
+            if (rightPass) {
                 // Session
                 req.session.userId = userToLogin.id;
 
@@ -120,7 +144,13 @@ const controller = {
                     });
                 }
 
-                await Users.update({ lastLogin: new Date() }, { where: { id: userToLogin.id }, silent: true });
+                await Users.update({ lastLogin: new Date() }, 
+                { 
+                    where: { 
+                        id: userToLogin.id 
+                    }, 
+                    silent: true 
+                });
 
 
                 return res.redirect("users/" + req.session.userId);
