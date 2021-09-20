@@ -7,32 +7,36 @@ const Users = db.User;
 const Products = db.Product;
 const Images = db.Product_images;
 
+async function getHighlight(){
+    // Postre del dia
+    const maxQuant = await Products.max('quantity');
+    const highlight = await Products.findOne({
+        where: {
+            quantity: maxQuant
+        },
+        include: [{ model: Images, as: 'product_images' }]
+    });
+
+    // Creando objeto limpio y con url de imagen
+    const urlHighlight = highlight.product_images
+        .filter(img => img.main)[0].url;
+
+    return Object.assign(
+        {},
+        {
+            id: highlight.id,
+            name: highlight.name,
+            price: parseFloat(highlight.price),
+            discount: highlight.discount,
+            image: urlHighlight
+        }
+    );
+}
 
 const controller = {
     index: async (req, res) => {
         // Postre del dia
-        const maxQuant = await Products.max('quantity');
-        let highlight = await Products.findOne({ 
-            where: { 
-                quantity: maxQuant 
-            },
-            include: [{ model: Images, as: 'product_images' }]
-        });
-
-        // Creando objeto limpio y con url de imagen
-        const urlHighlight = highlight.product_images
-            .filter(img => img.main)[0].url;
-
-        highlight = Object.assign(
-            {},
-            {
-                id: highlight.id,
-                name: highlight.name,
-                price: highlight.price,
-                discount: highlight.discount,
-                image: urlHighlight
-            }
-        );
+        const highlight = await getHighlight();
 
         // Postres destacados
         let recentProducts = await Products.findAll({
@@ -184,6 +188,41 @@ const controller = {
         // delete req.session.userId;
         req.session.destroy();
         res.status(200).redirect('/');
+    },
+
+    searchProducts: async (req, res) => {
+
+
+        let searchResult = await Products.findAll({
+            where: {
+                name: { [Op.like]: '%' + req.query.q + '%' },
+                quantity: { [Op.gt]: 0 }
+            },
+            order: [['name', 'ASC']],
+            include: [{ model: Images, as: 'product_images' }]
+        });
+        // Limpiando obj y agregando URL de postres destacados
+        searchResult = searchResult.map(product => {
+            const urlProduct = product.product_images
+                .filter(img => img.main)[0].url;
+            return Object.assign(
+                {},
+                {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    discount: product.discount,
+                    image: urlProduct
+                }
+            );
+        });
+
+        if(searchResult.length === 0){
+            const highlight = await getHighlight();
+            return res.status(200).render('search', { highlight });
+        }
+
+        return res.status(200).render('search', { searchResult });
     }
 
 };

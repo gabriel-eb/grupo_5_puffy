@@ -17,19 +17,41 @@
                 </button>
             </form>
 
-            <% for(let resultado in resultados) { %>
-                <article class="product-box">
-                    <a href="/products/detail/¿?">
-                        <figure class="product-box_image">
-                            <img src="/images/chocoflan.jpg" alt="Postre1">
-                        </figure>
-                        <div class="product-box_data">
-                            <h3><%= resultado.name %></h3>
-                            <p><%= resultado.price %></p>
-                            <span><%= resultado.discount * 10 %> %</span>
-                        </div>
-                    </a>
-                </article>
+            <h2>Resultado(s): </h2>
+
+            <%if(!locals.searchResult){%>
+                <h3>No se encontró ninguna coincidencia.</h3>
+                <p>Te recomendamos el postre del día: </p>
+                <div class="postres" style="margin-top: 0.5rem;">
+                    <article class="postre-del-dia">
+                        <a href="/products/<%= highlight.id %>">
+                            <h3>Postre del día</h3>
+                            <img src="<%= highlight.image %>" alt="Postre del dia" />
+                            <div class="mensaje">
+                                <h4>
+                                    <%= highlight.name %>
+                                </h4>
+                                <p>$<%= highlight.price.toFixed(2) %> <span class="small">mxn</span></p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            <% } else { %>
+                <p>Se encontraron <%= searchResult.length %> postre(s).</p>
+                <% searchResult.map(result => { %>
+                    <article class="product-box">
+                        <a href="/products/detail/<%= result.id %>">
+                            <figure class="product-box_image">
+                                <img src="<%= result.image %>" alt="Postre1">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3><%= result.name %></h3>
+                                <p>$<%= result.price.toFixed(2) %> mxn</p>
+                                <span><%= result.discount * 10 %> %</span>
+                            </div>
+                        </a>
+                    </article>
+                <% }) %>
             <% } %>
         </main>
 

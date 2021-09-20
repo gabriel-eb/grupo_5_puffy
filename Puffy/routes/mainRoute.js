@@ -21,6 +21,8 @@ router.post("/signup", uploadFile.single('avatar'), gcpAvatar, validations, cont
 router.post("/login", controller.processLogin);
 // Procesar logout
 router.get("/logout", notLogged, controller.processLogout);
+// Busqueda
+router.get("/search", controller.searchProducts);
 
 
 module.exports = router
