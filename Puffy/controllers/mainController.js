@@ -63,8 +63,9 @@ const controller = {
             );
         });
         
+        const categories = await db.Category.findAll();
 
-        res.status(200).render("index", { highlight, recentProducts });
+        res.status(200).render("index", { highlight, recentProducts, categories });
     },
     carrito: (req, res) => {
         res.status(200).render("carrito");
@@ -192,17 +193,42 @@ const controller = {
 
     searchProducts: async (req, res) => {
 
+        let searchResult = [];
 
-        let searchResult = await Products.findAll({
-            where: {
-                name: { [Op.like]: '%' + req.query.q + '%' },
-                quantity: { [Op.gt]: 0 }
-            },
-            order: [['name', 'ASC']],
-            include: [{ model: Images, as: 'product_images' }]
-        });
+        if(req.query.cat){
+            searchResult = await Products.findAll({
+                where: {
+                    quantity: { [Op.gt]: 0 }
+                },
+                order: [['name', 'ASC']],
+                include: [
+                    { 
+                        model: Images, 
+                        as: 'product_images' 
+                    }, { 
+                        model: db.Product_category, 
+                        as: 'product_category', 
+                        where: { categoryId: req.query.cat} 
+                    }
+                ],
+            });
+        } else {
+            searchResult = await Products.findAll({
+                where: {
+                    name: { [Op.like]: '%' + req.query.q + '%' },
+                    quantity: { [Op.gt]: 0 }
+                },
+                order: [['name', 'ASC']],
+                include: [
+                    { model: Images, as: 'product_images' },
+                    { model: db.Product_category, as: 'product_category', where: { categoryId: req.query.cat }  }
+                ],
+            });
+        }
+
+
         // Limpiando obj y agregando URL de postres destacados
-        searchResult = searchResult.map(product => {
+        searchResult =  searchResult.map((product) => {
             const urlProduct = product.product_images
                 .filter(img => img.main)[0].url;
             return Object.assign(
@@ -217,11 +243,10 @@ const controller = {
             );
         });
 
-        if(searchResult.length === 0){
+        if (searchResult.length === 0){
             const highlight = await getHighlight();
             return res.status(200).render('search', { highlight });
         }
-
         return res.status(200).render('search', { searchResult });
     }
 

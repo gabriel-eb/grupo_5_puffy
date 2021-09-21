@@ -46,7 +46,7 @@
                             </figure>
                             <div class="product-box_data">
                                 <h3><%= result.name %></h3>
-                                <p>$<%= result.price.toFixed(2) %> mxn</p>
+                                <p>$<%= parseFloat(result.price).toFixed(2) %> mxn</p>
                                 <span><%= result.discount * 10 %> %</span>
                             </div>
                         </a>

@@ -84,7 +84,7 @@
             <div class="coleccion-repostero">
                 <section class="colecciones">
                     <h3>Colecciones</h3>
-                    <a href="/search?category=0">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Normal")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c1">
                                 <img src="/images/normal.svg" alt="Normal" />
@@ -92,7 +92,7 @@
                             <p>Normal</p>
                         </article>
                     </a>
-                    <a href="/search?category=1">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Keto")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c2">
                                 <img src="/images/keto.svg" alt="Keto" />
@@ -100,7 +100,7 @@
                             <p>Keto</p>
                         </article>
                     </a>
-                    <a href="/search?category=2">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Light")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c3">
                                 <img src="/images/light.svg" alt="Light" />
@@ -108,7 +108,7 @@
                             <p>Light</p>
                         </article>
                     </a>
-                    <a href="/search?category=3">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Vegano")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c4">
                                 <img src="/images/vegano.svg" alt="Vegano" />
