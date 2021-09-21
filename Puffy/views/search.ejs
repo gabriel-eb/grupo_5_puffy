@@ -11,10 +11,18 @@
 
         <main>
             <form action="/search" method="get" class="busqueda">
-                <input type="text" id="buscar" name="buscar" placeholder="Buscar" class="txt-busqueda" />
+                <input type="text" id="buscar" name="q" placeholder="Buscar" class="txt-busqueda" />
                 <button type="submit" class="btn-busqueda">
                     <i class="fas fa-search ic-busqueda"></i>
                 </button>
+                <select name="cat" id="cat">
+                    <option value=""></option>
+                    <% categories.map(category => { %>
+                        <option value="<%= category.id %>">
+                            <%= category.name %>
+                        </option>
+                    <% }) %>
+                </select>
             </form>
 
             <h2>Resultado(s): </h2>
@@ -38,6 +46,7 @@
                 </div>
             <% } else { %>
                 <p>Se encontraron <%= searchResult.length %> postre(s).</p>
+                <h3><%= locals.categoryName ? `Colección ${categoryName}` : null %></h3>
                 <% searchResult.map(result => { %>
                     <article class="product-box">
                         <a href="/products/detail/<%= result.id %>">

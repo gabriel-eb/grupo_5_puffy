@@ -7,7 +7,7 @@ const Users = db.User;
 const Products = db.Product;
 const Images = db.Product_images;
 
-async function getHighlight(){
+async function getHighlight() {
     // Postre del dia
     const maxQuant = await Products.max('quantity');
     const highlight = await Products.findOne({
@@ -62,7 +62,7 @@ const controller = {
                 }
             );
         });
-        
+
         const categories = await db.Category.findAll();
 
         res.status(200).render("index", { highlight, recentProducts, categories });
@@ -91,13 +91,13 @@ const controller = {
         }
 
         try {
-            
-            const userInDB = await Users.findOne({ 
-                where: { 
-                    email: { 
-                        [Op.like]: req.body.email 
-                    } 
-                } 
+
+            const userInDB = await Users.findOne({
+                where: {
+                    email: {
+                        [Op.like]: req.body.email
+                    }
+                }
             });
             if (userInDB) {
                 return res.render('signup', {
@@ -127,17 +127,17 @@ const controller = {
     },
     //Proceso Login
     processLogin: async (req, res) => {
-        try{
-            let userToLogin = await Users.findOne({ 
-                where: { 
-                    email: { 
-                        [Op.like]: req.body.email 
-                    } 
-                } 
+        try {
+            let userToLogin = await Users.findOne({
+                where: {
+                    email: {
+                        [Op.like]: req.body.email
+                    }
+                }
             });
             userToLogin = userToLogin.dataValues;
             const rightPass = bcryptjs.compareSync(req.body.password,
-                 '$2a$10$' + userToLogin.password);
+                '$2a$10$' + userToLogin.password);
             if (rightPass) {
                 // Session
                 req.session.userId = userToLogin.id;
@@ -149,13 +149,13 @@ const controller = {
                     });
                 }
 
-                await Users.update({ lastLogin: new Date() }, 
-                { 
-                    where: { 
-                        id: userToLogin.id 
-                    }, 
-                    silent: true 
-                });
+                await Users.update({ lastLogin: new Date() },
+                    {
+                        where: {
+                            id: userToLogin.id
+                        },
+                        silent: true
+                    });
 
 
                 return res.redirect("users/" + req.session.userId);
@@ -193,42 +193,44 @@ const controller = {
 
     searchProducts: async (req, res) => {
 
-        let searchResult = [];
+        let query = {
+            where: {
+                name: { [Op.like]: '%' + req.query.q + '%' },
+                quantity: { [Op.gt]: 0 }
+            },
+            order: [['name', 'ASC']],
+            include: [
+                {
+                    model: Images,
+                    as: 'product_images'
+                }, {
+                    model: db.Product_category,
+                    as: 'product_category',
+                    where: { categoryId: req.query.cat },
+                    include: [{
+                        model: db.Category,
+                        as: 'category',
+                        attributes: ['name']
+                    }],
+                }
+            ],
+        };
 
-        if(req.query.cat){
-            searchResult = await Products.findAll({
-                where: {
-                    quantity: { [Op.gt]: 0 }
-                },
-                order: [['name', 'ASC']],
-                include: [
-                    { 
-                        model: Images, 
-                        as: 'product_images' 
-                    }, { 
-                        model: db.Product_category, 
-                        as: 'product_category', 
-                        where: { categoryId: req.query.cat} 
-                    }
-                ],
-            });
-        } else {
-            searchResult = await Products.findAll({
-                where: {
-                    name: { [Op.like]: '%' + req.query.q + '%' },
-                    quantity: { [Op.gt]: 0 }
-                },
-                order: [['name', 'ASC']],
-                include: [
-                    { model: Images, as: 'product_images' },
-                    { model: db.Product_category, as: 'product_category', where: { categoryId: req.query.cat }  }
-                ],
-            });
+        if (!req.query.q) {
+            delete query.where.name;
+        } 
+        if (!req.query.cat) {
+            query.include.pop();
         }
+
+        let searchResult = await Products.findAll(query);
+
+        const categoryName = searchResult.length && searchResult[0].product_category ?
+            searchResult[0].product_category[0].category.name : null;
 
 
         // Limpiando obj y agregando URL de postres destacados
-        searchResult =  searchResult.map((product) => {
+        searchResult = searchResult.map((product) => {
             const urlProduct = product.product_images
                 .filter(img => img.main)[0].url;
             return Object.assign(
@@ -243,11 +245,22 @@ const controller = {
             );
         });
 
-        if (searchResult.length === 0){
+        const categories = await db.Category.findAll({ raw: true });
+
+        if (searchResult.length === 0) {
             const highlight = await getHighlight();
-            return res.status(200).render('search', { highlight });
+            return res.status(200).render('search', { highlight, categories });
         }
-        return res.status(200).render('search', { searchResult });
+
+        if (categoryName) {
+            return res.status(200).render('search', { 
+                searchResult, 
+                categoryName,
+                categories
+            });
+        }
+
+        return res.status(200).render('search', { searchResult, categories });
     }
 
 };
