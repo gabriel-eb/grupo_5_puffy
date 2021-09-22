@@ -346,9 +346,10 @@ body > hr {
     width: calc(100% - 32px);
     max-height: calc(100vw - 32px);
     background-color: #f25287;
+    transition: all 0.3s ease-out;
 }
 
-.postres .postre-del-dia {
+.postre-del-dia {
     display: flex;
     align-items: left;
     flex-direction: column;
@@ -356,11 +357,11 @@ body > hr {
     max-height: 50%;
 }
 
-.postres .postre-del-dia a {
+.postre-del-dia a {
     text-decoration: none;
 }
 
-.postres .postre-del-dia h3 {
+.postre-del-dia h3 {
     margin: 0 0 1rem 1rem;
     color: white;
     text-align: center;
@@ -371,13 +372,19 @@ body > hr {
     transition: 0.3s;
 }
 
-.postres .postre-del-dia img {
-    width: 75%;
-    border-radius: 8px;
-    margin: auto;
+.postre-del-dia figure {
+    overflow: hidden;
+    min-height: 160px;
 }
 
-.postres .postre-del-dia .mensaje {
+.postre-del-dia a figure img {
+    width: 75%;
+    border-radius: 8px;
+    margin:-20% auto;
+    display:block;
+}
+
+.postre-del-dia .mensaje {
     width: 75%;
     margin: 1rem auto 0 auto;
     color: white;
@@ -395,13 +402,18 @@ body > hr {
     flex-wrap: wrap;
 }
 
+.destacados{
+    padding: 1rem 0;
+    height: 350px;
+}
+
 .product-box {
     min-width: 45%;
     flex-basis: min-content;
     background-color: #ffffff;
     border-radius: 5px;
     overflow: hidden;
-    transition: 300ms;
+    transition: all 0.3s ease-out;
     margin: 8px 4px;
     border: #ddd solid 0.1rem;
 }
@@ -413,6 +425,8 @@ body > hr {
 
 .product-box_image {
     border-bottom: 1px solid #ddd;
+    max-height: 160px;
+    overflow: hidden;
 }
 
 .product-box_data {
@@ -428,6 +442,11 @@ body > hr {
     color: #000;
     font-weight: 500;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .product-box_data span {
@@ -440,7 +459,7 @@ body > hr {
 
 .product-box_data p {
     margin: 0.5rem 0 0 0;
-    font-size: 1.5em;
+    font-size: 1rem;
     width: 100%;
     color: #333;
     transition: 300ms;
@@ -643,30 +662,31 @@ body > hr {
         flex-basis: min-content;
     }
 
+    .product-box_image {
+        max-height: 200px;
+    }
+
     .product-box_data h3 {
         font-size: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
     .product-box:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .product-box:hover p,
-    .product-box:hover span {
-        height: 40px;
-        margin-top: 15px;
+        transform: scale(1.1, 1.1);
     }
 
     .postres:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        transform: scale(1.05, 1.05);
     }
-
-    .postre-del-dia:hover h4,
-    .postre-del-dia:hover p {
-        transition: 0.3s;
-        height: 40px;
-        margin-top: 15px;
+    
+    .postre-del-dia a figure {
+        min-height: 200px;
     }
-
 
     /* Colecciones y reposteros */
     .coleccion-repostero {
