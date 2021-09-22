@@ -4,11 +4,18 @@ const inputs = document.querySelectorAll('#formulario input');
 const expresiones = {
 	firstName: /^[a-zA-ZÀ-ÿ\s]{2,50}$/, // Letras y espacios, pueden llevar acentos.
     lastName: /^[a-zA-ZÀ-ÿ\s]{2,100}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{8,16}$/, // 8 a 100 caracteres
+	password: /^.{8,100}$/, // 8 a 100 caracteres
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	mobile: /^[\d+]{10,15}$/ // 10 a 15 numeros.
 }
 
+const campos = {
+	firstName: false,
+	lastName: false,
+	password: false,
+	email: false,
+	mobile: false
+}
 
 const validarFormulario = (e) => {
 	switch (e.target.name) {
@@ -16,7 +23,7 @@ const validarFormulario = (e) => {
 			validarCampo(expresiones.firstName, e.target, 'firstName');
 		break;
         case "lastName":
-			validarCampo(expresiones.firstName, e.target, 'lastName');
+			validarCampo(expresiones.lastName, e.target, 'lastName');
 		break;
 		case "password":
 			validarCampo(expresiones.password, e.target, 'password');
@@ -55,3 +62,24 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validarFormulario);
 });
 
+formulario.addEventListener('submit', (e) => {
+	e.preventDefault();
+	console.log(e.target[0].value)
+	console.log(e.target[1].value)
+	console.log(e.target[2].value)
+	console.log(e.target[3].value)
+	console.log(e.target[4].value)
+	console.log(e.target[5].value)
+
+	if(document.querySelector(".is-invalid")){
+		console.log("error")
+document.getElementById('mensaje_incorrecto').classList.remove('display_none');
+		document.getElementById('mensaje_incorrecto').classList.add('alertp1');
+		
+		
+	} else {
+		
+		formulario.submit();
+
+	}
+});

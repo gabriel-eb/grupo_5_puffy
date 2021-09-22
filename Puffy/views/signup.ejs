@@ -13,8 +13,10 @@
             <h3>CREAR CUENTA</h3>
             <form action="/signup" method="post" enctype="multipart/form-data" id='formulario'>
                 <div class="container_01">
-                    
+                   
                     <input name="firstName" id="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.firstName : null %>" required />
+                    <div><i class="fa-check-circle"></i> </div>
+              
                     <p  id='p_firstName' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
 
                     <input name="lastName" id="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.lastName ? 'is-invalid' : null %> " value="<%=locals.oldData ? oldData.lastName : null %>" required />
@@ -33,7 +35,7 @@
                     <input name="email" id="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.email : null %>" required />
                     <p  id='p_email' class="alertp">Debes de escribir tu email.</p>
                     
-                    <input name="password" id="password" type="password" class="fill  <%= locals.errors && errors.lastName ? 'is-invalid' : null %>" placeholder="Contraseña" />
+                    <input name="password" id="password" type="password" class="fill  <%= locals.errors && errors.lastName ? 'is-invalid' : null %>" placeholder="Contraseña" required/>
                     <p  id='p_password' class="alertp">Debes de escribir una contraseña con 8 a 16 carácteres.</p>
                     
                     
@@ -61,6 +63,9 @@
                     <input type="submit" value="CREAR CUENTA" />
                 </div>
 
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                
+
                 <div class="container_51">
                     <a href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
                 </div>
@@ -69,6 +74,7 @@
             </form>
         </main>
         <script src="js/userValidation.js"></script>
+    
 
         <%- include('partials/footer') %>
 </body>

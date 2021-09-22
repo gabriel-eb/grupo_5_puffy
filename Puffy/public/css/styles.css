@@ -1570,3 +1570,22 @@ table.listado-productos tr > th:nth-child(3){
 	display: block;
 
 }
+
+.form__input_activo {
+    margin-left: 5px;
+    text-align: left;
+	display: block;
+    color:green;
+
+}
+
+.display_none{
+    display: none;
+}
+
+.alertp1 {
+    margin-left: 5px;
+    text-align: left;
+    color: red;
+    display: block;
+}
