@@ -35,10 +35,14 @@
 
                     <br/>
                     <label for="avatar" class="bold">Imagen de perfil:</label>
-                    <img src="<%= user.avatar %>" alt="" class="img-mod-profile">
+                    <img src="<%= user.avatar %>" alt="avatar" class="img-mod-profile">
                     <input type="file" name="avatar" id="avatar" class="fill" accept="image/png, image/jpeg, image/jpg" />
 
                 </div>
+
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+
+
                 <div class="alert">
                     <% if(locals.errors){%>
                         <%= errors.firstName ? errors.firstName.msg : "" %>

@@ -64,16 +64,10 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
-	console.log(e.target[0].value)
-	console.log(e.target[1].value)
-	console.log(e.target[2].value)
-	console.log(e.target[3].value)
-	console.log(e.target[4].value)
-	console.log(e.target[5].value)
 
 	if(document.querySelector(".is-invalid")){
 		console.log("error")
-document.getElementById('mensaje_incorrecto').classList.remove('display_none');
+		document.getElementById('mensaje_incorrecto').classList.remove('display_none');
 		document.getElementById('mensaje_incorrecto').classList.add('alertp1');
 		
 		

@@ -56,7 +56,7 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	if(document.querySelector(".is-invalid")){
-		console.log("error")
+		
 		document.getElementById('mensaje_incorrecto').classList.add('alertp1');
 		document.getElementById('mensaje_incorrecto').classList.remove('display_none');
 		

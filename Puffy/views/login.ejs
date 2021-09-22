@@ -13,10 +13,10 @@
             <h3>INICIA SESIÓN</h3>
             <form action="/login" method="post" id="formulario">
                 <div class="container_01">
-                    <input id= "email" type="email" class="fill" placeholder="Correo electrónico" name="email" <%= locals.errors && errors.email.previous ? `value=${errors.email.previous}` : ""%> required/>
+                    <input id= "email" type="email" class="fill" placeholder="Correo electrónico" name="email" <%= locals.errors && errors.email.previous ? `value=${errors.email.previous}` : ""%> />
                     <p  id='p_email' class="alertp">Debes de escribir tu email con el que te registraste.</p>
                     
-                    <input id="password" type="password" class="fill" placeholder="Contraseña" name="password"  required/>
+                    <input id="password" type="password" class="fill" placeholder="Contraseña" name="password" />
                     <p  id='p_password' class="alertp">Este campo no puede estar vacío.</p>
                     
                 </div>
