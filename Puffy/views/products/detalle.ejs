@@ -10,6 +10,7 @@
     <%- include('../partials/header') %>
 
         <main class="contenedor-producto">
+            <!--             
             <div class="info-pasteleria">
                 <div>
                     <img src="/images/pasteleria.png" alt="icono pasteleria" />
@@ -17,41 +18,40 @@
                 </div>
                 <h2>Linda Pasteleria</h2>
             </div>
+             -->
             <div class="platillo">
+                <h1 class="fuente-may">
+                    <%= productDetail.name %>
+                </h1>
                 <img src="<%= image.url %>" alt="imagen postre" />
-                
+                <% if(locals.userIsAdmin){ %>
+                    <div class="listado-productos">
+                        <a href="/productos/<%= productDetail.id %>/edit" class="editar">Editar</a>
+                        <a href="/productos/<%= productDetail.id %>/delete?_method=DELETE" class="delete">Eliminar</a>
+                    </div>
+                <% } else { %>
+                    <button class="btn-agregar-carrito" onclick="window.location.href='/carrito'">
+                        Agregar al carrito
+                    </button>
+                <% } %>
+
             </div>
             <div class="form-producto">
                 <section class="separacion producto">
                     <div class="info-producto">
                         <div class="nombre">
-                            <h1 class="fuente-may">
-                                <%= productDetail.name %>
-                            </h1>
                             <div class="datos">
                                 <div class="d-precio">
                                     <p class="p-precio bold">$
                                         <%= productDetail.price %> MXN
                                     </p>
-                                    <p class="gris">IVA INCLUIDO</p>
+                                    <!-- <p class="gris">IVA INCLUIDO</p> -->
                                 </div>
                             </div>
-                            <div class="tamanio">
-                                <label for="tam">Tamaño:</label>
-                                <select name="tam" id="tam" autocomplete="off" disabled>
-                                    <option value="chico" <%= productDetail.size===0 ? "selected" : "" %>>Chico</option>
-                                    <option value="mediano" <%= productDetail.size===1 ? "selected" : "" %>>Mediano
-                                    </option>
-                                    <option value="grande" <%= productDetail.size===2 ? "selected" : "" %>>Grande
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="tamanio">
-                                <label for="categorita">Categoría:</label>
-                                <select name="categorita" id="categorita" autocomplete="off" disabled>
-                                    <option><%= category %></option>
-                                </select>
-                            </div>
+                            <p>
+                                <b>Tamaño:</b> <%= productDetail.size===0 ? "Chico" : (productDetail.size===1 ? "Mediano" : "Grande") %>
+                                 | <b>Categoría:</b> <%= category.category.name %>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -79,7 +79,6 @@
                     <input class="btn-submit" type="submit" value="Enviar" />
                 </form>
             </section>
-            <hr />
         </main>
 
         <%- include('../partials/footer') %>
