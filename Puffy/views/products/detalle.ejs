@@ -39,10 +39,10 @@
                             <div class="tamanio">
                                 <label for="tam">Tamaño:</label>
                                 <select name="tam" id="tam" autocomplete="off" disabled>
-                                    <option value="chico" <%=productDetail.size===0 ? "selected" : "" %>>Chico</option>
-                                    <option value="mediano" <%=productDetail.size===1 ? "selected" : "" %>>Mediano
+                                    <option value="chico" <%= productDetail.size===0 ? "selected" : "" %>>Chico</option>
+                                    <option value="mediano" <%= productDetail.size===1 ? "selected" : "" %>>Mediano
                                     </option>
-                                    <option value="grande" <%=productDetail.size===2 ? "selected" : "" %>>Grande
+                                    <option value="grande" <%= productDetail.size===2 ? "selected" : "" %>>Grande
                                     </option>
                                 </select>
                             </div>
