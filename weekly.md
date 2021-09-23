@@ -50,3 +50,13 @@ Agregar imagenes al editar un producto y usar distintas tablas para alimentar la
 ## (16)[Sprint6] Lunes 06/09/2021
 Creación del pull request del sprint para entrega. Carga del sprint a Heroku y creación de DB en Heroku. Revisión y repartición de tareas para sprint 7.
 
+## (17)[Sprint7] Lunes 13/09/2021
+Revisión de avances en las validaciones de back y front: se completaron los formularios en la rúbrica y se anotó todo lo que faltaba para completar las validaciones como errores de lógica y estilos.
+
+## (18)[Sprint7] Lunes 20/09/2021
+Se revisaron errores en la validación del front-end con la función `preventDefault`, agregando la lógica para poder hacer `submit` solo cuando esté todo el formulario correctamente lleno.
+
+## (19)[Sprint7] Miércoles 22/09/2021
+Concluyendo con validaciones del front-end en los formularios de usuarios y direcciones. Repartimos trabajo extra como página de búsqueda, carrito y lista de productos para cambiar las vistas y/o lógica de estas rutas.
+
+## (20)[Sprint7] Lunes 27/09/2021

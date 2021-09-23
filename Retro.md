@@ -108,6 +108,6 @@
 - Dejar de hacer: dejar de hacer push cada que hago commit, esperar a terminar el trabajo del día para hacer push a varios commits y no usar la rama principal del sprint para hacer cambios grandes.
 
 ## Equipo
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: revisar todos los pendientes que tenemos en la aplicación como el carrito y la página de búsqueda.
+- Continuar haciendo: tener sesiones semanales para checar avances y dudas.
+- Dejar de hacer: entregar el sprint hasta la fecha límite.
