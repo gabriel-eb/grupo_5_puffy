@@ -18,9 +18,7 @@
                         <input type="text" id="nombre" name="name" class="add-mod-name <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.name : null %>" placeholder="''Pastel de Zanahoría''" required/>
                         <br />
                         <label for="descripcion" class="bold">Descripción:</label>
-                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''">
-                            <%=locals.oldData ? oldData.description : null %>
-                        </textarea>
+                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''"><%=locals.oldData ? oldData.description : null %></textarea>
                     </div>
                     <div class="add-mod-2">
                         <label for="imagen" class="bold">Imagen del producto:</label>

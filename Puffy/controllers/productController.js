@@ -138,12 +138,15 @@ const controller = {
                 const categoriesList = await Categories.findAll();
                 const categories = [];
                 categoriesList.map(cat => categories.push(cat.dataValues));
+                req.body.description = req.body.description.trim();
                 return res.status(401).render('products/agregar', {
                     errors: resultValidation.mapped(),
                     oldValues: req.body,
                     categories
                 });
             }
+
+            req.body.description = req.body.description.trim();
 
             const addedProduct = await Products.create(req.body);
 
