@@ -21,9 +21,8 @@
 
                         <br />
                         <label for="description" class="bold">Descripción:</label>
-                        <input class="add-mod-des" name="description" id="description" cols="30" rows="5" placeholder="''Pastel rico de zanahoría, con piña y nueces. ¡Muy esponjosito!''" value="<%=locals.oldData ? oldData.description : null %>">
-                            
-                    </input>
+                        <textarea class="add-mod-des" name="description" id="descripcion" cols="30"
+                            rows="5"><%= producto.description %></textarea>
                         <p  id='p_description' class="alertp">La descripción debe contener al menos 20 carácteres alfanúmericos.</p>
 
                     </div>

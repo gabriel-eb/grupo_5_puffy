@@ -59,30 +59,38 @@ const controller = {
     },
     detalle: async (req, res) => {
         try {
-            let productDetail = await Products.findOne({
-                where: {
-                    id: req.params.id
-                }
-            });
-            productDetail = { ...productDetail.currentValues }
+            const productDetail = await Products.findByPk(req.params.id);
             
-            let category = await ProductCat.findOne({
+            const category = await ProductCat.findOne({
                 where: {
                     productId: req.params.id
                 },
-                include: ['category']
+                include: [{
+                    model: Categories, 
+                    as: 'category',
+                    attributes: ['name']
+                }]
             });
-            category = JSON.stringify(category);
-            category = JSON.parse(category);
-            category = category.category.name;
             
             const image = await Images.findOne({
                 where: {
-                    productId: req.params.id
+                    productId: req.params.id,
+                    main: true
                 }
             });
+            
+            if (req.session.userId){
+                const user = await db.User.findByPk(req.session.userId);
+                const userIsAdmin = user.admin;
+                return res.status(200).render("products/detalle", {
+                    productDetail,
+                    category,
+                    image,
+                    userIsAdmin
+                });
+            }
 
-            res.status(200).render("products/detalle", { productDetail, category, image });
+            return res.status(200).render("products/detalle", { productDetail, category, image });
 
         } catch (error) {
             console.log(error);
@@ -130,12 +138,15 @@ const controller = {
                 const categoriesList = await Categories.findAll();
                 const categories = [];
                 categoriesList.map(cat => categories.push(cat.dataValues));
+                req.body.description = req.body.description.trim();
                 return res.status(401).render('products/agregar', {
                     errors: resultValidation.mapped(),
                     oldValues: req.body,
                     categories
                 });
             }
+
+            req.body.description = req.body.description.trim();
 
             const addedProduct = await Products.create(req.body);
 

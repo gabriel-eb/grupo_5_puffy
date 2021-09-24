@@ -54,69 +54,39 @@
             <section class="desctacados">
                 <div class="postres">
                     <article class="postre-del-dia">
-                        <h3>Postre del día</h3>
-                        <img src="/images/chocoflan.jpg" alt="Postre del dia" />
-                        <div class="mensaje">
-                            <h4>Chocoflan</h4>
-                            <p>$99.99 <span class="small">mxn</span></p>
-                        </div>
+                        <a href="/products/<%= highlight.id %>">
+                            <h3>Postre del día</h3>
+                            <figure>
+                                <img src="<%= highlight.image %>" alt="Postre del dia" />
+                            </figure>
+                            <div class="mensaje">
+                                <h4><%= highlight.name %></h4>
+                                <p>$<%= highlight.price.toFixed(2) %> <span class="small">mxn</span></p>
+                            </div>
+                        </a>
                     </article>
                 </div>
                 <div class="nuevos-postres">
-                    <article class="product-box">
-                        <a href="/products/detail/¿?">
-                            <figure class="product-box_image">
-                                <img src="/images/chocoflan.jpg" alt="Postre1">
-                            </figure>
-                            <div class="product-box_data">
-                                <h3>Tres leches</h3>
-                                <p>$99.99</p>
-                                <span>0 % OFF</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="product-box">
-                        <a href="/products/detail/¿?">
-                            <figure class="product-box_image">
-                                <img src="/images/chocoflan.jpg" alt="Postre1">
-                            </figure>
-                            <div class="product-box_data">
-                                <h3>Tres leches</h3>
-                                <p>$99.99</p>
-                                <span>0 % OFF</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="product-box">
-                        <a href="/products/detail/¿?">
-                            <figure class="product-box_image">
-                                <img src="/images/chocoflan.jpg" alt="Postre1">
-                            </figure>
-                            <div class="product-box_data">
-                                <h3>Tres leches</h3>
-                                <p>$99.99</p>
-                                <span>0 % OFF</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="product-box">
-                        <a href="/products/detail/¿?">
-                            <figure class="product-box_image">
-                                <img src="/images/chocoflan.jpg" alt="Postre1">
-                            </figure>
-                            <div class="product-box_data">
-                                <h3>Tres leches</h3>
-                                <p>$99.99</p>
-                                <span>0 % OFF</span>
-                            </div>
-                        </a>
-                    </article>
+                    <% recentProducts.map((recent)=> { %>
+                        <article class="product-box">
+                            <a href="/products/<%= recent.id %>">
+                                <figure class="product-box_image">
+                                    <img src="<%= recent.image %>" alt="<%= recent.name %>">
+                                </figure>
+                                <div class="product-box_data">
+                                    <h3><%= recent.name %></h3>
+                                    <p>$<%= recent.price.toFixed(2) %> mxn</p>
+                                    <span><%= recent.discount ? `- ${recent.discount}%` : "" %></span>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
                 </div>
             </section>
             <div class="coleccion-repostero">
                 <section class="colecciones">
                     <h3>Colecciones</h3>
-                    <a href="#">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Normal")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c1">
                                 <img src="/images/normal.svg" alt="Normal" />
@@ -124,7 +94,7 @@
                             <p>Normal</p>
                         </article>
                     </a>
-                    <a href="#">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Keto")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c2">
                                 <img src="/images/keto.svg" alt="Keto" />
@@ -132,7 +102,7 @@
                             <p>Keto</p>
                         </article>
                     </a>
-                    <a href="#">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Light")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c3">
                                 <img src="/images/light.svg" alt="Light" />
@@ -140,7 +110,7 @@
                             <p>Light</p>
                         </article>
                     </a>
-                    <a href="#">
+                    <a href="/search?cat=<%=categories.filter(cat => cat.name==="Vegano")[0].id%>">
                         <article>
                             <div class="circulo-coleccion c4">
                                 <img src="/images/vegano.svg" alt="Vegano" />
@@ -153,24 +123,23 @@
                     <h3>Reposteros</h3>
                     <div class="scroll">
                         <article>
-                            <img src="/images/marisa_logo.svg" alt="" />
+                            <img src="/images/reposteros/marisa_logo.svg" alt="" />
                         </article>
                         <article>
-                            <img src="/images/marisa_logo.svg" alt="" />
+                            <img src="/images/reposteros/maiper.png" alt="" />
                         </article>
                         <article>
-                            <img src="/images/marisa_logo.svg" alt="" />
+                            <img src="/images/reposteros/montparnasse.png" alt="" />
                         </article>
                         <article>
-                            <img src="/images/marisa_logo.svg" alt="" />
+                            <img src="/images/reposteros/pastefam.png" alt="" />
                         </article>
                         <article>
-                            <img src="/images/marisa_logo.svg" alt="" />
+                            <img src="/images/reposteros/linda.png" alt="" />
                         </article>
                     </div>
                 </section>
             </div>
-            <hr />
         </main>
 
         <%- include('partials/footer') %>
