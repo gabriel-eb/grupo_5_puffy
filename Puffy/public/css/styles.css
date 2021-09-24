@@ -1447,7 +1447,7 @@ main.carrito .total input {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 td {
@@ -1494,6 +1494,11 @@ main.contenedor-listado {
     .nombre-imagen {
         display: none;
     }
+    main.contenedor-listado {
+        margin-top: 11rem;
+        margin-bottom: 2rem;    
+    }
+
 }
 
 .desaparecer {
