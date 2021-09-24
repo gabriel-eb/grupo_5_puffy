@@ -36,12 +36,14 @@
         </ul>
     </nav>
     <div class="bot-bar">
-        <form action="/search" method="get" class="busqueda">
-            <input type="text" id="buscar" name="q" placeholder="Hoy se me antoja..." class="txt-busqueda" />
-            <button type="submit" class="btn-busqueda">
-                <i class="fas fa-search ic-busqueda"></i>
-            </button>
-        </form>
+        <% if(!locals.searchRoute) { %>
+            <form action="/search" method="get" class="busqueda">
+                <input type="text" id="buscar" name="q" placeholder="Hoy se me antoja..." class="txt-busqueda" />
+                <button type="submit" class="btn-busqueda">
+                    <i class="fas fa-search ic-busqueda"></i>
+                </button>
+            </form>
+        <% } %>
     </div>
     <hr />
 </header>

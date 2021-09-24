@@ -54,7 +54,7 @@
             <section class="desctacados">
                 <div class="postres">
                     <article class="postre-del-dia">
-                        <a href="/products/<%= highlight.id %>">
+                        <a href="/productos/<%= highlight.id %>">
                             <h3>Postre del día</h3>
                             <figure>
                                 <img src="<%= highlight.image %>" alt="Postre del dia" />
@@ -69,7 +69,7 @@
                 <div class="nuevos-postres">
                     <% recentProducts.map((recent)=> { %>
                         <article class="product-box">
-                            <a href="/products/<%= recent.id %>">
+                            <a href="/productos/<%= recent.id %>">
                                 <figure class="product-box_image">
                                     <img src="<%= recent.image %>" alt="<%= recent.name %>">
                                 </figure>

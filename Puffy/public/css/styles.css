@@ -134,8 +134,8 @@ input[type="checkbox"]:checked + .submenu {
     text-align: center;
     letter-spacing: 0.1rem;
 }
-/* Barra de busqueda */
 
+/* Barra de busqueda */
 .bot-bar {
     margin-top: 16px;
 }
@@ -148,8 +148,18 @@ input[type="checkbox"]:checked + .submenu {
     padding-left: 0.5rem;
     padding-top: 7px;
 }
-/* Fix para firefox */
 
+.categoria-busqueda {
+    margin: 1rem 0;
+    height: 40px;
+    margin-left: 3%;
+    width: calc(90% + 14px);
+    border: #f25287 solid 1px;
+    padding-left: 0.5rem;
+    padding-top: 7px;
+}
+
+/* Fix para firefox */
 @-moz-document url-prefix() {
     .txt-busqueda {
         padding-top: 6px;
@@ -426,7 +436,11 @@ body > hr {
 .product-box_image {
     border-bottom: 1px solid #ddd;
     max-height: 160px;
-    overflow: hidden;
+}
+
+.product-box_image img {
+    max-height: 150px;
+    object-fit: cover
 }
 
 .product-box_data {
@@ -556,6 +570,23 @@ body > hr {
     right: 0;
     margin: auto;
 }
+
+.search-page > h2{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.search-page > h3{
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+
+.search-page > p{
+    padding-left: 2.5rem;
+}
+
+
+
 /* Media query Desktop */
 /* @media (min-width: 560px) { */
 
@@ -607,6 +638,10 @@ body > hr {
         right: 25%;
         width: 50%;
     }
+    .categoria-busqueda{
+        width: 25%;
+    }
+
     /* Slider Desktop */
     #slides .inner {
         height: 480px;

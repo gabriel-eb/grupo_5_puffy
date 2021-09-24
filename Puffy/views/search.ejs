@@ -7,16 +7,18 @@
 </head>
 
 <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', { searchRoute: true }) %>
 
-        <main>
+        <main class="search-page">
+            <h2>Búsqueda</h2>
             <form action="/search" method="get" class="busqueda">
                 <input type="text" id="buscar" name="q" placeholder="Buscar" class="txt-busqueda" />
                 <button type="submit" class="btn-busqueda">
                     <i class="fas fa-search ic-busqueda"></i>
                 </button>
-                <select name="cat" id="cat">
-                    <option value=""></option>
+                <br />
+                <select name="cat" id="cat" class="categoria-busqueda" autocomplete="off">
+                    <option value=""  disabled selected hidden>Categorias</option>
                     <% categories.map(category => { %>
                         <option value="<%= category.id %>">
                             <%= category.name %>
@@ -25,16 +27,18 @@
                 </select>
             </form>
 
-            <h2>Resultado(s): </h2>
+            <h3>Resultado(s): </h3>
 
+            
             <%if(!locals.searchResult){%>
-                <h3>No se encontró ninguna coincidencia.</h3>
-                <p>Te recomendamos el postre del día: </p>
+                <p>No se encontró ninguna coincidencia. <br /> Te recomendamos el postre del día: </p>
                 <div class="postres" style="margin-top: 0.5rem;">
                     <article class="postre-del-dia">
-                        <a href="/products/<%= highlight.id %>">
+                        <a href="/productos/<%= highlight.id %>">
                             <h3>Postre del día</h3>
-                            <img src="<%= highlight.image %>" alt="Postre del dia" />
+                            <figure>
+                                <img src="<%= highlight.image %>" alt="Postre del dia" />
+                            </figure>
                             <div class="mensaje">
                                 <h4>
                                     <%= highlight.name %>
@@ -47,20 +51,24 @@
             <% } else { %>
                 <p>Se encontraron <%= searchResult.length %> postre(s).</p>
                 <h3><%= locals.categoryName ? `Colección ${categoryName}` : null %></h3>
-                <% searchResult.map(result => { %>
-                    <article class="product-box">
-                        <a href="/products/detail/<%= result.id %>">
-                            <figure class="product-box_image">
-                                <img src="<%= result.image %>" alt="Postre1">
-                            </figure>
-                            <div class="product-box_data">
-                                <h3><%= result.name %></h3>
-                                <p>$<%= parseFloat(result.price).toFixed(2) %> mxn</p>
-                                <span><%= result.discount * 10 %> %</span>
-                            </div>
-                        </a>
-                    </article>
-                <% }) %>
+                <div class="nuevos-postres">
+                    <% searchResult.map(result => { %>
+                        <article class="product-box">
+                            <a href="/productos/detail/<%= result.id %>">
+                                <figure class="product-box_image">
+                                    <img src="<%= result.image %>" alt="Postre1">
+                                </figure>
+                                <div class="product-box_data">
+                                    <h3><%= result.name %></h3>
+                                    <p>$<%= parseFloat(result.price).toFixed(2) %> mxn</p>
+                                    <% if(result.discount){ %>
+                                        <span><%= result.discount  * 10 %> %</span>
+                                    <% } %>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
+                </div>
             <% } %>
         </main>
 
