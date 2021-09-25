@@ -585,6 +585,30 @@ body > hr {
     padding-left: 2.5rem;
 }
 
+.btn-add-address{
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.address-card-area{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.address-card{
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: rgb(250, 250, 250);
+    border: solid 1px #ddd;
+    border-radius: 0.5rem;
+    width: 90%
+}
+
+.address-card .btn-perfil{
+    height: 3rem;
+    margin-top: 0;
+}
 
 
 /* Media query Desktop */
@@ -755,6 +779,22 @@ body > hr {
         width: 136px;
         height: 176px;
     }
+
+    .body-perfil{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .address-card-area{
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .address-card{
+        margin: 1rem;
+    }
+
 }
 /* *{
     box-sizing: border-box; 
@@ -1573,10 +1613,12 @@ main.contenedor-listado {
 }
 
 .btn-perfil {
+    height: 20vh;
     margin-top: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .btn {

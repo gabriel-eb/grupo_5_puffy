@@ -10,7 +10,18 @@ const controller = {
         try {
             const productsList = await Products.findAll();
             const Img = await Images.findAll();
-            res.status(200).render("products/index", { productsList, Img });
+
+            if (req.session.userId) {
+                const user = await db.User.findByPk(req.session.userId);
+                const userIsAdmin = user.admin;
+                return res.status(200).render("products/index", {
+                    productsList,
+                    Img,
+                    userIsAdmin
+                });
+            }
+
+            return res.status(200).render("products/index", { productsList, Img });
 
         } catch (error) {
             console.log(error);

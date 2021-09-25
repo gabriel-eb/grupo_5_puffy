@@ -14,7 +14,9 @@
             <h2>Productos</h2>
             <br />
 
+            <% if(sessionId && locals.userIsAdmin){ %>
             <a href="/productos/agregar" class="boton btn-agregar">Agregar</a>
+            <% } %>
 
             <div class="nuevos-postres">
                 <% productsList.map((product)=> { %>
