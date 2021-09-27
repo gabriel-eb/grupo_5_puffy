@@ -81,9 +81,6 @@ const controller = {
             return res.status(500).render("error");
         }
     },
-    carrito: (req, res) => {
-        res.status(200).render("carrito");
-    },
     login: (req, res) => {
         res.status(200).render("login");
     },

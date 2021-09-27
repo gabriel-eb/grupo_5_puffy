@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
+const rutaCarts = require("./routes/cartsRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
+app.use("/cart", rutaCarts);
 
 // API Prueba
 // const rutaPrueba =  require('./apiPruebas/routesPrueba');

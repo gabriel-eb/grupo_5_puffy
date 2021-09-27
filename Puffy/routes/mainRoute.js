@@ -9,8 +9,6 @@ const gcpAvatar = require("../middlewares/gcpAvatarMiddleware");
 
 // Pagina de inicio
 router.get("/", controller.index);
-// Mostrar carrito
-router.get("/carrito", controller.carrito);
 // Formulario de login
 router.get("/login", loggedIn, controller.login);
 // Formulario de signup
