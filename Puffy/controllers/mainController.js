@@ -77,7 +77,7 @@ const controller = {
                 categories
             });
         } catch (error) {
-            console.log(error)
+            console.log('Cannot read DB.', error)
             return res.status(500).render("error");
         }
     },

@@ -32,6 +32,7 @@
 .submenu {
     list-style-type: none;
     display: none;
+    z-index: 2;
 }
 
 .btn-menu-principal {
