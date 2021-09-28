@@ -1,30 +1,3 @@
-# NodeJS specific #
-.nyc_output/
-coverage/
-node_modules/
-npm-debug.log
-package-lock.json
-test/*.log
-
-# Optional npm cache directory
-.npm
-.env
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Output of 'npm pack'
-*.tgz
-
-
-# REACT .gitignore
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
