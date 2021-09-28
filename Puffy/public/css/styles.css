@@ -1302,9 +1302,10 @@ main.carrito h1 {
     display: grid;
     row-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
-    border: solid 3px var(--gris_bajo);
+    border: solid 3px palevioletred;
     padding: 5%;
     margin-bottom: 2rem;
+    border-radius: 15px;
 }
 
 .lista-productos .postre h2,
@@ -1684,4 +1685,9 @@ main.contenedor-listado {
     text-align: left;
     color: red;
     display: block;
+}
+
+.wwr {
+    width: 20%;
+    margin: 0 20px;
 }

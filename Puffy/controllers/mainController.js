@@ -87,6 +87,9 @@ const controller = {
     signup: (req, res) => {
         res.status(200).render("signup");
     },
+    wwr: (req, res) => {
+        res.status(200).render("wwr");
+    },
     profile: (req, res) => {
 
     },

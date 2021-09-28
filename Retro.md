@@ -98,9 +98,9 @@
 
 # Sprint 6 - Retroalimentación
 ## Montserrat
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: Organizar más mis tiempos para avanzar en el proyecto.
+- Continuar haciendo: No dedicar tanto tiempo a los errores que me van saliendo.
+- Dejar de hacer: Realizar mis avances del proyecto con faltantes.
 
 ## Gabriel
 - Comenzar a hacer: cuidar los commits y el css de las vistas que tenga asignadas.
