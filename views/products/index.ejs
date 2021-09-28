@@ -11,40 +11,33 @@
 
         <main class="contenedor-listado">
 
+            <h2>Productos</h2>
+            <br />
+
+            <% if(sessionId && locals.userIsAdmin){ %>
             <a href="/productos/agregar" class="boton btn-agregar">Agregar</a>
+            <% } %>
 
-            <table class="listado-productos">
-                <thead>
-                    <th>Imagen</th>
-                    <th class="desaparecer">Producto</th>
-                    <th class="desaparecer">Precio</th>
-                    <th>Opciones</th>
-                </thead>
-                <tbody>
-                    <% for(let producto of productsList){ %>
-                        <tr>
-
-                            <td> <img src="<%= Img.filter(image => image.productId==producto.id)[0].url%>" alt=""><span
-                                    class="nombre-imagen">
-                                    <%= producto.nombre %>
-                                </span></td>
-
-                            <td class="desaparecer">
-                                <%= producto.name %>
-                            </td>
-                            <td class="desaparecer">$
-                                <%= producto.price %>
-                            </td>
-                            <td class="opciones">
-                                <a href="/productos/<%= producto.id %>" class="mostrar">Mostrar</a>
-                                <a href="/productos/modificar/<%= producto.id %>" class="editar">Editar</a>
-                                <a href="/productos/delete/<%= producto.id %>?_method=DELETE"
-                                    class="delete">Eliminar</a>
-                            </td>
-                        </tr>
-                        <% } %>
-                </tbody>
-            </table>
+            <div class="nuevos-postres">
+                <% productsList.map((product)=> { %>
+                    <article class="product-box">
+                        <a href="/productos/<%= product.id %>">
+                            <figure class="product-box_image">
+                                <img src="<%= Img.filter(image => image.productId==product.id)[0].url%>" alt="<%= product.name %>">
+                            </figure>
+                            <div class="product-box_data">
+                                <h3>
+                                    <%= product.name %>
+                                </h3>
+                                <p>$<%= product.price.toFixed(2) %> mxn</p>
+                                <span>
+                                    <%= product.discount ? `- ${product.discount}%` : "" %>
+                                </span>
+                            </div>
+                        </a>
+                    </article>
+                    <% }) %>
+            </div>
         </main>
 
         <%- include('../partials/footer') %>

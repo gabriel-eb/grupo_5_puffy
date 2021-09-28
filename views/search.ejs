@@ -7,29 +7,68 @@
 </head>
 
 <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', { searchRoute: true }) %>
 
-        <main>
+        <main class="search-page">
+            <h2>Búsqueda</h2>
             <form action="/search" method="get" class="busqueda">
-                <input type="text" id="buscar" name="buscar" placeholder="Buscar" class="txt-busqueda" />
+                <input type="text" id="buscar" name="q" placeholder="Buscar" class="txt-busqueda" />
                 <button type="submit" class="btn-busqueda">
                     <i class="fas fa-search ic-busqueda"></i>
                 </button>
+                <br />
+                <select name="cat" id="cat" class="categoria-busqueda" autocomplete="off">
+                    <option value=""  disabled selected hidden>Categorias</option>
+                    <% categories.map(category => { %>
+                        <option value="<%= category.id %>">
+                            <%= category.name %>
+                        </option>
+                    <% }) %>
+                </select>
             </form>
 
-            <% for(let resultado in resultados) { %>
-                <article class="product-box">
-                    <a href="/products/detail/¿?">
-                        <figure class="product-box_image">
-                            <img src="/images/chocoflan.jpg" alt="Postre1">
-                        </figure>
-                        <div class="product-box_data">
-                            <h3><%= resultado.name %></h3>
-                            <p><%= resultado.price %></p>
-                            <span><%= resultado.discount * 10 %> %</span>
-                        </div>
-                    </a>
-                </article>
+            <h3>Resultado(s): </h3>
+
+            
+            <%if(!locals.searchResult){%>
+                <p>No se encontró ninguna coincidencia. <br /> Te recomendamos el postre del día: </p>
+                <div class="postres" style="margin-top: 0.5rem;">
+                    <article class="postre-del-dia">
+                        <a href="/productos/<%= highlight.id %>">
+                            <h3>Postre del día</h3>
+                            <figure>
+                                <img src="<%= highlight.image %>" alt="Postre del dia" />
+                            </figure>
+                            <div class="mensaje">
+                                <h4>
+                                    <%= highlight.name %>
+                                </h4>
+                                <p>$<%= highlight.price.toFixed(2) %> <span class="small">mxn</span></p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            <% } else { %>
+                <p>Se encontraron <%= searchResult.length %> postre(s).</p>
+                <h3><%= locals.categoryName ? `Colección ${categoryName}` : null %></h3>
+                <div class="nuevos-postres">
+                    <% searchResult.map(result => { %>
+                        <article class="product-box">
+                            <a href="/productos/detail/<%= result.id %>">
+                                <figure class="product-box_image">
+                                    <img src="<%= result.image %>" alt="Postre1">
+                                </figure>
+                                <div class="product-box_data">
+                                    <h3><%= result.name %></h3>
+                                    <p>$<%= parseFloat(result.price).toFixed(2) %> mxn</p>
+                                    <% if(result.discount){ %>
+                                        <span><%= result.discount  * 10 %> %</span>
+                                    <% } %>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
+                </div>
             <% } %>
         </main>
 

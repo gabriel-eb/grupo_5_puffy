@@ -1,5 +1,6 @@
 const db = require('../database/models');
 const Addresses = db.Address;
+const { validationResult } = require('express-validator');
 const estados = [
     'Aguascalientes', 'Baja California', 'Baja California Sur',
     'Campeche', 'Coahuila de Zaragoza', 'Colima', 'Chiapas',
@@ -31,6 +32,15 @@ module.exports = {
         return res.status(200).render("users/addresses/addAddress", { estados });
     },
     agregarDir: async (req, res) => {
+        const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            return res.status(401).render('users/addresses/addAddress', {
+                errors: resultValidation.mapped(),
+                estados,
+                oldData: req.body
+            });
+        }
+
         try {
             req.body.userId = req.params.id;
             await Addresses.create(req.body);
@@ -52,6 +62,16 @@ module.exports = {
     },
     modificarDir: async (req, res) => {
         try {
+            const resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                const address = await Addresses.findByPk(req.params.idAddress);
+                return res.status(401).render('users/addresses/editAddress', {
+                    errors: resultValidation.mapped(),
+                    estados,
+                    address: address.dataValues
+                });
+            }
+
             await Addresses.update(req.body, {
                 where: {
                     id: req.params.idAddress

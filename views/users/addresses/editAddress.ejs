@@ -12,38 +12,61 @@
 
         <main class="form">
             <h3>Agregar dirección</h3>
-            <form action="/users/<%= sessionId %>/addresses/<%= address.id %>?_method=PUT" method="post">
+            <form action="/users/<%= sessionId %>/addresses/<%= address.id %>?_method=PUT" method="post" id="formulario">
                 <div class="container_01">
                     <label for="line1"> Dirección</label>
-                    <input name="line1" type="text" class="fill" placeholder="Parte 1" value="<%= address.line1 %>" required/>
-                    <input name="line2" type="text" class="fill" placeholder="Parte 2" value="<%= address.line2 %>" />
+                    <input id="line1" name="line1" type="text" placeholder="Parte 1" value="<%= address.line1 %>" class="fill <%= locals.errors && errors.line1 ? 'is-invalid' : null %>" required/>
+                    <p  id='p_line1' class="alertp">Debes de escribir tu dirección. Sólo se permiten carácteres alfanuméricos.</p>
+                    
+                    <input id="line2" name="line2" type="text" class="fill" placeholder="Parte 2" value="<%= address.line2 %>" />
+                    <p  id='p_line2' class="alertp">Sólo se permiten carácteres alfanuméricos.</p>
+                    
                     <label for="zip">C.P.</label>
-                    <input name="zip" type="number" class="fill" maxlength="5" value="<%= address.zip %>" required/>
+                    <input id="zip" name="zip" type="number" maxlength="5" value="<%= address.zip %>" class="fill <%= locals.errors && errors.zip ? 'is-invalid' : null %>" required/>
+                    <p  id='p_zip' class="alertp">Escribe tu código postal.</p>
+                    
+                    
                     <br />
-                    <label for="city">Ciudad/Delegación</label>
-                    <input name="city" type="text" class="fill" placeholder="Ciudad / Delegación" value="<%= address.city %>" required/>
+                    <label for="city">Municipio/Delegación</label>
+                    <input id="city" name="city" type="text" placeholder="Municipio / Delegación" value="<%= address.city %>" class="fill <%= locals.errors && errors.city ? 'is-invalid' : null %>" required/>
+                    <p  id='p_city' class="alertp">Debes de escribir tu ciudad. Sólo se permiten carácteres alfanuméricos.</p>
+                    
                     <label for="state">Estado</label>
-                    <select name="state" id="state" autocomplete="off" required>
+                    <select name="state" id="state" autocomplete="off" class="fill <%= locals.errors && errors.state ? 'is-invalid' : null %>" required>
                         <option></option>
                         <% estados.map(estado => { %>
                             <option value="<%= estado %>" <%= address.state===estado ? "selected" : "" %>><%= estado %></option>
                         <% }) %>
                     </select>
                     <label for="country">País</label>
-                    <select name="country" id="country">
+                    <select name="country" id="country" class="fill">
                         <option value="Mexico" selected>México</option>
                     </select>
 
                 </div>
 
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+
+                <div class="alert">
+                    <% if(locals.errors){%>
+                        <%= errors.line1 ? errors.line1.msg : "" %>
+                        <br />
+                        <%= errors.zip ? errors.zip.msg : "" %>
+                        <br />
+                        <%= errors.city ? errors.city.msg : "" %>
+                        <br />
+                        <%= errors.state ? errors.state.msg : "" %>
+                        <br />
+                        <br />
+                    <% } %>
+                </div>
+
                 <div class="button_01">
                     <input type="submit" value="ACTUALIZAR" />
                 </div>
-
-
             </form>
         </main>
-
+        <script src="../../../js/addressValidation.js"></script>
         <%- include('../../partials/footer') %>
 </body>
 

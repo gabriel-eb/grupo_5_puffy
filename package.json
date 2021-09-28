@@ -8,11 +8,6 @@
         "dev": "nodemon app",
         "start": "node app.js"
     },
-    "nodemonConfig": {
-        "ignore": [
-            "DB/*"
-        ]
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/gabriel-eb/grupo_5_puffy.git"

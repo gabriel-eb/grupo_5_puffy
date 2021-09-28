@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
+const rutaCarts = require("./routes/cartsRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
@@ -57,7 +58,26 @@ app.use((req, res, next) => {
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
+app.use("/cart", rutaCarts);
 
+// Serve static assets if in production
+// Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
+// if (process.env.NODE_ENV === 'production') {
+//     // Set static folder
+//     app.use(express.static('dashboard/build'));
+
+//     app.get('/dashboard', (req, res) => {
+//         res.sendFile(path.resolve(__dirname, 'dashboard', 'build', 'index.html'));
+//     });
+// }
+
+<<<<<<< HEAD:app.js
+=======
+// API Prueba
+// const rutaPrueba =  require('./apiPruebas/routesPrueba');
+// app.use('/api',rutaPrueba);
+
+>>>>>>> sprint7:Puffy/app.js
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");
 });
