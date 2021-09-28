@@ -71,13 +71,6 @@ app.use("/cart", rutaCarts);
 //     });
 // }
 
-<<<<<<< HEAD:app.js
-=======
-// API Prueba
-// const rutaPrueba =  require('./apiPruebas/routesPrueba');
-// app.use('/api',rutaPrueba);
-
->>>>>>> sprint7:Puffy/app.js
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");
 });
