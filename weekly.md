@@ -1,5 +1,4 @@
 # Weekly standups
-### Se realizan los miércoles y domingos.
 **Instrucciones:** Un resumen de las tareas completadas, los impedimentos encontrados y las soluciones propuestas indicando los integrantes.
 
 ## (1)[Sprint3] Domingo 20/06/2021
@@ -61,3 +60,5 @@ Concluyendo con validaciones del front-end en los formularios de usuarios y dire
 
 ## (20)[Sprint7] Lunes 27/09/2021
 Agregamos funcionalidad al carrito de compras. Se realizó el merge final para el Sprint 7 y se repartieron tareas para el Sprint 8 (final).
+
+## (21)[Sprint8] Jueve 30/09/2021
