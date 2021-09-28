@@ -23,6 +23,8 @@ router.post("/login", controller.processLogin);
 router.get("/logout", notLogged, controller.processLogout);
 // Busqueda
 router.get("/search", controller.searchProducts);
+// Quienes somos
+router.get("/wwr", controller.wwr);
 
 
 module.exports = router
