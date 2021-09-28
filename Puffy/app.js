@@ -60,6 +60,17 @@ app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 
+// Serve static assets if in production
+// Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
+// if (process.env.NODE_ENV === 'production') {
+//     // Set static folder
+//     app.use(express.static('dashboard/build'));
+
+//     app.get('/dashboard', (req, res) => {
+//         res.sendFile(path.resolve(__dirname, 'dashboard', 'build', 'index.html'));
+//     });
+// }
+
 // API Prueba
 // const rutaPrueba =  require('./apiPruebas/routesPrueba');
 // app.use('/api',rutaPrueba);

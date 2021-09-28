@@ -43,6 +43,7 @@ const controller = {
                 }
 
                 const createdCart = await Cart.create(newCart);
+                
                 await ProdCart.create({
                     productId: req.body.productId,
                     cartId: createdCart.id

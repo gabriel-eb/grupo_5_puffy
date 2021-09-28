@@ -60,3 +60,4 @@ Se revisaron errores en la validación del front-end con la función `preventDef
 Concluyendo con validaciones del front-end en los formularios de usuarios y direcciones. Repartimos trabajo extra como página de búsqueda, carrito y lista de productos para cambiar las vistas y/o lógica de estas rutas.
 
 ## (20)[Sprint7] Lunes 27/09/2021
+Agregamos funcionalidad al carrito de compras. Se realizó el merge final para el Sprint 7 y se repartieron tareas para el Sprint 8 (final).

@@ -7,11 +7,6 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon app"
     },
-    "nodemonConfig": {
-        "ignore": [
-            "DB/*"
-        ]
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/gabriel-eb/grupo_5_puffy.git"
