@@ -12,6 +12,7 @@ const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
 const rutaCarts = require("./routes/cartsRoute");
+const rutaApi = require("./routes/apiRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
@@ -59,6 +60,7 @@ app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
+app.use("/api", rutaApi);
 
 // Serve static assets if in production
 // Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
