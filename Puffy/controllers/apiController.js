@@ -37,6 +37,7 @@ module.exports = {
                     mobile: user.mobile,
                     email: user.email,
                     lastLogin: user.lastLogin,
+                    createdAt: user.createdAt,
                     url: user.avatar
                 }
             );
@@ -67,6 +68,7 @@ module.exports = {
                     name: product.name,
                     description: product.description,
                     categories: product.product_category.map(cat => cat.category.name),
+                    createdAt: product.createdAt,
                     detail: `/dashboard/products/${product.id}`
                 })
             })
