@@ -28,23 +28,23 @@ lerna-debug.log*
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/dashboard/node_modules
-/dashboard/.pnp
-/dashboard/.pnp.js
+Puffy/dashboard/node_modules
+Puffy/dashboard/.pnp
+Puffy/dashboard/.pnp.js
 
 # testing
-/dashboard/coverage
+Puffy/dashboard/coverage
 
 # production
-/dashboard/build
+Puffy/dashboard/build
 
 # misc
-/dashboard/.DS_Store
-/dashboard/.env.local
-/dashboard/.env.development.local
-/dashboard/.env.test.local
-/dashboard/.env.production.local
+Puffy/dashboard/.DS_Store
+Puffy/dashboard/.env.local
+Puffy/dashboard/.env.development.local
+Puffy/dashboard/.env.test.local
+Puffy/dashboard/.env.production.local
 
-/dashboard/npm-debug.log*
-/dashboard/yarn-debug.log*
-/dashboard/yarn-error.log*
+Puffy/dashboard/npm-debug.log*
+Puffy/dashboard/yarn-debug.log*
+Puffy/dashboard/yarn-error.log*
