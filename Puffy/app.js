@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 
+
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");

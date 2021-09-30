@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const usersApi = require("../api/usersApi")
-const productsApi = require("../api/productsApi")
+const controller = require("../controllers/apiController");
 
-router.use('/users', usersApi);
-router.use('/products', productsApi);
+router.get('/users', controller.getAllUsers);
+router.get('/users/:id', controller.getUser);
+
+router.get('/products', controller.getAllProducts);
+router.get('/products/:id', controller.getProduct);
 
 module.exports = router;
