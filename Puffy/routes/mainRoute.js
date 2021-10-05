@@ -9,8 +9,6 @@ const gcpAvatar = require("../middlewares/gcpAvatarMiddleware");
 
 // Pagina de inicio
 router.get("/", controller.index);
-// Mostrar carrito
-router.get("/carrito", controller.carrito);
 // Formulario de login
 router.get("/login", loggedIn, controller.login);
 // Formulario de signup
@@ -21,6 +19,10 @@ router.post("/signup", uploadFile.single('avatar'), gcpAvatar, validations, cont
 router.post("/login", controller.processLogin);
 // Procesar logout
 router.get("/logout", notLogged, controller.processLogout);
+// Busqueda
+router.get("/search", controller.searchProducts);
+// Quienes somos
+router.get("/wwr", controller.wwr);
 
 
 module.exports = router

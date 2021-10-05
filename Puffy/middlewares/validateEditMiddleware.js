@@ -1,10 +1,12 @@
-const {body}=require('express-validator')
+const { check }=require('express-validator')
 
-const validations1=[
-    body('first_name').notEmpty().withMessage('Debes de escribir tu nombre'),
-    body('last_name').notEmpty().withMessage('Debes de escribir tu apellido'),
-    body('email').isEmail().withMessage('Debes de escribir tu email'),
-    body('category').notEmpty().withMessage('Elige tu tipo de usuario'),
+module.exports = [
+    check('firstName').isLength({ min: 2 })
+        .withMessage('Debes de escribir tu nombre con más de 1 carácter.'),
+    check('lastName').isLength({ min: 2 })
+        .withMessage('Debes de escribir tu apellido con más de 1 carácter.'),
+    check('mobile').isNumeric().isLength({ min: 10 })
+        .withMessage('El número de móvil debe tener 10 dígitos.'),
+    check('email').isEmail().isLength({ min: 5 })
+        .withMessage('Debes de escribir tu email.')
 ]
-
-module.exports=validations1;

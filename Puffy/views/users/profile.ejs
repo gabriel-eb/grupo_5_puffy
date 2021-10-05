@@ -5,7 +5,7 @@
     <%- include('../partials/head') %>
         <title>
             Hola
-            <%= user.first_name + " " + user.last_name %>
+            <%= user.firstName + " " + user.lastName %>
         </title>
 </head>
 
@@ -13,8 +13,8 @@
     <%- include('../partials/header') %>
 
         <main>
+            <h2 style="text-align: center;">Perfil</h2>
             <section class="body-perfil">
-                <h2>Perfil</h2>
                 <figure class="img-perfil">
                     <img src="<%= user.avatar %>" alt="Imagen de perfil">
                 </figure>
@@ -29,17 +29,18 @@
                     </h3>
                     <p>Estatus: </p>
                     <h3>
-                        <%= user.admin ? "Comprador" : "Vendedor" %>
+                        <%= user.admin ? "Vendedor" : "Comprador" %>
                     </h3>
                 </article>
-                <% if(sessionId === user.id){ %>
-                    <div class="btn-perfil">
-                        <button class="btn" onclick="window.location.href='/users/<%=sessionId%>/addresses'">Direcciones</button>
-                        <button class="btn modificar" onclick="window.location.href='/users/modificar/<%=sessionId%>'">Modificar</button>
-                        <button class="btn eliminar" onclick="window.location.href='/users/eliminar/<%=sessionId%>'">Eliminar</button>
-                    </div>
-                    <% } %>
+                </div>
             </section>
+            <% if(sessionId === user.id){ %>
+                <div class="btn-perfil">
+                    <button class="btn" onclick="window.location.href='/users/<%=sessionId%>/addresses'">Direcciones</button>
+                    <button class="btn modificar" onclick="window.location.href='/users/<%=sessionId%>/edit'">Modificar</button>
+                    <button class="btn eliminar" onclick="window.location.href='/users/<%=sessionId%>/delete?_method=DELETE'">Eliminar</button>
+                </div>
+            <% } %>
         </main>
 
         <%- include('../partials/footer') %>

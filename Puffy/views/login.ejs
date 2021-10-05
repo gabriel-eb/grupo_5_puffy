@@ -11,37 +11,44 @@
 
         <main class="form">
             <h3>INICIA SESIÓN</h3>
-            <form action="/login" method="post">
+            <form action="/login" method="post" id="formulario">
                 <div class="container_01">
-                    <input type="email" class="fill" placeholder="Correo electrónico" name="email" />
-                    <input type="password" class="fill" placeholder="Contraseña" name="password" />
+                    <input id= "email" type="email" class="fill" placeholder="Correo electrónico" name="email" <%= locals.errors && errors.email.previous ? `value=${errors.email.previous}` : ""%> />
+                    <p  id='p_email' class="alertp">Debes de escribir tu email con el que te registraste.</p>
+                    
+                    <input id="password" type="password" class="fill" placeholder="Contraseña" name="password" />
+                    <p  id='p_password' class="alertp">Este campo no puede estar vacío.</p>
+                    
                 </div>
                 <div class="container_03">
-                    <input type="checkbox" name="recordar" id="recordar"> <label for="recordar">Recordar mi sesión</label>
+                    <input type="checkbox" name="recordar" id="recordar"> <label for="recordar">Recordar mi sesión</label><div class="alert">
+                        <% if(locals.errors && errors.email){ %>
+                            <%= errors.email.msg %>
+                        <%}%>
+                    </div>
                 </div>
+
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+
                 <div class="container_02">
                     <a href="#">¿Has olvidado tu contraseña?</a>
                 </div>
 
-                <% if(locals.errors && errors.email){ %>
-                    <div class="alert">
-                        <%=errors.email.msg%>
-                    </div>
-                    <%}%>
+                <div class="button_01">
+                    <input type="submit" value="ENTRAR" />
+                </div>
 
-                        <div class="button_01">
-                            <input type="submit" value="ENTRAR" />
-                        </div>
-
-                        <div class="button_02">
-                            <button>CONTINUAR COMO INVITADO</button>
-                        </div>
-                        <!--<a href="#" id="create_account">CREAR CUENTA</a>-->
-                        <hr />
+                <div class="button_02">
+                    <button onclick="window.location.href='/signup'">CREAR CUENTA</button>
+                </div>
+                <div class="button_02">
+                    <button onclick="window.location.href='#'">CONTINUAR COMO INVITADO</button>
+                </div>
+                <hr />
 
             </form>
         </main>
-
+        <!-- <script src="js/userValidation.js"></script> -->
         <%- include('partials/footer') %>
 </body>
 

@@ -11,70 +11,70 @@
 
         <main class="form">
             <h3>CREAR CUENTA</h3>
-            <form action="/signup" method="post" enctype="multipart/form-data">
+            <form action="/signup" method="post" enctype="multipart/form-data" id='formulario'>
                 <div class="container_01">
-                    <input name="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.first_name ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.first_name : null %>" />
+                   
+                    <input name="firstName" id="firstName" type="text" placeholder="Nombre" class="fill <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.firstName : null %>" required />
+                    <div><i class="fa-check-circle"></i> </div>
+              
+                    <p  id='p_firstName' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p>
 
-                    <input name="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.last_name ? 'is-invalid:' : null %> " value="<%=locals.oldData ? oldData.last_name : null %>" />
+                    <input name="lastName" id="lastName" type="text" placeholder="Apellido" class="fill <%= locals.errors && errors.lastName ? 'is-invalid' : null %> " value="<%=locals.oldData ? oldData.lastName : null %>" required />
+                    <p  id='p_lastName' class="alertp">Debes de escribir tu apellido con más de 1 carácter.</p>
 
                     <br />
                     <label for="admin" class="bold">Tipo de usuario: </label>
-                    <select name="admin" id="userType" class=fill>
-                        <option value="0">Vendedor</option>
+                    <select name="admin" id="userType" class=fill required>
                         <option value="1">Comprador</option>
+                        <option value="0">Vendedor</option>
                     </select>
                     <br />
-                    <input name="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid:' : null %>" value="<%=locals.oldData ? oldData.email : null %>" />
+                    <input name="mobile" id="mobile" type="number" placeholder="Celular" class="fill <%= locals.errors && errors.mobile ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.mobile : null %>" required />                    
+                    <p  id='p_mobile' class="alertp">El número de móvil debe tener 10 dígitos.</p>
 
-                    <input name="password" type="password" class="fill" placeholder="Contraseña" />
-
-                    <input name="mobile" type="number" class="fill" placeholder="Celular" />
+                    <input name="email" id="email" type="email" placeholder="Correo electrónico" class="fill <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%=locals.oldData ? oldData.email : null %>" required />
+                    <p  id='p_email' class="alertp">Debes de escribir tu email.</p>
+                    
+                    <input name="password" id="password" type="password" class="fill  <%= locals.errors && errors.lastName ? 'is-invalid' : null %>" placeholder="Contraseña" required/>
+                    <p  id='p_password' class="alertp">Debes de escribir una contraseña con 8 a 16 carácteres.</p>
+                    
                     
                     <label for="avatar" class="bold">Imagen de perfil:</label>
-                    <input type="file" name="avatar" id="avatar" class="fill" />
+                    <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/jpg" class="fill" value="<%= locals.oldData ? oldData.avatar : null %>" />
 
-
-                    <% if(locals.errors && errors.first_name){%>
-                        <div class="alert">
-                            <%= errors.first_name.msg %>
-
-                        </div>
+                    <div class="alert">
+                        <% if(locals.errors){%>
+                            <%= errors.firstName ? errors.firstName.msg : "" %>
+                            <br />
+                            <%= errors.lastName ? errors.lastName.msg : "" %>
+                            <br />
+                            <%= errors.mobile ? errors.mobile.msg : "" %>
+                            <br />
+                            <%= errors.email ? errors.email.msg : "" %>
+                            <br />
+                            <%= errors.password ? errors.password.msg : "" %>
+                            <br />
+                            <br />
                         <% } %>
-
-                            <% if(locals.errors && errors.last_name){%>
-                                <div class="alert">
-                                    <%= errors.last_name.msg %>
-
-                                </div>
-                                <% } %>
-                                    <% if(locals.errors && errors.email){%>
-                                        <div class="alert">
-                                            <%= errors.email.msg %>
-
-                                        </div>
-                                        <% } %>
-
-                                            <% if(locals.errors && errors.password){%>
-                                                <div class="alert">
-                                                    <%= errors.password.msg %>
-
-                                                </div>
-                                                <% } %>
+                    </div>
                 </div>
-
-
 
                 <div class="button_01">
                     <input type="submit" value="CREAR CUENTA" />
                 </div>
 
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                
+
                 <div class="container_51">
-                    <a href="#">¿Ya tienes una cuenta? Inicia sesión</a>
+                    <a href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
                 </div>
                 <hr />
 
             </form>
         </main>
+        <script src="js/userValidation.js"></script>
+    
 
         <%- include('partials/footer') %>
 </body>

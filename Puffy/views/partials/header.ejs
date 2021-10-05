@@ -9,39 +9,44 @@
         <div class="relleno-top-bar"></div>
         <div class="carrito">
             <a href="#"><i class="far fa-heart"></i><span>Deseados</span></a>
-            <a href="/carrito"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
         </div>
     </div>
 
     <nav>
         <input type="checkbox" id="mostrar-nav" hidden />
         <ul class="menu-principal">
-            <li><a href="/productos">Productos</a></li>
+            <li><a href="/productos"><i class="fas fa-stroopwafel"></i> Postres</a></li>
             <li>
-                <label for="mostrar-submenu">Carrito</label>
+                <label for="mostrar-submenu"><i class="fab fa-buffer"></i> Colecciones</label>
                 <input type="checkbox" id="mostrar-submenu" hidden />
                 <ul class="submenu">
-                    <li><a href="/carrito">Carrito</a></li>
+                    <li><a href="/search?cat=3">Normal</a></li>
+                    <li><a href="/search?cat=1">Ligth</a></li>
+                    <li><a href="/search?cat=5">Keto</a></li>
+                    <li><a href="/search?cat=3">Vegano</a></li>
                 </ul>
             </li>
 
             <%if(sessionId){%>
-                <li><a href="/users/<%=sessionId%>">Perfil</a></li>
-                <li><a href="/logout">Logout</a></li>
-                <%}else{%>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/signup">Registrar</a></li>
-                    <%}%>
+                <li><a href="/users/<%=sessionId%>"><i class="fas fa-user"></i> Perfil</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            <%}else{%>
+                <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Entrar</a></li>
+                <li><a href="/signup"><i class="fas fa-user-plus"></i> Registrar</a></li>
+            <%}%>
 
         </ul>
     </nav>
     <div class="bot-bar">
-        <form action="" method="get" class="busqueda">
-            <input type="text" id="buscar" placeholder="Hoy se me antoja..." class="txt-busqueda" />
-            <button type="submit" class="btn-busqueda">
-                <i class="fas fa-search ic-busqueda"></i>
-            </button>
-        </form>
+        <% if(!locals.searchRoute) { %>
+            <form action="/search" method="get" class="busqueda">
+                <input type="text" id="buscar" name="q" placeholder="Hoy se me antoja..." class="txt-busqueda" />
+                <button type="submit" class="btn-busqueda">
+                    <i class="fas fa-search ic-busqueda"></i>
+                </button>
+            </form>
+        <% } %>
     </div>
     <hr />
 </header>
