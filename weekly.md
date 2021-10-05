@@ -32,3 +32,21 @@ Se revisaron los últimos cambios para el sprint 5: alguna de las tareas finaliz
 ## (10)[Sprint5] Miércoles 11/08/2021
 Se verifico el funcionamiento de las sesiones y los cookies, se hicieron los modificaciones en las vistas del sprint. Se repartieron las tareas para el próximo sprint.
 
+## (11)[Sprint6] Miércoles 18/08/2021
+Creación de Diagrama ER del proyecto, generación de script para la creación de la base de datos y las tablas correspondientes. Sequelize agregado al proyecto.
+
+## (12)[Sprint6] Miércoles 25/08/2021
+Se checaron los modelos de sequelize para cada entidad de la base de datos, que estuvieran correctamente definidos los tipos de datos, nombres y relaciones.
+
+## (13)[Sprint6] Lunes 30/08/2021
+Prueba de CRUD de varias entidades creadas con sequelize para integrarlas a las vistas y formularios.
+
+## (14)[Sprint6] Sábado 04/09/2021
+Ajustes en la creación de productos con sequelize y agregar imagenes a almacenamiento en la nube.
+
+## (15)[Sprint6] Domingo 05/09/2021
+Agregar imagenes al editar un producto y usar distintas tablas para alimentar la vista de detalles. Exportar DB con datos para tener script y usarlo en Heroku.
+
+## (16)[Sprint6] Lunes 06/09/2021
+Creación del pull request del sprint para entrega. Carga del sprint a Heroku y creación de DB en Heroku. Revisión y repartición de tareas para sprint 7.
+

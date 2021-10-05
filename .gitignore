@@ -8,6 +8,7 @@ test/*.log
 
 # Optional npm cache directory
 .npm
+.env
 
 # Logs
 logs

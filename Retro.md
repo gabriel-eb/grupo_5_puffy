@@ -76,3 +76,21 @@
 - Comenzar a hacer: no dejar la retro y weekly para el final.
 - Continuar haciendo: repartir las tareas y hacerlas con tiempo.
 - Dejar de hacer: entregar el pull request el último día permitido.
+
+
+
+# Sprint 5 - Retroalimentación
+## Montserrat
+- Comenzar a hacer: Dedicar un lapso de tiempo a corregir errores y pasando ese tiempo, seguir con el trabajo. (organización)
+- Continuar haciendo: Anticipar las entregas de tareas que se me asignaron en el proyecto.
+- Dejar de hacer: Realizar con muy poca frecuencia commits para guardar el trabajo que estoy realizando.
+
+## Gabriel
+- Comenzar a hacer: cuidar los commit que hago en git para no crear commits extras.
+- Continuar haciendo: repartir las cargas de trabajo en varios días.
+- Dejar de hacer: evitar las tareas incompletas, dividirlas para irlas haciendo.
+
+## Equipo
+- Comenzar a hacer: adelantar cuando se tenga oportunidad.
+- Continuar haciendo: reunirnos para aclarar dudas en equipo e intercambiar soluciones.
+- Dejar de hacer: checar si la página de Heroku no da errores.
