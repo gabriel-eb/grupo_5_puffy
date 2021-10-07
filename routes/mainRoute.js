@@ -10,13 +10,16 @@ const gcpAvatar = require("../middlewares/gcpAvatarMiddleware");
 // Pagina de inicio
 router.get("/", controller.index);
 // Formulario de login
-router.get("/login", loggedIn, controller.login);
+router.route("/login")
+    .get(loggedIn, controller.login)
+    .post(controller.processLogin);
 // Formulario de signup
-router.get("/signup", loggedIn, controller.signup);
-// Procesar signup
-router.post("/signup", uploadFile.single('avatar'), gcpAvatar, validations, controller.processSignup);
+router.route("/signup")
+    .get(loggedIn, controller.signup)
+    // Procesar signup
+    .post(uploadFile.single('avatar'), gcpAvatar, validations, controller.processSignup);
 // Procesar login
-router.post("/login", controller.processLogin);
+router
 // Procesar logout
 router.get("/logout", notLogged, controller.processLogout);
 // Busqueda
