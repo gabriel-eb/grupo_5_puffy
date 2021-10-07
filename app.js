@@ -24,6 +24,8 @@ app.set("view engine", "ejs");
 // app.use(morgan(':method :url :status :response-time ms'));
 //app.use(morgan('dev', { skip: (req, res) => req.url.match('(jpg|png|ico|css|svg)$') }));
 app.use(express.static(path.join(__dirname, "/public")));
+// Agregando dashboard de React
+app.use(express.static(path.join(__dirname, 'dashboard/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
@@ -62,6 +64,12 @@ app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
+
+
+// Ruta para dashboard de React
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
+});
 
 // Serve static assets if in production
 // Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
