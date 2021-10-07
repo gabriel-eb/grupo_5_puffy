@@ -90,9 +90,6 @@ const controller = {
     wwr: (req, res) => {
         res.status(200).render("wwr");
     },
-    dashboard: (req, res) => {
-        res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
-    },
     profile: (req, res) => {
 
     },

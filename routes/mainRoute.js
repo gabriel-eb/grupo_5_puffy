@@ -26,8 +26,6 @@ router.get("/logout", notLogged, controller.processLogout);
 router.get("/search", controller.searchProducts);
 // Quienes somos
 router.get("/wwr", controller.wwr);
-// Dashboard React
-router.get('/dashboard', controller.dashboard);
 
 
 module.exports = router
