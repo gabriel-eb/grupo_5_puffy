@@ -124,7 +124,7 @@
 - Dejar de hacer: hacer commits antes de tiempo y organizarlos mejor.
 
 ### Equipo
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: trabajar los detalles de la aplicación.
+- Continuar haciendo: empezar a trabajar anticipadamente para cumplir con las tareas requeridas a tiempo y se puedan revisar y corregir.
+- Dejar de hacer: acumular trabajos de sprint previo.
 
