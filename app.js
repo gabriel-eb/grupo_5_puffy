@@ -65,12 +65,6 @@ app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
 
-
-// Ruta para dashboard de React
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
-});
-
 // Serve static assets if in production
 // Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
 // if (process.env.NODE_ENV === 'production') {

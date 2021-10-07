@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
-const sequelize = require('sequelize');
+const path = require('path');
 const db = require('../database/models');
 const { Op } = require("sequelize");
 const Users = db.User;
@@ -89,6 +89,9 @@ const controller = {
     },
     wwr: (req, res) => {
         res.status(200).render("wwr");
+    },
+    dashboard: (req, res) => {
+        res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
     },
     profile: (req, res) => {
 
