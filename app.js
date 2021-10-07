@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 // app.use(morgan(':method :url :status :response-time ms'));
 //app.use(morgan('dev', { skip: (req, res) => req.url.match('(jpg|png|ico|css|svg)$') }));
 // Agregando dashboard de React
-app.use(express.static(path.join(__dirname, 'dashboard/build')));
+// app.use(express.static(path.join(__dirname, 'dashboard/build')));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
