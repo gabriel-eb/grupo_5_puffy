@@ -1638,7 +1638,7 @@ main.contenedor-listado {
 }
 
 .btn.eliminar {
-    background-color: red;
+    background-color: #f44336;
 }
 
 .alert {
@@ -1726,12 +1726,10 @@ main.contenedor-listado {
     .error-404 .error-content {
         width: 40%;
     }
-    .the-cake-is-a-lie{
+    .the-cake-is-a-lie {
         font-size: 1rem;
     }
 }
-
-
 
 /* Pagina 500 */
 .error-500 {
@@ -1756,7 +1754,7 @@ main.contenedor-listado {
     .error-500 .error-head {
         width: 70%;
     }
-    .error-500 .error-head h1{
+    .error-500 .error-head h1 {
         font-size: 3rem;
     }
     .error-500 p {
@@ -1765,4 +1763,109 @@ main.contenedor-listado {
     .error-500 img {
         width: 50vw;
     }
+}
+
+/* Confirmación de borrar */
+.confirm-button {
+    background-color: #04aa6d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.confirm-button:hover {
+    opacity: 1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.confirm-cancelbtn,
+.confirm-deletebtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add a color to the cancel button */
+.confirm-cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+/* Add a color to the delete button */
+.confirm-deletebtn {
+    background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.confirm-container {
+    padding: 16px;
+    text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 25% auto 0 auto;
+    border: 1px solid #888;
+    width: 90%;
+    padding: 1rem;
+}
+
+/* The Modal Close Button (x) */
+.close-btn {
+    position: absolute;
+    right: 35px;
+    top: 15vh;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (min-width: 700px) {
+    .confirm-cancelbtn,
+    .confirm-deletebtn {
+        width: 50%;
+    }
+
+    .modal-content {
+        margin: 15% auto 10% auto;
+        width: 70%;
+    }
+
+    .close-btn {
+    right: 15vw;
+    top: 25vh;
+}
+
 }
