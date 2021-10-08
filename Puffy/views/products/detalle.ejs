@@ -27,7 +27,20 @@
                 <% if(locals.userIsAdmin){ %>
                     <div class="listado-productos">
                         <a href="/productos/<%= productDetail.id %>/edit" class="editar">Editar</a>
-                        <a href="/productos/<%= productDetail.id %>/delete?_method=DELETE" class="delete">Eliminar</a>
+                        <a href="#" onclick="showModal()" class="delete">Eliminar</a>
+                    </div>
+                    <div id="id01" class="modal">
+                        <span onclick="hideModal()" class="close-btn" title="Close Modal">×</span>
+                        <form class="modal-content" method="post" action="/productos/<%= productDetail.id %>/delete?_method=DELETE">
+                            <div class="container">
+                                <h1>Eliminar producto</h1>
+                                <p>¿Estás seguro de eliminar este producto?</p>
+                                <div class="clearfix">
+                                    <button type="button" onclick="hideModal()" class="confirm-button confirm-cancelbtn">Cancelar</button>
+                                    <button type="submit" class="confirm-button confirm-deletebtn">Borrar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 <% } else { %>
                     <form action="/cart/addProduct" method="post">
@@ -83,6 +96,23 @@
                 </form>
             </section>
         </main>
+        <script>
+            let modal = document.getElementById('id01');
+
+            const showModal = function () {
+                modal.style.display = 'block'
+            }
+
+            const hideModal = function () {
+                modal.style.display = 'none'
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    hideModal();
+                }
+            }
+        </script>
 
         <%- include('../partials/footer') %>
 </body>

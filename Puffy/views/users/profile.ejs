@@ -42,20 +42,21 @@
                     <!-- <button class="btn eliminar" onclick="window.location.href='/users/<%=sessionId%>/delete?_method=DELETE'">Eliminar</button> -->
                     <button class="btn eliminar" onclick="showModal()">Eliminar</button>
                 </div>
-            <% } %>
-            <div id="id01" class="modal">
-                <span onclick="hideModal()" class="close-btn" title="Close Modal">×</span>
-                <form class="modal-content" method="post" action="/users/<%=sessionId%>/delete?_method=DELETE">
-                    <div class="container">
-                        <h1>Borrar cuenta</h1>
-                        <p>¿Estás seguro de borrar tu cuenta?</p>
-                        <div class="clearfix">
-                            <button type="button" onclick="hideModal()" class="confirm-button confirm-cancelbtn">Cancelar</button>
-                            <button type="submit" class="confirm-button confirm-deletebtn">Borrar</button>
+                
+                <div id="id01" class="modal">
+                    <span onclick="hideModal()" class="close-btn" title="Close Modal">×</span>
+                    <form class="modal-content" method="post" action="/users/<%=sessionId%>/delete?_method=DELETE">
+                        <div class="container">
+                            <h1>Borrar cuenta</h1>
+                            <p>¿Estás seguro de borrar tu cuenta?</p>
+                            <div class="clearfix">
+                                <button type="button" onclick="hideModal()" class="confirm-button confirm-cancelbtn">Cancelar</button>
+                                <button type="submit" class="confirm-button confirm-deletebtn">Borrar</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            <% } %>
 
         </main>
         <script>

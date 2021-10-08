@@ -66,10 +66,10 @@ app.use((req, res) => {
     res.status(404).render('error400', { error });
 });
 // Handle 500
-app.use(function (error, req, res, next) {
-    error.message = 'Error del servidor. Vuelva a intendar más tarde.'
-    res.status(500 || error.status).render('error500', { error });
-});
+// app.use(function (error, req, res, next) {
+//     error.message = 'Error del servidor. Vuelva a intendar más tarde.'
+//     res.status(500 || error.status).render('error500', { error });
+// });
 
 
 app.listen(PORT, () => {
