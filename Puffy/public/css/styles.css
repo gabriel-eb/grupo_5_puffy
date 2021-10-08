@@ -270,6 +270,10 @@ body > hr {
 }
 /* Contenido slides */
 
+.slide-content a {
+    color: inherit;
+    text-decoration: none;
+}
 .slide-content h2 {
     font-size: 1.6rem;
 }
@@ -278,6 +282,7 @@ body > hr {
     font-size: 1rem;
     margin-top: 1.6rem;
 }
+
 
 #slides .slide img {
     margin-left: 8px;

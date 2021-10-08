@@ -8,8 +8,10 @@
         <a href="/"><img src="/images/logo.svg" alt="Logo Puffy" class="logo-header" /></a>
         <div class="relleno-top-bar"></div>
         <div class="carrito">
-            <a href="#"><i class="far fa-heart"></i><span>Deseados</span></a>
-            <a href="/cart"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
+            <% if(sessionId){ %>
+                <a href="/dashboard"><i class="fas fa-columns"></i><span>Dashboard</span></a>
+            <% } %>
+            <a href="<%= sessionId ? `/users/${sessionId}/carrito` : '/login' %>"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
         </div>
     </div>
 
