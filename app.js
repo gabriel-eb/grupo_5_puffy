@@ -66,7 +66,8 @@ app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
 
 // Ruta a Dashboard en React
-app.get("/dashboard", express.static(path.join(__dirname, '/dashboard/build')), (req, res )=> {
+app.use(express.static(path.join(__dirname, '/dashboard/build')));
+app.get("/dashboard", (req, res )=> {
     res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
 });
 
