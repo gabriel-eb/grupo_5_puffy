@@ -283,7 +283,6 @@ body > hr {
     margin-top: 1.6rem;
 }
 
-
 #slides .slide img {
     margin-left: 8px;
     max-height: 60%;
@@ -384,7 +383,7 @@ body > hr {
 }
 
 .postre-del-dia h4,
-.postre-del-dia p{
+.postre-del-dia p {
     transition: 0.3s;
 }
 
@@ -396,8 +395,8 @@ body > hr {
 .postre-del-dia a figure img {
     width: 75%;
     border-radius: 8px;
-    margin:-20% auto;
-    display:block;
+    margin: -20% auto;
+    display: block;
 }
 
 .postre-del-dia .mensaje {
@@ -418,7 +417,7 @@ body > hr {
     flex-wrap: wrap;
 }
 
-.destacados{
+.destacados {
     padding: 1rem 0;
     height: 350px;
 }
@@ -446,7 +445,7 @@ body > hr {
 
 .product-box_image img {
     max-height: 150px;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .product-box_data {
@@ -577,45 +576,44 @@ body > hr {
     margin: auto;
 }
 
-.search-page > h2{
+.search-page > h2 {
     margin-bottom: 1rem;
     text-align: center;
 }
 
-.search-page > h3{
+.search-page > h3 {
     margin-top: 1rem;
     padding-left: 2rem;
 }
 
-.search-page > p{
+.search-page > p {
     padding-left: 2.5rem;
 }
 
-.btn-add-address{
+.btn-add-address {
     margin: 2rem 0;
     text-align: center;
 }
 
-.address-card-area{
+.address-card-area {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.address-card{
+.address-card {
     margin-bottom: 2rem;
     padding: 1rem;
     background-color: rgb(250, 250, 250);
     border: solid 1px #ddd;
     border-radius: 0.5rem;
-    width: 90%
+    width: 90%;
 }
 
-.address-card .btn-perfil{
+.address-card .btn-perfil {
     height: 3rem;
     margin-top: 0;
 }
-
 
 /* Media query Desktop */
 /* @media (min-width: 560px) { */
@@ -668,7 +666,7 @@ body > hr {
         right: 25%;
         width: 50%;
     }
-    .categoria-busqueda{
+    .categoria-busqueda {
         width: 25%;
     }
 
@@ -748,7 +746,7 @@ body > hr {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         transform: scale(1.05, 1.05);
     }
-    
+
     .postre-del-dia a figure {
         min-height: 200px;
     }
@@ -786,21 +784,20 @@ body > hr {
         height: 176px;
     }
 
-    .body-perfil{
+    .body-perfil {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
     }
 
-    .address-card-area{
+    .address-card-area {
         flex-wrap: nowrap;
         justify-content: space-between;
     }
 
-    .address-card{
+    .address-card {
         margin: 1rem;
     }
-
 }
 /* *{
     box-sizing: border-box; 
@@ -1556,7 +1553,6 @@ td {
     border-radius: 0.5rem;
 }
 
-
 .listado-productos .delete {
     background-color: #f00;
 }
@@ -1578,9 +1574,8 @@ main.contenedor-listado {
     }
     main.contenedor-listado {
         margin-top: 11rem;
-        margin-bottom: 2rem;    
+        margin-bottom: 2rem;
     }
-
 }
 
 .desaparecer {
@@ -1592,7 +1587,6 @@ main.contenedor-listado {
         display: table-cell;
     }
 }
-
 
 /* VISTA DE PERFIL DE USUARIO */
 
@@ -1660,7 +1654,6 @@ main.contenedor-listado {
     width: 50%;
 }
 
-
 .alertp {
     margin-left: 5px;
     text-align: left;
@@ -1669,19 +1662,17 @@ main.contenedor-listado {
 }
 
 .form__input-error-activo {
-	display: block;
-
+    display: block;
 }
 
 .form__input_activo {
     margin-left: 5px;
     text-align: left;
-	display: block;
-    color:green;
-
+    display: block;
+    color: green;
 }
 
-.display_none{
+.display_none {
     display: none;
 }
 
@@ -1695,4 +1686,83 @@ main.contenedor-listado {
 .wwr {
     width: 20%;
     margin: 0 20px;
+}
+
+/* Pagina 404 */
+.error-404 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-404 h1 {
+    text-align: center;
+    width: 100%;
+}
+
+.error-404 h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.error-404 p {
+    text-align: center;
+}
+
+.the-cake-is-a-lie {
+    margin-top: 2rem;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+    font-size: 0.5rem;
+}
+@media (min-width: 768px) {
+    .error-404 {
+        justify-content: space-around;
+        align-items: center;
+    }
+    .error-404 .error-head {
+        font-size: 3rem;
+        width: 40%;
+    }
+    .error-404 .error-content {
+        width: 40%;
+    }
+    .the-cake-is-a-lie{
+        font-size: 1rem;
+    }
+}
+
+
+
+/* Pagina 500 */
+.error-500 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-500 .error-head {
+    text-align: center;
+    width: 100%;
+}
+
+.error-500 p {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .error-500 {
+        align-items: center;
+    }
+    .error-500 .error-head {
+        width: 70%;
+    }
+    .error-500 .error-head h1{
+        font-size: 3rem;
+    }
+    .error-500 p {
+        width: 40vw;
+    }
+    .error-500 img {
+        width: 50vw;
+    }
 }
