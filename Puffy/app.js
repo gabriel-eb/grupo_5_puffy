@@ -48,8 +48,7 @@ app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
 
-
-
+// Demo Error 500
 app.get("/error", (req, res, next) => {
     let err = new Error('Not page found');
     err.message = 'Problema interno.'
@@ -61,15 +60,16 @@ app.get("/error", (req, res, next) => {
 // Handle 400
 app.use((req, res) => {
     let error = new Error('Not page found');
-    error.message = 'La ruta no existe.'
+    error.message = 'Págino no encotrada.'
     error.status = 404;
     res.status(404).render('error400', { error });
 });
 // Handle 500
-// app.use(function (error, req, res, next) {
-//     error.message = 'Error del servidor. Vuelva a intendar más tarde.'
-//     res.status(500 || error.status).render('error500', { error });
-// });
+app.use(function (error, req, res, next) {
+    console.log(error);
+    error.message = 'Error del servidor. Vuelva a intendar más tarde.'
+    res.status(500 || error.status).render('error500', { error });
+});
 
 
 app.listen(PORT, () => {
