@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-    secret: process.env.SESSIONSEC || "pUff7",
+    secret: process.env.SESSIONSEC || "pUff7",
     resave: false,
     saveUninitialized: false
 }));
@@ -41,21 +41,6 @@ app.use((req, res, next) => {
 });
 
 
-// ************ catch 404 and forward to error handler ************
-// app.use((req, res, next) => next(createError(404)));
-
-// // ************ error handler ************
-// app.use((err, req, res, next) => {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.path = req.path;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
-
 // Rutas
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
@@ -63,20 +48,29 @@ app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
 
-// Serve static assets if in production
-// Use in package.json -> "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix dashboard && npm run build --prefix dashboard"
-// if (process.env.NODE_ENV === 'production') {
-//     // Set static folder
-//     app.use(express.static('dashboard/build'));
 
-//     app.get('/dashboard', (req, res) => {
-//         res.sendFile(path.resolve(__dirname, 'dashboard', 'build', 'index.html'));
-//     });
-// }
 
-// API Prueba
-// const rutaPrueba =  require('./apiPruebas/routesPrueba');
-// app.use('/api',rutaPrueba);
+app.get("/error", (req, res, next) => {
+    let err = new Error('Not page found');
+    err.message = 'Problema interno.'
+    err.status = 500;
+    next(err);
+});
+
+// ************ error handler ************
+// Handle 400
+app.use((req, res) => {
+    let error = new Erroror('Not page found');
+    error.message = 'La ruta no existe.'
+    error.status = 404;
+    res.status(404).render('error400', { error });
+});
+// Handle 500
+app.use(function (error, req, res, next) {
+    error.message = 'Error del servidor. Vuelva a intendar más tarde.'
+    res.status(500 || error.status).render('error500', { error });
+});
+
 
 app.listen(PORT, () => {
     console.log("Escuchando en http://localhost:" + PORT + "/");

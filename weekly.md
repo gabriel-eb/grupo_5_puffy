@@ -67,5 +67,5 @@ Repasamos temas de React para prácticar antes de comenzar el dashboard. Se acom
 ## (22)[Sprint8] Lunes 04/10/2021
 Avance en componentes de React: componente para producto y componente para usuario.
 
-## (22)[Sprint8] Lunes 04/10/2021
+## (23)[Sprint8] Jueves 07/10/2021
 Avance en tabla de productos y detalle de producto. Debug para desvio a páginas de error 404 y 500.
