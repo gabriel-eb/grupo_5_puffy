@@ -14,6 +14,9 @@ router.get('/:id', controller.obtenerPerfil);
 router.route("/:id/edit")
     .get(notLogged, controller.vistaModificar)
     .put(notLogged, uploadFile.single('avatar'), gcpAvatar, validateEdit, controller.modificar);
+router.route("/:id/edit/password")
+    .get(notLogged, controller.vistaModificarPass)
+    .put(notLogged, controller.modificarPass);
 router.delete("/:id/delete", controller.borrar);
 
 // Rutas de libreta de direcciones

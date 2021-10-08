@@ -59,17 +59,17 @@ app.get("/error", (req, res, next) => {
 
 // ************ error handler ************
 // Handle 400
-app.use((req, res) => {
-    let error = new Erroror('Not page found');
-    error.message = 'La ruta no existe.'
-    error.status = 404;
-    res.status(404).render('error400', { error });
-});
-// Handle 500
-app.use(function (error, req, res, next) {
-    error.message = 'Error del servidor. Vuelva a intendar más tarde.'
-    res.status(500 || error.status).render('error500', { error });
-});
+// app.use((req, res) => {
+//     let error = new Erroror('Not page found');
+//     error.message = 'La ruta no existe.'
+//     error.status = 404;
+//     res.status(404).render('error400', { error });
+// });
+// // Handle 500
+// app.use(function (error, req, res, next) {
+//     error.message = 'Error del servidor. Vuelva a intendar más tarde.'
+//     res.status(500 || error.status).render('error500', { error });
+// });
 
 
 app.listen(PORT, () => {
