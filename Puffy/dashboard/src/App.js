@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-
-
+import Navegation from './components/Navegation';
 
 function App() {
 
@@ -26,6 +25,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navegation />
       <h1>Hello!</h1>
       {ejemplo()}
     </div>
