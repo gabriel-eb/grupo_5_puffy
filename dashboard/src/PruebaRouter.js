@@ -8,11 +8,11 @@ function PruebaRouter() {
         <div>
             <NavLink to="/" style={{ marginRight: '10px' }}>Home</NavLink>
             <NavLink to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</NavLink>
-            <NavLink to="/123" style={{ marginRight: '10px' }}>Check</NavLink>
+            <NavLink to="/dashboard/123" style={{ marginRight: '10px' }}>Check</NavLink>
 
             <Switch>
                 <Route exact path="/dashboard" render={App} />
-                <Route exact path="/:id" render={Page} />
+                <Route exact path="/dashboard/:id" render={Page} />
                 <Redirect to="/" />
             </Switch>
         </div>
