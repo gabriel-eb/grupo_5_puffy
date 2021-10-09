@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import { Route, Link, Redirect, Switch } from 'react-router-dom';
 import App from './App';
 import Page from './Page';
 
 function PruebaRouter() {
     return (
         <div>
-            <NavLink to="/" style={{ marginRight: '10px' }}>Home</NavLink>
-            <NavLink to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</NavLink>
-            <NavLink to="/dashboard/123" style={{ marginRight: '10px' }}>Check</NavLink>
+            <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
+            <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
+            <Link to="/dashboard/123" style={{ marginRight: '10px' }}>Check</Link>
+            <a href="/">HOME</a>
 
             <Switch>
                 <Route exact path="/dashboard" render={App} />
