@@ -7,5 +7,7 @@ router.get('/users/:id', controller.getUser);
 
 router.get('/products', controller.getAllProducts);
 router.get('/products/:id', controller.getProduct);
+router.post('/products/create', controller.createProduct);
+
 
 module.exports = router;

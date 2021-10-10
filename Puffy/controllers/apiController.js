@@ -131,4 +131,8 @@ module.exports = {
             return res.status(500).json({ error });
         }
     },
+    createProduct: (req, res) => {
+        console.log(req.body);
+        return res.status(201).json(1);
+    }
 }
