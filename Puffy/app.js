@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
+const formData = require('express-form-data');
 
 
 // Imports locales

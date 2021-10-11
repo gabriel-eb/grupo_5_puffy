@@ -1,6 +1,9 @@
 const db = require('../database/models');
 const Users = db.User;
 const Products = db.Product;
+const Categories = db.Category;
+const ProductCat = db.Product_category
+const Images = db.Product_images;
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -130,9 +133,41 @@ module.exports = {
             console.log(error);
             return res.status(500).json({ error });
         }
+    }, 
+    getAllCategories: async (req, res) => {
+        try {
+            let categories = await Categories.findAll({
+                attributes: ['id', 'name'],
+                raw: true
+            });
+            return res.status(200).json(categories);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
     },
-    createProduct: (req, res) => {
-        console.log(req.body);
-        return res.status(201).json(1);
+    createProduct: async (req, res) => {
+        try {
+            req.body.description = req.body.description.trim();
+            const addedProduct = await Products.create(req.body);
+
+            const product_cat = {
+                productId: addedProduct.dataValues.id,
+                categoryId: req.body.category
+            }
+            await ProductCat.create(product_cat);
+
+            const productImage = {
+                url: req.body.image || "/images/avatars/default.jpg",
+                main: true,
+                productId: addedProduct.dataValues.id
+            }
+            await Images.create(productImage);
+
+            return res.status(201).json(1);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
     }
 }
