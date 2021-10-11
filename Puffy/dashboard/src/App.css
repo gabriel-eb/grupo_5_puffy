@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.panelMini{
+  display:flex;
+  border:violet;
+  border-radius: 15px;
+}
+
+.navbar{
+ 
+  padding: 1rem 2 rem;
+  border-bottom: 1px solid gray;
+}
