@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import "../App.css"
 
 function Cat() {
 
@@ -34,8 +35,8 @@ function Cat() {
                             {
 
                                 <div className="col-lg-6 mb-4">
-                                    <div className="card text-white bg-dark shadow">
-                                        <div className="card-body">
+                                    <div className="card text-white shadow">
+                                        <div className="card-body pink">
                                             Keto: {countByCategory.Keto}
                                         </div>
                                     </div>
@@ -45,8 +46,8 @@ function Cat() {
                             {
 
                                 <div className="col-lg-6 mb-4">
-                                    <div className="card text-white bg-dark  shadow">
-                                        <div className="card-body">
+                                    <div className="card text-white bg-white  shadow">
+                                        <div className="card-body pink">
                                             Normal: {countByCategory.Normal}
                                         </div>
                                     </div>
@@ -56,8 +57,8 @@ function Cat() {
                             {
 
                                 <div className="col-lg-6 mb-4">
-                                    <div className="card text-white bg-dark  shadow">
-                                        <div className="card-body">
+                                    <div className="card text-white bg-white  shadow">
+                                        <div className="card-body pink">
                                             Vegano: {countByCategory.Vegano}
                                         </div>
                                     </div>
@@ -67,8 +68,8 @@ function Cat() {
                             {
 
                                 <div className="col-lg-6 mb-4">
-                                    <div className="card text-white bg-dark  shadow">
-                                        <div className="card-body">
+                                    <div className="card text-white bg-white  shadow">
+                                        <div className="card-body pink">
                                             Light: {countByCategory.Light}
                                         </div>
                                     </div>

@@ -1,6 +1,11 @@
 import SmallCard from './SmallCard';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import { FaUsers} from 'react-icons/fa';
+import { HiCake } from "react-icons/hi";
+import { BiCategory} from "react-icons/bi";
+
+
 
 function Card() {
 
@@ -33,21 +38,21 @@ let tUsers = {
     color:   "primary",
     titulo: "Total de usuarios en la plataforma",
     valor: totalUsers,
-    icono: "fas fa-film",
+    icono: <FaUsers />,
 }
 
 let tProducts ={
     color:   "success",
     titulo: "Total de productos",
     valor: totalProducts,
-    icono: "fas fa-award",
+    icono: <HiCake/>,
 }
 
 let tCategories = {
     color:   "warning",
     titulo: "Total de Categorías de postres",
     valor: 4,
-    icono: "fas fa-user",
+    icono: <BiCategory/>,
 }
 
 let cardProps = [tUsers,tProducts,tCategories];

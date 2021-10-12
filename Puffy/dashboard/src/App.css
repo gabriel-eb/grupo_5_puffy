@@ -48,3 +48,11 @@
   padding: 1rem 2 rem;
   border-bottom: 1px solid gray;
 }
+
+.pink{
+  background-color: palevioletred;
+}
+
+.pink-text{
+  color:#f25287;
+}

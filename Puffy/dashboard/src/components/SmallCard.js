@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function SmallCard(props){
     return(
         <React.Fragment>
@@ -9,12 +8,10 @@ function SmallCard(props){
                     <div className="card-body">
                         <div className="row no-gutters align-items-center">
                             <div className="col mr-2">
-                                <div className={`text-xs font-weight-bold text-${props.color} text-uppercase mb-1`}> {props.titulo}</div>
+                                <div className={`text-xs font-weight-bold pink-text text-uppercase mb-1`}> {props.titulo} {props.icono}</div>
                                 <div className="h5 mb-0 font-weight-bold text-gray-800">{(props.moneda ? '$'+props.valor:  props.valor)}</div>
                             </div>
-                            <div className="col-auto">
-                                <i className={`fas ${props.icono} fa-2x text-gray-300`}></i>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

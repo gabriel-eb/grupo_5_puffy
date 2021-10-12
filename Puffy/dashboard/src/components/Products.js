@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import { HiCake } from "react-icons/hi";
+import { MdToc, MdMonetizationOn } from "react-icons/md";
+import { IoPricetagsOutline } from "react-icons/io5";
 
 function ListProducts() {
 
@@ -25,7 +28,10 @@ function ListProducts() {
                         <td>{prod.id}</td>
                         <td>{prod.name}</td>
                         <td>{prod.description}</td>
+                        <td>{prod.price}</td>
+                        <td>{prod.quantity}</td>
                         <td>{prod.categories}</td>
+
                     </tr>
                 </>
             )
@@ -46,10 +52,13 @@ function ListProducts() {
         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Categoría</th>
+                    <th className="pink-text">Id</th>
+                    <th className="pink-text">{< HiCake/>} Producto </th>
+                    <th className="pink-text">{< MdToc/>} Descripción </th>
+                    <th className="pink-text">{< MdMonetizationOn/>} Precio</th>
+                    <th className="pink-text">{< IoPricetagsOutline/>} Cantidad</th>
+                    <th className="pink-text">Categoría</th>
+
                 </tr>
             </thead>
             <tbody>
