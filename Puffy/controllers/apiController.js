@@ -110,9 +110,14 @@ module.exports = {
                     model: db.Product_images,
                     as: 'product_images',
                     where: { main: true }
+                }, {
+                    model: ProductCat,
+                    as: 'product_category',
+                    attributes: ['categoryId']
                 }]
 
             });
+            console.log(product.product_category[0].id)
             const apiResponse = Object.assign(
                 {},
                 {
@@ -120,7 +125,9 @@ module.exports = {
                     name: product.name,
                     description: product.description,
                     price: product.price,
+                    size: product.size,
                     quantity: product.quantity,
+                    category: product.product_category[0].categoryId,
                     discount: product.discount,
                     createdAt: product.createdAt,
                     updatedAt: product.updatedAt,
@@ -169,5 +176,36 @@ module.exports = {
             console.log(error);
             return res.status(500).json({ error });
         }
-    }
+    },
+    updateProduct: async (req, res) => {
+        try {
+            await Products.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            await ProductCat.update(
+                {
+                    categoryId: req.body.category
+                }, {
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            if (req.body.image != "null") {
+                await Images.update(
+                    { 
+                        url: req.body.image 
+                    }, { 
+                        where: { productId: req.params.id } 
+                    });
+            }
+
+            return res.status(204).json({});
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
 }

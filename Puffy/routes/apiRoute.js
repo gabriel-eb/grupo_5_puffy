@@ -9,6 +9,7 @@ router.get('/users/:id', controller.getUser);
 
 router.get('/products', controller.getAllProducts);
 router.get('/products/:id', controller.getProduct);
+router.put('/products/:id/update', uploadFile.single('image'), gcpImage, controller.updateProduct);
 router.post('/products/create', uploadFile.single('image'), gcpImage, controller.createProduct);
 
 router.get('/categories', controller.getAllCategories);
