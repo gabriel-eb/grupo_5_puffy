@@ -35,4 +35,7 @@ router.route('/:id/carrito')
     .get(notLogged, isUser, controllerCart.vistaCarrito)
     .put(notLogged, isUser, controllerCart.buyCart);
 
+router.route('/:id/carrito/:idCarrito')
+    .get(/*notLogged,*/controllerCart.deleteProduct);
+
 module.exports = router

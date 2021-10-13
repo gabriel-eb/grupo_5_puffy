@@ -35,9 +35,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
             field: 'updated_at'
         },
-        //productImg: {
-          //  type: dataTypes.STRING(100)
-        //}
     };
     let config = {
         tableName: 'product'

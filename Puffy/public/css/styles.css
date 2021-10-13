@@ -1874,3 +1874,12 @@ main.contenedor-listado {
 }
 
 }
+.deletePcart{
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    width: 40%;
+
+
+}

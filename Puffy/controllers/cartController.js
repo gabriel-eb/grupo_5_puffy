@@ -78,16 +78,31 @@ const controller = {
                 const ProductsSelected = await Products.findAll({
                     where: {
                         id: productsId
-                    }
+
+                    },
+                    include: [{
+                        model: db.Product_images,
+                        as: 'product_images',
+                        where: { main: true }
+                    }]
                 })
 
                 const finalProducts = []
                 ProductsSelected.map(p => finalProducts.push(p.dataValues))
 
-                return res.render('carrito');
+                const priceProducts = [];
+                ProductsSelected.map(p => priceProducts.push(p.dataValues.price))
+                const totalPrice = priceProducts.reduce(function (a, b) { return a + b; });
+
+                const count = priceProducts.length;
+
+
+                return res.render('carrito', { Carts, finalProducts, totalPrice, count, idCarrito: Carts.id });
             }
             return res.render('emptyCart');
-        } catch (error) {
+        }
+
+        catch (error) {
             console.log(error);
             return res.status(500);
         }
@@ -102,7 +117,22 @@ const controller = {
             console.log(error);
             return res.status(500);
         }
-    }
+    },
+    deleteProduct: async (req, res) => {
+        try {
+            await ProdCart.destroy({
+                where: {
+                    cartId: req.params.idCarrito,
+                    productId: req.query.idProduct
+                }
+            });
+
+            return res.redirect('/');
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
 }
 
 module.exports = controller;
