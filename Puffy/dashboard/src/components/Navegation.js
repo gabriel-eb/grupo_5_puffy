@@ -19,12 +19,7 @@ function Navegation() {
                 style={{ marginRight: '10px' }}
             >Modificar</Link>
 
-            <Switch>
-                <Route path="/dashboard/product/create" render={CreateProductForm} />
-                <Route path="/dashboard/product/:id/update" render={UpdateProductFrom} />
-                <Route path="/dashboard/:id" render={Page} />
-                <Redirect to="/dashboard" />
-            </Switch>
+            
 
 
         </div>

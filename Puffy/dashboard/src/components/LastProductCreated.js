@@ -5,23 +5,24 @@ import { useState, useEffect } from 'react';
 function LastProductCreated() {
 
     const [products, setProducts] = useState([]);
+    const [arr2, setArr2] = useState(null);
 
     useEffect(() => {
         fetch('/api/products')
             .then(res => res.json())
             .then(res => {
-                setProducts(res.products)
+                setProducts(res.products);
+                const arr = [];
+                products.map(prod => arr.push(prod.createdAt))
+
+                const arrayFechas = arr.map((fechaActual) => new Date(fechaActual));
+                const max = new Date(Math.max.apply(null, arrayFechas));
+
+                setArr2(products.filter((prod2) => new Date(prod2.createdAt) - max === 0)[0]);
             })
+    }, [products]);
 
-    }, []);
-
-    const arr = []
-    products.map(prod => arr.push(prod.createdAt))
-
-    const arrayFechas = arr.map((fechaActual) => new Date(fechaActual));
-    const max = new Date(Math.max.apply(null, arrayFechas));
-
-    const [arr2] = products.filter((prod2) => new Date(prod2.createdAt) - max === 0);
+    
 
 
 
@@ -40,7 +41,7 @@ function LastProductCreated() {
                                 <h5 className="m-0 font-weight-bold text-gray-800">Último producto agregado</h5>
                             </div>
                             <div className="card-body">
-                             <h2 className="text-center pink-text">{arr2.name}</h2>
+                                <h2 className="text-center pink-text">{arr2 && arr2.name}</h2>
                                 <div className="text-center">
                                     <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: 40 + 'rem' }} src="" alt=" Star Wars - Mandalorian " />
                                 </div>

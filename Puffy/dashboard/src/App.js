@@ -1,21 +1,23 @@
 import React from 'react';
 import './App.css';
 import Navegation from './components/Navegation';
-import Navbar from './components/Navbar'
-import ContentSmallCard from './components/ContentSmallCard';
-// import ContentCategories from './components/ContentCategories';
-import ListProducts from './components/Products';
-import LastProductCreated from './components/LastProductCreated';
+import { Switch, Route, Redirect } from 'react-router-dom'; 
+import Page from './components/Page';
+import CreateProductForm from './components/CreateProductForm';
+import UpdateProductFrom from './components/UpdateProductFrom';
+import Dashboard from './components/Dashboard'
 
 function App() {
     return (
       <div className="container-fluid">
         <Navegation />
-        <Navbar />
-        <ContentSmallCard />
-        {/* <ContentCategories /> */}
-        <LastProductCreated/>
-        <ListProducts />
+        <Switch>
+        <Route path="/dashboard" exact render={Dashboard} />
+        <Route path="/dashboard/product/create" render={CreateProductForm} />
+        <Route path="/dashboard/product/:id/update" render={UpdateProductFrom} />
+        <Route path="/dashboard/:id" render={Page} />
+        <Redirect to="/dashboard" />
+      </Switch>
       </div>
     );
 }

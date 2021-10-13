@@ -132,7 +132,7 @@ function CreateProductForm() {
                                     required
                                 >
                                     <option value=""></option>
-                                    {categories.map(category => <option value={category.id}>{category.name}</option>)}
+                                    { categories && categories.map(category => <option value={category.id}>{category.name}</option>)}
                                 </select>
                                 <label>Categoría:</label>
                             </div>
