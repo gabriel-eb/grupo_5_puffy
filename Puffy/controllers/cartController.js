@@ -39,18 +39,18 @@ const controller = {
                 const newCart = {
                     userId: userId,
                     status: '0',
-                    addressId: userAddress.id
+                    addressId: userAddress ? userAddress.id : null
                 }
 
                 const createdCart = await Cart.create(newCart);
-                
+
                 await ProdCart.create({
                     productId: req.body.productId,
                     cartId: createdCart.id
                 })
             }
 
-            return res.status(201).redirect('/');
+            return res.status(201).redirect(`/users/${userId}/carrito`);
         } catch (error) {
             console.log(error);
             return res.status(500).redirect('error');
@@ -58,48 +58,51 @@ const controller = {
     },
     vistaCarrito: async (req, res) => {
         try {
-            const Carts = await Cart.findOne({
+            const userCart = await Cart.findOne({
                 where: {
                     userId: req.params.id,
+                    status: 0
                 }
             });
 
-            
-            const CartProducts = await ProdCart.findAll({
-                where:{
-                    cartId : Carts.dataValues.id
-                }
-            })
+            if (userCart){
+                const cartProducts = await ProdCart.findAll({
+                    where: {
+                        cartId: userCart.dataValues.id
+                    }
+                })
 
-            const productsId = [];
-            CartProducts.map(prod => productsId.push(prod.dataValues.productId));
+                const productsId = [];
+                cartProducts.map(prod => productsId.push(prod.dataValues.productId));
 
-            const ProductsSelected = await Products.findAll({
-                where:{
-                    id:productsId
-                }
-            })
+                const ProductsSelected = await Products.findAll({
+                    where: {
+                        id: productsId
+                    }
+                })
 
-            const finalProducts =[]
-            ProductsSelected.map(p=>finalProducts.push(p.dataValues))
- 
-            // console.log(Carts);
-            // console.log(CartProducts)
-            // console.log(productsId)
-            // console.log(ProductsSelected);
-            console.log(finalProducts);
-            console.log(finalProducts[1].price);
-            //console.log(finalProducts.reduce((product,otra)=>product.price+otra));
-            //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+                console.log(ProductsSelected);
 
-         return res.render('carrito');
-        } 
-        
-         catch (error) {
+                const finalProducts = []
+                ProductsSelected.map(p => finalProducts.push(p.dataValues))
+
+                return res.render('carrito');
+            }
+                return res.render('emptyCart');
+        } catch (error) {
             console.log(error);
-            return res.status(500).json({ error });
+            return res.status(500);
         }
     },
+    buyCart: async (req, res) => {
+        try {
+
+            return res.status(201).redirect('/');
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    }
 }
 
 module.exports = controller;

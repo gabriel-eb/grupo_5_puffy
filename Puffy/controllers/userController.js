@@ -9,7 +9,7 @@ module.exports = {
     obtenerPerfil: async (req, res) => {
         try {
             const user = await Users.findByPk(req.params.id);
-            return res.render('users/profile', { user: user.dataValues });
+            return res.render('users/profile', { user: user });
         } catch (error) {
             console.log(error);
             return res.status(401).json({ error });

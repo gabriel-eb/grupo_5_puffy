@@ -659,6 +659,11 @@ body > hr {
         width: 20%;
         justify-content: center;
     }
+    .carrito2 {
+        padding-top: 10vh;
+        text-align: center;
+        height: 40vh;
+    }
     /* Barra busqueda Desktop */
     .bot-bar {
         position: absolute;
