@@ -32,6 +32,7 @@ router.route('/:id/addresses/:idAddress')
 
 //Rutas de carrito
 router.route('/:id/carrito')
-    .get(notLogged, isUser, controllerCart.vistaCarrito);
+    .get(notLogged, isUser, controllerCart.vistaCarrito)
+    .put(notLogged, isUser, controllerCart.buyCart);
 
 module.exports = router

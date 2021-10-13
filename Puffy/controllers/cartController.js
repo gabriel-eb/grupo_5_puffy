@@ -65,7 +65,7 @@ const controller = {
                 }
             });
 
-            if (userCart){
+            if (userCart) {
                 const cartProducts = await ProdCart.findAll({
                     where: {
                         cartId: userCart.dataValues.id
@@ -81,14 +81,12 @@ const controller = {
                     }
                 })
 
-                console.log(ProductsSelected);
-
                 const finalProducts = []
                 ProductsSelected.map(p => finalProducts.push(p.dataValues))
 
                 return res.render('carrito');
             }
-                return res.render('emptyCart');
+            return res.render('emptyCart');
         } catch (error) {
             console.log(error);
             return res.status(500);
@@ -96,8 +94,10 @@ const controller = {
     },
     buyCart: async (req, res) => {
         try {
-
-            return res.status(201).redirect('/');
+            await Cart.update({ status: 1 }, {
+                where: { userId: req.params.id, status: 0 }
+            });
+            return res.status(201).render('agradecimiento');
         } catch (error) {
             console.log(error);
             return res.status(500);
