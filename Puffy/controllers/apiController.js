@@ -53,7 +53,7 @@ module.exports = {
     getAllProducts: async (req, res) => {
         try {
             let products = await Products.findAll({
-                attributes: ['id', 'name', 'description','createdAt','price','quantity'],
+                attributes: ['id', 'name', 'description','createdAt','price','quantity',],
                 include: [{
                     model: db.Product_category,
                     as: 'product_category',
@@ -62,7 +62,7 @@ module.exports = {
                         as: 'category',
                         attributes: ['name'],
                     }],
-
+                    
                     
                 }]
             });

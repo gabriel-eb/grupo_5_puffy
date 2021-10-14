@@ -3,6 +3,8 @@ import React from 'react';
 import { HiCake } from "react-icons/hi";
 import { MdToc, MdMonetizationOn } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
+import { BiCategory} from "react-icons/bi";
+
 
 function ListProducts() {
 
@@ -28,7 +30,7 @@ function ListProducts() {
                         <td>{prod.id}</td>
                         <td>{prod.name}</td>
                         <td>{prod.description}</td>
-                        <td>{prod.price}</td>
+                        <td> $ {prod.price}</td>
                         <td>{prod.quantity}</td>
                         <td>{prod.categories}</td>
 
@@ -57,7 +59,7 @@ function ListProducts() {
                     <th className="pink-text">{< MdToc/>} Descripción </th>
                     <th className="pink-text">{< MdMonetizationOn/>} Precio</th>
                     <th className="pink-text">{< IoPricetagsOutline/>} Cantidad</th>
-                    <th className="pink-text">Categoría</th>
+                    <th className="pink-text">{< BiCategory/>} Categoría</th>
 
                 </tr>
             </thead>
