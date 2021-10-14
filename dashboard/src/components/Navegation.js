@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD:dashboard/src/components/Navegation.js
-=======
 import { FaChevronCircleLeft } from 'react-icons/fa';
->>>>>>> sprint8:Puffy/dashboard/src/components/Navegation.js
 
 function Navegation() {
     return (
