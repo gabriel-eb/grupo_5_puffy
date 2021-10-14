@@ -62,7 +62,7 @@ app.get("/error", (req, res, next) => {
 // Handle 400
 app.use((req, res) => {
     let error = new Error('Not page found');
-    error.message = 'Págino no encotrada.'
+    error.message = 'Página no encotrada.'
     error.status = 404;
     res.status(404).render('error400', { error });
 });

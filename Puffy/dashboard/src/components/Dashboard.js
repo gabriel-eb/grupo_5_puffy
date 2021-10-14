@@ -11,6 +11,7 @@ function Dashboard() {
             <div className="row">
                 <LastProductCreated />
                 <ContentCategories />
+                {/** TODO: crear la api y tarjeta para conteo de ventas */}
             </div>
             <ListProducts />
         </div>

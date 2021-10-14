@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Navegation from './components/Navegation';
 import { Switch, Route, Redirect } from 'react-router-dom'; 
-import Page from './components/Page';
 import CreateProductForm from './components/CreateProductForm';
 import UpdateProductFrom from './components/UpdateProductFrom';
 import Dashboard from './components/Dashboard'
