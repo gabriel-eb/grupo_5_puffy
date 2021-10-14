@@ -20,7 +20,7 @@ function Navegation() {
                             <Link
                                 className="nav-link me-lg-3" 
                                 aria-current="page" 
-                                to="/dashboard/product/create"
+                                to="/dashboard/products/create"
                             >
                                 Crear Producto
                             </Link>

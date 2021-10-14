@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import CreateProductForm from './components/CreateProductForm';
 import UpdateProductFrom from './components/UpdateProductFrom';
 import Dashboard from './components/Dashboard'
+import ProductDetail from './components/ProductDetail'
 
 function App() {
     return (
@@ -12,9 +13,9 @@ function App() {
         <Navegation />
         <Switch>
         <Route path="/dashboard" exact render={Dashboard} />
-        <Route path="/dashboard/product/create" render={CreateProductForm} />
-        <Route path="/dashboard/product/:id/update" render={UpdateProductFrom} />
-        {/* <Route path="/dashboard/product/:id" render={ProductDetail} /> */}
+        <Route path="/dashboard/products/create" render={CreateProductForm} />
+        <Route path="/dashboard/products/:id/update" render={UpdateProductFrom} />
+        <Route path="/dashboard/products/:id" render={ProductDetail} />
         <Redirect to="/dashboard" />
       </Switch>
       </div>

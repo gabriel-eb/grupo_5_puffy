@@ -1,12 +1,9 @@
 const sequelize = require('sequelize');
 const db = require('../database/models');
-const { Op } = require("sequelize");
-const Users = db.User;
 const Products = db.Product;
-const Images = db.Product_images;
-const Cart = db.Cart;
+const Carts = db.Cart;
 const Address = db.Address;
-const ProdCart = db.Product_cart;
+const ProdCarts = db.Product_cart;
 
 
 
@@ -17,7 +14,7 @@ const controller = {
     addProduct: async (req, res) => {
         try {
             const userId = req.session.userId;
-            const cartCreated = await Cart.findOne({
+            const cartCreated = await Carts.findOne({
                 where: {
                     userId: userId,
                     status: '0',
@@ -26,7 +23,7 @@ const controller = {
 
 
             if (cartCreated) {
-                await ProdCart.create({
+                await ProdCarts.create({
                     productId: req.body.productId,
                     cartId: cartCreated.id
                 })
@@ -42,11 +39,11 @@ const controller = {
                     addressId: userAddress ? userAddress.id : null
                 }
 
-                const createdCart = await Cart.create(newCart);
+                const createdCart = await Carts.create(newCart);
 
-                await ProdCart.create({
+                await ProdCarts.create({
                     productId: req.body.productId,
-                    cartId: createdCart.id
+                    cartId: createdCarts.id
                 })
             }
 
@@ -58,7 +55,7 @@ const controller = {
     },
     vistaCarrito: async (req, res) => {
         try {
-            const userCart = await Cart.findOne({
+            const userCart = await Carts.findOne({
                 where: {
                     userId: req.params.id,
                     status: 0
@@ -66,7 +63,7 @@ const controller = {
             });
 
             if (userCart) {
-                const cartProducts = await ProdCart.findAll({
+                const cartProducts = await ProdCarts.findAll({
                     where: {
                         cartId: userCart.dataValues.id
                     }
@@ -90,8 +87,8 @@ const controller = {
 
                 const finalProducts = []
                 ProductsSelected.map(p => {
-                    
-                    const temp = Object.assign({},{
+
+                    const temp = Object.assign({}, {
                         id: p.id,
                         name: p.name,
                         price: p.price,
@@ -120,10 +117,25 @@ const controller = {
     },
     buyCart: async (req, res) => {
         try {
-            await Cart.update({ status: 1 }, {
-                where: { userId: req.params.id, status: 0 }
+            const cart = await Carts.findOne({
+                where: {
+                    userId: req.params.id,
+                    status: 0
+                },
+                include: [{
+                    model: ProdCarts,
+                    as: 'product_cart',
+                    attributes: ['productId']
+                }]
             });
-            
+            await Carts.update({ status: 1 }, { where: { id: cart.id } });
+
+            const soldProducts = cart.product_cart.map(({ productId }) => productId);
+
+            for (const prodId of soldProducts) {
+                await Products.decrement({ quantity: 1 }, { where: { id: prodId } });
+            }
+
             return res.status(201).render('agradecimiento');
         } catch (error) {
             console.log(error);
@@ -132,7 +144,7 @@ const controller = {
     },
     deleteProduct: async (req, res) => {
         try {
-            await ProdCart.destroy({
+            await ProdCarts.destroy({
                 where: {
                     cartId: req.params.idCarrito,
                     productId: req.query.idProduct

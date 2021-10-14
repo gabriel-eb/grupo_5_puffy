@@ -43,12 +43,18 @@
                         </form>
                     </div>
                 <% } else { %>
+                    <%if (prodIsAvailable) {%>
                     <form action="/cart/addProduct" method="post">
                         <input type="hidden" name="productId" value="<%= productDetail.id %>">
                         <button type="submit" class="btn-agregar-carrito">
                             Agregar al carrito
                         </button>
                     </form>
+                    <% } else { %>
+                        <button class="btn-agregar-carrito" style="background-color: #999;" disabled>
+                            Producto agotado
+                        </button>
+                    <% } %>
                 <% } %>
 
             </div>
