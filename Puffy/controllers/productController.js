@@ -101,7 +101,9 @@ const controller = {
                 });
             }
 
-            return res.status(200).render("products/detalle", { productDetail, category, image });
+            const prodIsAvailable = productDetail.quantity > 0;
+
+            return res.status(200).render("products/detalle", { productDetail, category, image, prodIsAvailable });
 
         } catch (error) {
             console.log(error);

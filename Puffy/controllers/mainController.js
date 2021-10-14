@@ -156,10 +156,14 @@ const controller = {
             if (rightPass) {
                 // Session
                 req.session.userId = userToLogin.id;
+                req.session.isAdmin = userToLogin.admin;
 
                 // Cookie
                 if (req.body.recordar) {
                     res.cookie('recordar', req.session.userId, {
+                        maxAge: 1000 * 360 * 24 * 7 // una semana
+                    });
+                    res.cookie('isA', req.session.isAdmin, {
                         maxAge: 1000 * 360 * 24 * 7 // una semana
                     });
                 }
@@ -201,6 +205,7 @@ const controller = {
     processLogout: (req, res) => {
         res.clearCookie('recordar');
         delete res.locals.sessionId;
+        delete res.locals.sessionIdAdmin;
         // delete req.session.userId;
         req.session.destroy();
         res.status(200).redirect('/');

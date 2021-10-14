@@ -22,7 +22,7 @@
                         <br />
                         <label for="description" class="bold">Descripción:</label>
                         <textarea class="add-mod-des" name="description" id="descripcion" cols="30"
-                            rows="5"><%= producto.description %></textarea>
+                            rows="5"><%=locals.oldData ? oldData.description : null %></textarea>
                         <p  id='p_description' class="alertp">La descripción debe contener al menos 20 carácteres alfanúmericos.</p>
 
                     </div>

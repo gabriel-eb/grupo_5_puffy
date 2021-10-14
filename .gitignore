@@ -21,3 +21,30 @@ lerna-debug.log*
 
 # Output of 'npm pack'
 *.tgz
+
+
+# REACT .gitignore
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+Puffy/dashboard/node_modules
+Puffy/dashboard/.pnp
+Puffy/dashboard/.pnp.js
+
+# testing
+Puffy/dashboard/coverage
+
+# production
+Puffy/dashboard/build
+
+# misc
+Puffy/dashboard/.DS_Store
+Puffy/dashboard/.env.local
+Puffy/dashboard/.env.development.local
+Puffy/dashboard/.env.test.local
+Puffy/dashboard/.env.production.local
+
+Puffy/dashboard/npm-debug.log*
+Puffy/dashboard/yarn-debug.log*
+Puffy/dashboard/yarn-error.log*

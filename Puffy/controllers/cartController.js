@@ -1,12 +1,9 @@
 const sequelize = require('sequelize');
 const db = require('../database/models');
-const { Op } = require("sequelize");
-const Users = db.User;
 const Products = db.Product;
-const Images = db.Product_images;
-const Cart = db.Cart;
+const Carts = db.Cart;
 const Address = db.Address;
-const ProdCart = db.Product_cart;
+const ProdCarts = db.Product_cart;
 
 
 
@@ -17,7 +14,7 @@ const controller = {
     addProduct: async (req, res) => {
         try {
             const userId = req.session.userId;
-            const cartCreated = await Cart.findOne({
+            const cartCreated = await Carts.findOne({
                 where: {
                     userId: userId,
                     status: '0',
@@ -26,7 +23,7 @@ const controller = {
 
 
             if (cartCreated) {
-                await ProdCart.create({
+                await ProdCarts.create({
                     productId: req.body.productId,
                     cartId: cartCreated.id
                 })
@@ -39,18 +36,18 @@ const controller = {
                 const newCart = {
                     userId: userId,
                     status: '0',
-                    addressId: userAddress.id
+                    addressId: userAddress ? userAddress.id : null
                 }
 
-                const createdCart = await Cart.create(newCart);
-                
-                await ProdCart.create({
+                const createdCart = await Carts.create(newCart);
+
+                await ProdCarts.create({
                     productId: req.body.productId,
-                    cartId: createdCart.id
+                    cartId: createdCarts.id
                 })
             }
 
-            return res.status(201).redirect('/');
+            return res.status(201).redirect(`/users/${userId}/carrito`);
         } catch (error) {
             console.log(error);
             return res.status(500).redirect('error');
@@ -58,47 +55,107 @@ const controller = {
     },
     vistaCarrito: async (req, res) => {
         try {
-            const Carts = await Cart.findOne({
+            const userCart = await Carts.findOne({
                 where: {
                     userId: req.params.id,
+                    status: 0
                 }
             });
 
-            
-            const CartProducts = await ProdCart.findAll({
-                where:{
-                    cartId : Carts.dataValues.id
-                }
-            })
+            if (userCart) {
+                const cartProducts = await ProdCarts.findAll({
+                    where: {
+                        cartId: userCart.dataValues.id
+                    }
+                })
 
-            const productsId = [];
-            CartProducts.map(prod => productsId.push(prod.dataValues.productId));
+                const productsId = [];
+                cartProducts.map(prod => productsId.push(prod.dataValues.productId));
+                const countEachProd = {};
+                productsId.map(i => countEachProd[i] = (countEachProd[i] || 0) + 1);
 
-            const ProductsSelected = await Products.findAll({
-                where:{
-                    id:productsId
-                }
-            })
+                const ProductsSelected = await Products.findAll({
+                    where: {
+                        id: productsId
+                    },
+                    include: [{
+                        model: db.Product_images,
+                        as: 'product_images',
+                        where: { main: true }
+                    }]
+                })
 
-            const finalProducts =[]
-            ProductsSelected.map(p=>finalProducts.push(p.dataValues))
- 
-            // console.log(Carts);
-            // console.log(CartProducts)
-            // console.log(productsId)
-            // console.log(ProductsSelected);
-            console.log(finalProducts);
-            console.log(finalProducts[1].price);
-            //console.log(finalProducts.reduce((product,otra)=>product.price+otra));
-            //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+                const finalProducts = []
+                ProductsSelected.map(p => {
 
-         return res.render('carrito');
-        } 
-        
-         catch (error) {
-            console.log(error);
-            return res.status(500).json({ error });
+                    const temp = Object.assign({}, {
+                        id: p.id,
+                        name: p.name,
+                        price: p.price,
+                        url: p.product_images[0].url,
+                        quantity: countEachProd[p.id]
+                    });
+                    finalProducts.push(temp)
+                });
+
+                const priceProducts = [];
+                ProductsSelected.map(p => priceProducts.push(p.price * countEachProd[p.id]))
+                const totalPrice = priceProducts.reduce(function (a, b) { return a + b; });
+
+                const count = productsId.length;
+
+
+                return res.render('carrito', { userCart, finalProducts, totalPrice, count, idCarrito: userCart.id });
+            }
+            return res.render('emptyCart');
         }
+
+        catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
+    buyCart: async (req, res) => {
+        try {
+            const cart = await Carts.findOne({
+                where: {
+                    userId: req.params.id,
+                    status: 0
+                },
+                include: [{
+                    model: ProdCarts,
+                    as: 'product_cart',
+                    attributes: ['productId']
+                }]
+            });
+            await Carts.update({ status: 1 }, { where: { id: cart.id } });
+
+            const soldProducts = cart.product_cart.map(({ productId }) => productId);
+
+            for (const prodId of soldProducts) {
+                await Products.decrement({ quantity: 1 }, { where: { id: prodId } });
+            }
+
+            return res.status(201).render('agradecimiento');
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
+    deleteProduct: async (req, res) => {
+        try {
+            await ProdCarts.destroy({
+                where: {
+                    cartId: req.params.idCarrito,
+                    productId: req.query.idProduct
+                }
+            });
+
+            return res.redirect('/');
+        } catch (error) {
+            console.log(error);
+        }
+
     },
 }
 

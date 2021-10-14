@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+        <title>500 - Internal Error</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main class="error-500">
+            <div class="error-head">
+                <h1>Error <%= error.status %>
+                </h1>
+                <h3>
+                    <%= error.message %>
+                </h3>
+            </div>
+
+            
+
+            <div class="error-content">
+                <p>
+                    <br />
+                    Te recomendamos intentar más tarde, si el problema persiste
+                    favor de notificar a <a href="mailto:gabo_espburg@hotmail.com">contacto@puffy.com</a>
+                    <br />
+                    <br />
+                </p>
+            </div>
+            
+            <img src="/images/error500.png" alt="error500">
+        </main>
+
+        <%- include('partials/footer') %>
+</body>
+
+</html>

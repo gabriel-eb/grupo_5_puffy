@@ -1,3 +1,4 @@
+const bcryptjs = require('bcryptjs');
 const db = require('../database/models');
 const { Op } = require("sequelize");
 const Users = db.User;
@@ -8,10 +9,10 @@ module.exports = {
     obtenerPerfil: async (req, res) => {
         try {
             const user = await Users.findByPk(req.params.id);
-            return res.render('users/profile', { user: user.dataValues });
+            return res.render('users/profile', { user: user });
         } catch (error) {
             console.log(error);
-            return res.status(401).json({error});
+            return res.status(401).json({ error });
         }
     },
     vistaModificar: async (req, res) => {
@@ -23,7 +24,10 @@ module.exports = {
             return res.status(403).json({ error })
         }
     },
-    modificar: async (req, res) => { 
+    vistaModificarPass:  (req, res) => {
+        return res.status(200).render("users/editarPass");
+    },
+    modificar: async (req, res) => {
         try {
 
             const resultValidation = validationResult(req);
@@ -55,6 +59,33 @@ module.exports = {
         } catch (error) {
             console.log(error);
             return res.status(403).json({ error })
+        }
+    },
+    modificarPass: async (req, res) => {
+        try {
+            const user = await Users.findByPk(req.params.id);
+
+            const currentPass = user.password;
+
+            if(bcryptjs.compareSync(req.body.password, '$2a$10$' + currentPass)){
+                let hashedPass = bcryptjs.hashSync(req.body.newPass, 10);
+                hashedPass = hashedPass.slice(7, hashedPass.length);
+                await Users.update({ password: hashedPass}, {
+                    where: {
+                        id: user.id
+                    }
+                });
+                return res.redirect('/users/' + req.params.id);
+            }
+            return res.render("users/editarPass", {
+                errors: {
+                    password: { msg: 'La contraseña es incorrecta.' }
+                }
+            })
+
+        } catch (error) {
+            console.log(error);
+            return res.status(403).send(new Error());
         }
     },
     borrar: async (req, res) => {
