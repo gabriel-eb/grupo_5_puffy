@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar'
 import ContentSmallCard from './components/ContentSmallCard';
-// import ContentCategories from './components/ContentCategories';
+//import ContentCategories from './components/ContentCategories';
 import ListProducts from './components/Products';
 import LastProductCreated from './components/LastProductCreated';
 
@@ -13,7 +13,11 @@ function App() {
         <Navbar />
         <ContentSmallCard />
         {/* <ContentCategories /> */}
-        <LastProductCreated/>
+        
+        <div className="row">
+<LastProductCreated/>
+        {/* <ContentRowMovies /> */}
+        </div>
         
         <ListProducts />
 
