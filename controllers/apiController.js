@@ -4,6 +4,8 @@ const Products = db.Product;
 const Categories = db.Category;
 const ProductCat = db.Product_category
 const Images = db.Product_images;
+const Carts = db.Cart;
+const ProdCarts = db.Product_cart;
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -122,7 +124,7 @@ module.exports = {
                 }]
 
             });
-            console.log(product.product_category[0].id)
+
             const apiResponse = Object.assign(
                 {},
                 {
@@ -211,6 +213,63 @@ module.exports = {
 
         } catch (error) {
             console.log(error);
+            return res.status(500).json({});
         }
     },
+    getSales: async (req, res) => {
+        try {
+            const completeSale = await Carts.findAll({
+                where: { status: "1" },
+                attributes: ['id', 'userId'],
+                include:[{
+                    model: ProdCarts,
+                    as: 'product_cart',
+                    attributes: ['id', 'productId'],
+                    include: [{
+                        model: Products,
+                        as: 'product',
+                        attributes: ['name']
+                    }]
+                }]
+            });
+
+            // Count total sales
+            let totalSales = 0;
+            completeSale.map(cart => totalSales += cart.product_cart.length)
+
+            // Get and sort top products
+            const topProducts = {};
+            completeSale.map(({ product_cart }) => {
+                product_cart.map( sale =>{
+                    const i = sale.productId;
+                    topProducts[i] = {
+                        count: (topProducts[i] ? topProducts[i].count : 0) + 1,
+                        name: sale.product.name
+                    }
+                })
+            });
+
+            // src: https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
+            const sortedInArray = Object.entries(topProducts).sort(([, a], [, b]) => b.count - a.count)
+            const topProductsSorted = sortedInArray.map(prod => {
+                const temp = {
+                    id: prod[0],
+                    name: prod[1].name,
+                    count: prod[1].count
+                }
+                return temp;
+            })
+
+            // Create object response
+            const apiResponse = {
+                totalSales,
+                topProducts: topProductsSorted.slice(0, 5)
+            }
+
+            return res.status(200).json(apiResponse);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({});
+        }
+    }
 }
