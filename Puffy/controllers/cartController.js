@@ -123,6 +123,7 @@ const controller = {
             await Cart.update({ status: 1 }, {
                 where: { userId: req.params.id, status: 0 }
             });
+            
             return res.status(201).render('agradecimiento');
         } catch (error) {
             console.log(error);
