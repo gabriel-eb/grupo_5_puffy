@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard'
 
 function App() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{padding:0}}>
         <Navegation />
         <Switch>
         <Route path="/dashboard" exact render={Dashboard} />
