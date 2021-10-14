@@ -10,38 +10,24 @@
         <main class="carrito">
             <h1 class="fuente-may">Carrito</h1>
             <section class="lista-productos">
+                <% finalProducts.map((producto) => { %>
                 <div class="postre">
-                    <h2 class="fuente-may">Chocoflan Casero</h2>
+                    <h2 class="fuente-may"><%= producto.name %></h2>
                     <div class="imagen">
                         <img
-                            src="/images/chocoflan.svg"
+                            src=<%= producto.product_images[0].url%>
                             alt="imagen chocoflan"
                         />
                     </div>
                     <div class="cantidad">
-                        <label for="cantidad">Cantidad:</label>
-                        <div>
-                            <button class="izq">-</button
-                            > <input type="number" name="quantity" id="quantity" class="add-mod-price" value="1" ><button
-                                class="der"
-                            >
-                                +
-                            </button>
-                        </div>
-
-                   
-
+                        
                     </div>
-                    <div class="eliminar">
-                        <button>
-                            <img
-                                src="/images/eliminar.svg"
-                                alt="botont eliminar"
-                            />
-                        </button>
-                        <label class="rojo" for="eliminar">Eliminar</label>
+                    
+                        <a href="/users/<%=userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
+
+                    <div>
+                    <p class="subtotal bold" id="subtotal">Subtotal: $ <%= producto.price %></p>
                     </div>
-                    <p class="subtotal bold">Subtotal: $295 mxn</p>
                     <input
                         class="nota"
                         type="text"
@@ -49,22 +35,26 @@
                         placeholder="Agrega una nota aquí para la tienda..."
                         id="eliminar"
                     />
-                    
+               
                 </div>
+
+                <% }) %>
             </section>
+
+
             <section class="total">
                 <div class="grupo">
-                    <p>Subtotal(2 productos):</p>
-                    <p>$295 mxn</p>
+                    <p>Subtotal( <%= count %> producto(s)):</p>
+                    <p>$ <%= totalPrice %> mxn</p>
                 </div>
                 <div class="grupo">
                     <p>Envío:</p>
-                    <p>$65 mxn</p>
+                    <p>$ 65 mxn</p>
                 </div>
                 <div class="grupo">
                     <p>Total:</p>
                     <div class="precio-total">
-                        <p>$360 mxn</p>
+                        <p>$ <%= totalPrice + 65 %> mxn</p>
                         <p class="gris">IVA INCLUIDO</p>
                     </div>
                 </div>
@@ -74,7 +64,6 @@
             </section>
             <hr />
         </main>
-
         <%- include('partials/footer') %>
     </body>
 </html>

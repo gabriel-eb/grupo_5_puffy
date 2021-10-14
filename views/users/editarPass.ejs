@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Editar Info</title>
+</head>
+
+<body>
+
+    <%- include('../partials/header') %>
+
+        <main class="form">
+            <h3>CAMBIAR CONTRASEÑA</h3>
+            <form action="/users/<%= sessionId %>/edit/password?_method=PUT" method="post" id="formulario">
+                <div class="container_01">
+                    <input id="password" name="password" type="password" class="fill" placeholder="Contraseña actual"/>
+                    <!-- <p  id='p_password' class="alertp">Debes de escribir tu nombre con más de 1 carácter.</p> -->
+
+                    <input id="newPass" name="newPass" type="password" class="fill" placeholder="Contraseña nueva"/>
+                    <p  id='p_newPass' class="alertp">Debes escribir al menos 6 carácteres.</p>
+                </div>
+
+                <p id="mensaje_incorrecto" class="display_none">  <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+
+
+                <div class="alert">
+                    <% if(locals.errors){%>
+                        <%= errors.password ? errors.password.msg : "" %>
+                        <br />
+                    <% } %>
+                </div>
+
+                <div class="button_01">
+                    <input type="submit" value="Cambiar" />
+                </div>
+
+            </form>
+        </main>
+        <script src="/js/changePassValidation.js"></script>
+        <%- include('../partials/footer') %>
+</body>
+
+</html>

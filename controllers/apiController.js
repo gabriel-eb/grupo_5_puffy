@@ -1,6 +1,9 @@
 const db = require('../database/models');
 const Users = db.User;
 const Products = db.Product;
+const Categories = db.Category;
+const ProductCat = db.Product_category
+const Images = db.Product_images;
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -50,7 +53,7 @@ module.exports = {
     getAllProducts: async (req, res) => {
         try {
             let products = await Products.findAll({
-                attributes: ['id', 'name', 'description'],
+                attributes: ['id', 'name', 'description','createdAt','price','quantity',],
                 include: [{
                     model: db.Product_category,
                     as: 'product_category',
@@ -59,6 +62,8 @@ module.exports = {
                         as: 'category',
                         attributes: ['name'],
                     }],
+                    
+                    
                 }]
             });
 
@@ -69,7 +74,10 @@ module.exports = {
                     description: product.description,
                     categories: product.product_category.map(cat => cat.category.name),
                     createdAt: product.createdAt,
-                    detail: `/dashboard/products/${product.id}`
+                    price:product.price,
+                    quantity:product.quantity,
+                    detail: `/dashboard/products/${product.id}`,
+                    
                 })
             })
 
@@ -107,9 +115,14 @@ module.exports = {
                     model: db.Product_images,
                     as: 'product_images',
                     where: { main: true }
+                }, {
+                    model: ProductCat,
+                    as: 'product_category',
+                    attributes: ['categoryId']
                 }]
 
             });
+            console.log(product.product_category[0].id)
             const apiResponse = Object.assign(
                 {},
                 {
@@ -117,7 +130,9 @@ module.exports = {
                     name: product.name,
                     description: product.description,
                     price: product.price,
+                    size: product.size,
                     quantity: product.quantity,
+                    category: product.product_category[0].categoryId,
                     discount: product.discount,
                     createdAt: product.createdAt,
                     updatedAt: product.updatedAt,
@@ -129,6 +144,73 @@ module.exports = {
         } catch (error) {
             console.log(error);
             return res.status(500).json({ error });
+        }
+    }, 
+    getAllCategories: async (req, res) => {
+        try {
+            let categories = await Categories.findAll({
+                attributes: ['id', 'name'],
+                raw: true
+            });
+            return res.status(200).json(categories);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
+    },
+    createProduct: async (req, res) => {
+        try {
+            req.body.description = req.body.description.trim();
+            const addedProduct = await Products.create(req.body);
+
+            const product_cat = {
+                productId: addedProduct.dataValues.id,
+                categoryId: req.body.category
+            }
+            await ProductCat.create(product_cat);
+
+            const productImage = {
+                url: req.body.image || "/images/avatars/default.jpg",
+                main: true,
+                productId: addedProduct.dataValues.id
+            }
+            await Images.create(productImage);
+
+            return res.status(201).json(1);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
+    },
+    updateProduct: async (req, res) => {
+        try {
+            await Products.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            await ProductCat.update(
+                {
+                    categoryId: req.body.category
+                }, {
+                where: {
+                    productId: req.params.id
+                }
+            });
+
+            if (req.body.image != "null") {
+                await Images.update(
+                    { 
+                        url: req.body.image 
+                    }, { 
+                        where: { productId: req.params.id } 
+                    });
+            }
+
+            return res.status(204).json({});
+
+        } catch (error) {
+            console.log(error);
         }
     },
 }

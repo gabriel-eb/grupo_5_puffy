@@ -270,6 +270,10 @@ body > hr {
 }
 /* Contenido slides */
 
+.slide-content a {
+    color: inherit;
+    text-decoration: none;
+}
 .slide-content h2 {
     font-size: 1.6rem;
 }
@@ -379,7 +383,7 @@ body > hr {
 }
 
 .postre-del-dia h4,
-.postre-del-dia p{
+.postre-del-dia p {
     transition: 0.3s;
 }
 
@@ -391,8 +395,8 @@ body > hr {
 .postre-del-dia a figure img {
     width: 75%;
     border-radius: 8px;
-    margin:-20% auto;
-    display:block;
+    margin: 30px auto;
+    display: block;
 }
 
 .postre-del-dia .mensaje {
@@ -413,7 +417,7 @@ body > hr {
     flex-wrap: wrap;
 }
 
-.destacados{
+.destacados {
     padding: 1rem 0;
     height: 350px;
 }
@@ -441,7 +445,7 @@ body > hr {
 
 .product-box_image img {
     max-height: 150px;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .product-box_data {
@@ -572,45 +576,44 @@ body > hr {
     margin: auto;
 }
 
-.search-page > h2{
+.search-page > h2 {
     margin-bottom: 1rem;
     text-align: center;
 }
 
-.search-page > h3{
+.search-page > h3 {
     margin-top: 1rem;
     padding-left: 2rem;
 }
 
-.search-page > p{
+.search-page > p {
     padding-left: 2.5rem;
 }
 
-.btn-add-address{
+.btn-add-address {
     margin: 2rem 0;
     text-align: center;
 }
 
-.address-card-area{
+.address-card-area {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.address-card{
+.address-card {
     margin-bottom: 2rem;
     padding: 1rem;
     background-color: rgb(250, 250, 250);
     border: solid 1px #ddd;
     border-radius: 0.5rem;
-    width: 90%
+    width: 90%;
 }
 
-.address-card .btn-perfil{
+.address-card .btn-perfil {
     height: 3rem;
     margin-top: 0;
 }
-
 
 /* Media query Desktop */
 /* @media (min-width: 560px) { */
@@ -656,6 +659,11 @@ body > hr {
         width: 20%;
         justify-content: center;
     }
+    .carrito2 {
+        padding-top: 10vh;
+        text-align: center;
+        height: 40vh;
+    }
     /* Barra busqueda Desktop */
     .bot-bar {
         position: absolute;
@@ -663,7 +671,7 @@ body > hr {
         right: 25%;
         width: 50%;
     }
-    .categoria-busqueda{
+    .categoria-busqueda {
         width: 25%;
     }
 
@@ -743,7 +751,7 @@ body > hr {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         transform: scale(1.05, 1.05);
     }
-    
+
     .postre-del-dia a figure {
         min-height: 200px;
     }
@@ -781,21 +789,20 @@ body > hr {
         height: 176px;
     }
 
-    .body-perfil{
+    .body-perfil {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
     }
 
-    .address-card-area{
+    .address-card-area {
         flex-wrap: nowrap;
         justify-content: space-between;
     }
 
-    .address-card{
+    .address-card {
         margin: 1rem;
     }
-
 }
 /* *{
     box-sizing: border-box; 
@@ -1551,7 +1558,6 @@ td {
     border-radius: 0.5rem;
 }
 
-
 .listado-productos .delete {
     background-color: #f00;
 }
@@ -1573,9 +1579,8 @@ main.contenedor-listado {
     }
     main.contenedor-listado {
         margin-top: 11rem;
-        margin-bottom: 2rem;    
+        margin-bottom: 2rem;
     }
-
 }
 
 .desaparecer {
@@ -1587,7 +1592,6 @@ main.contenedor-listado {
         display: table-cell;
     }
 }
-
 
 /* VISTA DE PERFIL DE USUARIO */
 
@@ -1639,7 +1643,7 @@ main.contenedor-listado {
 }
 
 .btn.eliminar {
-    background-color: red;
+    background-color: #f44336;
 }
 
 .alert {
@@ -1655,7 +1659,6 @@ main.contenedor-listado {
     width: 50%;
 }
 
-
 .alertp {
     margin-left: 5px;
     text-align: left;
@@ -1664,19 +1667,17 @@ main.contenedor-listado {
 }
 
 .form__input-error-activo {
-	display: block;
-
+    display: block;
 }
 
 .form__input_activo {
     margin-left: 5px;
     text-align: left;
-	display: block;
-    color:green;
-
+    display: block;
+    color: green;
 }
 
-.display_none{
+.display_none {
     display: none;
 }
 
@@ -1690,4 +1691,195 @@ main.contenedor-listado {
 .wwr {
     width: 20%;
     margin: 0 20px;
+}
+
+/* Pagina 404 */
+.error-404 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-404 h1 {
+    text-align: center;
+    width: 100%;
+}
+
+.error-404 h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.error-404 p {
+    text-align: center;
+}
+
+.the-cake-is-a-lie {
+    margin-top: 2rem;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+    font-size: 0.5rem;
+}
+@media (min-width: 768px) {
+    .error-404 {
+        justify-content: space-around;
+        align-items: center;
+    }
+    .error-404 .error-head {
+        font-size: 3rem;
+        width: 40%;
+    }
+    .error-404 .error-content {
+        width: 40%;
+    }
+    .the-cake-is-a-lie {
+        font-size: 1rem;
+    }
+}
+
+/* Pagina 500 */
+.error-500 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-500 .error-head {
+    text-align: center;
+    width: 100%;
+}
+
+.error-500 p {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .error-500 {
+        align-items: center;
+    }
+    .error-500 .error-head {
+        width: 70%;
+    }
+    .error-500 .error-head h1 {
+        font-size: 3rem;
+    }
+    .error-500 p {
+        width: 40vw;
+    }
+    .error-500 img {
+        width: 50vw;
+    }
+}
+
+/* Confirmación de borrar */
+.confirm-button {
+    background-color: #04aa6d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.confirm-button:hover {
+    opacity: 1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.confirm-cancelbtn,
+.confirm-deletebtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add a color to the cancel button */
+.confirm-cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+/* Add a color to the delete button */
+.confirm-deletebtn {
+    background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.confirm-container {
+    padding: 16px;
+    text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 25% auto 0 auto;
+    border: 1px solid #888;
+    width: 90%;
+    padding: 1rem;
+}
+
+/* The Modal Close Button (x) */
+.close-btn {
+    position: absolute;
+    right: 35px;
+    top: 15vh;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (min-width: 700px) {
+    .confirm-cancelbtn,
+    .confirm-deletebtn {
+        width: 50%;
+    }
+
+    .modal-content {
+        margin: 15% auto 10% auto;
+        width: 70%;
+    }
+
+    .close-btn {
+    right: 15vw;
+    top: 25vh;
+}
+
+}
+.deletePcart{
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    width: 40%;
+
+
 }

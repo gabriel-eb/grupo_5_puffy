@@ -1,35 +1,25 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import PruebaRouter from './PruebaRouter';
+import Navegation from './components/Navegation';
+import { Switch, Route, Redirect } from 'react-router-dom'; 
+import Page from './components/Page';
+import CreateProductForm from './components/CreateProductForm';
+import UpdateProductFrom from './components/UpdateProductFrom';
+import Dashboard from './components/Dashboard'
 
 function App() {
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(res => setProducts(res.products))
-  }, []);
-
-  const ejemplo = () => {
-    return products.map(prod => {
-      return (
-        <>
-          <p>{prod.name}</p>
-          <p>{prod.description}</p>
-        </>
-      )
-    })
-  }
-
-  return (
-    <div className="App">
-      <PruebaRouter />
-      <h1>Hello!</h1>
-      {ejemplo()}
-    </div>
-  );
+    return (
+      <div className="container-fluid">
+        <Navegation />
+        <Switch>
+        <Route path="/dashboard" exact render={Dashboard} />
+        <Route path="/dashboard/product/create" render={CreateProductForm} />
+        <Route path="/dashboard/product/:id/update" render={UpdateProductFrom} />
+        <Route path="/dashboard/:id" render={Page} />
+        <Redirect to="/dashboard" />
+      </Switch>
+      </div>
+    );
 }
 
 export default App;

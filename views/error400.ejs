@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+        <title>404 - Not Found</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+    <main class="error-404">
+        <div class="error-head">
+            <h1>Error <%= error.status %></h1>
+            <h3><%= error.message %></h3>
+        </div>
+
+        <div class="error-content">
+            <p>
+                <br />
+                Te recomendamos regresar a la página de <a href="/">inicio</a> o buscar un postre:
+                <br />
+                <br />
+            </p>
+            <form action="/search" method="get" class="busqueda">
+                <input type="text" id="buscar" name="q" placeholder="Buscar" class="txt-busqueda" />
+                <button type="submit" class="btn-busqueda">
+                    <i class="fas fa-search ic-busqueda"></i>
+                </button>
+            </form>
+
+        </div>
+
+<pre class="the-cake-is-a-lie">
+            .:/+-
+            /M/              .,-=;//;-
+       .:/= ;MH/,    ,=/+%$XH@MM#@:
+      -$##@+$###@H@MMM#######H:.    -/H#
+ .,H@H@ X######@ -H####@+-      -+H###@X
+  .,@##H:      +XM##M/,     =%@###@X;-
+X%-  :M##########$.    .:%M###@%:
+M##H,   +J@@@$/-   ,;$M###@%,          -
+M####M-,,---,.-%%H####M$:          ,+@##
+@##################@/.          :%H##@$-
+M###############H,          ;HM##M$=
+#################.     .=$M##M$-
+################H..;XM##M$-          .:+
+M###################@%-           =+@MH%
+@################M/.          =+H#X%=
+=+M##############M,       -/X#X+;.
+  .,XM##########H-    ,/X#H+:,
+     .=+HM######M+/+HM@+=.
+         ,:/%XM####H/.
+              ,.:=-.
+
+
+__ __| |             ___|       |       
+   |   __ \   _ \   |      _` | |  / _ \
+   |   | | |  __/   |     (   |   <  __/
+  _|  _| |_|\___|  \____|\__,_|_|\_\___|
+
+
+   _ _|           \      |    _)     
+     |   __|     _ \     |     |  _ \
+     | \__ \    ___ \    |     |  __/ _
+   ___|____/  _/    _\  _____|_|\___||_|
+   </pre>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>
