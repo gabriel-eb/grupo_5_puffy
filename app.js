@@ -18,6 +18,7 @@ const rutaApi = require("./routes/apiRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
+
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
 
@@ -58,6 +59,14 @@ app.get("/error", (req, res, next) => {
     next(err);
 });
 
+
+
+// Ruta a Dashboard en React
+app.use(express.static(path.join(__dirname, '/dashboard/build')));
+app.get("/dashboard", (req, res) => {
+    res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
+});
+
 // ************ error handler ************
 // Handle 400
 app.use((req, res) => {
@@ -71,12 +80,6 @@ app.use(function (error, req, res, next) {
     console.log(error);
     error.message = 'Error del servidor. Vuelva a intendar más tarde.'
     res.status(500 || error.status).render('error500', { error });
-});
-
-// Ruta a Dashboard en React
-app.use(express.static(path.join(__dirname, '/dashboard/build')));
-app.get("/dashboard", (req, res) => {
-    res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
 });
 
 app.listen(PORT, () => {

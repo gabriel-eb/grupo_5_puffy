@@ -32,11 +32,17 @@ Puffy/dashboard/node_modules
 Puffy/dashboard/.pnp
 Puffy/dashboard/.pnp.js
 
+dashboard/node_modules
+dashboard/.pnp
+dashboard/.pnp.js
+
 # testing
 Puffy/dashboard/coverage
+dashboard/coverage
 
 # production
 Puffy/dashboard/build
+dashboard/build
 
 # misc
 Puffy/dashboard/.DS_Store
@@ -48,3 +54,13 @@ Puffy/dashboard/.env.production.local
 Puffy/dashboard/npm-debug.log*
 Puffy/dashboard/yarn-debug.log*
 Puffy/dashboard/yarn-error.log*
+
+dashboard/.DS_Store
+dashboard/.env.local
+dashboard/.env.development.local
+dashboard/.env.test.local
+dashboard/.env.production.local
+
+dashboard/npm-debug.log*
+dashboard/yarn-debug.log*
+dashboard/yarn-error.log*

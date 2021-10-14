@@ -1,7 +1,7 @@
 const path = require('path');
 const { format } = require('util');
 const { Storage } = require('@google-cloud/storage');
-
+require('dotenv').config()
 const gcpStorage = new Storage({
     projectId: process.env.GCLOUD_PROJECT,
     credentials: {
