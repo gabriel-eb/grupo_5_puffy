@@ -58,6 +58,22 @@ app.get("/error", (req, res, next) => {
     next(err);
 });
 
+/**
+ *  REACT
+ * Para usar react como una vista estática es necesario
+ * descomentar las líneas de acontinuación,
+ * posteriormente usar `npm install` dentro de '/dashboard',
+ * usamos `npm run build` y ahora podemos correr esta app
+ * con `node app` o `npm run dev`
+ */
+// const notLogged = require("./middlewares/notLoggedMiddleware");
+// const isAdmin = require('./middlewares/isAdminMiddleware');
+// // Ruta a Dashboard en React
+// app.use(express.static(path.join(__dirname, '/dashboard/build')));
+// app.get("/dashboard", notLogged, isAdmin, (req, res) => {
+//     res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
+// });
+
 // ************ error handler ************
 // Handle 400
 app.use((req, res) => {
