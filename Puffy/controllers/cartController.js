@@ -97,7 +97,7 @@ const controller = {
                 const count = priceProducts.length;
 
 
-                return res.render('carrito', { Carts, finalProducts, totalPrice, count, idCarrito: Carts.id });
+                return res.render('carrito', { userCart, finalProducts, totalPrice, count, idCarrito: userCart.id });
             }
             return res.render('emptyCart');
         }
