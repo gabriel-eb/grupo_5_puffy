@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import "../App.css"
 
-function Cat() {
+function ContentCategories() {
 
     const [countByCategory, setCountByCategory] = useState({});
 
@@ -87,4 +87,4 @@ function Cat() {
 
 
 
-export default Cat;
+export default ContentCategories;
