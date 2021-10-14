@@ -205,6 +205,7 @@ const controller = {
     processLogout: (req, res) => {
         res.clearCookie('recordar');
         delete res.locals.sessionId;
+        delete res.locals.sessionIdAdmin;
         // delete req.session.userId;
         req.session.destroy();
         res.status(200).redirect('/');

@@ -63,7 +63,7 @@ function UpdateProductForm(props) {
     }
 
     return (
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-md-center" style={{ margin: 0 }}>
             <div className="col-12 px-5 px-md-0 col-md-10">
                 <h2 className="mt-3">Crear Producto</h2>
                 <form onSubmit={handleSubmit}>
