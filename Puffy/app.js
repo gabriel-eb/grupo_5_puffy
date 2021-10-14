@@ -38,6 +38,7 @@ app.use(recordarSession);
 // Login MW
 app.use((req, res, next) => {
     res.locals.sessionId = req.session.userId;
+    res.locals.sessionIdAdmin = req.session.isAdmin;
     next();
 });
 

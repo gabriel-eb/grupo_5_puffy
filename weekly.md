@@ -69,3 +69,9 @@ Avance en componentes de React: componente para producto y componente para usuar
 
 ## (23)[Sprint8] Jueves 07/10/2021
 Avance en tabla de productos y detalle de producto. Debug para desvio a páginas de error 404 y 500.
+
+## (24)[Sprint8] Lunes 11/10/2021
+Formulario de creación y edición de producto en React. Tarjetas de dashboard en React.
+
+## (25)[Sprint8] Miércoles 13/10/2021
+Reunión final antes de la entrega. Merge de ramas y proyecto lanzado en Heroku.
