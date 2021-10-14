@@ -3,7 +3,7 @@ import React from 'react';
 import { HiCake } from "react-icons/hi";
 import { MdToc, MdMonetizationOn } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
-import { BiCategory} from "react-icons/bi";
+import { BiCategory } from "react-icons/bi";
 
 
 function ListProducts() {
@@ -43,35 +43,31 @@ function ListProducts() {
     return (
 
         <div className="card shadow mb-4">
-                    <div className="card-header py-3">
-                        <h6
-                            className="m-0 font-weight-bold text-gray-800"
+            <div className="card-header py-3">
+                <h6 className="m-0 font-weight-bold text-gray-800">
+                    Lista de Productos
+                </h6>
+            </div>
+            <div className="table-responsive p-lg-2">
+                <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+                    <thead>
+                        <tr>
+                            <th className="pink-text">Id</th>
+                            <th className="pink-text">{< HiCake />} Producto </th>
+                            <th className="pink-text">{< MdToc />} Descripción </th>
+                            <th className="pink-text">{< MdMonetizationOn />} Precio</th>
+                            <th className="pink-text">{< IoPricetagsOutline />} Cantidad</th>
+                            <th className="pink-text">{< BiCategory />} Categoría</th>
 
-                        >
-                            Lista de Productos
-                        </h6>
-                    </div>
-        <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
-            <thead>
-                <tr>
-                    <th className="pink-text">Id</th>
-                    <th className="pink-text">{< HiCake/>} Producto </th>
-                    <th className="pink-text">{< MdToc/>} Descripción </th>
-                    <th className="pink-text">{< MdMonetizationOn/>} Precio</th>
-                    <th className="pink-text">{< IoPricetagsOutline/>} Cantidad</th>
-                    <th className="pink-text">{< BiCategory/>} Categoría</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    ejemplo()
-                }
-            </tbody>
-
-
-        </table>
-
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            ejemplo()
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
