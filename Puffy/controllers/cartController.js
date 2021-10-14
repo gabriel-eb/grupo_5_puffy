@@ -74,11 +74,12 @@ const controller = {
 
                 const productsId = [];
                 cartProducts.map(prod => productsId.push(prod.dataValues.productId));
+                const countEachProd = {};
+                productsId.map(i => countEachProd[i] = (countEachProd[i] || 0) + 1);
 
                 const ProductsSelected = await Products.findAll({
                     where: {
                         id: productsId
-
                     },
                     include: [{
                         model: db.Product_images,
@@ -88,13 +89,23 @@ const controller = {
                 })
 
                 const finalProducts = []
-                ProductsSelected.map(p => finalProducts.push(p.dataValues))
+                ProductsSelected.map(p => {
+                    
+                    const temp = Object.assign({},{
+                        id: p.id,
+                        name: p.name,
+                        price: p.price,
+                        url: p.product_images[0].url,
+                        quantity: countEachProd[p.id]
+                    });
+                    finalProducts.push(temp)
+                });
 
                 const priceProducts = [];
-                ProductsSelected.map(p => priceProducts.push(p.dataValues.price))
+                ProductsSelected.map(p => priceProducts.push(p.price * countEachProd[p.id]))
                 const totalPrice = priceProducts.reduce(function (a, b) { return a + b; });
 
-                const count = priceProducts.length;
+                const count = productsId.length;
 
 
                 return res.render('carrito', { userCart, finalProducts, totalPrice, count, idCarrito: userCart.id });

@@ -15,12 +15,13 @@
                     <h2 class="fuente-may"><%= producto.name %></h2>
                     <div class="imagen">
                         <img
-                            src=<%= producto.product_images[0].url%>
+                            src=<%= producto.url%>
                             alt="imagen chocoflan"
                         />
                     </div>
                     <div class="cantidad">
-                        
+                        <h3 style="text-align: center;">Cantidad:<br /><%= producto.quantity %></h3>
+                        <!-- <input type="number" name="quantity" id="quantity" value="<%= producto.quantity %>"/> -->
                     </div>
                     
                         <a href="/users/<%= userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
