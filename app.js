@@ -60,11 +60,11 @@ app.get("/error", (req, res, next) => {
     next(err);
 });
 
-
-
+const notLogged = require("./middlewares/notLoggedMiddleware");
+const isAdmin = require('./middlewares/isAdminMiddleware');
 // Ruta a Dashboard en React
 app.use(express.static(path.join(__dirname, '/dashboard/build')));
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", notLogged, isAdmin, (req, res) => {
     res.sendFile(path.join(__dirname + '/dashboard/build/index.html'));
 });
 
