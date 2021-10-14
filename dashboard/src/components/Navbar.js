@@ -1,15 +1,4 @@
-// const Navbar = () => {
-//     return(
-//         <div className="navbar">
-//             Navbar
-//         </div>
-//     )
-// }
-
-// export default Navbar;
-
 import React from 'react';
-// import foto from '../assets/images/jordan-walke.png';
 
 function Navbar(){
     return(

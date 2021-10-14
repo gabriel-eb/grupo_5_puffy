@@ -1,8 +1,5 @@
 import React from 'react';
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
-import Page from './Page';
-import CreateProductForm from './CreateProductForm';
-import UpdateProductFrom from './UpdateProductFrom';
+import { Link } from 'react-router-dom';
 
 function Navegation() {
     return (
