@@ -71,6 +71,9 @@ const controller = {
     detalle: async (req, res) => {
         try {
             const productDetail = await Products.findByPk(req.params.id);
+            if (!productDetail){
+                return res.status(404).render('products/product404');
+            }
             
             const category = await ProductCat.findOne({
                 where: {
