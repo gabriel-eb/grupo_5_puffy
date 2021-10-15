@@ -6,6 +6,7 @@ import CreateProductForm from './components/CreateProductForm';
 import UpdateProductFrom from './components/UpdateProductFrom';
 import Dashboard from './components/Dashboard'
 import ProductDetail from './components/ProductDetail'
+import Users from './components/Users'
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
         <Navegation />
         <Switch>
         <Route path="/dashboard" exact render={Dashboard} />
+        <Route path="/dashboard/users" render={Users} />
         <Route path="/dashboard/products/create" render={CreateProductForm} />
         <Route path="/dashboard/products/:id/update" render={UpdateProductFrom} />
         <Route path="/dashboard/products/:id" render={ProductDetail} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 function ProductDetail(props) {
     const { id } = props.match.params
@@ -68,6 +68,7 @@ function ProductDetail(props) {
                                 <h3>Nombre:</h3><p>{product.name}</p>
                             </div>
                             <div className="col-4">
+                                <Link to={`/dashboard/products/${product.id}/update`} className="btn btn-warning mb-3">Editar</Link>
                                 <h3>ID: {product.id}</h3>
                             </div>
                         </div>

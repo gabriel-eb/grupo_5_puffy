@@ -52,6 +52,25 @@ module.exports = {
             return res.status(500).json({ error });
         }
     },
+    getLastUser: async (req, res) => {
+        try {
+            const user = await Users.findOne({ order: [['createdAt', 'DESC']] });
+            const apiResponse = Object.assign(
+                {},
+                {
+                    id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    url: user.avatar,
+                    createdAt: user.createdAt
+                }
+            );
+            return res.status(200).json(apiResponse);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
+    },
     getAllProducts: async (req, res) => {
         try {
             let products = await Products.findAll({
