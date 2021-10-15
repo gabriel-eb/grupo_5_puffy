@@ -47,7 +47,7 @@ function ProductDetail(props) {
     return (
         <div className="row d-flex align-items-center px-1 px-md-5" style={{ margin: "0" }}>
             {
-                categories.length > 0 && product &&
+                categories.length > 0 && product && !product.error &&
                 <>
                     <div className="col-12 text-center mb-3"><h1>Detalle del producto</h1></div>
                     <div className="col-md-5 mb-5">
@@ -114,6 +114,14 @@ function ProductDetail(props) {
                 categories.length === 0 && !product &&
                 <div className="col-12 text-center mt-5">
                     <h1>Estamos horneando tu postre...</h1>
+                </div>
+            }
+            {
+                // Prints if json returns error
+                product && product.error &&
+                <div className="col-12 text-center mt-5">
+                    <h1>El postre que buscas no existe en la base de datos.</h1>
+                    <h4><Link to="/dashboard">Regresar a dashboard.</Link></h4>
                 </div>
             }
         </div>
