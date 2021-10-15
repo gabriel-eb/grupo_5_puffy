@@ -60,6 +60,10 @@
                     </div>
                 </div>
                 <form action="/users/<%= userCart.userId  %>/carrito?_method=PUT" method="post">
+                    <input type="hidden" name="total" id="total" value="<%= totalPrice %>">
+                    <% finalProducts.map((producto)=> { %>
+                        <input type="number" name="<%= producto.id %>" id="prod<%= producto.id %>" value="1" />
+                    <% } %>
                     <input class="boton" type="submit" value="Realizar compra" />
                 </form>
             </section>

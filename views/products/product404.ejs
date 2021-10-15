@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Postre no encontrado</title>
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+
+        <main style="height: 50vh;">
+            <div style="text-align: center; padding-top:2rem; margin-bottom: 2rem;">
+                <h1>Este postre no se encuentra en la tienda.</h1>
+                <h2>Prueba buscando otro:</h2>
+            </div>
+            <form action="/search" method="get" class="busqueda">
+                <input type="text" id="buscar" name="q" placeholder="Buscar" class="txt-busqueda" />
+                <button type="submit" class="btn-busqueda">
+                    <i class="fas fa-search ic-busqueda"></i>
+                </button>
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
