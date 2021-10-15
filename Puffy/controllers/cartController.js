@@ -43,10 +43,10 @@ const controller = {
 
                 await ProdCarts.create({
                     productId: req.body.productId,
-                    cartId: createdCarts.id
+                    cartId: createdCart.id
                 })
             }
-
+            
             return res.status(201).redirect(`/users/${userId}/carrito`);
         } catch (error) {
             console.log(error);
@@ -103,7 +103,6 @@ const controller = {
                 const totalPrice = priceProducts.reduce(function (a, b) { return a + b; });
 
                 const count = productsId.length;
-
 
                 return res.render('carrito', { userCart, finalProducts, totalPrice, count, idCarrito: userCart.id });
             }

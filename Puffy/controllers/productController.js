@@ -92,6 +92,7 @@ const controller = {
                     main: true
                 }
             });
+            const prodIsAvailable = productDetail.quantity > 0;
             
             if (req.session.userId){
                 const user = await db.User.findByPk(req.session.userId);
@@ -100,11 +101,10 @@ const controller = {
                     productDetail,
                     category,
                     image,
-                    userIsAdmin
+                    userIsAdmin,
+                    prodIsAvailable
                 });
             }
-
-            const prodIsAvailable = productDetail.quantity > 0;
 
             return res.status(200).render("products/detalle", { productDetail, category, image, prodIsAvailable });
 
