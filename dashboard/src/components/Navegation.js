@@ -26,6 +26,15 @@ function Navegation() {
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link
+                                className="nav-link me-lg-3"
+                                aria-current="page"
+                                to="/dashboard/users"
+                            >
+                                Usuarios
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link to="/" className="nav-link me-lg-3 disabled">Pronto...</Link>
                         </li>
                     </ul>

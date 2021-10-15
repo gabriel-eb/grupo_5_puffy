@@ -5,6 +5,7 @@ const uploadFile = require("../middlewares/multerMiddleware");
 const gcpImage = require("../middlewares/gcpImageMiddleware");
 
 router.get('/users', controller.getAllUsers);
+router.get('/users/last', controller.getLastUser);
 router.get('/users/:id', controller.getUser);
 
 router.get('/products', controller.getAllProducts);
