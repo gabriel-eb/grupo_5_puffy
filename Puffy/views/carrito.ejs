@@ -1,74 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('partials/head') %>
+
+<head>
+    <%- include('partials/head') %>
         <title>Listo para realizar tu pedido</title>
-    </head>
-    <body>
-        <%- include('partials/header') %>
+        
+</head>
+
+<body>
+    <%- include('partials/header') %>
 
         <main class="carrito">
             <h1 class="fuente-may">Carrito</h1>
-            <section class="lista-productos">
-                <% finalProducts.map((producto) => { %>
-                <div class="postre">
-                    <h2 class="fuente-may"><%= producto.name %></h2>
-                    <div class="imagen">
-                        <img
-                            src=<%= producto.url%>
-                            alt="imagen chocoflan"
-                        />
-                    </div>
-                    <div class="cantidad">
-                        <h3 style="text-align: center;">Cantidad:<br /><%= producto.quantity %></h3>
-                        <!-- <input type="number" name="quantity" id="quantity" value="<%= producto.quantity %>"/> -->
-                    </div>
-                    
-                        <a href="/users/<%= userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
+            <section class="lista-productos cart-items">
 
-                    <div>
-                    <p class="subtotal bold" id="subtotal">Subtotal: $ <%= producto.price %></p>
-                    </div>
-                    <input
-                        class="nota"
-                        type="text"
-                        name="eliminar"
-                        placeholder="Agrega una nota aquí para la tienda..."
-                        id="eliminar"
-                    />
-               
-                </div>
-
-                <% }) %>
             </section>
 
 
             <section class="total">
-                <div class="grupo">
-                    <p>Subtotal( <%= count %> producto(s)):</p>
-                    <p>$ <%= totalPrice %> mxn</p>
+                <div class="grupo subtotal">
+                    Subtotal (0 items): $0
                 </div>
                 <div class="grupo">
                     <p>Envío:</p>
-                    <p>$ 65 mxn</p>
+                    <p>$ 65.00 mxn</p>
                 </div>
                 <div class="grupo">
                     <p>Total:</p>
-                    <div class="precio-total">
+                    <div class="precio-total total-items-in-cart">
                         <p>$ <%= totalPrice + 65 %> mxn</p>
                         <p class="gris">IVA INCLUIDO</p>
                     </div>
                 </div>
                 <form action="/users/<%= userCart.userId  %>/carrito?_method=PUT" method="post">
                     <input type="hidden" name="total" id="total" value="<%= totalPrice %>">
-                    <% finalProducts.map((producto)=> { %>
-                        <input type="number" name="<%= producto.id %>" id="prod<%= producto.id %>" value="1" />
-                    <% } %>
                     <input class="boton" type="submit" value="Realizar compra" />
                 </form>
             </section>
             <hr />
         </main>
         <%- include('partials/footer') %>
-    </body>
+        <script>
+            let myVar = <%- JSON.stringify(finalProducts) %>;
+            localStorage.removeItem("CART");
+            localStorage.setItem("CART", JSON.stringify(myVar));
+        </script>
+        <script src="/js/cart.js"></script>
+</body>
+
 </html>

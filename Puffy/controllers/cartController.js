@@ -93,7 +93,8 @@ const controller = {
                         name: p.name,
                         price: p.price,
                         url: p.product_images[0].url,
-                        quantity: countEachProd[p.id]
+                        quantity: countEachProd[p.id],
+                        instock: p.quantity
                     });
                     finalProducts.push(temp)
                 });
@@ -116,6 +117,7 @@ const controller = {
     },
     buyCart: async (req, res) => {
         try {
+            console.log(req.body);
             const cart = await Carts.findOne({
                 where: {
                     userId: req.params.id,
@@ -127,12 +129,12 @@ const controller = {
                     attributes: ['productId']
                 }]
             });
-            await Carts.update({ status: 1 }, { where: { id: cart.id } });
+            // await Carts.update({ status: 1 }, { where: { id: cart.id } });
 
             const soldProducts = cart.product_cart.map(({ productId }) => productId);
 
             for (const prodId of soldProducts) {
-                await Products.decrement({ quantity: 1 }, { where: { id: prodId } });
+                // await Products.decrement({ quantity: 1 }, { where: { id: prodId } });
             }
 
             return res.status(201).render('agradecimiento');
