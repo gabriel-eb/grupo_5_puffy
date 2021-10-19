@@ -46,7 +46,7 @@ const controller = {
                     cartId: createdCart.id
                 })
             }
-            
+
             return res.status(201).redirect(`/users/${userId}/carrito`);
         } catch (error) {
             console.log(error);
@@ -117,24 +117,24 @@ const controller = {
     },
     buyCart: async (req, res) => {
         try {
-            console.log(req.body);
             const cart = await Carts.findOne({
                 where: {
                     userId: req.params.id,
                     status: 0
                 },
-                include: [{
-                    model: ProdCarts,
-                    as: 'product_cart',
-                    attributes: ['productId']
-                }]
+                raw: true
             });
-            // await Carts.update({ status: 1 }, { where: { id: cart.id } });
+            await Carts.update({ status: 1 }, { where: { id: cart.id } });
 
-            const soldProducts = cart.product_cart.map(({ productId }) => productId);
+            const soldProducts = Object.entries(req.body);
 
-            for (const prodId of soldProducts) {
-                // await Products.decrement({ quantity: 1 }, { where: { id: prodId } });
+            for (const product of soldProducts) {
+                const productId = product[0];
+                const productQuant = product[1];
+                await Products.decrement(
+                    { quantity: productQuant }, 
+                    { where: { id: productId } }
+                );
             }
 
             return res.status(201).render('agradecimiento');

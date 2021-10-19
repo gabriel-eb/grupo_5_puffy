@@ -27,13 +27,12 @@
                 </div>
                 <div class="grupo">
                     <p>Total:</p>
-                    <div class="precio-total total-items-in-cart">
+                    <div class="precio-total">
                         <p>$ <%= totalPrice + 65 %> mxn</p>
                         <p class="gris">IVA INCLUIDO</p>
                     </div>
                 </div>
-                <form action="/users/<%= userCart.userId  %>/carrito?_method=PUT" method="post">
-                    <input type="hidden" name="total" id="total" value="<%= totalPrice %>">
+                <form action="/users/<%= userCart.userId  %>/carrito?_method=PUT" class="cart-form" method="post">
                     <input class="boton" type="submit" value="Realizar compra" />
                 </form>
             </section>

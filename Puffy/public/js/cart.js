@@ -1,7 +1,8 @@
 const productsEl = document.querySelector(".products");
 const cartItemsEl = document.querySelector(".cart-items");
 const subtotalEl = document.querySelector(".subtotal");
-const totalItemsInCartEl = document.querySelector(".total-items-in-cart");
+const cartTotalEl = document.querySelector(".precio-total");
+const formEl = document.querySelector(".cart-form")
 
 // cart array
 let cart = JSON.parse(localStorage.getItem("CART")) || [];
@@ -45,7 +46,7 @@ function renderSubtotal() {
     });
 
     subtotalEl.innerHTML = `<p>Subtotal (${totalItems} items):</p><p> $ ${totalPrice.toFixed(2)} mxn</p>`;
-    totalItemsInCartEl.innerHTML = `$ ${(totalPrice + shipping).toFixed(2)} mxn `;
+    cartTotalEl.innerHTML = `$ ${(totalPrice + shipping).toFixed(2)} mxn `;
 }
 
 // render cart items
@@ -72,7 +73,10 @@ function renderCartItems() {
             <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..."
                 id="eliminar" />
         </div>
-      `;
+        `;
+        formEl.innerHTML += `
+        <input type="hidden" name="${item.id}" value="${item.quantity}" />
+        `;
     });
 }
 
