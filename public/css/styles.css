@@ -485,6 +485,10 @@ body > hr {
     overflow: hidden;
 }
 
+.no-stock {
+    filter: opacity(40%);
+}
+
 /* Colecciones */
 
 .colecciones {
@@ -1327,8 +1331,8 @@ h3 {
     align-items: center;
 }
 
-main.carrito .subtotal {
-    text-align: center;
+main.carrito .product-price {
+    text-align: right;
 }
 
 .lista-productos .postre img {

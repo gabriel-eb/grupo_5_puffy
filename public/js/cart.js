@@ -1,5 +1,8 @@
+const productsEl = document.querySelector(".products");
 const cartItemsEl = document.querySelector(".cart-items");
 const subtotalEl = document.querySelector(".subtotal");
+const cartTotalEl = document.querySelector(".precio-total");
+const formEl = document.querySelector(".cart-form")
 
 // cart array
 let cart = JSON.parse(localStorage.getItem("CART")) || [];
@@ -45,15 +48,48 @@ function updateCart() {
 
 // calculate and render subtotal
 function renderSubtotal() {
-    let totalPrice = 0;
-    let totalItems = 0;
+    let totalPrice = 0.0,
+        totalItems = 0,
+        shipping = 65.0;
 
-    cart.map(item => {
+    cart.map((item) => {
         totalPrice += item.price * item.quantity;
         totalItems += item.quantity;
     });
 
-    subtotalEl.innerHTML = `Subtotal (${totalItems} postre(s)): $${totalPrice.toFixed(2)} mxn`;
+    subtotalEl.innerHTML = `<p>Subtotal (${totalItems} items):</p><p> $ ${totalPrice.toFixed(2)} mxn</p>`;
+    cartTotalEl.innerHTML = `$ ${(totalPrice + shipping).toFixed(2)} mxn `;
+}
+
+// render cart items
+function renderCartItems() {
+    cartItemsEl.innerHTML = ""; // clear cart element
+    cart.forEach((item) => {
+        cartItemsEl.innerHTML += `
+        <div class="postre">
+            <h2 class="fuente-may">${item.name}</h2>
+            <div class="imagen" onclick="removeItemFromCart(${item.id})">
+                <img src="${item.url}" alt="${item.name}">
+            </div>
+            <div class="cantidad units">
+                <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>
+                <div class="number">${item.quantity}</div>
+                <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
+            </div>
+
+            <a href="/users/<%= userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
+            <div>
+                <p class="product-price bold unit-price">Precio: $ ${item.price}
+                </p>
+            </div>
+            <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..."
+                id="eliminar" />
+        </div>
+        `;
+        formEl.innerHTML += `
+        <input type="hidden" name="${item.id}" value="${item.quantity}" />
+        `;
+    });
 }
 
 // remove item from cart
