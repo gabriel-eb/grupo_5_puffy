@@ -131,10 +131,13 @@ const controller = {
             for (const product of soldProducts) {
                 const productId = product[0];
                 const productQuant = product[1];
-                await Products.decrement(
-                    { quantity: productQuant }, 
-                    { where: { id: productId } }
-                );
+                // await Products.decrement(
+                //     { quantity: productQuant }, 
+                //     { where: { id: productId } }
+                // );
+                Products.findByPk(product[0]).then(prod => {
+                    return prod.decrement(['quantity'], { by: product[1] })
+                });
             }
 
             return res.status(201).render('agradecimiento');
