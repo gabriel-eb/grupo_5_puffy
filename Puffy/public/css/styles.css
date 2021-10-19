@@ -485,6 +485,10 @@ body > hr {
     overflow: hidden;
 }
 
+.no-stock {
+    filter: opacity(40%);
+}
+
 /* Colecciones */
 
 .colecciones {

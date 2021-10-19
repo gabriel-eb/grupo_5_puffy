@@ -8,7 +8,12 @@ const { validationResult } = require('express-validator');
 const controller = {
     index: async (req, res) => {
         try {
-            const productsList = await Products.findAll();
+            const productsList = await Products.findAll({ 
+                order: [
+                    ['quantity', 'DESC'],
+                    ['name', 'ASC']
+                ] 
+            });
             const Img = await Images.findAll();
 
             if (req.session.userId) {

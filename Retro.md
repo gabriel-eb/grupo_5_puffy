@@ -114,9 +114,9 @@
 
 ## Sprint 7 - Retroalimentación
 ### Montserrat
-- Comenzar a hacer: 
-- Continuar haciendo: 
-- Dejar de hacer: 
+- Comenzar a hacer: reforzar conocimientos en HTML y CSS con videos y práctica.
+- Continuar haciendo: tener los tiempos organizados y ver con anticipación las clases en playgroud.
+- Dejar de hacer: dedicar poco tiempo al material que se presenta a lo largo del curso.
 
 ### Gabriel
 - Comenzar a hacer: escuchar a mis compañeros y dejar que hagan su parte como mejor creen/pueden hacerlo.
