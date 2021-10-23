@@ -50,7 +50,8 @@ module.exports = (sequelize, dataTypes) => {
         })
         Address.hasMany(models.Order, {
             as: 'order',
-            foreignKey: 'addressId'
+            foreignKey: 'addressId',
+            onDelete: 'CASCADE'
         })
     }
     

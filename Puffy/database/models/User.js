@@ -51,16 +51,19 @@ module.exports = (sequelize, dataTypes) => {
     User.associate = function(models) {
         User.hasMany(models.Address, {
             as: 'address',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
         });
         User.hasMany(models.Order, {
             as: 'order',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
         });
 
         User.hasOne(models.Cart, {
             as: 'cart',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
         });
 
     }

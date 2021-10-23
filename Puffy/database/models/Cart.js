@@ -40,7 +40,8 @@ module.exports = (sequelize, dataTypes) => {
     Cart.associate = function(models) {
         Cart.hasMany(models.ProductCart, {
             as: 'productCart',
-            foreignKey: 'cartId'
+            foreignKey: 'cartId',
+            onDelete: 'CASCADE'
         });
          
         Cart.belongsTo(models.User, {
