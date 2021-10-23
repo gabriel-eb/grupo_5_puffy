@@ -31,11 +31,8 @@ router.route('/:id/addresses/:idAddress')
     .delete(notLogged, isUser, controllerDir.borrarDir);
 
 //Rutas de carrito
-router.route('/:id/carrito')
-    .get(notLogged, isUser, controllerCart.vistaCarrito)
-    .put(notLogged, isUser, controllerCart.buyCart);
-
-router.route('/:id/carrito/:idCarrito')
-    .get(notLogged,controllerCart.deleteProduct);
+// router.route('/:id/carrito')
+//     .get(notLogged, isUser, controllerCart.vistaCarrito)
+//     .put(notLogged, isUser, controllerCart.buyCart);
 
 module.exports = router

@@ -73,8 +73,10 @@ function changeNumberOfUnits(action, id) {
         if (item.id === id) {
             if (action === "minus" && quantity > 1) {
                 quantity--;
+                fetch(`/cart/decrease/${item.id}`).then();
             } else if (action === "plus" && quantity < item.instock) {
                 quantity++;
+                fetch(`/cart/increase/${item.id}`).then();
             }
         }
 
