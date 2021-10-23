@@ -1,0 +1,27 @@
+// List invited users
+GET  http://localhost:3030/invited/ HTTP/1.1
+
+###
+
+// Create user
+POST http://localhost:3030/invited/create HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Prueba",
+    "mobile": "12412341",
+    "email": "prueba@correo.com",
+    "line1": "this is line 1 address",
+    "line2": "this is line 2 address",
+    "city": "tux",
+    "state": "chis",
+    "country": "mx",
+    "zip": "22222"
+}
+
+###
+
+// Delete a invited user
+DELETE  http://localhost:3030/invited/2/delete HTTP/1.1
+
+###

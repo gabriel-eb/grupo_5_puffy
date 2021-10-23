@@ -7,12 +7,16 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 
+const Invited = require('./database/models').Invited;
+const InvitedAddress = require('./database/models').InvitedAddress;
+
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
 const rutaProducts = require("./routes/productsRoute");
 const rutaUsers = require("./routes/usersRoute");
 const rutaCarts = require("./routes/cartsRoute");
 const rutaApi = require("./routes/apiRoute");
+const rutaInvited = require("./routes/invitedRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
@@ -41,12 +45,15 @@ app.use((req, res, next) => {
 });
 
 
+
+
 // Rutas
 app.use("/", rutaMain);
 app.use("/productos", rutaProducts);
 app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
+app.use("/invited", rutaInvited);
 
 // Demo Error 500
 app.get("/error", (req, res, next) => {
