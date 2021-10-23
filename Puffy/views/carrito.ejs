@@ -28,11 +28,11 @@
                 <div class="grupo">
                     <p>Total:</p>
                     <div class="precio-total">
-                        <p>$ <%= totalPrice + 65 %> mxn</p>
-                        <p class="gris">IVA INCLUIDO</p>
                     </div>
                 </div>
-                <form action="/users/<%= userCart.userId  %>/carrito?_method=PUT" class="cart-form" method="post">
+                <form action="/carrito/create" class="cart-form" method="post">
+                    <input type="hidden" name="userCart" value="<%= userCart %>">
+                    <input type="hidden" name="userType" value="<%= userType %>">
                     <input class="boton" type="submit" value="Realizar compra" />
                 </form>
             </section>
@@ -40,7 +40,7 @@
         </main>
         <%- include('partials/footer') %>
         <script>
-            let myVar = <%- JSON.stringify(finalProducts) %>;
+            let myVar = <%- JSON.stringify(cart) %>;
             localStorage.removeItem("CART");
             localStorage.setItem("CART", JSON.stringify(myVar));
         </script>

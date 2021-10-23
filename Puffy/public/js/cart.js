@@ -6,47 +6,25 @@ const formEl = document.querySelector(".cart-form")
 
 // cart array
 let cart = JSON.parse(localStorage.getItem("CART")) || [];
-updateCart();
 
-// ADD TO CART
-function addToCart(id) {
-    // check if prodcut already exist in cart
-    if (cart.some((item) => item.id === id)) {
-        changeNumberOfUnits("plus", id);
-    } else {
-        const item = products.find((product) => product.id === id);
-
-        cart.push({
-            ...item,
-            quantity: 1,
-        });
-    }
-
-    updateCart();
-}
-
-// update cart
-function updateCart() {
-    renderCartItems();
-    renderSubtotal();
-
-    // save cart to local storage
-    localStorage.setItem("CART", JSON.stringify(cart));
-}
 
 // calculate and render subtotal
 function renderSubtotal() {
     let totalPrice = 0.0,
-        totalItems = 0,
-        shipping = 65.0;
-
+    totalItems = 0,
+    shipping = 65.0;
+    
     cart.forEach((item) => {
         totalPrice += item.price * item.quantity;
         totalItems += item.quantity;
     });
-
+    
     subtotalEl.innerHTML = `<p>Subtotal (${totalItems} items):</p><p> $ ${totalPrice.toFixed(2)} mxn</p>`;
-    cartTotalEl.innerHTML = `$ ${(totalPrice + shipping).toFixed(2)} mxn `;
+    cartTotalEl.innerHTML = `
+        <p>$ ${(totalPrice + shipping).toFixed(2)} mxn </p>
+        <p class="gris">IVA INCLUIDO</p>
+    `;
+    
 }
 
 // render cart items
@@ -55,23 +33,23 @@ function renderCartItems() {
     cart.forEach((item) => {
         cartItemsEl.innerHTML += `
         <div class="postre">
-            <h2 class="fuente-may">${item.name}</h2>
-            <div class="imagen" onclick="removeItemFromCart(${item.id})">
-                <img src="${item.url}" alt="${item.name}">
-            </div>
-            <div class="cantidad units">
-                <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>
-                <div class="number">${item.quantity}</div>
-                <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
-            </div>
-
-            <a href="/users/<%= userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
-            <div>
-                <p class="product-price bold unit-price">Precio: $ ${item.price}
-                </p>
-            </div>
-            <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..."
-                id="eliminar" />
+        <h2 class="fuente-may">${item.name}</h2>
+        <div class="imagen" onclick="removeItemFromCart(${item.id})">
+        <img src="${item.url}" alt="${item.name}">
+        </div>
+        <div class="cantidad units">
+        <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>
+        <div class="number">${item.quantity}</div>
+        <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
+        </div>
+        
+        <a href="/users/<%= userCart.userId %>/carrito/<%=idCarrito%>?idProduct=<%=producto.id %>">Eliminar</a>
+        <div>
+        <p class="product-price bold unit-price">Precio: $ ${item.price}
+        </p>
+        </div>
+        <input class="nota" type="text" name="eliminar" placeholder="Agrega una nota aquí para la tienda..."
+        id="eliminar" />
         </div>
         `;
         formEl.innerHTML += `
@@ -108,3 +86,14 @@ function changeNumberOfUnits(action, id) {
 
     updateCart();
 }
+
+// update cart
+function updateCart() {
+    renderCartItems();
+    renderSubtotal();
+
+    // save cart to local storage
+    localStorage.setItem("CART", JSON.stringify(cart));
+}
+
+updateCart();
