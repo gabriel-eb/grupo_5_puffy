@@ -6,12 +6,6 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        sessionId: {
-            type: dataTypes.STRING(100)
-        },
-        token: {
-            type: dataTypes.STRING(100)
-        },
         status: {
             type: dataTypes.STRING(10)
         },
