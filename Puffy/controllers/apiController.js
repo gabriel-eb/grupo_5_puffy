@@ -2,10 +2,10 @@ const db = require('../database/models');
 const Users = db.User;
 const Products = db.Product;
 const Categories = db.Category;
-const ProductCat = db.Product_category
-const Images = db.Product_images;
+const ProductCat = db.ProductCategory
+const Images = db.ProductImages;
 const Carts = db.Cart;
-const ProdCarts = db.Product_cart;
+const ProductCarts = db.ProductCart;
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -76,10 +76,10 @@ module.exports = {
             let products = await Products.findAll({
                 attributes: ['id', 'name', 'description','createdAt','price','quantity',],
                 include: [{
-                    model: db.Product_category,
-                    as: 'product_category',
+                    model: ProductCat,
+                    as: 'productCategory',
                     include: [{
-                        model: db.Category,
+                        model: Categories,
                         as: 'category',
                         attributes: ['name'],
                     }],
@@ -93,7 +93,7 @@ module.exports = {
                     id: product.id,
                     name: product.name,
                     description: product.description,
-                    categories: product.product_category.map(cat => cat.category.name),
+                    categories: product.productCategory.map(cat => cat.category.name),
                     createdAt: product.createdAt,
                     price:product.price,
                     quantity:product.quantity,
@@ -102,11 +102,11 @@ module.exports = {
                 })
             })
 
-            const categories = await db.Category.findAll({
+            const categories = await Categories.findAll({
                 raw: true,
                 attributes: ['id', 'name']
             });
-            const prodCategory = await db.Product_category.findAll({raw: true});
+            const prodCategory = await ProductCat.findAll({raw: true});
 
             let countByCategory = {};
 
@@ -133,12 +133,12 @@ module.exports = {
         try {
             const product = await Products.findByPk(req.params.id, {
                 include: [{
-                    model: db.Product_images,
-                    as: 'product_images',
+                    model: Images,
+                    as: 'productImages',
                     where: { main: true }
                 }, {
                     model: ProductCat,
-                    as: 'product_category',
+                    as: 'productCategory',
                     attributes: ['categoryId']
                 }]
 
@@ -153,11 +153,11 @@ module.exports = {
                     price: product.price,
                     size: product.size,
                     quantity: product.quantity,
-                    category: product.product_category[0].categoryId,
+                    category: product.productCategory[0].categoryId,
                     discount: product.discount,
                     createdAt: product.createdAt,
                     updatedAt: product.updatedAt,
-                    url: product.product_images[0].url
+                    url: product.productImages[0].url
                 }
             );
 
@@ -184,11 +184,11 @@ module.exports = {
             req.body.description = req.body.description.trim();
             const addedProduct = await Products.create(req.body);
 
-            const product_cat = {
+            const productWithCat = {
                 productId: addedProduct.dataValues.id,
                 categoryId: req.body.category
             }
-            await ProductCat.create(product_cat);
+            await ProductCat.create(productWithCat);
 
             const productImage = {
                 url: req.body.image || "/images/avatars/default.jpg",
@@ -250,8 +250,8 @@ module.exports = {
                 where: { status: "1" },
                 attributes: ['id', 'userId'],
                 include:[{
-                    model: ProdCarts,
-                    as: 'product_cart',
+                    model: ProductCarts,
+                    as: 'productCart',
                     attributes: ['id', 'productId'],
                     include: [{
                         model: Products,
@@ -263,12 +263,12 @@ module.exports = {
 
             // Count total sales
             let totalSales = 0;
-            completeSale.map(cart => totalSales += cart.product_cart.length)
+            completeSale.map(cart => totalSales += cart.productCart.length)
 
             // Get and sort top products
             const topProducts = {};
-            completeSale.map(({ product_cart }) => {
-                product_cart.map( sale =>{
+            completeSale.map(({ productCart }) => {
+                productCart.map( sale =>{
                     const i = sale.productId;
                     topProducts[i] = {
                         count: (topProducts[i] ? topProducts[i].count : 0) + 1,

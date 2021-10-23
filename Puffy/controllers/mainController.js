@@ -1,11 +1,12 @@
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
-const sequelize = require('sequelize');
 const db = require('../database/models');
 const { Op } = require("sequelize");
 const Users = db.User;
 const Products = db.Product;
-const Images = db.Product_images;
+const Images = db.ProductImages;
+const Categories = db.Category;
+const ProdCat = db.ProductCategory;
 
 async function getHighlight() {
     try {
@@ -15,10 +16,10 @@ async function getHighlight() {
             where: {
                 quantity: maxQuant
             },
-            include: [{ model: Images, as: 'product_images' }]
+            include: [{ model: Images, as: 'productImages' }]
         });
         // Creando objeto limpio y con url de imagen
-        const urlHighlight = highlight.product_images
+        const urlHighlight = highlight.productImages
             .filter(img => img.main)[0].url;
 
         return Object.assign(
@@ -50,13 +51,13 @@ const controller = {
                 },
                 order: [['updatedAt', 'DESC']],
                 limit: 4,
-                include: [{ model: Images, as: 'product_images' }]
+                include: [{ model: Images, as: 'productImages' }]
             });
 
 
             // Limpiando obj y agregando URL de postres destacados
             recentProducts = recentProducts.map(product => {
-                const urlProduct = product.product_images
+                const urlProduct = product.productImages
                     .filter(img => img.main)[0].url;
                 return Object.assign(
                     {},
@@ -69,7 +70,7 @@ const controller = {
                     }
                 );
             });
-            const categories = await db.Category.findAll();
+            const categories = await Categories.findAll();
 
             return res.status(200).render("index", {
                 highlight,
@@ -222,13 +223,13 @@ const controller = {
             include: [
                 {
                     model: Images,
-                    as: 'product_images'
+                    as: 'productImages'
                 }, {
-                    model: db.Product_category,
-                    as: 'product_category',
+                    model: ProdCat,
+                    as: 'productCategory',
                     where: { categoryId: req.query.cat },
                     include: [{
-                        model: db.Category,
+                        model: Categories,
                         as: 'category',
                         attributes: ['name']
                     }],
@@ -246,13 +247,13 @@ const controller = {
         try {
             let searchResult = await Products.findAll(query);
 
-            const categoryName = searchResult.length && searchResult[0].product_category ?
-                searchResult[0].product_category[0].category.name : null;
+            const categoryName = searchResult.length && searchResult[0].productCategory ?
+                searchResult[0].productCategory[0].category.name : null;
 
 
             // Limpiando obj y agregando URL de postres destacados
             searchResult = searchResult.map((product) => {
-                const urlProduct = product.product_images
+                const urlProduct = product.productImages
                     .filter(img => img.main)[0].url;
                 return Object.assign(
                     {},
@@ -266,7 +267,7 @@ const controller = {
                 );
             });
 
-            const categories = await db.Category.findAll({ raw: true });
+            const categories = await Categories.findAll({ raw: true });
 
             if (searchResult.length === 0) {
                 const highlight = await getHighlight();

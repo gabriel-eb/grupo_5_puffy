@@ -1,10 +1,9 @@
-const sequelize = require('sequelize');
 const db = require('../database/models');
 const Products = db.Product;
 const Carts = db.Cart;
 const Address = db.Address;
-const ProdCarts = db.Product_cart;
-
+const ProdCarts = db.ProductCart;
+const Images = db.ProductImages
 
 
 const controller = {
@@ -79,8 +78,8 @@ const controller = {
                         id: productsId
                     },
                     include: [{
-                        model: db.Product_images,
-                        as: 'product_images',
+                        model: Images,
+                        as: 'productImages',
                         where: { main: true }
                     }]
                 })
@@ -92,7 +91,7 @@ const controller = {
                         id: p.id,
                         name: p.name,
                         price: p.price,
-                        url: p.product_images[0].url,
+                        url: p.productImages[0].url,
                         quantity: countEachProd[p.id],
                         instock: p.quantity
                     });

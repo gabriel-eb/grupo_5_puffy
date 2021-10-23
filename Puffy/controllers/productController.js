@@ -1,8 +1,9 @@
 const db = require('../database/models');
+const Users = db.User;
 const Products = db.Product;
 const Categories = db.Category;
-const ProductCat = db.Product_category;
-const Images = db.Product_images;
+const ProductCat = db.ProductCategory;
+const Images = db.ProductImages;
 const { validationResult } = require('express-validator');
 
 const controller = {
@@ -17,7 +18,7 @@ const controller = {
             const Img = await Images.findAll();
 
             if (req.session.userId) {
-                const user = await db.User.findByPk(req.session.userId);
+                const user = await Users.findByPk(req.session.userId);
                 const userIsAdmin = user.admin;
                 return res.status(200).render("products/index", {
                     productsList,
@@ -100,7 +101,7 @@ const controller = {
             const prodIsAvailable = productDetail.quantity > 0;
             
             if (req.session.userId){
-                const user = await db.User.findByPk(req.session.userId);
+                const user = await Users.findByPk(req.session.userId);
                 const userIsAdmin = user.admin;
                 return res.status(200).render("products/detalle", {
                     productDetail,
@@ -171,11 +172,11 @@ const controller = {
 
             const addedProduct = await Products.create(req.body);
 
-            const product_cat = {
+            const productWithCat = {
                 productId: addedProduct.dataValues.id,
                 categoryId: req.body.category
             }
-            await ProductCat.create(product_cat);
+            await ProductCat.create(productWithCat);
 
             const productImage = {
                 url: req.body.image || "/images/avatars/default.jpg",
@@ -218,10 +219,10 @@ const controller = {
                     id: req.params.id
                 }
             });
-            const product_cat = {
+            const productWithCat = {
                 categoryId: req.body.category
             }
-            await ProductCat.update(product_cat, {
+            await ProductCat.update(productWithCat, {
                 where: {
                     productId: req.params.id
                 }
