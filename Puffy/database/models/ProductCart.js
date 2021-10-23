@@ -14,6 +14,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER,
             field:"cart_id"
         },
+        boughtQuantity: {
+            type: dataTypes.INTEGER,
+            field: "bought_quantity"
+        }
         
     };
     let config = {
