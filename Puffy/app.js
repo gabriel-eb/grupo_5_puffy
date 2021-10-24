@@ -6,9 +6,7 @@ const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
-
-const Invited = require('./database/models').Invited;
-const InvitedAddress = require('./database/models').InvitedAddress;
+const sequelize = require('sequelize');
 
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
@@ -36,15 +34,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use(recordarSession);
 // Login MW
+app.use(recordarSession);
 app.use((req, res, next) => {
     res.locals.sessionId = req.session.userId;
     res.locals.sessionIdAdmin = req.session.isAdmin;
     next();
 });
-
-
 
 
 // Rutas

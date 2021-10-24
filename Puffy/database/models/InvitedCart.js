@@ -43,7 +43,7 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: 'invitedId'
         });
 
-        Cart.belongsTo(models.InvitedAddress, {
+        InvitedCart.belongsTo(models.InvitedAddress, {
             as: 'address',
             foreignKey: 'addressId'
         });         
