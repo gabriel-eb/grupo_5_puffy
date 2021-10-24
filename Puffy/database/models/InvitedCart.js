@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Cart';
+    let alias = 'InvitedCart';
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -9,9 +9,9 @@ module.exports = (sequelize, dataTypes) => {
         status: {
             type: dataTypes.STRING,
         },
-        userId: {
+        invitedId: {
             type: dataTypes.INTEGER,
-            field:'user_id'
+            field:'invited_id'
         },
         addressId: {
             type: dataTypes.INTEGER,
@@ -27,30 +27,29 @@ module.exports = (sequelize, dataTypes) => {
         },
     };
     let config = {
-        tableName: 'cart'
+        tableName: 'invited_cart'
     };
-    const Cart = sequelize.define(alias, cols, config)
+    const InvitedCart = sequelize.define(alias, cols, config)
 
-    Cart.associate = function(models) {
-        Cart.hasMany(models.ProductCart, {
+    InvitedCart.associate = function(models) {
+        InvitedCart.hasMany(models.ProductCart, {
             as: 'productCart',
-            foreignKey: 'cartId',
+            foreignKey: 'invitedCartId',
             onDelete: 'CASCADE'
         });
+         
+        InvitedCart.belongsTo(models.Invited, {
+            as: 'invited',
+            foreignKey: 'invitedId'
+        });
 
-        Cart.belongsTo(models.Address, {
+        Cart.belongsTo(models.InvitedAddress, {
             as: 'address',
             foreignKey: 'addressId'
-        });
-         
-        Cart.belongsTo(models.User, {
-            as: 'user',
-            foreignKey: 'userId'
-        });
-         
+        });         
 
     }
 
 
-    return Cart
+    return InvitedCart;
 }

@@ -14,6 +14,14 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER,
             field:"cart_id"
         },
+        invitedCartId: {
+            type: dataTypes.INTEGER,
+            field: "invited_cart_id"
+        },
+        cartType: {
+            type: dataTypes.BOOLEAN,
+            field: "cart_type"
+        },
         boughtQuantity: {
             type: dataTypes.INTEGER,
             field: "bought_quantity"
@@ -36,6 +44,11 @@ module.exports = (sequelize, dataTypes) => {
         ProductCart.belongsTo(models.Cart, {
             as: 'cart',
             foreignKey: 'cartId'
+        });
+
+        ProductCart.belongsTo(models.InvitedCart, {
+            as: 'invitedCart',
+            foreignKey: 'invitedCartId'
         });
     }
 

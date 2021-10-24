@@ -48,6 +48,11 @@ module.exports = (sequelize, dataTypes) => {
             as: 'invited',
             foreignKey: 'invitedId'
         })
+        Address.hasMany(models.InvitedCart, {
+            as: 'cart',
+            foreignKey: 'addressId',
+            onDelete: 'CASCADE'
+        })
     }
     
     return InvitedAddress;

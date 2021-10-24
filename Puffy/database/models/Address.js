@@ -38,7 +38,8 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     const config = {
-        tableName: 'address'
+        tableName: 'address',
+        paranoid: true
     };
 
     const Address = sequelize.define(alias, cols, config);
@@ -50,6 +51,11 @@ module.exports = (sequelize, dataTypes) => {
         })
         Address.hasMany(models.Order, {
             as: 'order',
+            foreignKey: 'addressId',
+            onDelete: 'CASCADE'
+        })
+        Address.hasMany(models.Cart, {
+            as: 'cart',
             foreignKey: 'addressId',
             onDelete: 'CASCADE'
         })
