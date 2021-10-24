@@ -4,14 +4,17 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         status: {
             type: dataTypes.STRING,
+            allowNull: false
         },
         userId: {
             type: dataTypes.INTEGER,
-            field:'user_id'
+            field: 'user_id',
+            allowNull: false
         },
         addressId: {
             type: dataTypes.INTEGER,
@@ -19,11 +22,13 @@ module.exports = (sequelize, dataTypes) => {
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         },
     };
     let config = {

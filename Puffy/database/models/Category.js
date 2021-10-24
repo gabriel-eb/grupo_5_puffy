@@ -4,18 +4,22 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
             type: dataTypes.STRING(45),
+            allowNull: false
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         },
     };
     let config = {

@@ -4,10 +4,12 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
-            type: dataTypes.STRING(250)
+            type: dataTypes.STRING(250),
+            allowNull: false
         },
         mobile: {
             type: dataTypes.STRING(15)
@@ -17,11 +19,13 @@ module.exports = (sequelize, dataTypes) => {
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         }
     };
     const config = {

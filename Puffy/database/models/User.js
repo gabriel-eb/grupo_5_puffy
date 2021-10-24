@@ -4,39 +4,48 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         firstName: {
             type: dataTypes.STRING(50),
-            field: 'first_name'
+            field: 'first_name',
+            allowNull: false
         },
         lastName: {
             type: dataTypes.STRING(100),
-            field: 'last_name'
+            field: 'last_name',
+            allowNull: false
         },
         mobile: {
             type: dataTypes.STRING(15)
         },
         email: {
-            type: dataTypes.STRING(45)
+            type: dataTypes.STRING(45),
+            allowNull: false
         },
         password: {
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
+            allowNull: false
         },
         admin: {
             type: dataTypes.BOOLEAN,
+            allowNull: false
         },
         lastLogin: {
             type: dataTypes.DATE,
-            field: 'last_login'
+            field: 'last_login',
+            allowNull: false
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         },
         avatar: {
             type: dataTypes.STRING(100)

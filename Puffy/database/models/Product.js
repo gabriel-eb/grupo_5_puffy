@@ -4,36 +4,39 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
-            type: dataTypes.STRING(250)
-            
+            type: dataTypes.STRING(250),
+            allowNull: false
         },
         description: {
             type: dataTypes.TEXT
-            
         },
         price: {
-            type: dataTypes.DOUBLE
+            type: dataTypes.DOUBLE,
+            allowNull: false
         },
         quantity: {
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER,
+            allowNull: false
         },
         discount: {
             type: dataTypes.FLOAT
         },
         size:{
             type:dataTypes.BOOLEAN
-
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         },
     };
     const config = {

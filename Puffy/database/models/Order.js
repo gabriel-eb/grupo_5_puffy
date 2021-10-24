@@ -4,25 +4,31 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         status: {
-            type: dataTypes.STRING(10)
+            type: dataTypes.STRING(10),
+            allowNull: false
         },
         subtotal: {
-            type: dataTypes.FLOAT
+            type: dataTypes.FLOAT,
+            allowNull: false
         },
         discount: {
             type: dataTypes.FLOAT
         },
         tax: {
-            type: dataTypes.FLOAT
+            type: dataTypes.FLOAT,
+            allowNull: false
         },
         shipping: {
-            type: dataTypes.FLOAT
+            type: dataTypes.FLOAT,
+            allowNull: false
         },
         total: {
-            type: dataTypes.FLOAT
+            type: dataTypes.FLOAT,
+            allowNull: false
         },
         promo: {
             type: dataTypes.STRING(45)
@@ -32,23 +38,28 @@ module.exports = (sequelize, dataTypes) => {
             field: 'promo_discount'
         },
         grandTotal: {
-            type: dataTypes.FLOAT
+            type: dataTypes.FLOAT,
+            allowNull: false
         },
         userId: {
             type: dataTypes.INTEGER,
-            field: 'user_id'
+            field: 'user_id',
+            allowNull: false
         },
         addressId: {
             type: dataTypes.INTEGER,
-            field: 'address_id'
+            field: 'address_id',
+            allowNull: false
         },
         createdAt: {
             type: dataTypes.DATE,
-            field: 'created_at'
+            field: 'created_at',
+            allowNull: false
         },
         updatedAt: {
             type: dataTypes.DATE,
-            field: 'updated_at'
+            field: 'updated_at',
+            allowNull: false
         }
     };
     const config = {

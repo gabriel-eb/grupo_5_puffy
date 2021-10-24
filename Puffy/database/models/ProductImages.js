@@ -4,19 +4,22 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         url: {
             type: dataTypes.STRING(250),
+            allowNull: false
         },
         main:{
-            type:dataTypes.BOOLEAN
+            type: dataTypes.BOOLEAN,
+            allowNull: false
         },
         productId:{
             type:dataTypes.INTEGER,
-            field:"product_id"
+            field: "product_id",
+            allowNull: false
         }
-        
     };
     let config = {
         tableName: 'product_images',

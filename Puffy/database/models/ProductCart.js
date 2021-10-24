@@ -4,11 +4,13 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         productId: {
             type: dataTypes.INTEGER,
-            field:"product_id"
+            field: "product_id",
+            allowNull: false
         },
         cartId: {
             type: dataTypes.INTEGER,
@@ -20,11 +22,13 @@ module.exports = (sequelize, dataTypes) => {
         },
         cartType: {
             type: dataTypes.BOOLEAN,
-            field: "cart_type"
+            field: "cart_type",
+            allowNull: false
         },
         boughtQuantity: {
             type: dataTypes.INTEGER,
-            field: "bought_quantity"
+            field: "bought_quantity",
+            allowNull: false
         }
         
     };
