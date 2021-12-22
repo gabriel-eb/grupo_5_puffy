@@ -898,6 +898,27 @@ body{
     color: blue;
 }
 
+.prim-btn {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    margin: 1rem 0;
+    background-color: black;
+    color: white;
+    width: 100%;
+    border: 0;
+    border-radius: 0.2rem;
+}
+
+.sec-btn {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    margin: 1rem 0;
+    background-color: white;
+    border: solid #333 2px;
+    width: 100%;
+    border-radius: 0.2rem;
+}
+
 .button_01 {
     margin: 0 15px;
     padding-bottom: 20px;
