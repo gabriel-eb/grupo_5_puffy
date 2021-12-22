@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <%- include('partials/head') %>
+    <%- include('../partials/head') %>
         <title>Listo para realizar tu pedido</title>
         
 </head>
 
 <body>
-    <%- include('partials/header') %>
+    <%- include('../partials/header') %>
 
         <main class="carrito">
             <h1 class="fuente-may">Carrito</h1>
@@ -44,7 +44,7 @@
             </section>
             <hr />
         </main>
-        <%- include('partials/footer') %>
+        <%- include('../partials/footer') %>
         <script>
             let myVar = <%- JSON.stringify(cart) %>;
             localStorage.removeItem("CART");
