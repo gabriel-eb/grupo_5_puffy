@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Continuar como invitado</title>
+</head>
+
+<body>
+
+    <main>
+        <h2> Ingresa tus datos para el envío: </h2>
+            <form action="/cart/createAddressInvited" method="post">
+                <div class="container_01">
+                    <h3>Datos de domicilio</h3>
+                    <input id="line1" name="line1" type="text" placeholder="Parte 1"
+                        class="fill <%= locals.errors && errors.line1 ? 'is-invalid' : null %>"
+                        value="<%=locals.oldData ? oldData.line1 : null %>" required />
+                    <p id='p_line1' class="alertp">Debes de escribir tu dirección. Sólo se permiten carácteres
+                        alfanuméricos.</p>
+
+                    <input id="line2" name="line2" type="text" class="fill" placeholder="Parte 2" />
+                    <p id='p_line2' class="alertp">Sólo se permiten carácteres alfanuméricos.</p>
+
+                    <label for="zip">C.P.</label>
+                    <input id="zip" name="zip" type="number" maxlength="5"
+                        class="fill <%= locals.errors && errors.zip ? 'is-invalid' : null %>"
+                        value="<%=locals.oldData ? oldData.zip : null %>" required />
+                    <p id='p_zip' class="alertp">Escribe tu código postal.</p>
+
+                    <br />
+
+                    <label for="city">Municipio/Delegación</label>
+                    <input id="city" name="city" type="text" placeholder="Municipio / Delegación"
+                        class="fill <%= locals.errors && errors.city ? 'is-invalid' : null %>"
+                        value="<%=locals.oldData ? oldData.city : null %>" required />
+                    <p id='p_city' class="alertp">Debes de escribir tu ciudad. Sólo se permiten carácteres
+                        alfanuméricos.</p>
+
+                    <label for="state">Estado</label>
+                    <select name="state" id="state"
+                        class="fill <%= locals.errors && errors.state ? 'is-invalid' : null %>" required>
+                        <option></option>
+                        <% estados.map(estado=> { %>
+                            <option value="<%= estado %>" <%=locals.oldData && oldData.state==estado ? "selected" : null
+                                %>><%= estado %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <label for="country">País</label>
+                    <select name="country" id="country" class="fill">
+                        <option value="Mexico" selected>México</option>
+                    </select>
+                    <input type="hidden" name="invitedId" value="<%= invitedId %>">
+                    <input type="submit" value="Continuar">
+                </div>
+            </form>
+    </main>
+
+
+</body>
+
+</html>

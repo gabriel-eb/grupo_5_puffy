@@ -6,6 +6,7 @@ const Products = db.Product;
 const Carts = db.Cart;
 const Images = db.ProductImages;
 const Invited = db.Invited;
+const InvitedAddress = db.InvitedAddress;
 
 
 const controller = {
@@ -96,20 +97,9 @@ const controller = {
         }
     },
     invitedCheckout: (req, res) => {
-        const estados = [
-            'Aguascalientes', 'Baja California', 'Baja California Sur',
-            'Campeche', 'Coahuila de Zaragoza', 'Colima', 'Chiapas',
-            'Chihuahua', 'Ciudad de México', 'Durango', 'Guanajuato',
-            'Guerrero', 'Hidalgo', 'Jalisco', 'Estado de México',
-            'Michoacán de Ocampo', 'Morelos', 'Nayarit', 'Nuevo León',
-            'Oaxaca de Juárez', 'Puebla', 'Querétaro', 'Quintana Roo',
-            'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco',
-            'Tamaulipas', 'Tlaxcala', 'Veracruz de Ignacio de la Llave',
-            'Yucatán', 'Zacatecas'
-        ]
-        return res.status(200).render('cart/invitedCheckout', { estados });
+        return res.status(200).render('cart/invitedCheckout',{exists: false});
     },
-    checkEmail: async (req, res) => {
+    createInvited: async (req, res) => {
         try {
             const user = await Users.findOne({
                 where: {
@@ -118,20 +108,35 @@ const controller = {
                     }
                 }
             });
+
             if(user){
-                return res.status(200).send({exists:true});
-            } else {
-                return res.status(200).send({ exists: false });
+                return res.status(400).render('cart/invitedCheckout',{exists: true});
             }
+
+            const invited = await Invited.create(req.body);
+            console.log(invited.id)
+            const estados = [
+                'Aguascalientes', 'Baja California', 'Baja California Sur',
+                'Campeche', 'Coahuila de Zaragoza', 'Colima', 'Chiapas',
+                'Chihuahua', 'Ciudad de México', 'Durango', 'Guanajuato',
+                'Guerrero', 'Hidalgo', 'Jalisco', 'Estado de México',
+                'Michoacán de Ocampo', 'Morelos', 'Nayarit', 'Nuevo León',
+                'Oaxaca de Juárez', 'Puebla', 'Querétaro', 'Quintana Roo',
+                'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco',
+                'Tamaulipas', 'Tlaxcala', 'Veracruz de Ignacio de la Llave',
+                'Yucatán', 'Zacatecas'
+            ]
+            
+            return res.status(201).render('cart/invitedAddressCheckout', {invitedId: invited.id, estados});
         } catch (error) {
             console.log(error);
             return res.status(500);
         }
     },
-    createInvited: async (req, res) => {
+    createAddressInvited: async (req, res) => {
         try {
-            Invited.create(req.body);
-            return res.status(201);
+            await InvitedAddress.create(req.body);
+            return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.log(error);
             return res.status(500);

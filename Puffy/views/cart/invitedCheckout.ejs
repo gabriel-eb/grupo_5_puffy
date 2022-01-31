@@ -11,99 +11,19 @@
     <main>
         <h2> Ingresa tus datos para el envío: </h2>
         <div class="add-contact" id="addContact">
-            <form action="" method="post" id="addContactForm">
+            <form action="/cart/createInvited" method="post" id="addContactForm">
                 <h3>Datos de contacto: </h3>
                 <input name="name" id="name">
                 <input type="tel" name="mobile" id="mobile">
                 <input type="email" name="email" id="email">
                 <hr />
+                <%- exists ? '<span class="alert">El correo está registrado. Elige otro correo o <a href="/login">inicia sesión</a>.<span/>' : ''%> 
                 <input type="submit" value="Continuar">
             </form>
         </div>
         
-        <div class="add-address" id="addAddress">
-            <form action="" method="post">
-                <div class="container_01">
-                    <h3>Datos de domicilio</h3>
-                    <input id="line1" name="line1" type="text" placeholder="Parte 1"
-                        class="fill <%= locals.errors && errors.line1 ? 'is-invalid' : null %>"
-                        value="<%=locals.oldData ? oldData.line1 : null %>" required />
-                    <p id='p_line1' class="alertp">Debes de escribir tu dirección. Sólo se permiten carácteres
-                        alfanuméricos.</p>
-
-                    <input id="line2" name="line2" type="text" class="fill" placeholder="Parte 2" />
-                    <p id='p_line2' class="alertp">Sólo se permiten carácteres alfanuméricos.</p>
-
-                    <label for="zip">C.P.</label>
-                    <input id="zip" name="zip" type="number" maxlength="5"
-                        class="fill <%= locals.errors && errors.zip ? 'is-invalid' : null %>"
-                        value="<%=locals.oldData ? oldData.zip : null %>" required />
-                    <p id='p_zip' class="alertp">Escribe tu código postal.</p>
-
-                    <br />
-
-                    <label for="city">Municipio/Delegación</label>
-                    <input id="city" name="city" type="text" placeholder="Municipio / Delegación"
-                        class="fill <%= locals.errors && errors.city ? 'is-invalid' : null %>"
-                        value="<%=locals.oldData ? oldData.city : null %>" required />
-                    <p id='p_city' class="alertp">Debes de escribir tu ciudad. Sólo se permiten carácteres
-                        alfanuméricos.</p>
-
-                    <label for="state">Estado</label>
-                    <select name="state" id="state"
-                        class="fill <%= locals.errors && errors.state ? 'is-invalid' : null %>" required>
-                        <option></option>
-                        <% estados.map(estado=> { %>
-                            <option value="<%= estado %>" <%=locals.oldData && oldData.state==estado ? "selected" : null
-                                %>><%= estado %>
-                            </option>
-                            <% }) %>
-                    </select>
-                    <label for="country">País</label>
-                    <select name="country" id="country" class="fill">
-                        <option value="Mexico" selected>México</option>
-                    </select>
-                    <input type="submit" value="Continuar">
-                </div>
-            </form>
-        </div>
+    
     </main>
-
-<script>
-    const myForm = document.getElementById("addContactForm");
-
-    myForm.addEventListener('submit', e => {
-        e.preventDefault();
-
-        fetch("/cart/checkEmail", {
-            method: "POST",
-            body: JSON.stringify({
-                email: document.getElementById("email").value
-            }),
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.exists) {
-                    document.getElementById("correoExiste").style.display = block;
-                } else {
-                    // fetch('/cart/createInvited', {
-                    //     method: "POST",
-                    //     body: JSON.stringify({
-                    //         email: document.getElementById("email").value,
-                    //         name: document.getElementById("name").value,
-                    //         mobile: document.getElementById("mobile").value
-                    //     }),
-                    //     headers: { "Content-Type": "application/json" }
-                    // }).catch (error => console.log(error));
-                    document.getElementById("addContact").style.display = "none";
-                    document.getElementById("addAddress").style.display = "block";
-                }
-            })
-            .catch(error => console.log(error));
-    });
-</script>
-
 
 </body>
 

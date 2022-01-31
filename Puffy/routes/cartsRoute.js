@@ -8,7 +8,7 @@ router.get('/invited', controller.invitedCheckout);
 router.get('/increase/:prodId', controller.increase);
 router.get('/decrease/:prodId', controller.decrease);
 router.post('/addProduct', controller.addProduct);
-router.post('/checkEmail', controller.checkEmail);
 router.post('/createInvited', controller.createInvited);
+router.post('/createAddressInvited', controller.createAddressInvited);
 
 module.exports = router;

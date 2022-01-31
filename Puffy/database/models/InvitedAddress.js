@@ -47,7 +47,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     const config = {
-        tableName: 'invitedAddress',
+        tableName: 'invited_address',
     };
 
     const InvitedAddress = sequelize.define(alias, cols, config);
