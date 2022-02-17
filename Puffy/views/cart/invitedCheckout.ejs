@@ -9,16 +9,27 @@
 <body>
 
     <main>
-        <h2> Ingresa tus datos para el envío: </h2>
-        <div class="add-contact" id="addContact">
+        
+        <div class="progress-bar">
+            <ul class="main-bar">
+                <li class="active">Productos</li>
+                <li class="active">Datos de contacto</li>
+                <li>Dirección de entrega</li>
+                <li>Listo</li>
+            </ul>
+        </div>
+        <div class="add-contact" id="addContact" style="padding-top: 100px;">
             <form action="/cart/createInvited" method="post" id="addContactForm">
-                <h3>Datos de contacto: </h3>
-                <input name="name" id="name">
-                <input type="tel" name="mobile" id="mobile">
-                <input type="email" name="email" id="email">
-                <hr />
-                <%- exists ? '<span class="alert">El correo está registrado. Elige otro correo o <a href="/login">inicia sesión</a>.<span/>' : ''%> 
-                <input type="submit" value="Continuar">
+                <div class="container_01" style="width:30%; margin: 0 auto;">
+                    <h2> Ingresa tus datos para el envío: </h2>
+                    <h3>Datos de contacto: </h3>
+                    <input name="name" id="name" placeholder="Nombre Completo" class="fill" required>
+                    <input type="email" name="email" id="email" placeholder="Correo electrónico" class="fill" required>
+                    <input type="tel" name="mobile" id="mobile" placeholder="Número de celular" class="fill" required>
+                    <hr class="hr-footer" />
+                    <%- exists ? '<span class="alert">El correo está registrado. Elige otro correo o <a href="/login">inicia sesión</a>.<span/>' : ''%> 
+                    <input class="btn-agregar-carrito" type="submit" value="Continuar">
+                </div>
             </form>
         </div>
         

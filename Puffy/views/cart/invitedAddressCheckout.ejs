@@ -8,7 +8,18 @@
 
 <body>
 
-    <main>
+    <main style="margin-top: 10%;">
+        <div class="progress-bar">
+            <ul class="main-bar">
+                <li class="active">Productos</li>
+                <li class="active">Datos de contacto</li>
+                <li class="active">Dirección de entrega</li>
+                <li>Listo</li>
+            </ul>
+        </div>
+        <br />
+        <br />
+        <br />
         <h2> Ingresa tus datos para el envío: </h2>
             <form action="/cart/createAddressInvited" method="post">
                 <div class="container_01">
@@ -52,7 +63,7 @@
                         <option value="Mexico" selected>México</option>
                     </select>
                     <input type="hidden" name="invitedId" value="<%= invitedId %>">
-                    <input type="submit" value="Continuar">
+                    <input  class="btn-agregar-carrito" style="width: 70%" type="submit" value="Continuar">
                 </div>
             </form>
     </main>
