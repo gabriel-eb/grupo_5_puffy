@@ -1,12 +1,14 @@
 const { v4: uuidv4 } = require('uuid');
 const { Op } = require("sequelize");
 const db = require('../database/models');
+const InvitedCart = require('../database/models/InvitedCart');
 const Users = db.User;
 const Products = db.Product;
 const Carts = db.Cart;
 const Images = db.ProductImages;
 const Invited = db.Invited;
 const InvitedAddress = db.InvitedAddress;
+const CartsInvited = db.InvitedCart;
 
 
 const controller = {
@@ -135,7 +137,34 @@ const controller = {
     },
     createAddressInvited: async (req, res) => {
         try {
-            await InvitedAddress.create(req.body);
+            const address = await InvitedAddress.create(req.body);
+            req.body.addressId = address.id;
+            this.buyCarInvited(req,res);
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
+    buyCarInvited: async (req, res) => {
+        try {
+            const newCart = Object.create({
+                status: 1,
+                invitedId: req.body.invitedId,
+                addressId: req.body.addressId
+            },{})
+
+            await CartsInvited.create(newCart);
+
+            const soldProducts = req.session.cart || [];
+
+            for (const product of soldProducts) {
+                const productId = product[0];
+                const productQuant = product[1];
+                await Products.decrement(
+                    { quantity: productQuant }, 
+                    { where: { id: productId } }
+                );
+            }
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.log(error);
@@ -144,9 +173,6 @@ const controller = {
     },
     buyCart: async (req, res) => {
 
-        /**
-         * TODO: create new logic for process and buy cart
-         */
         try {
             const cart = await Carts.findOne({
                 where: {
