@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>Continuar como invitado</title>
+</head>
+
+<body>
+
+    <main style="margin-top: 10%;">
+        <div class="progress-bar">
+            <ul class="main-bar">
+                <li class="active">Productos</li>
+                <li>Dirección de entrega</li>
+                <li>Listo</li>
+            </ul>
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <div >
+            <form action="/cart/checkout/selectAddress" method="post" class="address-grid">
+            <% addresses.map((a, i) => {%>
+                <label class="address-card">
+                    <input name="addressId" class="address-radio" type="radio" value="<%= a.id %>">
+                    <span class="address-details">
+                        <span class="address-title"><%= i+1 %></span>
+                        <span><%= a.line1 %>, C.P.: <%= a.zip %></span>
+                        <span><%= a.line2 %></span>
+                        <span><%= a.city %>, <%= a.state %></span>
+                        <span><%= a.country %></span>
+                    </span>
+                </label>
+            <%})%>
+            <label class="address-card new-addess" id="add-address-radio">
+                <input name="addressId" class="address-radio" type="radio" value="-1">
+                <span class="address-details">
+                    <span class="address-title">+</span>
+                    <span>Agregar dirección</span>
+                </span>
+                <section class="add-new-address" id="add-new-address">
+                    <h2> Ingresa la dirección para el envío: </h2>
+                    
+                        <div class="container_01">
+                            <h3>Datos de domicilio</h3>
+                            <input id="line1" name="line1" type="text" placeholder="Parte 1"
+                                class="fill <%= locals.errors && errors.line1 ? 'is-invalid' : null %>"
+                                value="<%=locals.oldData ? oldData.line1 : null %>" />
+                            <p id='p_line1' class="alertp">Debes de escribir tu dirección. Sólo se permiten carácteres
+                                alfanuméricos.</p>
+        
+                            <input id="line2" name="line2" type="text" class="fill" placeholder="Parte 2" />
+                            <p id='p_line2' class="alertp">Sólo se permiten carácteres alfanuméricos.</p>
+        
+                            <label for="zip">C.P.</label>
+                            <input id="zip" name="zip" type="number" maxlength="5"
+                                class="fill <%= locals.errors && errors.zip ? 'is-invalid' : null %>"
+                                value="<%=locals.oldData ? oldData.zip : null %>" />
+                            <p id='p_zip' class="alertp">Escribe tu código postal.</p>
+        
+                            <br />
+        
+                            <label for="city">Municipio/Delegación</label>
+                            <input id="city" name="city" type="text" placeholder="Municipio / Delegación"
+                                class="fill <%= locals.errors && errors.city ? 'is-invalid' : null %>"
+                                value="<%=locals.oldData ? oldData.city : null %>" />
+                            <p id='p_city' class="alertp">Debes de escribir tu ciudad. Sólo se permiten carácteres
+                                alfanuméricos.</p>
+        
+                            <label for="state">Estado</label>
+                            <select name="state" id="state"
+                                class="fill <%= locals.errors && errors.state ? 'is-invalid' : null %>">
+                                <option></option>
+                                <% estados.map(estado=> { %>
+                                    <option value="<%= estado %>" <%=locals.oldData && oldData.state==estado ? "selected" : null
+                                        %>><%= estado %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                            <label for="country">País</label>
+                            <select name="country" id="country" class="fill">
+                                <option value="Mexico" selected>México</option>
+                            </select>
+                            
+                        </div>
+                    </section>
+                </label>
+                <input  class="btn-agregar-carrito" style="width: 70%" type="submit" value="Continuar">
+            </form>
+        </div>
+        
+    </main>
+
+
+</body>
+
+</html>

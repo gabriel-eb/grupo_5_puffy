@@ -1,14 +1,27 @@
 const { v4: uuidv4 } = require('uuid');
 const { Op } = require("sequelize");
 const db = require('../database/models');
-const Address = require('../database/models/Address');
 const Users = db.User;
 const Products = db.Product;
 const Carts = db.Cart;
 const Images = db.ProductImages;
+const Addresses = db.Address;
+const ProductCarts = db.ProductCart;
 const Invited = db.Invited;
 const InvitedAddress = db.InvitedAddress;
 const CartsInvited = db.InvitedCart;
+
+const estados = [
+    'Aguascalientes', 'Baja California', 'Baja California Sur',
+    'Campeche', 'Coahuila de Zaragoza', 'Colima', 'Chiapas',
+    'Chihuahua', 'Ciudad de México', 'Durango', 'Guanajuato',
+    'Guerrero', 'Hidalgo', 'Jalisco', 'Estado de México',
+    'Michoacán de Ocampo', 'Morelos', 'Nayarit', 'Nuevo León',
+    'Oaxaca de Juárez', 'Puebla', 'Querétaro', 'Quintana Roo',
+    'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco',
+    'Tamaulipas', 'Tlaxcala', 'Veracruz de Ignacio de la Llave',
+    'Yucatán', 'Zacatecas'
+]
 
 
 const controller = {
@@ -16,8 +29,7 @@ const controller = {
         const userCart = req.session.userId || req.session.invitedId;
         const cart = req.session.cart;
         if (userCart && cart && cart.length > 0) {
-            const userType = req.session.userId ? 1 : 0;
-            return res.render('cart/carrito', { userCart, userType, cart });
+            return res.render('cart/carrito', { userCart, cart });
         }
         return res.render('cart/emptyCart');
     },
@@ -92,11 +104,44 @@ const controller = {
     },
     startCheckout: async (req, res) => {
         try {
-            await Carts.create({
-                status: 0,
-                userId: req.session.userId
+            const cartExist = await Carts.findOne({
+                where: {
+                    userId: req.session.userId,
+                    status: 0
+                },
+                raw: true
             });
-            return res.status(201).render('cart/selectAddress')
+            if(!cartExist){
+                const newCart = await Carts.create({
+                    status: 0,
+                    userId: req.session.userId
+                });
+                let addProducts = req.session.cart.map(item => {
+                    return {
+                        productId: item.id,
+                        cartId: newCart.id
+                    }
+                })
+                await ProductCarts.bulkCreate(addProducts);
+            } else {
+                let addProducts = req.session.cart.map(item => {
+                    return {
+                        productId: item.id,
+                        cartId: cartExist.id
+                    }
+                })
+                await ProductCarts.create(addProducts);
+            }
+            return res.status(201).redirect('checkout/selectAddress')
+        } catch (error) {
+            console.error(error);
+            return res.status(500);
+        }
+    },
+    selectingAddress: async (req, res) => {
+        try {
+            const addresses = await Addresses.findAll({ where: { userId: req.session.userId } });
+            return res.status(201).render('cart/selectAddress', { addresses, estados });
         } catch (error) {
             console.error(error);
             return res.status(500);
@@ -107,18 +152,21 @@ const controller = {
             
             const cart = await Carts.findOne({
                 where: {
-                    userId: req.params.id,
+                    userId: req.session.userId,
                     status: 0
                 },
                 raw: true
             });
 
-            if(req.body.newAddress){
+            const addressId = parseInt(req.body.addressId);
+
+            if(addressId === -1){
                 const newAddress = await Addresses.create({...req.body, userId: req.session.userId});
-                await Carts.update({ addressId: newAddress.id }, { where: { id: cart.id } });
+                await Carts.update({ status: 1, addressId: newAddress.id }, { where: { id: cart.id } });
             } else {
-                await Carts.update({ addressId: req.body.selected }, { where: { id: cart.id } });
+                await Carts.update({ status: 1, addressId: addressId }, { where: { id: cart.id } });
             }
+
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.error(error);
@@ -143,22 +191,10 @@ const controller = {
             }
 
             const invited = await Invited.create(req.body);
-            console.log(invited.id)
-            const estados = [
-                'Aguascalientes', 'Baja California', 'Baja California Sur',
-                'Campeche', 'Coahuila de Zaragoza', 'Colima', 'Chiapas',
-                'Chihuahua', 'Ciudad de México', 'Durango', 'Guanajuato',
-                'Guerrero', 'Hidalgo', 'Jalisco', 'Estado de México',
-                'Michoacán de Ocampo', 'Morelos', 'Nayarit', 'Nuevo León',
-                'Oaxaca de Juárez', 'Puebla', 'Querétaro', 'Quintana Roo',
-                'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco',
-                'Tamaulipas', 'Tlaxcala', 'Veracruz de Ignacio de la Llave',
-                'Yucatán', 'Zacatecas'
-            ]
             
             return res.status(201).render('cart/invitedAddressCheckout', {invitedId: invited.id, estados});
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return res.status(500);
         }
     },
@@ -168,7 +204,7 @@ const controller = {
             req.body.addressId = address.id;
             this.buyCarInvited(req,res);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return res.status(500);
         }
     },
@@ -194,7 +230,7 @@ const controller = {
             }
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return res.status(500);
         }
     },
@@ -203,7 +239,7 @@ const controller = {
         try {
             const cart = await Carts.findOne({
                 where: {
-                    userId: req.params.id,
+                    userId: req.sessionId.id,
                     status: 0
                 },
                 raw: true
@@ -223,7 +259,7 @@ const controller = {
 
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return res.status(500);
         }
     },
@@ -238,7 +274,6 @@ const controller = {
         return res.end();
     },
     decrease: (req, res) => {
-        console.log(req.session.cart)
         const cart = req.session.cart;
         const indProd = cart.findIndex(({ id }) => id == req.params.prodId);
         if (indProd != -1) {

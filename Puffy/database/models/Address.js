@@ -47,8 +47,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     const config = {
-        tableName: 'address',
-        paranoid: true
+        tableName: 'address'
     };
 
     const Address = sequelize.define(alias, cols, config);
