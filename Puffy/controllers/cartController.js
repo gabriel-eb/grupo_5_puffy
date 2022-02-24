@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const { Op } = require("sequelize");
 const db = require('../database/models');
-const InvitedCart = require('../database/models/InvitedCart');
+const Address = require('../database/models/Address');
 const Users = db.User;
 const Products = db.Product;
 const Carts = db.Cart;
@@ -92,7 +92,34 @@ const controller = {
     },
     startCheckout: async (req, res) => {
         try {
+            await Carts.create({
+                status: 0,
+                userId: req.session.userId
+            });
+            return res.status(201).render('cart/selectAddress')
+        } catch (error) {
+            console.error(error);
+            return res.status(500);
+        }
+    },
+    selectedAddress: async (req, res) => {
+        try {
             
+            const cart = await Carts.findOne({
+                where: {
+                    userId: req.params.id,
+                    status: 0
+                },
+                raw: true
+            });
+
+            if(req.body.newAddress){
+                const newAddress = await Addresses.create({...req.body, userId: req.session.userId});
+                await Carts.update({ addressId: newAddress.id }, { where: { id: cart.id } });
+            } else {
+                await Carts.update({ addressId: req.body.selected }, { where: { id: cart.id } });
+            }
+            return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.error(error);
             return res.status(500);
