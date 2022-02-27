@@ -13,7 +13,9 @@
             <div class="progress-bar">
                 <ul class="main-bar">
                     <li class="active">Productos</li>
-                    <li class="active">Datos de contacto</li>
+                    <% if(!userId){ %>
+                        <li class="active">Datos de contacto</li>
+                    <% } %>
                     <li class="active">Dirección de entrega</li>
                     <li class="active">Listo</li>
                 </ul>

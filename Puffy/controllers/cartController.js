@@ -54,7 +54,14 @@ const controller = {
             });
 
             if (addedProd) {
-                if (cart.length < 1) {
+                const indProd = cart.findIndex(p => p.id === addedProd.id);
+                if (indProd != -1){
+                    cart[indProd] = { 
+                        ...cart[indProd],
+                        quantity: cart[indProd].quantity + 1,
+                        instock: addedProd.quantity - 1
+                    };
+                } else {
                     cart.push({
                         id: addedProd.id,
                         name: addedProd.name,
@@ -63,31 +70,7 @@ const controller = {
                         quantity: 1,
                         instock: addedProd.quantity - 1
                     });
-                } else {
-                    const indProd = cart.findIndex(p => p.id === addedProd.id);
-                    if (indProd != -1){
-                        cart[indProd] = { 
-                            ...cart[indProd],
-                            price: addedProd.price,
-                            quantity: cart[indProd].quantity + 1,
-                            instock: addedProd.quantity - 1
-                        };
-                    } else {
-                        cart.push({
-                            id: addedProd.id,
-                            name: addedProd.name,
-                            price: addedProd.price,
-                            url: addedProd.productImages[0].url,
-                            quantity: 1,
-                            instock: addedProd.quantity - 1
-                        });
-                    }
                 }
-
-                // await Products.decrement(
-                //     { quantity: 1 },
-                //     { where: { id: addedProd.id } }
-                // );
 
                 req.session.cart = cart;
 
@@ -130,7 +113,7 @@ const controller = {
                         cartId: cartExist.id
                     }
                 })
-                await ProductCarts.create(addProducts);
+                await ProductCarts.bulkCreate(addProducts);
             }
             return res.status(201).redirect('checkout/selectAddress')
         } catch (error) {
@@ -142,6 +125,36 @@ const controller = {
         try {
             const addresses = await Addresses.findAll({ where: { userId: req.session.userId } });
             return res.status(201).render('cart/selectAddress', { addresses, estados });
+        } catch (error) {
+            console.error(error);
+            return res.status(500);
+        }
+    },
+    buyCart: async (req, res) => {
+
+        try {
+            const cart = await Carts.findOne({
+                where: {
+                    userId: req.session.userId,
+                    status: 0
+                },
+                raw: true
+            });
+            await Carts.update({ status: 1 }, { where: { id: cart.id } });
+
+            const soldProducts = req.session.cart;
+            req.session.cart = null;
+
+            for (const product of soldProducts) {
+                await Products.decrement(
+                    { quantity: product.quantity }, 
+                    { where: { id: product.id } }
+                );
+            }
+
+            // TODO: crear orden
+
+            return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.error(error);
             return res.status(500);
@@ -162,11 +175,20 @@ const controller = {
 
             if(addressId === -1){
                 const newAddress = await Addresses.create({...req.body, userId: req.session.userId});
-                await Carts.update({ status: 1, addressId: newAddress.id }, { where: { id: cart.id } });
+                await Carts.update({ addressId: newAddress.id }, { where: { id: cart.id } });
             } else {
-                await Carts.update({ status: 1, addressId: addressId }, { where: { id: cart.id } });
+                await Carts.update({ addressId: addressId }, { where: { id: cart.id } });
             }
 
+            await controller.buyCart(req, res);
+        } catch (error) {
+            console.error(error);
+            return res.status(500);
+        }
+    },
+    checkout: async (req, res) => {
+        // TODO: Transaction with user cart checkout: startCheckout, selectedAddress, buyCart
+        try {
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.error(error);
@@ -228,35 +250,6 @@ const controller = {
                     { where: { id: productId } }
                 );
             }
-            return res.status(201).render('cart/agradecimiento');
-        } catch (error) {
-            console.error(error);
-            return res.status(500);
-        }
-    },
-    buyCart: async (req, res) => {
-
-        try {
-            const cart = await Carts.findOne({
-                where: {
-                    userId: req.sessionId.id,
-                    status: 0
-                },
-                raw: true
-            });
-            await Carts.update({ status: 1 }, { where: { id: cart.id } });
-
-            const soldProducts = Object.entries(req.body);
-
-            for (const product of soldProducts) {
-                const productId = product[0];
-                const productQuant = product[1];
-                await Products.decrement(
-                    { quantity: productQuant }, 
-                    { where: { id: productId } }
-                );
-            }
-
             return res.status(201).render('cart/agradecimiento');
         } catch (error) {
             console.error(error);
