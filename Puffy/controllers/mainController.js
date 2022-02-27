@@ -86,7 +86,7 @@ const controller = {
         res.status(200).render("login");
     },
     signup: (req, res) => {
-        res.status(200).render("signup");
+        res.status(200).render("signup", { adminValue: req.query.admin });
     },
     wwr: (req, res) => {
         res.status(200).render("wwr");
@@ -132,6 +132,7 @@ const controller = {
                 ...req.body,
                 password: hashedPass,
                 avatar: req.body.avatar || "/images/avatars/default.jpg",
+                lastLogin: new Date()
             }
 
             await Users.create(userToCreate);

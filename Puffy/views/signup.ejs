@@ -10,7 +10,7 @@
     <%- include('partials/header') %>
 
         <main class="form">
-            <h3>CREAR CUENTA</h3>
+            <h3>CREAR CUENTA <%= adminValue==1 ? "COMO VENDEDOR" : "" %></h3>
             <form action="/signup" method="post" enctype="multipart/form-data" id='formulario'>
                 <div class="container_01">
                    
@@ -23,12 +23,7 @@
                     <p  id='p_lastName' class="alertp">Debes de escribir tu apellido con más de 1 carácter.</p>
 
                     <br />
-                    <label for="admin" class="bold">Tipo de usuario: </label>
-                    <select name="admin" id="userType" class=fill required>
-                        <option value="1">Comprador</option>
-                        <option value="0">Vendedor</option>
-                    </select>
-                    <br />
+                    <input type="hidden" name="admin" id="userType" value="<%= adminValue %>">
                     <input name="mobile" id="mobile" type="number" placeholder="Celular" class="fill <%= locals.errors && errors.mobile ? 'is-invalid' : null %>" value="<%= locals.oldData ? oldData.mobile : null %>" required />                    
                     <p  id='p_mobile' class="alertp">El número de móvil debe tener 10 dígitos.</p>
 
@@ -69,9 +64,12 @@
                 <div class="container_51">
                     <a href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
                 </div>
-                <hr />
-
             </form>
+            <% if (!adminValue){ %>
+                <div class="button_02">
+                    <button onclick="window.location.href='/signup?admin=1'">¿QUIERES VENDER? AFILIATE</button>
+                </div>
+            <% } %>
         </main>
         <script src="js/userValidation.js"></script>
     

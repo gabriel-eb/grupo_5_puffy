@@ -38,11 +38,14 @@
                     <input type="submit" value="ENTRAR" />
                 </div>
 
+            </form>
                 <div class="button_02">
-                    <button onclick="window.location.href='/signup'">CREAR CUENTA</button>
+                    <button onclick="window.location.href='/signup?admin=0'">CREAR CUENTA</button>
+                </div>
+                <div class="button_02">
+                    <button onclick="window.location.href='/signup?admin=1'">¿QUIERES VENDER? AFILIATE</button>
                 </div>
 
-            </form>
         </main>
         <!-- <script src="js/userValidation.js"></script> -->
         <%- include('partials/footer') %>
