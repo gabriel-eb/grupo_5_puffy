@@ -13,7 +13,7 @@
             <div class="progress-bar">
                 <ul class="main-bar">
                     <li class="active">Productos</li>
-                    <% if(!userId){ %>
+                    <% if(!locals.sessionId){ %>
                         <li class="active">Datos de contacto</li>
                     <% } %>
                     <li class="active">Dirección de entrega</li>

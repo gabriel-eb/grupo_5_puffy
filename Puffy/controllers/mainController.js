@@ -83,7 +83,7 @@ const controller = {
         }
     },
     login: (req, res) => {
-        res.status(200).render("login");
+        res.status(200).render("login", { checkout: req.query.checkout || 0 });
     },
     signup: (req, res) => {
         res.status(200).render("signup", { adminValue: req.query.admin });
@@ -178,6 +178,10 @@ const controller = {
                         silent: true
                     });
 
+                
+                if(req.body.checkout){
+                    return res.redirect("/cart");
+                }
 
                 return res.redirect("users/" + req.session.userId);
             }
