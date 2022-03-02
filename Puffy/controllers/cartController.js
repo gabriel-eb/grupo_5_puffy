@@ -224,7 +224,7 @@ const controller = {
         try {
             const address = await InvitedAddress.create(req.body);
             req.body.addressId = address.id;
-            this.buyCarInvited(req,res);
+            controller.buyCarInvited(req,res);
         } catch (error) {
             console.error(error);
             return res.status(500);
@@ -232,22 +232,20 @@ const controller = {
     },
     buyCarInvited: async (req, res) => {
         try {
-            const newCart = Object.create({
+            const newCart = {
                 status: 1,
-                invitedId: req.body.invitedId,
+                invitedId: parseInt(req.body.invitedId),
                 addressId: req.body.addressId
-            },{})
+            };
 
             await CartsInvited.create(newCart);
 
             const soldProducts = req.session.cart || [];
 
             for (const product of soldProducts) {
-                const productId = product[0];
-                const productQuant = product[1];
                 await Products.decrement(
-                    { quantity: productQuant }, 
-                    { where: { id: productId } }
+                    { quantity: product.quantity }, 
+                    { where: { id: product.id } }
                 );
             }
             return res.status(201).render('cart/agradecimiento');

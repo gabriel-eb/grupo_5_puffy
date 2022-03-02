@@ -55,7 +55,8 @@ module.exports = (sequelize, dataTypes) => {
     InvitedAddress.associate = function(models) {
         InvitedAddress.belongsTo(models.Invited, {
             as: 'invited',
-            foreignKey: 'invitedId'
+            foreignKey: 'invitedId',
+            onDelete: 'CASCADE'
         })
         InvitedAddress.hasMany(models.InvitedCart, {
             as: 'cart',
