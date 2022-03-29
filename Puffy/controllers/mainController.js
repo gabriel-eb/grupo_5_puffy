@@ -7,6 +7,7 @@ const Products = db.Product;
 const Images = db.ProductImages;
 const Categories = db.Category;
 const ProdCat = db.ProductCategory;
+const passport = require("passport");
 
 async function getHighlight() {
     try {
@@ -143,6 +144,7 @@ const controller = {
         }
     },
     //Proceso Login
+<<<<<<< Updated upstream
     processLogin: async (req, res) => {
         try {
             let userToLogin = await Users.findOne({
@@ -180,30 +182,45 @@ const controller = {
 
 
                 return res.redirect("users/" + req.session.userId);
+=======
+    processLogin: (req, res, next) => {
+        passport.authenticate('local', (err, user) => {
+            if (err) { return next(err) }
+            if (!user) {
+                return res.status(200).render('login', { errors: { email: {
+                    previous: req.body.email,
+                    msg: 'Email o contraseña incorrectos.'
+                }}});
+>>>>>>> Stashed changes
             }
-
-
-            // Si la contraseña es incorrecta
-            return res.status(400).render("login", {
-                errors: {
-                    email: {
-                        previous: req.body.email,
-                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
-                    },
-                },
+          
+          // Cookie
+          if (req.body.recordar) {
+            res.cookie('recordar', user.id, {
+                maxAge: 1000 * 360 * 24 * 7 // una semana
             });
-
-        } catch (error) {
-            return res.status(400).render("login", {
-                errors: {
-                    email: {
-                        previous: req.body.email,
-                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
-                    }
-                }
+            res.cookie('isA', user.admin, {
+                maxAge: 1000 * 360 * 24 * 7 // una semana
             });
-        }
+          }
+          // Session
+          req.session.userId = user.id;
+          req.session.isAdmin = user.admin;
+
+            if(req.body.checkout){
+            req.logIn(user, (err) => {
+                if (err) { return next(err); }
+                return res.redirect("/cart");
+                });
+            }
+    
+          req.logIn(user, (err) => {
+            if (err) { return next(err); }
+            return res.redirect('/users/' + user.id);
+          });
+        })(req, res, next);
     },
+
     processLogout: (req, res) => {
         res.clearCookie('recordar');
         delete res.locals.sessionId;

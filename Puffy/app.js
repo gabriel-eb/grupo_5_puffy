@@ -7,6 +7,9 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
+const passport = require('passport');
+const initPassport = require('./controllers/passportController');
+initPassport(passport);
 
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
@@ -17,6 +20,7 @@ const rutaApi = require("./routes/apiRoute");
 const rutaInvited = require("./routes/invitedRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
+
 
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
@@ -34,10 +38,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Login MW
 app.use(recordarSession);
 app.use((req, res, next) => {
-    res.locals.sessionId = req.session.userId;
+    res.locals.sessionId = req.session.id;
     res.locals.sessionIdAdmin = req.session.isAdmin;
     next();
 });
