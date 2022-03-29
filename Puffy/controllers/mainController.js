@@ -144,45 +144,6 @@ const controller = {
         }
     },
     //Proceso Login
-<<<<<<< Updated upstream
-    processLogin: async (req, res) => {
-        try {
-            let userToLogin = await Users.findOne({
-                where: {
-                    email: {
-                        [Op.like]: req.body.email
-                    }
-                }
-            });
-            userToLogin = userToLogin.dataValues;
-            const rightPass = bcryptjs.compareSync(req.body.password,
-                '$2a$10$' + userToLogin.password);
-            if (rightPass) {
-                // Session
-                req.session.userId = userToLogin.id;
-                req.session.isAdmin = userToLogin.admin;
-
-                // Cookie
-                if (req.body.recordar) {
-                    res.cookie('recordar', req.session.userId, {
-                        maxAge: 1000 * 360 * 24 * 7 // una semana
-                    });
-                    res.cookie('isA', req.session.isAdmin, {
-                        maxAge: 1000 * 360 * 24 * 7 // una semana
-                    });
-                }
-
-                await Users.update({ lastLogin: new Date() },
-                    {
-                        where: {
-                            id: userToLogin.id
-                        },
-                        silent: true
-                    });
-
-
-                return res.redirect("users/" + req.session.userId);
-=======
     processLogin: (req, res, next) => {
         passport.authenticate('local', (err, user) => {
             if (err) { return next(err) }
@@ -191,7 +152,6 @@ const controller = {
                     previous: req.body.email,
                     msg: 'Email o contraseña incorrectos.'
                 }}});
->>>>>>> Stashed changes
             }
           
           // Cookie
