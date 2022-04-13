@@ -1,7 +1,13 @@
-module.exports = (req, res, next) => {
-    if (req.cookies.recordar && req.user.id == undefined) {
-        req.session.userId = parseInt(req.cookies.recordar);
-        req.session.isAdmin = parseInt(req.cookies.isA);
+const db = require('../database/models');
+const { Op } = require("sequelize");
+const Users = db.User;
+
+module.exports = async (req, res, next) => {
+    if (req.cookies.recordar && req.user == undefined) {
+        const user = await Users.findByPk(req.cookies.recordar);
+        req.logIn(user.dataValues, (err) => {
+            if (err) { return next(err); }
+        });
     }
     next();
 }

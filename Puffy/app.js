@@ -44,8 +44,9 @@ app.use(passport.session());
 // Login MW
 app.use(recordarSession);
 app.use((req, res, next) => {
-    res.locals.sessionId = req.session.id;
-    res.locals.sessionIdAdmin = req.session.isAdmin;
+    res.locals.sessionId = req.user ? req.user.id : false;
+    res.locals.sessionIdAdmin = req.user ? req.user.admin : false;
+    console.log(res.locals)
     next();
 });
 

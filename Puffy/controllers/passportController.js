@@ -27,19 +27,6 @@ module.exports = (passport) => {
             const rightPass = bcryptjs.compareSync(password,
                 '$2a$10$' + userToLogin.password);
             if (rightPass) {
-                // // Session
-                // req.session.userId = userToLogin.id;
-                // req.session.isAdmin = userToLogin.admin;
-
-                // // Cookie
-                // if (req.body.recordar) {
-                //     res.cookie('recordar', req.session.userId, {
-                //         maxAge: 1000 * 360 * 24 * 7 // una semana
-                //     });
-                //     res.cookie('isA', req.session.isAdmin, {
-                //         maxAge: 1000 * 360 * 24 * 7 // una semana
-                //     });
-                // }
 
                 await Users.update({ lastLogin: new Date() },
                 {

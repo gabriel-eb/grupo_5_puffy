@@ -157,20 +157,17 @@ const controller = {
           // Cookie
           if (req.body.recordar) {
             res.cookie('recordar', user.id, {
-                maxAge: 1000 * 360 * 24 * 7 // una semana
-            });
-            res.cookie('isA', user.admin, {
-                maxAge: 1000 * 360 * 24 * 7 // una semana
+                maxAge: 1000 * 360 * 24 * 7, // una semana
+                sameSite: true,
+                httpOnly: true,
+                secure: true
             });
           }
-          // Session
-          req.session.userId = user.id;
-          req.session.isAdmin = user.admin;
 
             if(req.body.checkout){
-            req.logIn(user, (err) => {
-                if (err) { return next(err); }
-                return res.redirect("/cart");
+                req.logIn(user, (err) => {
+                    if (err) { return next(err); }
+                    return res.redirect("/cart");
                 });
             }
     
@@ -182,10 +179,10 @@ const controller = {
     },
 
     processLogout: (req, res) => {
+        req.logout();
         res.clearCookie('recordar');
         delete res.locals.sessionId;
         delete res.locals.sessionIdAdmin;
-        // delete req.session.userId;
         req.session.destroy();
         res.status(200).redirect('/');
     },
