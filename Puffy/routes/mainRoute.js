@@ -16,6 +16,7 @@ router.get("/signup", loggedIn, controller.signup);
 // Procesar signup
 router.post("/signup", uploadFile.single('avatar'), gcpAvatar, validations, controller.processSignup);
 // Procesar login
+// router.post("/login", controller.processLogin);
 router.post("/login", controller.processLogin);
 // Procesar logout
 router.get("/logout", notLogged, controller.processLogout);

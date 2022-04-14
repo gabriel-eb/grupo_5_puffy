@@ -7,6 +7,7 @@ const Products = db.Product;
 const Images = db.ProductImages;
 const Categories = db.Category;
 const ProdCat = db.ProductCategory;
+const passport = require("passport");
 
 async function getHighlight() {
     try {
@@ -143,76 +144,46 @@ const controller = {
         }
     },
     //Proceso Login
-    processLogin: async (req, res) => {
-        try {
-            let userToLogin = await Users.findOne({
-                where: {
-                    email: {
-                        [Op.like]: req.body.email
-                    }
-                }
-            });
-            userToLogin = userToLogin.dataValues;
-            const rightPass = bcryptjs.compareSync(req.body.password,
-                '$2a$10$' + userToLogin.password);
-            if (rightPass) {
-                // Session
-                req.session.userId = userToLogin.id;
-                req.session.isAdmin = userToLogin.admin;
-
-                // Cookie
-                if (req.body.recordar) {
-                    res.cookie('recordar', req.session.userId, {
-                        maxAge: 1000 * 360 * 24 * 7 // una semana
-                    });
-                    res.cookie('isA', req.session.isAdmin, {
-                        maxAge: 1000 * 360 * 24 * 7 // una semana
-                    });
-                }
-
-                await Users.update({ lastLogin: new Date() },
-                    {
-                        where: {
-                            id: userToLogin.id
-                        },
-                        silent: true
-                    });
-
-                
-                if(req.body.checkout){
-                    return res.redirect("/cart");
-                }
-
-                return res.redirect("users/" + req.session.userId);
+    processLogin: (req, res, next) => {
+        passport.authenticate('local', (err, user) => {
+            if (err) { return next(err) }
+            if (!user) {
+                return res.status(200).render('login', { errors: { email: {
+                    previous: req.body.email,
+                    msg: 'Email o contraseña incorrectos.'
+                }}});
             }
-
-
-            // Si la contraseña es incorrecta
-            return res.status(400).render("login", {
-                errors: {
-                    email: {
-                        previous: req.body.email,
-                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
-                    },
-                },
+          
+          // Cookie
+          if ('recordar' in req.body) {
+            res.cookie('recordar', user.id, {
+                maxAge: 1000 * 360 * 24 * 7, // una semana
+                sameSite: true,
+                httpOnly: true,
+                secure: true,
+                signed: true
             });
+          }
 
-        } catch (error) {
-            return res.status(400).render("login", {
-                errors: {
-                    email: {
-                        previous: req.body.email,
-                        msg: 'El nombre de usuario y/o la contraseña que ingresaste no coinciden con nuestros registros.'
-                    }
-                }
-            });
-        }
+            if(req.body.checkout){
+                req.logIn(user, (err) => {
+                    if (err) { return next(err); }
+                    return res.redirect("/cart");
+                });
+            }
+    
+          req.logIn(user, (err) => {
+            if (err) { return next(err); }
+            return res.redirect('/users/' + user.id);
+          });
+        })(req, res, next);
     },
+
     processLogout: (req, res) => {
+        req.logout();
         res.clearCookie('recordar');
         delete res.locals.sessionId;
         delete res.locals.sessionIdAdmin;
-        // delete req.session.userId;
         req.session.destroy();
         res.status(200).redirect('/');
     },

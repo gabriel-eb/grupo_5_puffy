@@ -7,6 +7,9 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
+const passport = require('passport');
+const initPassport = require('./controllers/passportController');
+initPassport(passport);
 
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
@@ -18,6 +21,7 @@ const rutaInvited = require("./routes/invitedRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
+
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
 
@@ -28,17 +32,20 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SEC || "pUff7"));
 app.use(session({
-    secret: process.env.SESSIONSEC || "pUff7",
+    secret: process.env.SESSION_SEC || "pUff7",
     resave: false,
     saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Login MW
 app.use(recordarSession);
 app.use((req, res, next) => {
-    res.locals.sessionId = req.session.userId;
-    res.locals.sessionIdAdmin = req.session.isAdmin;
+    res.locals.sessionId = req.user ? req.user.id : false;
+    res.locals.sessionIdAdmin = req.user ? req.user.admin : false;
     next();
 });
 

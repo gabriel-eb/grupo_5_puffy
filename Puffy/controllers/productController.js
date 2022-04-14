@@ -17,9 +17,8 @@ const controller = {
             });
             const Img = await Images.findAll();
 
-            if (req.session.userId) {
-                const user = await Users.findByPk(req.session.userId);
-                const userIsAdmin = user.admin;
+            if (req.user) {
+                const userIsAdmin = req.user.admin;
                 return res.status(200).render("products/index", {
                     productsList,
                     Img,
@@ -100,9 +99,8 @@ const controller = {
             });
             const prodIsAvailable = productDetail.quantity > 0;
             
-            if (req.session.userId){
-                const user = await Users.findByPk(req.session.userId);
-                const userIsAdmin = user.admin;
+            if (req.user){
+                const userIsAdmin = req.user.admin;
                 return res.status(200).render("products/detalle", {
                     productDetail,
                     category,

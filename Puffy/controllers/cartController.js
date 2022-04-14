@@ -26,7 +26,7 @@ const estados = [
 
 const controller = {
     index: async (req, res) => {
-        const userCart = req.session.userId || req.session.invitedId;
+        const userCart = 'user' in req ? req.user.id : req.session.invitedId;
         const cart = req.session.cart;
         if (userCart && cart && cart.length > 0) {
             return res.render('cart/carrito', { userCart, cart });
@@ -36,7 +36,7 @@ const controller = {
     addProduct: async (req, res) => {
         try {
 
-            if(!req.session.userId || !req.session.invitedId){
+            if(!('user' in req) || !req.session.invitedId){
                 req.session.invitedId = uuidv4();
             }
 
@@ -89,7 +89,7 @@ const controller = {
         try {
             const cartExist = await Carts.findOne({
                 where: {
-                    userId: req.session.userId,
+                    userId: req.user.id,
                     status: 0
                 },
                 raw: true
@@ -97,7 +97,7 @@ const controller = {
             if(!cartExist){
                 const newCart = await Carts.create({
                     status: 0,
-                    userId: req.session.userId
+                    userId: req.user.id
                 });
                 let addProducts = req.session.cart.map(item => {
                     return {
@@ -123,7 +123,7 @@ const controller = {
     },
     selectingAddress: async (req, res) => {
         try {
-            const addresses = await Addresses.findAll({ where: { userId: req.session.userId } });
+            const addresses = await Addresses.findAll({ where: { userId: req.user.id } });
             return res.status(201).render('cart/selectAddress', { addresses, estados });
         } catch (error) {
             console.error(error);
@@ -135,7 +135,7 @@ const controller = {
         try {
             const cart = await Carts.findOne({
                 where: {
-                    userId: req.session.userId,
+                    userId: req.user.id,
                     status: 0
                 },
                 raw: true
@@ -165,7 +165,7 @@ const controller = {
             
             const cart = await Carts.findOne({
                 where: {
-                    userId: req.session.userId,
+                    userId: req.user.id,
                     status: 0
                 },
                 raw: true
@@ -174,7 +174,7 @@ const controller = {
             const addressId = parseInt(req.body.addressId);
 
             if(addressId === -1){
-                const newAddress = await Addresses.create({...req.body, userId: req.session.userId});
+                const newAddress = await Addresses.create({...req.body, userId: req.user.id});
                 await Carts.update({ addressId: newAddress.id }, { where: { id: cart.id } });
             } else {
                 await Carts.update({ addressId: addressId }, { where: { id: cart.id } });

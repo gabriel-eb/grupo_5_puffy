@@ -34,7 +34,7 @@
                     <a href="#">¿Has olvidado tu contraseña?</a>
                 </div>
 
-                <input type="hidden" name="checkout" value="<%= checkout %>">
+                <input type="hidden" name="checkout" value="<%= locals.checkout ? checkout : '' %>">
 
                 <div class="button_01">
                     <input type="submit" value="ENTRAR" />

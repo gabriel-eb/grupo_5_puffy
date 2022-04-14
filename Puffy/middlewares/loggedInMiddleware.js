@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
-    if (req.session.userId) {
-        return res.redirect(`/users/${req.session.userId}`);
+    if (req.isAuthenticated()) {
+        return res.redirect(`/users/${req.user.id}`);
     }
     next();
 }
