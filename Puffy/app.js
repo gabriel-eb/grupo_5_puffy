@@ -32,9 +32,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SEC || "pUff7"));
 app.use(session({
-    secret: process.env.SESSIONSEC || "pUff7",
+    secret: process.env.SESSION_SEC || "pUff7",
     resave: false,
     saveUninitialized: false
 }));

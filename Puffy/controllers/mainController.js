@@ -155,12 +155,13 @@ const controller = {
             }
           
           // Cookie
-          if (req.body.recordar) {
+          if ('recordar' in req.body) {
             res.cookie('recordar', user.id, {
                 maxAge: 1000 * 360 * 24 * 7, // una semana
                 sameSite: true,
                 httpOnly: true,
-                secure: true
+                secure: true,
+                signed: true
             });
           }
 
