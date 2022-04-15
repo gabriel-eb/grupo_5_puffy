@@ -7,9 +7,32 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
+const redis = require('redis');
 const passport = require('passport');
 const initPassport = require('./controllers/passportController');
 initPassport(passport);
+
+
+
+/**
+ * TODO:
+ * - implement redis for all products, categories, and highlight product
+ * - implement mailer & form for reseting password
+ * - implement cron job to clear invited tables in db
+ * - create images for express, react, db, and reddis
+ * - create k8s file with all images
+ * - create image repo ecr? in aws 
+ * - create eks fargate in aws with k8s from ecr
+ **/
+
+//Starting redis
+const redisClient = redis.createClient({
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    port: 6279,
+    password: process.env.REDIS_SEC || "pUff7"
+});
+redisClient.on('error', err => console.log('Redis client Error', err));
+(async () => await redisClient.connect())();
 
 // Imports locales
 const rutaMain = require("./routes/mainRoute");
@@ -44,8 +67,8 @@ app.use(passport.session());
 // Login MW
 app.use(recordarSession);
 app.use((req, res, next) => {
-    res.locals.sessionId = req.user ? req.user.id : false;
-    res.locals.sessionIdAdmin = req.user ? req.user.admin : false;
+    res.locals.sessionId = 'user' in req ? req.user.id : false;
+    res.locals.sessionIdAdmin = 'user' in req ? req.user.admin : false;
     next();
 });
 
