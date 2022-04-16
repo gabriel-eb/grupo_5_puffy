@@ -7,12 +7,9 @@ const morgan = require("morgan");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
-const redis = require('redis');
 const passport = require('passport');
 const initPassport = require('./controllers/passportController');
 initPassport(passport);
-
-
 
 /**
  * TODO:
@@ -24,15 +21,6 @@ initPassport(passport);
  * - create image repo ecr? in aws 
  * - create eks fargate in aws with k8s from ecr
  **/
-
-//Starting redis
-const redisClient = redis.createClient({
-    host: process.env.REDIS_HOST || '127.0.0.1',
-    port: 6279,
-    password: process.env.REDIS_SEC || "pUff7"
-});
-redisClient.on('error', err => console.log('Redis client Error', err));
-(async () => await redisClient.connect())();
 
 // Imports locales
 const rutaMain = require("./routes/mainRoute");

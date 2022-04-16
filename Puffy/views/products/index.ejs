@@ -23,7 +23,7 @@
                     <article class="product-box<%= product.quantity <= 0 ? " no-stock" : ""%>">
                         <a href="/productos/<%= product.id %>" title="<%=product.name %>">
                             <figure class="product-box_image">
-                                <img src="<%= Img.filter(image => image.productId==product.id)[0].url%>" alt="<%= product.name %>">
+                                <img src="<%= images.filter(image => image.productId==product.id)[0].url%>" alt="<%= product.name %>">
                             </figure>
                             <div class="product-box_data">
                                 <h3>

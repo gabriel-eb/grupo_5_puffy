@@ -1,32 +1,40 @@
+const { validationResult } = require('express-validator');
+const redis = require('../controllers/redisController');
 const db = require('../database/models');
-const Users = db.User;
 const Products = db.Product;
 const Categories = db.Category;
 const ProductCat = db.ProductCategory;
 const Images = db.ProductImages;
-const { validationResult } = require('express-validator');
 
 const controller = {
     index: async (req, res) => {
         try {
-            const productsList = await Products.findAll({ 
-                order: [
-                    ['quantity', 'DESC'],
-                    ['name', 'ASC']
-                ] 
-            });
-            const Img = await Images.findAll();
 
-            if (req.user) {
+            let productsList = JSON.parse(await redis.get('productsList'));
+            let images = JSON.parse(await redis.get('productImages'));
+
+            if(!productsList && !images){
+                productsList = await Products.findAll({ 
+                    order: [
+                        ['quantity', 'DESC'],
+                        ['name', 'ASC']
+                    ] 
+                });
+                images = await Images.findAll();
+                await redis.setEx('productsList',3600,JSON.stringify(productsList));
+                await redis.setEx('productImages',3600,JSON.stringify(images));
+            }
+
+            if ('user' in req) {
                 const userIsAdmin = req.user.admin;
                 return res.status(200).render("products/index", {
                     productsList,
-                    Img,
+                    images,
                     userIsAdmin
                 });
             }
 
-            return res.status(200).render("products/index", { productsList, Img });
+            return res.status(200).render("products/index", { productsList, images });
 
         } catch (error) {
             console.log(error);

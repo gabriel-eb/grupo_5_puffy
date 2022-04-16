@@ -8,31 +8,38 @@ const Images = db.ProductImages;
 const Categories = db.Category;
 const ProdCat = db.ProductCategory;
 const passport = require("passport");
+const redis = require('./redisController');
 
 async function getHighlight() {
     try {
-        // Postre del dia
-        const maxQuant = await Products.max('quantity');
-        const highlight = await Products.findOne({
-            where: {
-                quantity: maxQuant
-            },
-            include: [{ model: Images, as: 'productImages' }]
-        });
-        // Creando objeto limpio y con url de imagen
-        const urlHighlight = highlight.productImages
-            .filter(img => img.main)[0].url;
+        let highlight = JSON.parse(await redis.get('highlight'));
 
-        return Object.assign(
-            {},
-            {
+        if(!highlight){
+            // Postre del dia
+            const maxQuant = await Products.max('quantity');
+            highlight = await Products.findOne({
+                where: {
+                    quantity: maxQuant
+                },
+                include: [{ model: Images, as: 'productImages' }]
+            });
+            // Creando objeto limpio y con url de imagen
+            const urlHighlight = highlight.productImages.filter(img => img.main)[0].url;
+
+            highlight = Object.assign(
+              {},
+              {
                 id: highlight.id,
                 name: highlight.name,
                 price: parseFloat(highlight.price),
                 discount: highlight.discount,
-                image: urlHighlight
-            }
-        );
+                image: urlHighlight,
+              }
+            );
+            await redis.setEx('highlight',3600,JSON.stringify(highlight));
+        }
+
+        return highlight;
     } catch (error) {
         console.log(error);
         return null;
@@ -45,34 +52,43 @@ const controller = {
             // Postre del dia
             const highlight = await getHighlight();
 
-            // Postres destacados
-            let recentProducts = await Products.findAll({
-                where: {
-                    quantity: { [Op.gt]: 0 }
-                },
-                order: [['updatedAt', 'DESC']],
-                limit: 4,
-                include: [{ model: Images, as: 'productImages' }]
-            });
+            let recentProducts = JSON.parse(await redis.get('recentProducts'));
+
+            if(!recentProducts){
+                // Postres destacados
+                recentProducts = await Products.findAll({
+                    where: {
+                        quantity: { [Op.gt]: 0 }
+                    },
+                    order: [['updatedAt', 'DESC']],
+                    limit: 4,
+                    include: [{ model: Images, as: 'productImages' }]
+                });
 
 
-            // Limpiando obj y agregando URL de postres destacados
-            recentProducts = recentProducts.map(product => {
-                const urlProduct = product.productImages
-                    .filter(img => img.main)[0].url;
-                return Object.assign(
-                    {},
-                    {
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        discount: product.discount,
-                        image: urlProduct
-                    }
-                );
-            });
-            const categories = await Categories.findAll();
+                // Limpiando obj y agregando URL de postres destacados
+                recentProducts = recentProducts.map(product => {
+                    const urlProduct = product.productImages
+                        .filter(img => img.main)[0].url;
+                    return Object.assign(
+                        {},
+                        {
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            discount: product.discount,
+                            image: urlProduct
+                        }
+                    );
+                });
+                await redis.setEx('recentProducts',3600,JSON.stringify(recentProducts));
 
+                const categories = await Categories.findAll();
+                await redis.setEx('categories',3600,JSON.stringify(categories));
+            }
+
+            const categories = JSON.parse(await redis.get('categories'));
+            
             return res.status(200).render("index", {
                 highlight,
                 recentProducts,
