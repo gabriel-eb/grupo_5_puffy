@@ -3,7 +3,7 @@ if (!process.env.NODE_ENV) {
 }
 const redis = require('redis');
 
-//Starting redis
+//Starting redis for cache
 const redisClient = redis.createClient({
     host: process.env.REDIS_HOST || '127.0.0.1',
     port: 6279,

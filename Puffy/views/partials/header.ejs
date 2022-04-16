@@ -8,7 +8,7 @@
         <a href="/"><img src="/images/logo.svg" alt="Logo Puffy" class="logo-header" /></a>
         <div class="relleno-top-bar"></div>
         <div class="carrito">
-            <% if(sessionId && sessionIdAdmin){ %>
+            <% if('sessionId' in locals && 'sessionIdAdmin' in locals && sessionId){ %>
                 <a href="/dashboard"><i class="fas fa-columns"></i><span>Dashboard</span></a>
             <% } %>
             <a href="/cart"><i class="fas fa-shopping-cart"></i><span>Carrito</span></a>
@@ -30,7 +30,7 @@
                 </ul>
             </li>
 
-            <%if(sessionId){%>
+            <%if('sessionId' in locals && sessionId){%>
                 <li><a href="/users/<%=sessionId%>"><i class="fas fa-user"></i> Perfil</a></li>
                 <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
             <%}else{%>

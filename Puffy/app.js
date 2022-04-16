@@ -5,6 +5,8 @@ const path = require("path");
 const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
+let RedisStore = require('connect-redis')(session);
+const redis = require('redis');
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
 const passport = require('passport');
@@ -36,6 +38,18 @@ const PORT = process.env.PORT || 3030;
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
 
+
+// Settingup redis for session
+const redisClient = redis.createClient({
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    port: 6279,
+    password: process.env.REDIS_SEC || "pUff7",
+    legacyMode:true
+})
+redisClient.on('error', err => console.log('Redis client Error', err));
+(async () => await redisClient.connect())();
+
+
 // Middlewares
 // app.use(morgan(':method :url :status :response-time ms'));
 app.use(morgan('dev', { skip: (req, res) => req.url.match('(jpg|png|ico|css|svg)$') }));
@@ -45,6 +59,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser(process.env.COOKIE_SEC || "pUff7"));
 app.use(session({
+    store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SEC || "pUff7",
     resave: false,
     saveUninitialized: false
