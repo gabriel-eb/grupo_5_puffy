@@ -88,7 +88,7 @@ const controller = {
             }
 
             const categories = JSON.parse(await redis.get('categories'));
-            
+
             return res.status(200).render("index", {
                 highlight,
                 recentProducts,
@@ -259,7 +259,11 @@ const controller = {
                 );
             });
 
-            const categories = await Categories.findAll({ raw: true });
+            let categories = JSON.parse(await redis.get('categories'));
+            if(!categories){
+                categories = await Categories.findAll({ raw: true });
+                await redis.setEx('categories',3600,JSON.stringify(categories));
+            }
 
             if (searchResult.length === 0) {
                 const highlight = await getHighlight();

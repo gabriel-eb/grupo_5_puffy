@@ -6,6 +6,19 @@ const Categories = db.Category;
 const ProductCat = db.ProductCategory;
 const Images = db.ProductImages;
 
+const getCategories = async () => {
+    try{
+        let categoriesList = JSON.parse(await redis.get('categories'));
+        if(!categoriesList){
+            categoriesList = await Categories.findAll();
+            await redis.setEx('categories',3600,JSON.stringify(categoriesList));
+        }
+        return categoriesList;
+    }catch(err){
+        throw err;
+    }
+}
+
 const controller = {
     index: async (req, res) => {
         try {
@@ -71,7 +84,7 @@ const controller = {
     },
     vistaAgregar: async (req, res) => {
         try {
-            const categoriesList = await Categories.findAll();
+            const categoriesList = await getCategories();
             const categories = [];
             categoriesList.map(cat => categories.push(cat.dataValues));
             res.status(200).render("products/agregar", { categories });
@@ -141,7 +154,7 @@ const controller = {
 
             producto.category = prodCat.dataValues.categoryId;
 
-            const categoriesList = await Categories.findAll();
+            const categoriesList = await getCategories();
             const categories = [];
             categoriesList.map(cat => categories.push(cat.dataValues));
 
@@ -163,7 +176,7 @@ const controller = {
         try {
             const resultValidation = validationResult(req);
             if (resultValidation.errors.length > 0) {
-                const categoriesList = await Categories.findAll();
+                const categoriesList = await getCategories();
                 const categories = [];
                 categoriesList.map(cat => categories.push(cat.dataValues));
                 req.body.description = req.body.description.trim();
@@ -209,7 +222,7 @@ const controller = {
                 producto = producto.dataValues;
                 producto = { ...producto, ...req.body };
                 const image = await Images.findOne({ where: { productId: req.params.id } });
-                const categoriesList = await Categories.findAll();
+                const categoriesList = await getCategories();
                 const categories = [];
                 categoriesList.map(cat => categories.push(cat.dataValues));
                 return res.status(401).render('products/modificar', {
