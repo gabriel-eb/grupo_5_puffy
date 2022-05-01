@@ -5,27 +5,24 @@ const db = require("../database/models");
 const Users = db.User;
 
 module.exports = {
-  createToken: (id, email) => {
-    return jwt.sign({id,email}, process.env.TK_SEC || "pUff7");
+  index: (req, res) => {
+    return res.status(200).render("resetPass/email", { msg: "" });
   },
   uncrypToken: (token) => {
     return jwt.verify(token, process.env.TK_SEC || "pUff7");
   },
-  getEmailForm: (req, res) => {
-    return res.status(200).render("resetPass/email", { msg: "" });
-  },
   resetPassForm: (req, res) => {
     const token = req.params.k;
-    const uncrypToken = this.uncrypToken(token);
+    const uToken = this.uncrypToken(token);
     const limitDate = new Date();
     limitDate.setDate(limitDate.getDate() - 1);
     console.log(limitDate);
-    const validToken = uncrypToken.date >= limitDate;
+    const validToken = uToken.date >= limitDate;
 
     if (validToken) {
       return res.status(200).render("resetPass/resetForm", { expired: false });
     }
-    return res.status(403).render("resetPass/resetForm", { expired: false });
+    return res.status(403).render("resetPass/resetForm", { expired: true });
   },
   resetPass: (req, res) => {
       try {
@@ -42,7 +39,7 @@ module.exports = {
           return res.status(500);
       }
   },
-  resetPassEmail: async (req, res) => {
+  sendEmail: async (req, res) => {
     try {
       // Verify if email exist in DB
       const { email } = req.body;
@@ -51,10 +48,10 @@ module.exports = {
         return res.status(404);
       }
 
-      const token = this.createToken(currentUser.id, email)
+      const token = jwt.sign({ id: currentUser.id, email }, process.env.TK_SEC || "pUff7");
 
       console.log(
-        `${req.protocol}://${req.get("host")}/resetPassword?k=${token}`
+        `${req.protocol}://${req.get("host")}/reset/password?k=${token}`
       );
       console.log(token);
 
@@ -72,11 +69,11 @@ module.exports = {
         from: '"Puffy" <noreply@puffy.com>',
         to: email,
         subject: "Reset your passwprd ",
-        html: `<h1>Puffy - Restablecer contraseña</h1><br/><br/><p>Para restablecer la contraseña vaya a la siguiente página:</p><br/><br/><a href="${req.protocol}://${req.get("host")}/resetPassword?k=${token}"><h3>${
+        html: `<h1>Puffy - Restablecer contraseña</h1><br/><br/><p>Para restablecer la contraseña vaya a la siguiente página:</p><br/><br/><a href="${req.protocol}://${req.get("host")}/reset/password?k=${token}"><h3>${
           req.protocol
         }://${req.get(
           "host"
-        )}/resetPassword?k=${token}</h3></a><br/><br/><p>El URL solo es valido por 24 horas.</p>`,
+        )}/reset/password?k=${token}</h3></a><br/><br/><p>El URL solo es valido por 24 horas.</p>`,
       };
 
       // send mail with defined transport object

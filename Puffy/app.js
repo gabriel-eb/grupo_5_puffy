@@ -31,6 +31,7 @@ const rutaUsers = require("./routes/usersRoute");
 const rutaCarts = require("./routes/cartsRoute");
 const rutaApi = require("./routes/apiRoute");
 const rutaInvited = require("./routes/invitedRoute");
+const rutaReset = requite("./routes/resetRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
@@ -83,6 +84,7 @@ app.use("/users", rutaUsers);
 app.use("/cart", rutaCarts);
 app.use("/api", rutaApi);
 app.use("/invited", rutaInvited);
+app.use("/reset", rutaReset);
 
 // Demo Error 500
 app.get("/error", (req, res, next) => {
