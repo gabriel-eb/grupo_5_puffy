@@ -31,7 +31,7 @@ const rutaUsers = require("./routes/usersRoute");
 const rutaCarts = require("./routes/cartsRoute");
 const rutaApi = require("./routes/apiRoute");
 const rutaInvited = require("./routes/invitedRoute");
-const rutaReset = requite("./routes/resetRoute");
+const rutaReset = require("./routes/resetRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
