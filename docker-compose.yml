@@ -6,10 +6,10 @@ services:
         ports:
         - '3306:3306'
         environment:
-          MYSQL_DATABASE: puffy_db
-          MYSQL_USER: puffy_admin
-          MYSQL_PASSWORD: pUff7
-          MYSQL_ROOT_PASSWORD: pUff7
+          MYSQL_DATABASE: ${DB_NAME}
+          MYSQL_USER: ${DB_USERNAME}
+          MYSQL_PASSWORD: ${DB_SEC}
+          MYSQL_ROOT_PASSWORD: ${DB_SEC}
         volumes:
           - puffy-db:/var/lib/mysql
           - ./puffy_script_v2.sql:/docker-entrypoint-initdb.d/schema.sql
