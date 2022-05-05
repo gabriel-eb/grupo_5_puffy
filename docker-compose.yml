@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+    puffy_redis:
+        image: redis:6.2-alpine
+        restart: always
+        ports:
+          - '6379:6379'
+        command: redis-server --save 20 1 --loglevel warning
+    puffy:
+        container_name: puffy
+        build: ./Puffy
+        ports:
+          - '3030:3030'
+        links:
+          - puffy_redis
+        depends_on:
+          - puffy_redis

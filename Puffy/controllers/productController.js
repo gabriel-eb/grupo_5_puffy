@@ -11,7 +11,7 @@ const getCategories = async () => {
         let categoriesList = JSON.parse(await redis.get('categories'));
         if(!categoriesList){
             categoriesList = await Categories.findAll();
-            await redis.setEx('categories',3600,JSON.stringify(categoriesList));
+            await redis.set('categories',JSON.stringify(categoriesList),'EX',3600);
         }
         return categoriesList;
     }catch(err){
@@ -34,8 +34,8 @@ const controller = {
                     ] 
                 });
                 images = await Images.findAll();
-                await redis.setEx('productsList',3600,JSON.stringify(productsList));
-                await redis.setEx('productImages',3600,JSON.stringify(images));
+                await redis.set('productsList',JSON.stringify(productsList),'EX',3600);
+                await redis.set('productImages',JSON.stringify(images),'EX',3600);
             }
 
             if ('user' in req) {

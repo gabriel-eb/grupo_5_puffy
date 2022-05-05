@@ -6,7 +6,7 @@ const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
 let RedisStore = require('connect-redis')(session);
-const redis = require('redis');
+const Redis = require('ioredis');
 const cookieParser = require('cookie-parser');
 const sequelize = require('sequelize');
 const passport = require('passport');
@@ -41,14 +41,12 @@ app.set("view engine", "ejs");
 
 
 // Settingup redis for session
-const redisClient = redis.createClient({
+const redisClient = new Redis({
     host: process.env.REDIS_HOST || '127.0.0.1',
-    port: 6279,
-    password: process.env.REDIS_SEC || "pUff7",
-    legacyMode:true
-})
-redisClient.on('error', err => console.log('Redis client Error', err));
-(async () => await redisClient.connect())();
+    port: process.env.REDIS_PORT || 6379,
+    password: process.env.REDIS_SEC || "pUff7"
+});
+console.log('Initializing redis session instance...');
 
 
 // Middlewares

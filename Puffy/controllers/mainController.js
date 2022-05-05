@@ -36,7 +36,7 @@ async function getHighlight() {
                 image: urlHighlight,
               }
             );
-            await redis.setEx('highlight',3600,JSON.stringify(highlight));
+            await redis.set('highlight',JSON.stringify(highlight),'EX',3600);
         }
 
         return highlight;
@@ -81,10 +81,10 @@ const controller = {
                         }
                     );
                 });
-                await redis.setEx('recentProducts',3600,JSON.stringify(recentProducts));
+                await redis.set('recentProducts',JSON.stringify(recentProducts),'EX',3600);
 
                 const categories = await Categories.findAll();
-                await redis.setEx('categories',3600,JSON.stringify(categories));
+                await redis.set('categories',JSON.stringify(categories),'EX',3600);
             }
 
             const categories = JSON.parse(await redis.get('categories'));
@@ -262,7 +262,7 @@ const controller = {
             let categories = JSON.parse(await redis.get('categories'));
             if(!categories){
                 categories = await Categories.findAll({ raw: true });
-                await redis.setEx('categories',3600,JSON.stringify(categories));
+                await redis.set('categories',JSON.stringify(categories),'EX',3600);
             }
 
             if (searchResult.length === 0) {

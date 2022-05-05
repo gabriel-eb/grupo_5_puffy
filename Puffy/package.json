@@ -29,6 +29,7 @@
         "express-form-data": "^2.0.17",
         "express-session": "^1.17.2",
         "express-validator": "^6.12.1",
+        "ioredis": "^5.0.4",
         "jsonwebtoken": "^8.5.1",
         "method-override": "^3.0.0",
         "morgan": "^1.10.0",
@@ -38,7 +39,6 @@
         "passport": "^0.5.2",
         "passport-local": "^1.0.0",
         "react-app": "^1.1.2",
-        "redis": "^4.0.6",
         "sequelize": "^6.6.5",
         "uuid": "^8.3.2"
     },
