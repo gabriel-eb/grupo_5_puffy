@@ -3,7 +3,7 @@ module.exports = {
         "username": "root",
         "password": "rootroot",
         "database": "puffy_db",
-        "host": "127.0.0.1",
+        "host": "172.17.0.2",
         "dialect": "mysql",
         "port": 3306
     },
