@@ -1,3 +1,6 @@
+if (!process.env.NODE_ENV) {
+    require('dotenv').config()
+}
 module.exports = {
     "development": {
         "username": "root",
