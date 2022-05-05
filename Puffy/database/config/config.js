@@ -3,16 +3,16 @@ module.exports = {
         "username": "root",
         "password": "rootroot",
         "database": "puffy_db",
-        "host": "172.17.0.2",
+        "host": "127.0.0.1",
         "dialect": "mysql",
         "port": 3306
     },
     "production": {
         "username": process.env.DB_USERNAME || "root",
-        "password": process.env.DB_PASS || null,
+        "password": process.env.DB_SEC || null,
         "database": process.env.DB_NAME || "database_production",
-        "host": process.env.DB_URL || "127.0.0.1",
+        "host": process.env.DB_HOST || "127.0.0.1",
         "dialect": "mysql",
-        "port": 3306
+        "port": process.env.DB_PORT || 3306
     }
 }
