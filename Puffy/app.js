@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+// const cors = require("cors");
 const methodOverride = require('method-override');
 const morgan = require("morgan");
 const session = require("express-session");
@@ -35,6 +36,8 @@ const rutaReset = require("./routes/resetRoute");
 const recordarSession = require('./middlewares/recordarSessionMiddleware');
 const PORT = process.env.PORT || 3030;
 
+
+// app.use(cors());
 
 // app.set("views", __dirname + '/carpetaViews');
 app.set("view engine", "ejs");
