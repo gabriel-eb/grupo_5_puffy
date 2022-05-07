@@ -11,11 +11,12 @@ import UserDetail from './components/UserDetail';
 import Error404 from './components/Error404';
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(null);
   useEffect(()=>{
     fetch(`/api/isAdmin`)
             .then(res => res.json())
             .then(res => {
+              console.log(res)
                 if('isAdmin' in res){
                   setIsAdmin(res.isAdmin);
                 } else {
@@ -28,14 +29,20 @@ function App() {
     return (
       <>
       {
-        !isAdmin && 
-        <div>
-          <h1>403 - No estás autorizado para usar esta sección</h1>
+        isAdmin === null && 
+        <h1 style={{textAlign:"center", paddingTop:"10vw"}}>
+          Cargando contenido...
+        </h1>
+      }
+      {
+        isAdmin != null && !isAdmin && 
+        <div style={{textAlign:"center", paddingTop:"10vw"}}>
+          <h1>403 FORBIDDEN - No estás autorizado para usar esta sección</h1>
           <a href="/" className="navbar-brand me-5" style={{ marginRight: '10px' }}> Regresar a Tienda</a>
         </div>
       }
      {
-      isAdmin && 
+      isAdmin !== null && isAdmin && 
       <div className="container-fluid" style={{padding:0}}>
           <Navegation />
           <Switch>

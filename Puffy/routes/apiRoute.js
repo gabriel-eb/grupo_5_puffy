@@ -4,6 +4,8 @@ const controller = require("../controllers/apiController");
 const uploadFile = require("../middlewares/multerMiddleware");
 const gcpImage = require("../middlewares/gcpImageMiddleware");
 
+router.get('/isAdmin', controller.getIsAdmin)
+
 router.get('/users', controller.getAllUsers);
 router.get('/users/last', controller.getLastUser);
 router.get('/users/:id', controller.getUser);

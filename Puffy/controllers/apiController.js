@@ -8,6 +8,18 @@ const Carts = db.Cart;
 const ProductCarts = db.ProductCart;
 
 module.exports = {
+    getIsAdmin: async (req, res) => {
+        try {
+            if('user' in req && req.user.admin){
+                return res.status(200).json({ isAdmin: true });
+            } else {
+                return res.status(403).json({ isAdmin: false });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ error });
+        }
+    },
     getAllUsers: async (req, res) => {
         try {
             let users = await Users.findAll({
