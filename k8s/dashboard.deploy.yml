@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  selector:
+      matchLabels:
+        app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      containers:
+      - image: gabriel-eb/puffy-dashboard
+        name: dashboard
+        resources: {}

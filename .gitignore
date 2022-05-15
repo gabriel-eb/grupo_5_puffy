@@ -48,3 +48,5 @@ Puffy/dashboard/.env.production.local
 Puffy/dashboard/npm-debug.log*
 Puffy/dashboard/yarn-debug.log*
 Puffy/dashboard/yarn-error.log*
+
+secrets.yml
