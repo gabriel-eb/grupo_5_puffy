@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  selector:
+      matchLabels:
+        app: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - image: mysql:latest
+        name: database
+        restart: always
+        ports:
+        - containerPort: 3306
+        env:
+        # - name: MYSQL_DATABASE
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: secrets
+        #       key: db-name
+          MYSQL_DATABASE: ${DB_NAME}
+          MYSQL_USER: ${DB_USERNAME}
+          MYSQL_PASSWORD: ${DB_SEC}
+          MYSQL_ROOT_PASSWORD: ${DB_SEC}
+        volumeMounts:
+        - name: database-local-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: database-local-storage
+        persistentVolumeClaim:
+          claimName: database-pvc
