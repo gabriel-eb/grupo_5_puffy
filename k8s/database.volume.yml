@@ -1,24 +1,15 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: database-local-storage
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
-
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: database-pv
 spec:
-  storageClassName: database-local-storage
+  storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
-  local:
-    path: /tmp/data/db
+  hostPath:
+    path: "/mnt/data"
 
 ---
 
@@ -27,9 +18,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-pvc
 spec:
-  storageClassName: database-local-storage
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 2Gi

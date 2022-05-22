@@ -16,21 +16,33 @@ spec:
         app: database
     spec:
       containers:
-      - image: mysql:latest
+      - image: mysql:8
         name: database
-        restart: always
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_ROOT_SEC
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_NAME
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_USERNAME
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_SEC
         ports:
         - containerPort: 3306
-        env:
-        # - name: MYSQL_DATABASE
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: secrets
-        #       key: db-name
-          MYSQL_DATABASE: ${DB_NAME}
-          MYSQL_USER: ${DB_USERNAME}
-          MYSQL_PASSWORD: ${DB_SEC}
-          MYSQL_ROOT_PASSWORD: ${DB_SEC}
+          name: database
+          protocol: TCP
         volumeMounts:
         - name: database-local-storage
           mountPath: /var/lib/mysql

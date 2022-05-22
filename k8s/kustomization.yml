@@ -1,0 +1,6 @@
+resources:
+  - secrets.yml
+  - database.volume.yml
+  - database.deploy.yml
+  - cache.volume.yml
+  - cache.deploy.yml

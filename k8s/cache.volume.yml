@@ -7,6 +7,7 @@ data:
     masterauth ${REDIS_SEC}
     requirepass ${REDIS_SEC}
 
+---
 
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -16,6 +17,7 @@ provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain 
 
+---
 
 # PersistentVolume for local run
 apiVersion: v1
@@ -38,6 +40,8 @@ spec:
           operator: In
           values:
           - docker-desktop
+
+---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
