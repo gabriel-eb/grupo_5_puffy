@@ -1,56 +1,53 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: redis-config
-data:
-  redis.conf: |
-    masterauth ${REDIS_SEC}
-    requirepass ${REDIS_SEC}
-
----
-
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: cache-local-storage
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
-reclaimPolicy: Retain 
+allowVolumeExpansion: true
+reclaimPolicy: Delete
 
 ---
 
-# PersistentVolume for local run
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cache-pv
+  name: cache-local-pv1
 spec:
+  storageClassName: cache-local-storage
   capacity:
     storage: 1Gi
-  storageClassName: cache-local-storage
   accessModes:
     - ReadWriteOnce
-  local:
-    path: /tmp/data/cache
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - docker-desktop
+  hostPath:
+    path: "/storage/data1"
 
 ---
 
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
-  name: cache-pvc
+  name: cache-local-pv2
 spec:
-  accessModes:
-  - ReadWriteOnce
   storageClassName: cache-local-storage
-  resources:
-    requests:
-      storage: 1Gi
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/storage/data2"
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cache-local-pv3
+spec:
+  storageClassName: cache-local-storage
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/storage/data3"

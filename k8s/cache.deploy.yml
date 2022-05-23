@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cache
+spec:
+  clusterIP: None
+  ports:
+  - port: 6379
+    targetPort: 6379
+    name: cache
+  selector:
+    app: cache
+
+---
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -14,26 +28,61 @@ spec:
       labels:
         app: cache
     spec:
+      initContainers:
+      - name: config
+        image: redis:6.2.3-alpine
+        command: [ "sh", "-c" ]
+        args:
+          - |
+            cp /tmp/redis/redis.conf /etc/redis/redis.conf
+            
+            echo "finding master..."
+            MASTER_FDQN=`hostname  -f | sed -e 's/cache-[0-9]\./cache-0./'`
+            if [ "$(redis-cli -h sentinel -p 5000 ping)" != "PONG" ]; then
+              echo "master not found, defaulting to cache-0"
+
+              if [ "$(hostname)" == "cache-0" ]; then
+                echo "this is cache-0, not updating config..."
+              else
+                echo "updating redis.conf..."
+                echo "slaveof $MASTER_FDQN 6379" >> /etc/redis/redis.conf
+              fi
+            else
+              echo "sentinel found, finding master"
+              MASTER="$(redis-cli -h sentinel -p 5000 sentinel get-master-addr-by-name mymaster | grep -E '(^cache-\d{1,})|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})')"
+              echo "master found : $MASTER, updating redis.conf"
+              echo "slaveof $MASTER 6379" >> /etc/redis/redis.conf
+            fi
+        env:
+        - name: REDIS_SEC
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: REDIS_SEC
+        volumeMounts:
+        - name: cache-config
+          mountPath: /etc/redis/
+        - name: config
+          mountPath: /tmp/redis/
       containers:
       - name: cache
-        image: redis:7.0-alpine
+        image: redis:6.2.3-alpine
+        command: ["redis-server"]
+        args: ["/etc/redis/redis.conf"]
         ports:
-          - containerPort: 6379
-            name: cache
-            protocol: TCP
-        command: 
-        - redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_SEC}
+        - containerPort: 6379
+          name: cache
         volumeMounts:
         - name: data
           mountPath: /data
-        - name: redis-config
+        - name: cache-config
           mountPath: /etc/redis/
       volumes:
-      - name: redis-config
+      - name: cache-config
         emptyDir: {}
       - name: config
         configMap:
-          name: redis-config
+          name: cache-config
   volumeClaimTemplates:
   - metadata:
       name: data
