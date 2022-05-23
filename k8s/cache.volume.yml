@@ -12,11 +12,11 @@ reclaimPolicy: Delete
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cache-local-pv1
+  name: cache-local-pv0
 spec:
   storageClassName: cache-local-storage
   capacity:
-    storage: 1Gi
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -27,11 +27,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cache-local-pv2
+  name: cache-local-pv1
 spec:
   storageClassName: cache-local-storage
   capacity:
-    storage: 1Gi
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -42,11 +42,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cache-local-pv3
+  name: cache-local-pv2
 spec:
   storageClassName: cache-local-storage
   capacity:
-    storage: 2Gi
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
