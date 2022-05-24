@@ -40,11 +40,17 @@ app.set("view engine", "ejs");
 
 
 // Settingup redis for session
-const redisClient = new Redis({
-    host: process.env.REDIS_HOST || '127.0.0.1',
-    port: process.env.REDIS_PORT || 6379,
-    password: process.env.REDIS_SEC || "pUff7"
-});
+let redisClient = null;
+try{
+    redisClient = new Redis({
+        host: process.env.REDIS_HOST || '127.0.0.1',
+        port: process.env.REDIS_PORT || 6379,
+        password: process.env.REDIS_SEC || "pUff7"
+    });
+} catch(err){
+    console.log(err);
+    redisClient.disconnect();
+}
 console.log('Initializing redis session instance...');
 
 
