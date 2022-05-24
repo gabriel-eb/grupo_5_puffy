@@ -15,5 +15,9 @@ spec:
     spec:
       containers:
       - image: gabriel-eb/puffy
+        imagePullPolicy: IfNotPresent
         name: backend
         resources: {}
+        envFrom:
+        - secretRef:
+            name: mysecret
