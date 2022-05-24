@@ -2,5 +2,11 @@ resources:
   - secrets.yml
   - database.volume.yml
   - database.deploy.yml
+  - cache.config.yml
   - cache.volume.yml
-  - cache.deploy.yml
+  - cache.statefulset.yml
+  - backend.service.yml
+  - backend.deploy.yml
+  - cors.service.yml
+  - dashboard.deploy.yml
+  - indress.service.yml
