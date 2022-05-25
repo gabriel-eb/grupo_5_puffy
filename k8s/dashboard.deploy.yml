@@ -16,4 +16,5 @@ spec:
       containers:
       - image: gabriel-eb/puffy-dashboard
         name: dashboard
+        imagePullPolicy: IfNotPresent
         resources: {}

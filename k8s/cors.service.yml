@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-cors
+  labels:
+    app: backend
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST"
@@ -10,12 +12,13 @@ metadata:
 spec:
   ingressClassName: api-ingress
   rules:
-  - http:
+  - host: backend.cors
+    http:
       paths:
       - path: /api
         pathType: Prefix
         backend:
           service:
-            name: api-cors
+            name: backend-lb
             port:
-              number: 80
+              number: 3030
