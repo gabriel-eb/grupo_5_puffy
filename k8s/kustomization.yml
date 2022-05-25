@@ -7,6 +7,6 @@ resources:
   - cache.statefulset.yml
   - backend.service.yml
   - backend.deploy.yml
-  - cors.service.yml
-  - dashboard.deploy.yml
-  - indress.service.yml
+  # - cors.service.yml
+  # - dashboard.deploy.yml
+  # - indress.service.yml
