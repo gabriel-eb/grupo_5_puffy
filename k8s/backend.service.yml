@@ -23,7 +23,7 @@ spec:
     app: dashboard
   ports:
     - protocol: TCP
-      port: 3031
+      port: 80
       targetPort: 3031
 
 ---
